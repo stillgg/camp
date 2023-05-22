@@ -1,0 +1,27 @@
+/* for example !!! 
+
+$white: #ffffff;
+$gray1: #f9f9f9;
+$gray2: #f1f1f1;
+$gray3: #e9eaeb;
+$gray4: #e1e1e3;
+$gray5: #9393a7;
+$gray6: #71747a;
+$gray7: #171a1f;
+$pink: #cb11ab;
+$purple: #7b1b8b;
+$green3: #0bb66e;
+$pink-gradient: linear-gradient(90deg, #d02db4 0%, #481173 100%);
+
+@mixin pink-shadow() {
+  box-shadow: 0 0 0 0.2rem rgb(123 27 139 / 50%);
+}
+
+@mixin pink-gradient-text() {
+  background: $pink-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s background;
+}
+
+*/
