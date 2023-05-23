@@ -21,4 +21,4 @@ function twoSum(nums, target) {
   return arrIndex;
 }
 
-twoSum([3, 1, 2, 2, 8, 4], 11);
+console.log(twoSum([3, 1, 2, 2, 8, 4], 11));
