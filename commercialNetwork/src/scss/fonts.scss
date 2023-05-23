@@ -1,10 +1,14 @@
-/* for example
+
 @font-face {
-  font-family: "Golos";
-  src: local("Golos"),
-    url("../../resources/fonts/Golos400.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
-*/
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
