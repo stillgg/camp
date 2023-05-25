@@ -4,12 +4,6 @@ var isPalindrome = function (x) {
   for (let i = x.length - 1; i >= 0; i--) {
     y += x[i];
   }
-  y = String(y);
-  if (x === y) {
-    return true;
-  } else {
-    return false;
-  }
+  x === y ? true : false;
+  return x;
 };
-
-isPalindrome(121);
