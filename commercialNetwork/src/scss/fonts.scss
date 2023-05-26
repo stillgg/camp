@@ -1,10 +1,26 @@
-/* for example
 @font-face {
-  font-family: "Golos";
-  src: local("Golos"),
-    url("../../resources/fonts/Golos400.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("./fonts/montserrat-v25-latin-400.woff2") format("woff2"),
+    url("./fonts/montserrat-v25-latin-400.woff") format("woff"),
+    url("./fonts/montserrat-v25-latin-400.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
 }
-*/
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/montserrat-v25-latin-700.woff2") format("woff2"),
+    url("./fonts/montserrat-v25-latin-700.woff") format("woff"),
+    url("./fonts/montserrat-v25-latin-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/montserrat-extrabold-webfont.woff2") format("woff2"),
+    url("./fonts/montserrat-extrabold-webfont.woff") format("woff"),
+    url("./fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
