@@ -3,7 +3,7 @@
   src: url("./fonts/montserrat-v25-latin-400.woff2") format("woff2"),
     url("./fonts/montserrat-v25-latin-400.woff") format("woff"),
     url("./fonts/montserrat-v25-latin-400.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -12,6 +12,15 @@
   src: url("./fonts/montserrat-v25-latin-700.woff2") format("woff2"),
     url("./fonts/montserrat-v25-latin-700.woff") format("woff"),
     url("./fonts/montserrat-v25-latin-700.ttf") format("truetype");
-  font-weight: bold;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/montserrat-extrabold-webfont.woff2") format("woff2"),
+    url("./fonts/montserrat-extrabold-webfont.woff") format("woff"),
+    url("./fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
   font-style: normal;
 }
