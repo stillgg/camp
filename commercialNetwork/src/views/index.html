@@ -9,26 +9,31 @@
     <title>promotion.ru</title>
   </head>
   <body>
-    <div class="app">
-      <h1>hello world</h1>
-      <img
-        src="/resources/img/01-main-bg.webp"
-        width="1920"
-        height="1080"
-        alt="main-bg"
-      />
-      <img
-        src="/resources/img/04-photo-mall.webp"
-        width="649"
-        height="1080"
-        alt="photo-mall"
-      />
-      <img
-        src="/resources/img/04-girl.webp"
-        width="723"
-        height="869"
-        alt="girl"
-      />
+    <div class="container">
+      <header class="header">
+        <svg class="header__logo" width="150" height="78">
+          <use xlink:href="resources/icons/sprite.svg#logo"></use>
+        </svg>
+        <ul class="header__nav">
+          <li class="nav__item"><a href="#">о компании</a></li>
+          <li class="nav__item"><a href="#">команда</a></li>
+          <li class="nav__item"><a href="#">новости</a></li>
+          <li class="nav__item"><a href="#">вакансии</a></li>
+          <li class="nav__item"><a href="#">мерч</a></li>
+          <li class="nav__item"><a href="#">контакты</a></li>
+        </ul>
+        <button class="header__btn">
+          <span>ВХОД</span>
+          <svg class="btn__key" width="12" height="12">
+            <use xlink:href="resources/icons/sprite.svg#key"></use>
+          </svg>
+        </button>
+      </header>
+      <div class="test">
+        Мы делаем путь от первого контакта с вашим продуктом до его приобретения
+        минимальным и помогаем решиться на покупку здесь и сейчас. Мы -
+        Promotion.ru
+      </div>
     </div>
   </body>
 </html>
