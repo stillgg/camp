@@ -1,4 +1,4 @@
-const hamburgerBtn = document.querySelector("#main__icon");
+const hamburgerBtn = document.querySelector(".wrapper__icon");
 const hamburgerBody = document.querySelector("#menu__body");
 const body = document.querySelector("body");
 
