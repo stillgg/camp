@@ -1,0 +1,70 @@
+.promoters {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: url("../resources/img/04-background-image.png") center center no-repeat fixed #ed0644;
+    background-size: cover;
+    overflow: hidden;
+
+    .promoters__photo-mall {
+        width: 25%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: url("../resources/img/04-photo-mall.webp") no-repeat 0% / cover;
+        background: url("../resources/img/04-photo-mall.png") no-repeat 0% / cover;
+    }
+    .promoters-wrapper {
+        .promoters-wrapper__girl {
+            position: absolute;
+            max-width: 723px;
+            right: 8%;
+            bottom: 0;
+        }
+        .promoters-wrapper__city {
+            position: absolute;
+            background: #ffffff;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
+            border-radius: 110px;
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 28px;
+            /* or 67% */
+
+            text-transform: uppercase;
+
+            /* Gray */
+
+            color: #5c5c5c;
+        }
+        .promoters-wrapper__contacts {
+            // display: none;
+        }
+        .promoters-wrapper__points {
+            // display: none;
+        }
+    }
+
+    .promoters__title {
+        max-width: 437px;
+
+        margin-bottom: 50px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 56px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    .promoters__title-text {
+        max-width: 408px;
+
+        font-style: normal;
+        font-size: 18px;
+        line-height: 156%;
+        color: #ffffff;
+    }
+}
