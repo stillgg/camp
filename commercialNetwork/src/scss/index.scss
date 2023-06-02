@@ -2,11 +2,10 @@
 @import "./vars.scss";
 @import "./fonts.scss";
 @import "./header.scss";
+@import "./aboutCompany.scss";
 
 section {
-  @media (min-width: 1200px) {
-    height: 100vh;
-  }
+  height: 100vh;
 }
 
 .container {
