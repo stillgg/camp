@@ -138,10 +138,13 @@
   }
 
   .network__footer {
-    padding: clamp(0.313rem, -0.824rem + 5.68vh, 3.438rem) 0;
     background: #ebebeb;
 
     .wrapper__scroll {
+      padding: clamp(0.313rem, -0.824rem + 5.68vh, 3.438rem) 0;
+      overflow: hidden;
+      overflow-x: scroll;
+
       .clients {
         width: 1140px;
         display: flex;
