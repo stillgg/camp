@@ -10,34 +10,114 @@
   </head>
   <body>
     <div class="app">
-      <section class="promoters">
-        <div class="promoters__photo-mall"></div>
-        <div class="promoters-wrapper">
-          <picture class="promoters-wrapper__girl">
-            <source type="image/webp" srcset="../resources/img/04-girl.webp" />
-            <img src="../resources/img/04-girl.png" alt="photo-mall" />
-          </picture>
-          <p class="promoters-wrapper__city">
-            75<br /><span class="little-text">городов</span>
-          </p>
-          <p class="promoters-wrapper__contacts">
-            3 000 000+<br />
-            <span class="little-text">контактов в день с покупателями</span>
-          </p>
-          <p class="promoters-wrapper__points">
-            700+<br />
-            <span class="little-text">точек</span>
-          </p>
+      <header class="header container">
+        <a class="header__logo" href="#">
+          <svg width="150" height="78">
+            <use xlink:href="resources/icons/sprite.svg#logo"></use>
+          </svg>
+        </a>
+        <div class="header__menu menu">
+          <nav id="menu__body" class="menu__body">
+            <ul class="header__nav">
+              <li class="nav__item">
+                <a class="nav__link" href="#">о компании</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="#">команда</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="#">новости</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link" href="#">вакансии</a>
+              </li>
+              <li class="nav__item"><a class="nav__link" href="#">мерч</a></li>
+              <li class="nav__item">
+                <a class="nav__link" href="#">контакты</a>
+              </li>
+              <li>
+                <a class="header__btn"
+                  >ВХОД
+                  <svg class="btn__key" width="12" height="12">
+                    <use xlink:href="resources/icons/sprite.svg#key"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div id="wrapper__icon" class="wrapper__icon">
+            <div class="menu__icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
         </div>
+      </header>
+
+      <section class="home">
+        <div class="home__main container">
+          <div class="main__svg">
+            <svg class="svg__slogan" width="1080" height="486">
+              <use xlink:href="../resources/icons/slogan.svg#slogan"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="home__footer container">
+          <a target="_blank" href="https://vk.com/mikulich2001"
+            ><svg width="35" height="35">
+              <use xlink:href="../resources/icons/sprite.svg#vk"></use>
+            </svg>
+          </a>
+          <span>© 2019 - 2022 Promotion.ru. Все права защищены</span>
+        </div>
+      </section>
+
+      <section class="about">
         <div class="container">
-          <h2 class="promoters__title">Более 3000 промоутеров</h2>
-          <p class="promoters__title-text">
-            Наша система работы позволяет достигать значительных результатов с
-            первых дней работы, <b>75 городов</b> и <b>700+ точек</b> продаж
-            обеспечивают более <b>3.000.000 контактов в день с покупателями.</b>
-          </p>
+          <h2 class="about-body__title">Promotion.ru это</h2>
+
+          <div class="about-body-row">
+            <h3 class="about-body__subtitle">
+              Крупнейшая в России федеральная сеть Pop-Up торговли
+            </h3>
+            <p class="about-body__text">
+              Мы делаем путь от первого контакта с вашим продуктом до его
+              приобретения минимальным и помогаем решиться на покупку здесь и
+              сейчас.<br />Мы - Promotion.ru
+            </p>
+          </div>
         </div>
       </section>
     </div>
+
+    <section class="promoters">
+      <div class="promoters__photo-mall"></div>
+      <div class="promoters-wrapper">
+        <picture class="promoters-wrapper__girl">
+          <source type="image/webp" srcset="../resources/img/04-girl.webp" />
+          <img src="../resources/img/04-girl.png" alt="photo-mall" />
+        </picture>
+        <p class="promoters-wrapper__city">
+          75<br /><span class="little-text">городов</span>
+        </p>
+        <p class="promoters-wrapper__contacts">
+          3 000 000+<br />
+          <span class="little-text">контактов в день с покупателями</span>
+        </p>
+        <p class="promoters-wrapper__points">
+          700+<br />
+          <span class="little-text">точек</span>
+        </p>
+      </div>
+      <div class="container">
+        <h2 class="promoters__title">Более 3000 промоутеров</h2>
+        <p class="promoters__title-text">
+          Наша система работы позволяет достигать значительных результатов с
+          первых дней работы, <b>75 городов</b> и <b>700+ точек</b> продаж
+          обеспечивают более <b>3.000.000 контактов в день с покупателями.</b>
+        </p>
+      </div>
+    </section>
   </body>
 </html>
