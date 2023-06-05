@@ -1,4 +1,5 @@
 .network {
+  padding-top: 150px;
   background: #f5f5f5;
   min-height: 100%;
   display: flex;
@@ -143,7 +144,7 @@
     .wrapper__scroll {
       padding: clamp(0.313rem, -0.824rem + 5.68vh, 3.438rem) 0;
       overflow: hidden;
-      overflow-x: scroll;
+      overflow-x: auto;
 
       .clients {
         width: 1140px;
