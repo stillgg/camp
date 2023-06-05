@@ -41,7 +41,7 @@
       padding: 10px 0;
 
       .main__block {
-        background: #d1c8c8;
+        background: #ffffff;
         box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
         width: calc(33.33% - 16px);
 
@@ -66,7 +66,6 @@
             }
             @media (max-width: 576px) {
               font-size: 24px;
-              line-height: 110%;
             }
           }
           .content__description {
@@ -142,7 +141,7 @@
     background: #ebebeb;
 
     .wrapper__scroll {
-      padding: clamp(0.313rem, -0.824rem + 5.68vh, 3.438rem) 0;
+      padding: 55px 0;
       overflow: hidden;
       overflow-x: auto;
 
@@ -157,6 +156,12 @@
           font-size: 18px;
           text-transform: uppercase;
         }
+      }
+      @media (max-height: 992px) {
+        padding: 35px 0;
+      }
+      @media (max-height: 768px) {
+        padding: 20px 0;
       }
     }
   }
