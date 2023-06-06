@@ -1,0 +1,58 @@
+.meeting {
+  padding-top: 150px;
+  background: url("../resources/img/06-bg.png") center no-repeat fixed;
+  background: url("../resources/img/06-bg.webp") center no-repeat fixed;
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    padding-top: 100px;
+  }
+
+  .meeting__title {
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 122%;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    @media (max-width: 1200px) {
+      font-size: 82px;
+    }
+    @media (max-width: 992px) {
+      font-size: 64px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      font-size: 38px;
+    }
+    @media (max-width: 576px) {
+      font-size: 32px;
+    }
+  }
+
+  .meeting__content {
+    position: relative;
+    cursor: pointer;
+
+    .wrapper__play {
+      position: absolute;
+      top: calc(50% - 35px);
+      left: calc(50% - 35px);
+      padding: 22px;
+      background-color: #ffffff;
+      border-radius: 35px;
+      width: 70px;
+      height: 70px;
+      z-index: 10;
+      transition: 0.4s;
+
+      .play {
+        position: relative;
+        left: 5px;
+        z-index: 20;
+      }
+    }
+  }
+}
