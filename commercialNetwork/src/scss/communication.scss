@@ -87,11 +87,13 @@
 
                 @media (max-width: 768px) {
                     width: 260px;
-                    right: -15px;
+                    right: auto;
+                    left: auto;
                 }
 
                 @media (max-width: 576px) {
-                    right: 10px;
+                    right: auto;
+                    left: auto;
                 }
             }
 
@@ -109,6 +111,11 @@
                 @media (max-width: 576px) {
                     width: 280px;
                 }
+            }
+
+            @media (max-width: 576px) {
+                display: flex;
+                justify-content: center;
             }
         }
 
@@ -120,11 +127,14 @@
                 right: -32px;
 
                 @media (max-width: 768px) {
-                    right: 0;
+                    right: auto;
+                    left: auto;
                 }
 
                 @media (max-width: 576px) {
-                    right: 11px;
+                    text-align: center;
+                    right: auto;
+                    left: auto;
                 }
             }
 
@@ -142,6 +152,11 @@
                 @media (max-width: 576px) {
                     width: 280px;
                 }
+            }
+
+            @media (max-width: 576px) {
+                display: flex;
+                justify-content: center;
             }
         }
 
@@ -159,11 +174,12 @@
         }
 
         @media (max-width: 576px) {
-            padding-left: 11%;
-            padding-right: 11%;
-            max-width: 800px;
+            display: grid;
+            grid-template-columns: repeat(2, 100%);
+            max-width: 100%;
         }
     }
+
     .communication__subtitle {
         margin: 0 auto;
         max-width: 500px;
