@@ -71,13 +71,29 @@
                 }
             }
         }
-        .map-background-image {
-            width: 100%;
-            height: 595px;
-            z-index: 1;
-            position: absolute;
-            bottom: 65px;
-            left: 0;
+        .background-map-wrapper {
+            .map-background__image {
+                width: 100%;
+                height: 595px;
+                z-index: 1;
+                position: absolute;
+                bottom: 65px;
+                left: auto;
+                right: auto;
+            }
+            .map-background__mark {
+                width: 29px;
+                height: 48px;
+                position: absolute;
+                left: 0;
+                bottom: 150px;
+                z-index: 5;
+
+                .mark {
+                    z-index: 5;
+                    position: relative;
+                }
+            }
         }
     }
 }
