@@ -67,4 +67,7 @@
     <symbol id="rectangle" viewBox="0 0 34 34" width="34" height="34">
     <path d="M34 0V34H0L34 0Z" fill="#ED0644"/>
     </symbol>
+    <symbol id="arrowBtn"  viewBox="0 0 9 13" width="9" height="13" >
+    <path d="M1.5 1L7 6.5L1.5 12"  stroke-width="2" fill="none"/>
+    </symbol>
 </svg>
