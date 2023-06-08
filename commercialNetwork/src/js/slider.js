@@ -1,6 +1,7 @@
 const btnLeft = document.querySelector("#arrowBtnLeft");
 const btnRight = document.querySelector("#arrowBtnRight");
 const slides = document.querySelectorAll(".slide");
+const texts = document.querySelectorAll(".text");
 
 let activeSlide = 0;
 
@@ -29,9 +30,17 @@ function btnDisabled() {
   if (activeSlide === 0) {
     btnLeft.classList.add("disabled");
   }
-  if (activeSlide === 2) {
+  if (activeSlide === slides.length - 1) {
     btnRight.classList.add("disabled");
   }
+  textDisabled();
+}
+
+function textDisabled() {
+  texts.forEach((text) => {
+    text.classList.add("disabled");
+  });
+  texts[activeSlide].classList.remove("disabled");
 }
 
 btnLeft.addEventListener("click", clickLeft);
