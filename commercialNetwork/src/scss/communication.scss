@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 115px;
+    padding-top: 135px;
 
     .communication-wrapper {
         display: flex;
@@ -31,15 +31,15 @@
 
     .communication__title {
         font-weight: 700;
-        font-size: 46px;
+        font-size: 35px;
         line-height: 122%;
         text-transform: uppercase;
-        margin-bottom: 90px;
+        margin-bottom: 10px;
 
         @media (max-width: 1200px) {
             max-width: 400px;
             margin: 0 auto;
-            font-size: 30px;
+            font-size: 25px;
             margin-bottom: 20px;
         }
 
@@ -59,12 +59,12 @@
     }
 
     .communication-row {
-        width: 800px;
+        width: 600px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-bottom: 80px;
+        margin-bottom: 30px;
 
         .bold-text {
             font-weight: 700;
@@ -79,7 +79,7 @@
             background-color: #ffffff;
             box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
             border-radius: 110px;
-            padding: 26px 50px;
+            padding: 13px 25px;
             position: absolute;
             bottom: 40px;
 
@@ -93,7 +93,7 @@
             position: relative;
 
             .first-image__text {
-                width: 311px;
+                width: 256px;
                 right: -52px;
 
                 @media (max-width: 1200px) {
@@ -116,7 +116,7 @@
             }
 
             img {
-                width: 323px;
+                width: 230px;
 
                 @media (max-width: 1200px) {
                     width: 225px;
@@ -164,7 +164,7 @@
             }
 
             img {
-                width: 323px;
+                width: 230px;
 
                 @media (max-width: 1200px) {
                     width: 225px;
@@ -214,7 +214,7 @@
         font-size: 18px;
         line-height: 144%;
         text-transform: uppercase;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
 
         @media (max-width: 1200px) {
             margin-bottom: 10px;
