@@ -35,20 +35,36 @@
             width: 547px;
             display: flex;
             justify-content: space-between;
+            overflow: hidden;
 
             .map-wrapper-row__item {
                 background: #ffffff;
                 box-shadow: 20px 10px 30px rgba(0, 0, 0, 0.08);
                 position: relative;
                 z-index: 5;
+
                 &:first-child {
                     width: 265px;
                     padding: 35px 116px 40px 40px;
+                    overflow: hidden;
                 }
 
                 &:last-child {
                     width: 263px;
                     padding: 35px 71px 40px 50px;
+                    overflow: hidden;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -17px;
+                    right: -17px;
+                    width: 34px;
+                    height: 34px;
+                    transform: rotate(45deg);
+                    background-color: #ed0644;
+                    z-index: 6;
                 }
 
                 .item__number {
@@ -63,29 +79,25 @@
                 .item__description {
                     line-height: 22px;
                 }
-
-                .content__rectangle {
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                }
             }
         }
 
         .background-map-wrapper {
+            position: relative;
+            width: 1110px;
+            height: 595px;
+            margin: 0 auto;
             .map-background__image {
-                width: 100%;
-                height: 595px;
+                // width: 100%;
+                // height: 595px;
                 z-index: 1;
                 position: absolute;
                 bottom: 65px;
-                left: auto;
-                right: auto;
+                // left: auto;
+                // right: auto;
             }
             .map-background__mark {
                 position: absolute;
-                left: 0;
-                bottom: 150px;
                 z-index: 5;
                 width: 45px;
                 height: 54px;
