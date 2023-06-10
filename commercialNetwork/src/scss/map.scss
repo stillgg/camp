@@ -10,6 +10,7 @@
         align-items: flex-start;
         position: relative;
         z-index: 5;
+
         .map-wrapper__title {
             max-width: 632px;
             margin-bottom: 30px;
@@ -83,45 +84,16 @@
         }
 
         .background-map-wrapper {
-            position: relative;
+            position: absolute;
+            bottom: 65px;
             max-width: 1110px;
             max-height: 600px;
             width: 100%;
-            height: 100%;
+            height: fit-content;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            // width: 1110px;
-
-            // max-height: 595px;
-
-            // width: 100%;
-            // height: 100%;
-            // position: absolute;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-            // top: 420px;
-            // bottom: 65px;
-            // left: 0;
-            // height: 595px;
-            // margin: 0 auto;
-            // background-image: url("../resources/icons/background-map.svg");
-            // background-size: cover;
-            // .map-background__image {
-            //     // width: 100%;
-            //     // height: 100%;
-            //     z-index: 1;
-            //     object-fit: cover;
-            //     position: absolute;
-            //     bottom: 65px;
-            // }
-            img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
             .map-background__mark {
                 position: absolute;
                 z-index: 5;
@@ -152,6 +124,7 @@
                     bottom: 0;
                     fill: #ed0644;
                 }
+
                 .mark__text {
                     opacity: 0;
                     position: absolute;
