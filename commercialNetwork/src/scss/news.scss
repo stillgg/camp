@@ -1,0 +1,107 @@
+.news {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eff3f6;
+
+    .news__title {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 100px;
+        line-height: 122%;
+        text-transform: uppercase;
+        color: #212121;
+        margin-bottom: 50px;
+    }
+
+    .news-body {
+        display: flex;
+        width: 100%;
+
+        .news-body__item {
+            background: #ffffff;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
+            max-width: 33%;
+            .item__image {
+                background-image: url("../resources/img/09-news-01.png");
+                background-image: url("../resources/img/09-news-01.webp");
+                background-size: cover;
+                width: 355px;
+                height: 357px;
+
+                .item__date {
+                    display: flex;
+                    align-items: flex-end;
+                    height: 100%;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 15px;
+                    line-height: 160%;
+                    text-transform: uppercase;
+                    color: #ffffff;
+                    padding: 0px 0px 20px 30px;
+                }
+            }
+            .item__body {
+                padding: 40px 29px 25px 29px;
+                max-width: 355px;
+                position: relative;
+                z-index: 2;
+                overflow: hidden;
+
+                .body__title {
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    color: #212121;
+                    margin-bottom: 30px;
+                }
+
+                .body__text {
+                    color: #212121;
+                    margin-bottom: 20px;
+                }
+
+                .body__link {
+                    font-weight: 700;
+                    color: #ed0644;
+                }
+                .body__title,
+                .body__text,
+                .body__link {
+                    position: relative;
+                    z-index: 2;
+                    font-size: 16px;
+                    line-height: 150%;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -17px;
+                    right: -17px;
+                    width: 34px;
+                    height: 34px;
+                    transform: rotate(45deg);
+                    background-color: #ed0644;
+                    z-index: 1;
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+            .left-btn {
+                .arrow-left {
+                }
+            }
+            .right-btn {
+                .arrow-right {
+                }
+            }
+
+            &:hover {
+                .item__body::after {
+                    transform: rotate(45deg) scale(25);
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+        }
+    }
+}
