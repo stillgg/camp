@@ -110,6 +110,8 @@
         .background-map-wrapper {
             position: relative;
             max-width: 1100px;
+            pointer-events: none;
+            user-select: none;
             bottom: 150px;
             max-height: 595px;
             width: 100%;
@@ -120,30 +122,31 @@
             margin: 0 auto;
 
             .map-background__mark {
+                pointer-events: auto;
                 position: absolute;
                 z-index: 5;
                 width: 45px;
                 height: 54px;
 
-                &:hover {
-                    .mark__text {
-                        left: 40px;
-                        top: calc(50% - 12px);
-                        width: max-content;
-                        background: #fff;
-                        border-radius: 20px;
-                        font-size: 12px;
-                        font-weight: 700;
-                        padding: 5px 10px;
-                        opacity: 1;
-                        color: #ed0644;
-                        transition: opacity 0.6s ease;
-                        z-index: 8;
-                    }
+                &::after {
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    display: block;
+                    cursor: pointer;
+                    // margin: 0 auto;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    // margin-top: 84%;
+                    margin-left: 36%;
+                    margin-top: -15px;
                 }
 
                 .mark {
                     z-index: 6;
+                    visibility: hidden;
                     position: absolute;
                     right: 0;
                     bottom: 0;
@@ -153,11 +156,10 @@
                         display: none;
                     }
                 }
-
-                .mark__text {
-                    opacity: 0;
-                    position: absolute;
-                    z-index: 7;
+                @media (min-width: 993px) {
+                    width: 10px;
+                    height: 10px;
+                    margin: 54px 22px 0px 22px;
                 }
             }
 
