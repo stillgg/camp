@@ -128,38 +128,43 @@
                 width: 45px;
                 height: 54px;
 
-                &::after {
-                    content: "";
-                    width: 10px;
-                    height: 10px;
-                    display: block;
-                    cursor: pointer;
-                    // margin: 0 auto;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    border: 2px solid white;
-                    // margin-top: 84%;
-                    margin-left: 36%;
-                    margin-top: -15px;
-                }
+                .wrapper {
+                    position: relative;
 
-                .mark {
-                    z-index: 6;
-                    visibility: hidden;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    fill: #ed0644;
+                    &::after {
+                        content: "";
+                        width: 10px;
+                        height: 10px;
+                        display: block;
+                        cursor: pointer;
+                        // margin: 0 auto;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        border: 2px solid white;
+                        // margin-top: 84%;
+                        // margin-left: 36%;
+                        // margin-top: -15px;
+                    }
 
-                    @media (max-width: 992px) {
-                        display: none;
+                    .mark {
+                        z-index: 6;
+                        // visibility: hidden;
+                        position: absolute;
+                        // right: 0;
+                        // bottom: 0;
+                        // fill: #ed0644;
+
+                        @media (max-width: 992px) {
+                            display: none;
+                        }
                     }
                 }
+
                 @media (min-width: 993px) {
                     width: 10px;
                     height: 10px;
-                    margin: 54px 22px 0px 22px;
+                    // margin: 54px 22px 0px 22px;
                 }
             }
 
