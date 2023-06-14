@@ -314,9 +314,7 @@
           <div class="PopUp__preview">
             <div class="preview__container">
               <div class="preview__text">
-                <h2 class="text__title">
-                  ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ
-                </h2>
+                <h2 class="text__title">Промоутер</h2>
                 <h6 class="text__requirements">Что мы ждём:</h6>
                 <div class="requirements__description">
                   <p class="description__paragraph">
@@ -370,12 +368,12 @@
                         </h2>
                         <select name="pets" id="pet-select" class="input__line">
                           <option disabled value="">Выбор города</option>
-                          <option value="dog">Минск</option>
-                          <option value="cat">Гродно</option>
-                          <option value="hamster">Брест</option>
-                          <option value="parrot">Витебск</option>
-                          <option value="spider">Гомель</option>
-                          <option value="goldfish">Минская область</option>
+                          <option value="Minsk">Минск</option>
+                          <option value="Grodno">Гродно</option>
+                          <option value="Brest">Брест</option>
+                          <option value="Vitebsk">Витебск</option>
+                          <option value="Gomel">Гомель</option>
+                          <option value="Minsk_O">Минская область</option>
                         </select>
                       </div>
                       <div class="column__input">
@@ -389,12 +387,24 @@
                         />
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">Email адрес</h2>
-                        <input
-                          type="text"
-                          class="input__line"
-                          placeholder="Укажите ваш Email"
-                        />
+                        <h2 class="input__title">Дата рождения</h2>
+                        <div class="input__birthday">
+                          <input
+                            type="number"
+                            class="input__line"
+                            placeholder="День"
+                          />
+                          <input
+                            type="number"
+                            class="input__line"
+                            placeholder="Месяц"
+                          />
+                          <input
+                            type="number"
+                            class="input__line"
+                            placeholder="Год"
+                          />
+                        </div>
                       </div>
                       <div class="column__input">
                         <h2 class="input__title">Контактный телефон</h2>
@@ -439,6 +449,7 @@
                       Согласен с политикой обработки персональных данных
                     </span>
                   </div>
+                  <button class="form__btn">ОТПРАВИТЬ АНКЕТУ</button>
                 </form>
               </div>
             </div>
