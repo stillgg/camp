@@ -366,8 +366,14 @@
                         <h2 class="input__title">
                           Город, в котором вы находитесь
                         </h2>
-                        <select name="pets" id="pet-select" class="input__line">
-                          <option disabled value="">Выбор города</option>
+                        <select
+                          name="city"
+                          id="city-select"
+                          class="input__line"
+                        >
+                          <option selected disabled value="">
+                            Выбор города
+                          </option>
                           <option value="Minsk">Минск</option>
                           <option value="Grodno">Гродно</option>
                           <option value="Brest">Брест</option>
@@ -409,7 +415,7 @@
                       <div class="column__input">
                         <h2 class="input__title">Контактный телефон</h2>
                         <input
-                          type="text"
+                          type="tel"
                           class="input__line"
                           placeholder="Укажите ваш номер телефона"
                         />
@@ -419,7 +425,7 @@
                       <div class="column__input">
                         <h2 class="input__title">Email адрес</h2>
                         <input
-                          type="text"
+                          type="email"
                           class="input__line"
                           placeholder="Укажите ваш Email "
                         />
