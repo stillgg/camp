@@ -1,0 +1,105 @@
+.yandexMap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  .yandexMap__iframe {
+    top: -120px;
+    height: calc(100% + 240px);
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .yandexMap__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+
+    .main__title {
+      width: fit-content;
+      position: relative;
+      z-index: 2;
+      font-size: 100px;
+      font-weight: 700;
+      line-height: 122px;
+      text-transform: uppercase;
+      @media (max-width: 1200px) {
+        font-size: 82px;
+      }
+      @media (max-width: 992px) {
+        font-size: 64px;
+        display: flex;
+        justify-content: center;
+      }
+      @media (max-width: 768px) {
+        font-size: 38px;
+        line-height: 61px;
+      }
+      @media (max-width: 576px) {
+        font-size: 32px;
+        line-height: 41px;
+      }
+    }
+
+    .main__content {
+      position: relative;
+      z-index: 2;
+
+      .content__number {
+        font-weight: 700;
+        font-size: 46px;
+
+        @media (max-width: 1200px) {
+          font-size: 40px;
+        }
+        @media (max-width: 992px) {
+          font-size: 32px;
+        }
+        @media (max-width: 768px) {
+          font-size: 28px;
+        }
+        @media (max-width: 576px) {
+          font-size: 20px;
+        }
+      }
+
+      .content__email {
+        font-size: 20px;
+        line-height: 24px;
+        text-decoration-line: underline;
+
+        @media (max-width: 576px) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .yandexMap__footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+
+    @media (max-width: 540px) {
+      gap: 15px;
+    }
+    span {
+      font-size: 12px;
+      line-height: 16px;
+      @media (max-width: 540px) {
+        width: 170px;
+      }
+    }
+    &.container {
+      @media (max-width: 1200px) {
+        padding: 20px;
+      }
+    }
+  }
+}
