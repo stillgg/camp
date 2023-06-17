@@ -446,16 +446,25 @@
                           placeholder="Укажите ваше гражданство"
                         />
                       </div>
-                      <button class="input__button">Прикрепить резюме</button>
+                      <label class="input__button" for="input__file"
+                        >Прикрепить резюме
+                        <input
+                          id="input__file"
+                          type="file"
+                          class="button__op"
+                        />
+                      </label>
                     </div>
                   </div>
                   <div class="form__confirm">
-                    <span type="checkbox" class="confirm__point"> </span>
+                    <input type="radio" class="confirm__point" />
                     <span class="confirm__text">
                       Согласен с политикой обработки персональных данных
                     </span>
                   </div>
-                  <button class="form__btn">ОТПРАВИТЬ АНКЕТУ</button>
+                  <button type="submit" class="form__btn">
+                    ОТПРАВИТЬ АНКЕТУ
+                  </button>
                 </form>
               </div>
             </div>
