@@ -1,12 +1,8 @@
 function triangular(n) {
-  let summ = n;
-  for (let i = n; i < 0; i--) {
-    if (n < 0) {
-      return 0;
-    }
-    summ += i;
-  }
-  return summ;
+  if (n < 0) return 0;
+  let result = Math.floor((n * n) / 2 + n / 2);
+  return result;
 }
-// проблема со скоростью, не прошел тест
+
+triangular(3);
 //https://www.codewars.com/kata/525e5a1cb735154b320002c8

@@ -2,7 +2,7 @@ function findArray(arr1, arr2) {
   const arr3 = [];
   for (let i = 0; i < arr2.length; i++) {
     if (arr2[i] > arr1.length - 1 || arr1.length === 0 || arr2.length === 0) {
-      continue;
+      return [];
     }
     arr3.push(arr1[arr2[i]]);
   }
