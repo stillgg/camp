@@ -1,0 +1,108 @@
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background: url("../resources/img/02-background-image.webp") center center no-repeat fixed #ed0644;
+    background: url("../resources/img/02-background-image.png") center center no-repeat fixed #ed0644;
+    font-style: normal;
+    color: #ffffff;
+
+    .about-body__title {
+        font-weight: 700;
+        line-height: 122%;
+        text-transform: uppercase;
+
+        @media (min-width: 993px) {
+            max-width: 850px;
+            font-size: 100px;
+        }
+
+        @media (max-width: 992px) {
+            text-align: center;
+            font-size: 80px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 60px;
+        }
+
+        @media (max-width: 576px) {
+            font-size: 35px;
+        }
+    }
+
+    .about-body-row {
+        display: flex;
+        flex-direction: column;
+        margin-top: -100px;
+
+        .about-body__subtitle {
+            font-weight: 800;
+            line-height: 178%;
+            text-transform: uppercase;
+
+            @media (min-width: 993px) {
+                max-width: 487px;
+                padding-bottom: 200px;
+                font-size: 18px;
+            }
+
+            @media (max-width: 992px) {
+                margin-bottom: 110px;
+                text-align: center;
+                font-size: 25px;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 20px;
+            }
+
+            @media (max-width: 576px) {
+                font-size: 18px;
+            }
+        }
+
+        .about-body__text {
+            text-align: justify;
+            line-height: 138%;
+
+            @media (min-width: 993px) {
+                max-width: 830px;
+                font-size: 32px;
+            }
+
+            @media (max-width: 992px) {
+                font-size: 30px;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 26px;
+            }
+
+            @media (max-width: 576px) {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 993px) {
+            padding-left: 282px;
+        }
+
+        @media (max-width: 992px) {
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 576px) {
+            margin-top: 15px;
+        }
+    }
+    @media (max-width: 992px) {
+        background-position-x: 55%;
+    }
+}

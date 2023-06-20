@@ -69,11 +69,11 @@ module.exports = (env, argv) => {
     });
   }
 
-  //   plugins.push(
-  //     new CopyPlugin({
-  //       patterns: [{ from: "src/resources", to: "resources" }],
-  //     })
-  //   );
+  plugins.push(
+    new CopyPlugin({
+      patterns: [{ from: "src/resources", to: "resources" }],
+    })
+  );
 
   if (mode === "production") {
     plugins.push(new CleanWebpackPlugin());
