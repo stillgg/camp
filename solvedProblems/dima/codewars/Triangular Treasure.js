@@ -4,5 +4,4 @@ function triangular(n) {
   return result;
 }
 
-triangular(3);
 //https://www.codewars.com/kata/525e5a1cb735154b320002c8

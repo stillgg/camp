@@ -1,20 +1,22 @@
 Array.range = function (start, count) {
-  return [];
+  const arr = [];
+  let i = 0;
+  while (i < count) {
+    arr.push(start + i);
+    i++;
+  }
+  return arr;
 };
 
 Array.prototype.sum = function () {
   let i = 0;
-  let summ = 0;
-  let element;
-  while (array || array.length < i) {
-    element += this.array.pop;
-    summ += element;
+  let sum = 0;
+  console.log(Array);
+  while (this.length > i) {
+    sum += this[i];
     i++;
   }
-  return summ;
+  return sum;
 };
 
-const array = [4, 5, 6];
-let test;
-test = array.sum();
 //https://www.codewars.com/kata/52195c9bb576caf14200007f/train/javascript

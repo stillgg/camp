@@ -34,3 +34,5 @@ function toDayOfYear(arr) {
   }
   return day;
 }
+
+//https://www.codewars.com/kata/5a1ebe0d46d843454100004c
