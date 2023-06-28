@@ -46,15 +46,18 @@
         .slide {
           width: 33%;
 
-          @media (min-width: 1201px) {
-            height: 420px;
-          }
-
           @media (min-width: 993px) {
             width: initial;
             position: absolute;
             height: 320px;
             transition: left 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+            &:nth-child(2) {
+              z-index: 2;
+            }
+          }
+          @media (min-width: 1201px) {
+            height: 420px;
           }
         }
 
@@ -73,6 +76,7 @@
         }
 
         .slider__img__prev {
+          z-index: 4 !important;
           @media (min-width: 993px) {
             transform: scale(0.7);
             left: -100%;
@@ -113,16 +117,15 @@
           }
         }
 
-        @media (min-width: 1201px) {
-          width: 540px;
-          height: 420px;
-        }
-
         @media (min-width: 993px) {
           position: relative;
           overflow: hidden;
           width: 400px;
           height: 320px;
+        }
+        @media (min-width: 1201px) {
+          width: 540px;
+          height: 420px;
         }
       }
 
@@ -149,7 +152,6 @@
 
       .main__description {
         overflow-y: auto;
-        max-width: 451px;
         padding-bottom: 30px;
         position: relative;
 
@@ -162,7 +164,7 @@
         }
 
         .main__description__gray {
-          font-weight: 600;
+          font-weight: 400;
           font-size: 16px;
           line-height: 162%;
           color: #5c5c5c;
@@ -170,7 +172,6 @@
 
         @media (max-width: 992px) {
           max-width: 100%;
-          box-shadow: inset -11px -17px 20px 13px rgba(43, 42, 42, 0.2);
         }
       }
 
@@ -194,6 +195,16 @@
         justify-content: space-evenly;
         gap: 30px;
         height: calc(100% - 70px);
+
+        &::after {
+          background-image: linear-gradient(0deg, #fff, hsla(0, 0%, 100%, 0));
+          content: "";
+          height: 30px;
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+        }
       }
     }
 
