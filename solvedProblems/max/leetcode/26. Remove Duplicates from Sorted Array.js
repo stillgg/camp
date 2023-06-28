@@ -6,10 +6,11 @@ const removeDuplicates = function (nums) {
       sortedArray.push(nums[i]);
     }
   }
-  for (let j = 0; j < sortedArray.length; j++) {
-    nums[j] = sortedArray[j];
-  }
-  //   nums = [...sortedArray];
+  nums.forEach((num, index) => {
+    nums[index] = sortedArray[index];
+  });
+  // nums = [...sortedArray];
+  console.log(nums);
   return sortedArray.length;
 };
 
