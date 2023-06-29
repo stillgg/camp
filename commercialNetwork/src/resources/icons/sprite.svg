@@ -67,4 +67,7 @@
     <symbol id="rectangle" viewBox="0 0 34 34" width="34" height="34">
     <path d="M34 0V34H0L34 0Z" fill="#ED0644"/>
     </symbol>
+    <symbol id="play" viewBox="0 0 21 24" width="21" height="24">
+    <path d="M19.0861 10.2781L3.01746 0.783044C1.68423 -0.00477445 0 0.956297 0 2.5049V21.4951C0 23.0437 1.68422 24.0048 3.01745 23.217L19.0861 13.7219C20.3962 12.9477 20.3962 11.0523 19.0861 10.2781Z" fill="currentColor"/>
+    </symbol>
 </svg>
