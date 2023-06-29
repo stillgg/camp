@@ -173,4 +173,10 @@
   <symbol id="rectangle" viewBox="0 0 34 34" width="34" height="34">
     <path d="M34 0V34H0L34 0Z" fill="#ED0644" />
   </symbol>
+  <symbol id="arrow-left" width="9" height="13" viewBox="0 0 9 13" fill="none">
+    <path d="M7.5 1L2 6.5L7.5 12" stroke-width="2" />
+  </symbol>
+  <symbol id="arrow-right" width="9" height="13" viewBox="0 0 9 13" fill="none">
+    <path d="M1.5 1L7 6.5L1.5 12" stroke-width="2" />
+  </symbol>
 </svg>

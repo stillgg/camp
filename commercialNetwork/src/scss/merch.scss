@@ -26,33 +26,46 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
+            transition: 0.3s ease;
+
             &:hover {
                 background: #ed0644;
                 box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.35);
-                &::after {
-                    fill: #ffffff;
+
+                .arrow {
+                    stroke: white;
                 }
             }
         }
+
         .left-btn {
             left: -26px;
-            &::after {
-                content: url("../resources/icons/arrow-left.svg");
-            }
         }
+
         .right-btn {
             right: -26px;
-            &::after {
-                content: url("../resources/icons/arrow-right.svg");
-            }
         }
+
+        .arrow {
+            height: 13px;
+            width: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            stroke: #212121;
+            transform: translate(-50%, -50%);
+        }
+
         .merch-wrapper {
             overflow: hidden;
             border: 1px solid red;
             display: flex;
             gap: 48px;
+
             .merch-item {
                 width: 545px;
+                pointer-events: none;
+                user-select: none;
 
                 .image-wrapper {
                     width: 100%;
@@ -66,6 +79,7 @@
                     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
                     padding: 93px 77px 76px 60px;
                     margin-bottom: 30px;
+
                     .item__image {
                         width: 392px;
                         height: 392px;
