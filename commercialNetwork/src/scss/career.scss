@@ -327,18 +327,18 @@
                     .input__wrapper {
                       position: relative;
 
-                      &::after {
-                        content: "";
-                        position: absolute;
-                        z-index: 2;
-                        border: 2px solid #212121;
-                        border-width: 0px 2px 2px 0px;
-                        width: 6px;
-                        height: 6px;
-                        right: 10px;
-                        top: calc(50% - 3px);
-                        transform: rotate(45deg);
-                      }
+                      // &::after {
+                      //   content: "";
+                      //   position: absolute;
+                      //   z-index: 2;
+                      //   border: 2px solid #212121;
+                      //   border-width: 0px 2px 2px 0px;
+                      //   width: 6px;
+                      //   height: 6px;
+                      //   right: 10px;
+                      //   top: calc(50% - 3px);
+                      //   transform: rotate(45deg);
+                      // }
 
                       .input__line {
                         width: 100%;
@@ -359,8 +359,10 @@
                   border: 1px solid #5c5c5c;
                   border-radius: 10px;
                   margin-top: 36px;
+                  cursor: pointer;
 
                   .button__op {
+                    cursor: pointer;
                     opacity: 0;
                     position: absolute;
                   }
