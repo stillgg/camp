@@ -1,0 +1,91 @@
+.meeting {
+  padding-top: 100px;
+  background: url("../resources/img/06-bg.png") center no-repeat;
+  background: url("../resources/img/06-bg.webp") center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  .meeting__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  @media (max-width: 992px) {
+    padding-top: 100px;
+  }
+
+  .meeting__title {
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 122%;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    @media (max-width: 1200px) {
+      font-size: 82px;
+    }
+
+    @media (max-width: 992px) {
+      font-size: 64px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 38px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 32px;
+    }
+  }
+
+  .meeting__content {
+    position: relative;
+    max-height: 65vh;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .content__preview {
+      width: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    .wrapper__play {
+      position: absolute;
+      top: calc(50% - 35px);
+      left: calc(50% - 35px);
+      padding: 22px;
+      background-color: #ffffff;
+      border-radius: 35px;
+      width: 70px;
+      height: 70px;
+      z-index: 1;
+      transition: 0.4s;
+
+      .play {
+        position: relative;
+        left: 5px;
+        z-index: 20;
+        color: #ed0644;
+        transition: 0.4s;
+      }
+    }
+    &:hover {
+      .wrapper__play {
+        background: #ed0644;
+      }
+      .play {
+        color: #fff;
+      }
+    }
+  }
+}
