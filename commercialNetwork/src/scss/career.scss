@@ -273,11 +273,46 @@
                     line-height: 162%;
                   }
 
+                  .wrapper-input-select {
+                    position: relative;
+
+                    &:focus-within {
+                      &::after {
+                        transform: translateY(4px) rotate(-135deg);
+                      }
+                    }
+                    &::after {
+                      content: "";
+                      right: 15px;
+                      top: calc(50% - 5px);
+                      position: absolute;
+                      width: 10px;
+                      height: 10px;
+                      border: solid #212121;
+                      border-width: 0px 2px 2px 0px;
+                      transition: 0.4s;
+                      transform: rotate(45deg);
+                    }
+                  }
+
                   .input__line {
                     background: #f3f3f3;
                     border-radius: 10px;
                     padding: 15px 20px 14px;
                     transition: 0.4s;
+
+                    &.input-select {
+                      width: 100%;
+                      appearance: none;
+
+                      &:focus {
+                        outline: none;
+                      }
+
+                      .input-select::-ms-expand {
+                        display: none;
+                      }
+                    }
 
                     &:hover {
                       background: #fff;
@@ -307,6 +342,11 @@
 
                       .input__line {
                         width: 100%;
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                          -webkit-appearance: none;
+                          margin: 0;
+                        }
                       }
                     }
                   }

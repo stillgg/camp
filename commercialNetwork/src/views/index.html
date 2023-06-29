@@ -366,21 +366,23 @@
                         <label class="input__title" for="city-select">
                           Город, в котором вы находитесь
                         </label>
-                        <select
-                          name="city"
-                          id="city-select"
-                          class="input__line"
-                        >
-                          <option selected disabled value="">
-                            Выбор города
-                          </option>
-                          <option value="Minsk">Минск</option>
-                          <option value="Grodno">Гродно</option>
-                          <option value="Brest">Брест</option>
-                          <option value="Vitebsk">Витебск</option>
-                          <option value="Gomel">Гомель</option>
-                          <option value="Minsk_O">Минская область</option>
-                        </select>
+                        <div class="wrapper-input-select">
+                          <select
+                            name="city"
+                            id="city-select"
+                            class="input__line input-select"
+                          >
+                            <option selected disabled value="">
+                              Выбор города
+                            </option>
+                            <option value="Minsk">Минск</option>
+                            <option value="Grodno">Гродно</option>
+                            <option value="Brest">Брест</option>
+                            <option value="Vitebsk">Витебск</option>
+                            <option value="Gomel">Гомель</option>
+                            <option value="Minsk_O">Минская область</option>
+                          </select>
+                        </div>
                       </div>
                       <div class="column__input">
                         <label class="input__title" for="job">
@@ -401,21 +403,21 @@
                           <div class="input__wrapper">
                             <input
                               id="birthday_day"
-                              type="text"
+                              type="number"
                               class="input__line"
                               placeholder="День"
                             />
                           </div>
                           <div class="input__wrapper">
                             <input
-                              type="text"
+                              type="number"
                               class="input__line"
                               placeholder="Месяц"
                             />
                           </div>
                           <div class="input__wrapper">
                             <input
-                              type="text"
+                              type="number"
                               class="input__line"
                               placeholder="Год"
                             />
