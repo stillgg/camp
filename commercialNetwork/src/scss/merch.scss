@@ -27,6 +27,9 @@
             height: 56px;
             border-radius: 50%;
             transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover {
                 background: #ed0644;
@@ -39,21 +42,25 @@
         }
 
         .left-btn {
-            left: -26px;
+            left: -28px;
+
+            & > .arrow {
+                margin-right: 2px;
+            }
         }
 
         .right-btn {
-            right: -26px;
+            right: -28px;
+
+            & > .arrow {
+                margin-left: 2px;
+            }
         }
 
         .arrow {
             height: 13px;
             width: 8px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
             stroke: #212121;
-            transform: translate(-50%, -50%);
         }
 
         .merch-wrapper {
