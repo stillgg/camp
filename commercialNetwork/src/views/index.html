@@ -363,9 +363,9 @@
                   <div class="data__form">
                     <div class="form__column">
                       <div class="column__input">
-                        <h2 class="input__title">
+                        <label class="input__title" for="city-select">
                           Город, в котором вы находитесь
-                        </h2>
+                        </label>
                         <select
                           name="city"
                           id="city-select"
@@ -383,19 +383,23 @@
                         </select>
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">
+                        <label class="input__title" for="job">
                           Должность на которую вы претендуете
-                        </h2>
+                        </label>
                         <input
+                          id="job"
                           type="text"
                           class="input__line"
                           placeholder="Укажите должность"
                         />
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">Дата рождения</h2>
+                        <label class="input__title" for="birthday_day"
+                          >Дата рождения</label
+                        >
                         <div class="input__birthday">
                           <input
+                            id="birthday_day"
                             type="number"
                             class="input__line"
                             placeholder="День"
@@ -413,8 +417,11 @@
                         </div>
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">Контактный телефон</h2>
+                        <label class="input__title" for="tel"
+                          >Контактный телефон</label
+                        >
                         <input
+                          id="tel"
                           type="tel"
                           class="input__line"
                           placeholder="Укажите ваш номер телефона"
@@ -423,24 +430,33 @@
                     </div>
                     <div class="form__column">
                       <div class="column__input">
-                        <h2 class="input__title">Email адрес</h2>
+                        <label class="input__title" for="email"
+                          >Email адрес</label
+                        >
                         <input
+                          id="email"
                           type="email"
                           class="input__line"
                           placeholder="Укажите ваш Email "
                         />
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">Фамилия Имя Отчество</h2>
+                        <label class="input__title" for="full_name"
+                          >Фамилия Имя Отчество</label
+                        >
                         <input
+                          id="full_name"
                           type="text"
                           class="input__line"
                           placeholder="Укажите ваше ФИО"
                         />
                       </div>
                       <div class="column__input">
-                        <h2 class="input__title">Гражданство</h2>
+                        <label class="input__title" for="nationality"
+                          >Гражданство</label
+                        >
                         <input
+                          id="nationality"
                           type="text"
                           class="input__line"
                           placeholder="Укажите ваше гражданство"
@@ -457,7 +473,7 @@
                     </div>
                   </div>
                   <div class="form__confirm">
-                    <input type="radio" class="confirm__point" />
+                    <input type="checkbox" class="confirm__point" />
                     <span class="confirm__text">
                       Согласен с политикой обработки персональных данных
                     </span>
