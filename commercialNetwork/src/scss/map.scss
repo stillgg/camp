@@ -121,50 +121,17 @@
             z-index: 4;
             margin: 0 auto;
 
-            .map-background__mark {
-                pointer-events: auto;
+            .dot {
                 position: absolute;
-                z-index: 5;
-                width: 45px;
-                height: 54px;
-
-                .wrapper {
-                    position: relative;
-
-                    &::after {
-                        content: "";
-                        width: 10px;
-                        height: 10px;
-                        display: block;
-                        cursor: pointer;
-                        // margin: 0 auto;
-                        width: 10px;
-                        height: 10px;
-                        border-radius: 50%;
-                        border: 2px solid white;
-                        // margin-top: 84%;
-                        // margin-left: 36%;
-                        // margin-top: -15px;
-                    }
-
-                    .mark {
-                        z-index: 6;
-                        // visibility: hidden;
-                        position: absolute;
-                        // right: 0;
-                        // bottom: 0;
-                        // fill: #ed0644;
-
-                        @media (max-width: 992px) {
-                            display: none;
-                        }
-                    }
-                }
-
-                @media (min-width: 993px) {
-                    width: 10px;
-                    height: 10px;
-                    // margin: 54px 22px 0px 22px;
+                width: 1px;
+                height: 1px;
+                background-color: white;
+                .mark {
+                    display: none;
+                    position: absolute;
+                    max-width: none;
+                    bottom: -9px;
+                    left: -20px;
                 }
             }
 
@@ -176,7 +143,7 @@
             @media (max-width: 992px) {
                 max-width: 76%;
                 margin: 0 auto;
-                flex: 1 1 auto;
+                margin-top: -200px;
             }
             @media (max-width: 768px) {
                 max-width: 100%;
