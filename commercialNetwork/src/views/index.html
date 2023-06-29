@@ -398,22 +398,28 @@
                           >Дата рождения</label
                         >
                         <div class="input__birthday">
-                          <input
-                            id="birthday_day"
-                            type="number"
-                            class="input__line"
-                            placeholder="День"
-                          />
-                          <input
-                            type="number"
-                            class="input__line"
-                            placeholder="Месяц"
-                          />
-                          <input
-                            type="number"
-                            class="input__line"
-                            placeholder="Год"
-                          />
+                          <div class="input__wrapper">
+                            <input
+                              id="birthday_day"
+                              type="text"
+                              class="input__line"
+                              placeholder="День"
+                            />
+                          </div>
+                          <div class="input__wrapper">
+                            <input
+                              type="text"
+                              class="input__line"
+                              placeholder="Месяц"
+                            />
+                          </div>
+                          <div class="input__wrapper">
+                            <input
+                              type="text"
+                              class="input__line"
+                              placeholder="Год"
+                            />
+                          </div>
                         </div>
                       </div>
                       <div class="column__input">
@@ -473,10 +479,11 @@
                     </div>
                   </div>
                   <div class="form__confirm">
-                    <input type="checkbox" class="confirm__point" />
-                    <span class="confirm__text">
-                      Согласен с политикой обработки персональных данных
-                    </span>
+                    <label class="confirm__container"
+                      >Согласен с политикой обработки персональных данных
+                      <input type="checkbox" class="confirm__point" />
+                      <span class="confirm__checkbox"></span>
+                    </label>
                   </div>
                   <button type="submit" class="form__btn">
                     ОТПРАВИТЬ АНКЕТУ
