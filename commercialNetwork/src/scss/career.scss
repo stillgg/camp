@@ -109,11 +109,20 @@
           background-color: #ed0644;
           transform: rotate(45deg);
           transition: 0.4s;
+
+          @media (max-width: 576px) {
+            width: 34px;
+            height: 34px;
+          }
         }
 
         &:hover {
           &::after {
             transform: scale(45) rotate(45deg);
+
+            @media (max-width: 576px) {
+              transform: scale(20) rotate(45deg);
+            }
           }
         }
       }
@@ -147,7 +156,7 @@
     }
   }
 
-  .career__PopUp {
+  .career__popup {
     top: 0;
     right: 0%;
     position: absolute;
@@ -158,7 +167,7 @@
     max-width: 1531px;
     overflow-y: auto;
 
-    .PopUp__preview {
+    .popup__preview {
       background-color: #ed0644;
 
       .preview__container {
@@ -210,31 +219,46 @@
           }
         }
 
-        .preview__close {
+        .close__wraper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: absolute;
-          top: 30px;
-          left: 30px;
-          width: 31px;
-          height: 31px;
           cursor: pointer;
+          top: 15px;
+          left: 15px;
+          width: 60px;
+          height: 60px;
 
-          .close__strip {
-            position: absolute;
-            display: block;
-            background-color: #fff;
-            width: 100%;
-            height: 3px;
-            top: 50%;
+          .preview__close {
+            position: relative;
+            width: 31px;
+            height: 31px;
 
-            &:first-child {
-              transform: rotate(45deg);
-            }
+            .close__strip {
+              position: absolute;
+              display: block;
+              background-color: #fff;
+              width: 100%;
+              height: 3px;
+              top: 50%;
 
-            &:last-child {
-              transform: rotate(-45deg);
+              &:first-child {
+                transform: rotate(45deg);
+              }
+
+              &:last-child {
+                transform: rotate(-45deg);
+              }
             }
           }
+
+          @media (max-width: 992px) {
+            left: initial;
+            right: 15px;
+          }
         }
+
         @media (max-width: 992px) {
           padding: 50px 20px;
         }
@@ -326,19 +350,6 @@
 
                     .input__wrapper {
                       position: relative;
-
-                      // &::after {
-                      //   content: "";
-                      //   position: absolute;
-                      //   z-index: 2;
-                      //   border: 2px solid #212121;
-                      //   border-width: 0px 2px 2px 0px;
-                      //   width: 6px;
-                      //   height: 6px;
-                      //   right: 10px;
-                      //   top: calc(50% - 3px);
-                      //   transform: rotate(45deg);
-                      // }
 
                       .input__line {
                         width: 100%;
