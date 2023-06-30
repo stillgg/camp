@@ -7,7 +7,9 @@
 @import "./communication.scss";
 @import "./promoters.scss";
 @import "./network.scss";
+@import "./career.scss";
 @import "./team.scss";
+@import "./news.scss";
 @import "./yandexMap.scss";
 @import "./meeting.scss";
 @import "./merch.scss";
@@ -26,6 +28,7 @@ section {
   margin: 0 auto;
   max-width: 1140px;
   width: 100%;
+
   @media (max-width: 1200px) {
     padding: 0 20px;
   }
