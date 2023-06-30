@@ -15,8 +15,10 @@
             font-size: 100px;
             line-height: 122%;
             text-transform: uppercase;
-            margin-bottom: 50px;
 
+            @media (max-height: 800px) {
+                font-size: 80px;
+            }
             @media (max-width: 1200px) {
                 font-size: 80px;
                 margin-bottom: 30px;
@@ -30,6 +32,7 @@
         }
 
         .news-wrapper {
+            position: relative;
             .left-btn,
             .right-btn {
                 position: absolute;
@@ -98,7 +101,7 @@
                         position: relative;
                         z-index: 1;
                         width: 355px;
-                        height: 357px;
+                        height: 290px;
 
                         .wrapper-image {
                             position: absolute;
@@ -133,6 +136,10 @@
                             padding: 0px 0px 20px 30px;
                         }
 
+                        @media (max-height: 800px) {
+                            height: 250px;
+                        }
+
                         @media (max-width: 1200px) {
                             width: 100%;
                         }
@@ -142,7 +149,7 @@
                         }
 
                         @media (max-width: 576px) {
-                            height: 220px;
+                            height: 190px;
                         }
                     }
                     .item__body {
@@ -160,6 +167,10 @@
                             color: #212121;
                             margin-bottom: 30px;
 
+                            @media (max-width: 1200px) {
+                                margin-bottom: 15px;
+                            }
+
                             @media (max-width: 768px) {
                                 margin-bottom: 10px;
                             }
@@ -168,6 +179,9 @@
                         .body__text {
                             color: #212121;
                             margin-bottom: 20px;
+                            @media (max-width: 1200px) {
+                                margin-bottom: 10px;
+                            }
                         }
 
                         .body__link {
@@ -207,8 +221,7 @@
                         }
 
                         @media (max-width: 1200px) {
-                            padding: 20px;
-                            margin-top: -67px;
+                            padding: 15px;
                         }
 
                         @media (max-width: 992px) {
@@ -247,13 +260,16 @@
                 }
 
                 @media (max-width: 1200px) {
-                    gap: 17px;
+                    gap: 38px;
                     margin: 0 auto;
                 }
 
                 @media (max-width: 992px) {
                     overflow-x: auto;
                 }
+            }
+            @media (max-width: 1200px) {
+                margin: 0 20px;
             }
         }
     }
