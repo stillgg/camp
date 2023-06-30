@@ -362,8 +362,7 @@
                   cursor: pointer;
 
                   .button__op {
-                    cursor: pointer;
-                    opacity: 0;
+                    visibility: hidden;
                     position: absolute;
                   }
                 }
