@@ -1,5 +1,5 @@
 .team {
-  background-color: #fff;
+  background-color: $white;
 
   .container {
     height: 100%;
@@ -9,29 +9,6 @@
     overflow: hidden;
     padding-top: 120px;
     height: 100%;
-
-    .header__title {
-      font-size: 100px;
-      font-weight: 700;
-      line-height: 122%;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-
-      @media (max-width: 1200px) {
-        font-size: 82px;
-      }
-      @media (max-width: 992px) {
-        font-size: 64px;
-        display: flex;
-        justify-content: center;
-      }
-      @media (max-width: 768px) {
-        font-size: 38px;
-      }
-      @media (max-width: 576px) {
-        font-size: 32px;
-      }
-    }
 
     .team__main {
       position: relative;
@@ -62,6 +39,9 @@
           }
           @media (max-height: 720px) {
             height: 320px;
+          }
+          @media (max-width: 992px) {
+            height: inherit;
           }
         }
 
@@ -94,12 +74,12 @@
           height: 56px;
           padding: 21px 22px 21px 23.5px;
           z-index: 5;
-          background: #ffffff;
+          background: $white;
           border-radius: 50%;
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
           cursor: pointer;
           left: 75%;
-          stroke: #212121;
+          stroke: $black;
           transition: stroke 0.3s ease-in-out, background 0.3s ease-in-out;
 
           &.left {
@@ -112,8 +92,8 @@
           }
 
           &:hover {
-            stroke: #fff;
-            background: #ed0644;
+            stroke: $white;
+            background: $red;
           }
 
           @media (max-width: 992px) {
@@ -135,6 +115,9 @@
           // width: 400px;
           height: 320px;
         }
+        @media (max-width: 992px) {
+          height: inherit;
+        }
       }
 
       .slider__text {
@@ -147,8 +130,6 @@
 
           .text__name {
             font-weight: 700;
-            font-size: 18px;
-            line-height: 144%;
 
             .text__description {
               font-size: 16px;
@@ -163,7 +144,11 @@
 
         .gradient-top {
           z-index: 6;
-          background-image: linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0));
+          background-image: linear-gradient(
+            180deg,
+            $white,
+            hsla(0, 0%, 100%, 0)
+          );
           height: 30px;
           position: absolute;
           width: 100%;
@@ -185,15 +170,12 @@
           position: relative;
           z-index: 5;
           font-weight: 700;
-          font-size: 18px;
-          line-height: 144%;
         }
 
         .main__description__gray {
-          font-weight: 400;
           font-size: 16px;
           line-height: 162%;
-          color: #5c5c5c;
+          color: $gray;
         }
 
         @media (max-width: 992px) {
@@ -223,7 +205,7 @@
         height: calc(100% - 70px);
 
         &::after {
-          background-image: linear-gradient(0deg, #fff, hsla(0, 0%, 100%, 0));
+          background-image: linear-gradient(0deg, $white, hsla(0, 0%, 100%, 0));
           content: "";
           height: 30px;
           position: absolute;

@@ -17,31 +17,8 @@
     padding-top: 100px;
   }
 
-  .meeting__title {
-    font-weight: 700;
-    font-size: 100px;
-    line-height: 122%;
-    text-transform: uppercase;
-    color: #ffffff;
-
-    @media (max-width: 1200px) {
-      font-size: 82px;
-    }
-
-    @media (max-width: 992px) {
-      font-size: 64px;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 38px;
-    }
-
-    @media (max-width: 576px) {
-      font-size: 32px;
-    }
+  .h2 {
+    color: $white;
   }
 
   .meeting__content {
@@ -64,7 +41,7 @@
       top: calc(50% - 35px);
       left: calc(50% - 35px);
       padding: 22px;
-      background-color: #ffffff;
+      background-color: $white;
       border-radius: 35px;
       width: 70px;
       height: 70px;
@@ -75,16 +52,16 @@
         position: relative;
         left: 5px;
         z-index: 20;
-        color: #ed0644;
+        color: $red;
         transition: 0.4s;
       }
     }
     &:hover {
       .wrapper__play {
-        background: #ed0644;
+        background: $red;
       }
       .play {
-        color: #fff;
+        color: $white;
       }
     }
   }

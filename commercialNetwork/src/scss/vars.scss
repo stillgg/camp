@@ -1,6 +1,61 @@
+$red: #ed0644;
+$white: #fff;
+$black: #212121;
+$gray: #5c5c5c;
+
+.h2 {
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 122%;
+  text-transform: uppercase;
+
+  @media (max-width: 1200px) {
+    font-size: 82px;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 38px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+  }
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 122%;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+
+  @media (max-width: 1200px) {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 35px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
+}
+
 /* for example !!! 
 
-$white: #ffffff;
+$
+$white: $white;
 $gray1: #f9f9f9;
 $gray2: #f1f1f1;
 $gray3: #e9eaeb;
