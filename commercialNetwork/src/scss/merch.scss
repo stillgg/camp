@@ -12,7 +12,7 @@
     .right-btn {
       position: absolute;
       top: 245px;
-      background: $white-default;
+      background: var(--white);
       box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
       width: 56px;
       height: 56px;
@@ -23,7 +23,7 @@
       justify-content: center;
 
       &:hover {
-        background: $main-pink;
+        background: var(--red);
         box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.35);
 
         .arrow {
@@ -51,7 +51,7 @@
     .arrow {
       height: 13px;
       width: 8px;
-      stroke: $black-default;
+      stroke: var(--black);
     }
 
     .merch-wrapper {

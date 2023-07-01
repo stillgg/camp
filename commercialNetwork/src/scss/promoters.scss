@@ -3,9 +3,9 @@
   display: flex;
   align-items: center;
   background: url("../resources/img/04-background-image.webp") center center
-    no-repeat $main-pink;
+    no-repeat var(--red);
   background: url("../resources/img/04-background-image.png") center center
-    no-repeat $main-pink;
+    no-repeat var(--red);
   background-size: cover;
   overflow: hidden;
 
@@ -37,14 +37,14 @@
     .promoters-wrapper__city,
     .promoters-wrapper__contacts,
     .promoters-wrapper__points {
-      background: $white-default;
+      background: var(--white);
       border-radius: 110px;
       font-style: normal;
       font-weight: 700;
       font-size: 42px;
       line-height: 67%;
       text-transform: uppercase;
-      color: $gray;
+      color: var(--gray);
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
 
       @media (max-width: 1350px) {
@@ -100,33 +100,25 @@
     }
   }
 
-  .promoters__title {
+  .h3 {
     max-width: 437px;
-    margin-bottom: 50px;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 46px;
-    line-height: 133%;
-    text-transform: uppercase;
-    color: $white-default;
+    color: var(--white);
+
+    @media (max-width: 1200px) {
+      text-align: initial;
+    }
 
     @media (max-width: 768px) {
       max-width: 100%;
       text-align: center;
-      font-size: 37px;
-    }
-
-    @media (max-width: 576px) {
-      font-size: 30px;
     }
   }
 
   .promoters__title-text {
     max-width: 408px;
     font-style: normal;
-    font-size: 18px;
     line-height: 156%;
-    color: $white-default;
+    color: var(--white);
 
     @media (max-width: 768px) {
       max-width: 100%;

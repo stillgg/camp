@@ -1,5 +1,5 @@
 .team {
-  background-color: $white-default;
+  background-color: var(--white);
 
   .container {
     height: 100%;
@@ -74,12 +74,12 @@
           height: 56px;
           padding: 21px 22px 21px 23.5px;
           z-index: 5;
-          background: $white-default;
+          background: var(--white);
           border-radius: 50%;
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
           cursor: pointer;
           left: 75%;
-          stroke: $black-default;
+          stroke: var(--black);
           transition: stroke 0.3s ease-in-out, background 0.3s ease-in-out;
 
           &.left {
@@ -92,8 +92,8 @@
           }
 
           &:hover {
-            stroke: $white-default;
-            background: $main-pink;
+            stroke: var(--white);
+            background: var(--red);
           }
 
           @media (max-width: 992px) {
@@ -130,8 +130,6 @@
 
           .text__name {
             font-weight: 700;
-            font-size: 18px;
-            line-height: 144%;
 
             .text__description {
               font-size: 16px;
@@ -148,7 +146,7 @@
           z-index: 6;
           background-image: linear-gradient(
             180deg,
-            $white-default,
+            var(--white),
             hsla(0, 0%, 100%, 0)
           );
           height: 30px;
@@ -172,15 +170,12 @@
           position: relative;
           z-index: 5;
           font-weight: 700;
-          font-size: 18px;
-          line-height: 144%;
         }
 
         .main__description__gray {
-          font-weight: 400;
           font-size: 16px;
           line-height: 162%;
-          color: $gray;
+          color: var(--gray);
         }
 
         @media (max-width: 992px) {
@@ -212,7 +207,7 @@
         &::after {
           background-image: linear-gradient(
             0deg,
-            $white-default,
+            var(--white),
             hsla(0, 0%, 100%, 0)
           );
           content: "";

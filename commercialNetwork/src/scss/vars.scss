@@ -1,9 +1,11 @@
-$main-pink: #ed0644;
-$white-default: #fff;
-$black-default: #212121;
-$gray: #5c5c5c;
+:root {
+  --red: #ed0644;
+  --white: #fff;
+  --black: #212121;
+  --gray: #5c5c5c;
+}
 
-.header__title {
+.h2 {
   font-weight: 700;
   font-size: 100px;
   line-height: 122%;
@@ -29,10 +31,33 @@ $gray: #5c5c5c;
   }
 }
 
+.h3 {
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 122%;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+
+  @media (max-width: 1200px) {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 35px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
+}
+
 /* for example !!! 
 
 $
-$white: $white-default;
+$white: var(--white);
 $gray1: #f9f9f9;
 $gray2: #f1f1f1;
 $gray3: #e9eaeb;

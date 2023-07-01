@@ -17,8 +17,8 @@
     padding-top: 100px;
   }
 
-  .header__title {
-    color: $white-default;
+  .h2 {
+    color: var(--white);
   }
 
   .meeting__content {
@@ -41,7 +41,7 @@
       top: calc(50% - 35px);
       left: calc(50% - 35px);
       padding: 22px;
-      background-color: $white-default;
+      background-color: var(--white);
       border-radius: 35px;
       width: 70px;
       height: 70px;
@@ -52,16 +52,16 @@
         position: relative;
         left: 5px;
         z-index: 20;
-        color: $main-pink;
+        color: var(--red);
         transition: 0.4s;
       }
     }
     &:hover {
       .wrapper__play {
-        background: $main-pink;
+        background: var(--red);
       }
       .play {
-        color: $white-default;
+        color: var(--white);
       }
     }
   }

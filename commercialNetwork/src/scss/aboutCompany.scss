@@ -5,11 +5,11 @@
   flex-direction: column;
   position: relative;
   background: url("../resources/img/02-background-image.webp") center center
-    no-repeat fixed $main-pink;
+    no-repeat fixed var(--red);
   background: url("../resources/img/02-background-image.png") center center
-    no-repeat fixed $main-pink;
+    no-repeat fixed var(--red);
   font-style: normal;
-  color: $white-default;
+  color: var(--white);
 
   .about-body__title {
     font-weight: 700;
@@ -48,7 +48,6 @@
       @media (min-width: 993px) {
         max-width: 487px;
         padding-bottom: 200px;
-        font-size: 18px;
       }
 
       @media (max-width: 992px) {

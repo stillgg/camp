@@ -15,7 +15,7 @@
       align-items: flex-end;
       .svg__slogan {
         height: calc(100% - 140px);
-        color: $white-default;
+        color: var(--white);
       }
     }
   }
@@ -29,7 +29,7 @@
       gap: 15px;
     }
     span {
-      color: $white-default;
+      color: var(--white);
       font-size: 12px;
       line-height: 16px;
       @media (max-width: 540px) {
