@@ -15,9 +15,7 @@
         .map-wrapper__title,
         .map-wrapper__text,
         .item__description {
-            color: #212121;
-            font-style: normal;
-            font-size: 18px;
+            color: $black;
         }
 
         .map-wrapper__title {
@@ -48,18 +46,11 @@
             display: flex;
             justify-content: space-between;
 
-            .map-wrapper-row__first-item {
-                width: 265px;
-                padding: 35px 116px 40px 40px;
-            }
-
-            .map-wrapper-row__second-item {
-                width: 263px;
-                padding: 35px 71px 40px 50px;
-            }
-
             .map-wrapper-row__first-item,
             .map-wrapper-row__second-item {
+                width: 265px;
+                height: 160px;
+                padding: 35px 0 0 45px;
                 overflow: hidden;
                 background: #ffffff;
                 box-shadow: 20px 10px 30px rgba(0, 0, 0, 0.08);
@@ -74,7 +65,7 @@
                     width: 34px;
                     height: 34px;
                     transform: rotate(45deg);
-                    background-color: #ed0644;
+                    background-color: $red;
                     z-index: 3;
 
                     @media (max-width: 1200px) {
@@ -90,11 +81,10 @@
             }
 
             .item__number {
-                font-style: normal;
                 font-weight: 700;
                 font-size: 50px;
                 line-height: 61px;
-                color: #ed0644;
+                color: $red;
                 margin-bottom: 2px;
             }
 
@@ -163,7 +153,7 @@
                     top: calc(100% + 10px);
                     left: 50%;
                     padding: 8px;
-                    color: #fff;
+                    color: $white;
                     border-radius: 4px;
                     font-size: 14px;
                     line-height: 1.2;
@@ -193,7 +183,7 @@
                         width: 12px;
                         height: 12px;
                         border-radius: 50%;
-                        border: 2px solid white;
+                        border: 2px solid $white;
                     }
 
                     .tooltip {

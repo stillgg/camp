@@ -1,18 +1,14 @@
-const dots = document.querySelectorAll(".mark");
-let timer = null;
-console.log(dots);
+const marks = document.querySelectorAll(".mark");
 
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
+marks.forEach((mark) => {
+  mark.addEventListener("click", () => {
     deleteClasses();
-    dot.parentNode.classList.add("animation-play");
+    mark.parentNode.classList.add("animation-play");
   });
 });
 
-function deleteClasses(activeIndex) {
-  dots.forEach((dot, index) => {
-    if (activeIndex !== index) {
-      dot.parentNode.classList.remove("animation-play");
-    }
+function deleteClasses() {
+  marks.forEach((mark) => {
+    mark.parentNode.classList.remove("animation-play");
   });
 }
