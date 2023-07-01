@@ -3,9 +3,9 @@
   display: flex;
   align-items: center;
   background: url("../resources/img/04-background-image.webp") center center
-    no-repeat var(--red);
+    no-repeat $red;
   background: url("../resources/img/04-background-image.png") center center
-    no-repeat var(--red);
+    no-repeat $red;
   background-size: cover;
   overflow: hidden;
 
@@ -37,14 +37,14 @@
     .promoters-wrapper__city,
     .promoters-wrapper__contacts,
     .promoters-wrapper__points {
-      background: var(--white);
+      background: $white;
       border-radius: 110px;
       font-style: normal;
       font-weight: 700;
       font-size: 42px;
       line-height: 67%;
       text-transform: uppercase;
-      color: var(--gray);
+      color: $gray;
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
 
       @media (max-width: 1350px) {
@@ -102,7 +102,7 @@
 
   .h3 {
     max-width: 437px;
-    color: var(--white);
+    color: $white;
 
     @media (max-width: 1200px) {
       text-align: initial;
@@ -118,7 +118,7 @@
     max-width: 408px;
     font-style: normal;
     line-height: 156%;
-    color: var(--white);
+    color: $white;
 
     @media (max-width: 768px) {
       max-width: 100%;

@@ -5,11 +5,11 @@
   flex-direction: column;
   position: relative;
   background: url("../resources/img/02-background-image.webp") center center
-    no-repeat fixed var(--red);
+    no-repeat fixed $red;
   background: url("../resources/img/02-background-image.png") center center
-    no-repeat fixed var(--red);
+    no-repeat fixed $red;
   font-style: normal;
-  color: var(--white);
+  color: $white;
 
   .about-body__title {
     font-weight: 700;

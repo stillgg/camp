@@ -1,9 +1,7 @@
-:root {
-  --red: #ed0644;
-  --white: #fff;
-  --black: #212121;
-  --gray: #5c5c5c;
-}
+$red: #ed0644;
+$white: #fff;
+$black: #212121;
+$gray: #5c5c5c;
 
 .h2 {
   font-weight: 700;
@@ -57,7 +55,7 @@
 /* for example !!! 
 
 $
-$white: var(--white);
+$white: $white;
 $gray1: #f9f9f9;
 $gray2: #f1f1f1;
 $gray3: #e9eaeb;

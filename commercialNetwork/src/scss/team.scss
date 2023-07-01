@@ -1,5 +1,5 @@
 .team {
-  background-color: var(--white);
+  background-color: $white;
 
   .container {
     height: 100%;
@@ -74,12 +74,12 @@
           height: 56px;
           padding: 21px 22px 21px 23.5px;
           z-index: 5;
-          background: var(--white);
+          background: $white;
           border-radius: 50%;
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
           cursor: pointer;
           left: 75%;
-          stroke: var(--black);
+          stroke: $black;
           transition: stroke 0.3s ease-in-out, background 0.3s ease-in-out;
 
           &.left {
@@ -92,8 +92,8 @@
           }
 
           &:hover {
-            stroke: var(--white);
-            background: var(--red);
+            stroke: $white;
+            background: $red;
           }
 
           @media (max-width: 992px) {
@@ -146,7 +146,7 @@
           z-index: 6;
           background-image: linear-gradient(
             180deg,
-            var(--white),
+            $white,
             hsla(0, 0%, 100%, 0)
           );
           height: 30px;
@@ -175,7 +175,7 @@
         .main__description__gray {
           font-size: 16px;
           line-height: 162%;
-          color: var(--gray);
+          color: $gray;
         }
 
         @media (max-width: 992px) {
@@ -205,11 +205,7 @@
         height: calc(100% - 70px);
 
         &::after {
-          background-image: linear-gradient(
-            0deg,
-            var(--white),
-            hsla(0, 0%, 100%, 0)
-          );
+          background-image: linear-gradient(0deg, $white, hsla(0, 0%, 100%, 0));
           content: "";
           height: 30px;
           position: absolute;

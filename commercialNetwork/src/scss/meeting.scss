@@ -18,7 +18,7 @@
   }
 
   .h2 {
-    color: var(--white);
+    color: $white;
   }
 
   .meeting__content {
@@ -41,7 +41,7 @@
       top: calc(50% - 35px);
       left: calc(50% - 35px);
       padding: 22px;
-      background-color: var(--white);
+      background-color: $white;
       border-radius: 35px;
       width: 70px;
       height: 70px;
@@ -52,16 +52,16 @@
         position: relative;
         left: 5px;
         z-index: 20;
-        color: var(--red);
+        color: $red;
         transition: 0.4s;
       }
     }
     &:hover {
       .wrapper__play {
-        background: var(--red);
+        background: $red;
       }
       .play {
-        color: var(--white);
+        color: $white;
       }
     }
   }

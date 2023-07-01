@@ -1,8 +1,8 @@
 .communication {
   background: url("../resources/img/05-background-image.webp") center center
-    no-repeat var(--red);
+    no-repeat $red;
   background: url("../resources/img/05-background-image.png") center center
-    no-repeat var(--red);
+    no-repeat $red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   .communication__sutitle-text {
     font-style: normal;
     text-align: center;
-    color: var(--white);
+    color: $white;
   }
 
   .communication-scroll {
@@ -41,10 +41,10 @@
 
     .first-image__text,
     .second-image__text {
-      color: var(--gray);
+      color: $gray;
       font-style: normal;
       line-height: 133%;
-      background-color: var(--white);
+      background-color: $white;
       box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
       border-radius: 110px;
       padding: 26px 50px;
