@@ -10,7 +10,7 @@
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        z-index: 5;
+        z-index: 1;
 
         .map-wrapper__title,
         .map-wrapper__text,
@@ -51,21 +51,20 @@
             .map-wrapper-row__first-item {
                 width: 265px;
                 padding: 35px 116px 40px 40px;
-                overflow: hidden;
             }
 
             .map-wrapper-row__second-item {
                 width: 263px;
                 padding: 35px 71px 40px 50px;
-                overflow: hidden;
             }
 
             .map-wrapper-row__first-item,
             .map-wrapper-row__second-item {
+                overflow: hidden;
                 background: #ffffff;
                 box-shadow: 20px 10px 30px rgba(0, 0, 0, 0.08);
                 position: relative;
-                z-index: 7;
+                z-index: 4;
 
                 &::after {
                     content: "";
@@ -76,7 +75,7 @@
                     height: 34px;
                     transform: rotate(45deg);
                     background-color: #ed0644;
-                    z-index: 6;
+                    z-index: 3;
 
                     @media (max-width: 1200px) {
                         display: none;
@@ -120,7 +119,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 4;
+            z-index: 2;
             margin: 0 auto;
 
             .map-image {
@@ -130,25 +129,27 @@
 
             .dot {
                 position: absolute;
-                width: 1px;
-                height: 1px;
-                background-color: white;
                 cursor: pointer;
-                transition: 0.3s ease;
 
                 .mark {
                     position: absolute;
-                    opacity: 1;
+                    z-index: 5;
                     max-width: none;
                     bottom: -9px;
                     left: -20px;
-                    transition: transform 0.2s ease, opacity 0.2s ease;
-                    transition-delay: 1s;
-                    &:hover {
-                        left: -17px;
-                        transform: translateY(-5px);
-                        transition-delay: 0s;
-                        opacity: 0;
+                    transition: transform 0.4s ease, opacity 0.4s ease;
+                    animation: mark-down 1s forwards;
+
+                    @keyframes mark-down {
+                        0% {
+                            transform: translateY(-10px);
+                            opacity: 0;
+                        }
+
+                        100% {
+                            transform: translateY(0px);
+                            opacity: 1;
+                        }
                     }
 
                     @media (max-width: 992px) {
@@ -156,31 +157,76 @@
                     }
                 }
 
-                &:hover::after {
-                    content: attr(data-country);
+                .tooltip {
                     position: absolute;
-                    z-index: 100;
+                    z-index: 6;
                     top: calc(100% + 10px);
                     left: 50%;
-                    transform: translateX(-50%);
                     padding: 8px;
-                    background-color: rgba(0, 0, 0, 0.8);
                     color: #fff;
                     border-radius: 4px;
                     font-size: 14px;
                     line-height: 1.2;
-                    opacity: 1;
-                    visibility: visible;
-                    transition: opacity 0.4s ease, visibility 0.4s ease;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    white-space: nowrap;
+                    transform: translateX(-50%);
+
+                    pointer-events: none;
+                    opacity: 0;
+                    width: fit-content;
+                    height: fit-content;
+
+                    &::after {
+                        content: attr(data-country);
+                    }
                 }
 
-                &:hover {
-                    margin-left: -5px;
-                    margin-bottom: -5px;
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    border: 2px solid black;
+                &.animation-play {
+                    pointer-events: none;
+                    transition: all 0.4s ease;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: -5px;
+                        top: -7px;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        border: 2px solid white;
+                    }
+
+                    .tooltip {
+                        animation: country 2s forwards;
+
+                        @keyframes country {
+                            0% {
+                                opacity: 0;
+                            }
+
+                            100% {
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    .mark {
+                        animation: mark-up 0.5s forwards;
+
+                        @keyframes mark-up {
+                            0% {
+                                visibility: visible;
+                                transform: translateY(0px);
+                                opacity: 1;
+                            }
+
+                            100% {
+                                visibility: hidden;
+                                transform: translateY(-10px);
+                                opacity: 0;
+                            }
+                        }
+                    }
                 }
 
                 @media (max-width: 992px) {
@@ -212,6 +258,7 @@
             @media (min-height: 900px) {
                 max-width: 100%;
                 max-height: 100%;
+                margin-top: -115px;
             }
         }
 
