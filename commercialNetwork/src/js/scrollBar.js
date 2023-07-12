@@ -2,44 +2,52 @@ const sections = document.querySelectorAll("section");
 const links = document.querySelectorAll(".sections__wrapper");
 const counter = document.querySelector(".number__current");
 const scrollbar = document.querySelector(".scrollbar");
-let scrollDistance = window.scrollY;
+const main = document.querySelector(".main");
+let activeSlide = 0;
+let position = 0;
+const blackSection = [2, 6, 7, 8, 10, 11];
 
-window.addEventListener("scroll", (e) => {
-  //   console.log(window.scrollY > scrollDistance);
-  scrollDistance = window.scrollY;
-  checkSection(scrollDistance);
-});
+addEventListener("wheel", (event) => checkSection(event));
 
-function checkSection(scrollDistance) {
-  sections.forEach((section, index) => {
-    if (section.classList.contains("active")) {
-      links[index].classList.remove("active");
-    }
-    if (
-      section.offsetTop <= scrollDistance &&
-      section.offsetTop + section.clientHeight > scrollDistance
-    ) {
-      //   console.log(section.clientHeight, "1");
-      //   console.log(section.offsetTop, "2");
-      //   console.log(scrollDistance, "3");
+function checkSection(event) {
+  const arrTopPosition = [];
 
-      links[index].classList.add("active");
-      section.classList.add("active");
-      changeCounter(index);
-      if (index + 1 === 3 || (index + 1 >= 7 && index + 1 !== 10)) {
-        scrollbar.classList.add("black");
-      } else {
-        scrollbar.classList.remove("black");
-      }
-    }
-  });
+  for (let i = 0; i < sections.length; i++) {
+    arrTopPosition.push(sections[i].offsetHeight * i);
+  }
+
+  if (event.deltaY > 0 && activeSlide !== 11) {
+    activeSlide++;
+  }
+
+  if (event.deltaY < 0 && activeSlide !== 0) {
+    activeSlide--;
+  }
+
+  position = arrTopPosition[activeSlide];
+  main.style.transform = `translateY(${-position}px)`;
+  changeCounter(activeSlide);
+  changeLink(activeSlide);
+  scrollBarColor(activeSlide);
 }
-
-checkSection();
 
 function changeCounter(index) {
   counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
 }
+
+function changeLink(index) {
+  links.forEach((link) => {
+    link.classList.remove("active");
+  });
+  links[index].classList.add("active");
+}
+
+function scrollBarColor(index) {
+  blackSection.includes(index)
+    ? scrollbar.classList.add("black")
+    : scrollbar.classList.remove("black");
+}
+
 // Добавление анимации перехода
 
 for (let anchor of links) {

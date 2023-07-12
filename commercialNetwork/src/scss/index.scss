@@ -22,8 +22,13 @@ section {
 }
 
 .app {
+  height: 100vh;
   max-width: 100vw;
   overflow: hidden;
+
+  .main {
+    transition: all 700ms ease 0s;
+  }
 }
 
 .container {

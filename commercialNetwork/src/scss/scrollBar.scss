@@ -38,10 +38,18 @@
         height: 3px;
         width: 17px;
         background-color: $white;
+        transition: 0.2s;
       }
 
       &.active {
         .sections__link {
+          background-color: $black;
+          width: 100%;
+        }
+      }
+      &:hover {
+        .sections__link {
+          background-color: $black;
           width: 100%;
         }
       }
@@ -52,6 +60,17 @@
 
     .sections__link {
       background-color: $black !important;
+    }
+    .sections__wrapper.active {
+      .sections__link {
+        background-color: $red !important;
+        width: 100%;
+      }
+    }
+    .sections__wrapper:hover {
+      .sections__link {
+        background-color: $red !important;
+      }
     }
   }
 }
