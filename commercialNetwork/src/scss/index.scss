@@ -32,8 +32,9 @@ section {
 }
 
 .container {
+  padding: 0 50px;
   margin: 0 auto;
-  max-width: 1140px;
+  max-width: 1100px;
   width: 100%;
 
   @media (max-width: 1200px) {
