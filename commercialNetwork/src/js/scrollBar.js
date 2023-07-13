@@ -8,9 +8,9 @@ let position = 0;
 let start = true;
 const blackSection = [2, 6, 7, 8, 10, 11];
 
-addEventListener("wheel", (event) => checkSection(event));
+addEventListener("wheel", (event) => onScrollHeader(event));
 
-function checkSection(event) {
+function onScrollHeader(event) {
   if (start === true) {
     const arrTopPosition = [];
 
@@ -28,10 +28,7 @@ function checkSection(event) {
 
     start = false;
     position = arrTopPosition[activeSlide];
-    main.style.transform = `translateY(${-position}px)`;
-    changeCounter(activeSlide);
-    changeLink(activeSlide);
-    scrollBarColor(activeSlide);
+    notDublicate(position);
     setTimeout(startF, 500);
   }
 }
@@ -44,14 +41,18 @@ links.forEach((link, index) => {
       if (link.getAttribute("href") === links[i].getAttribute("href")) {
         activeSlide = i;
         position = sections[i].offsetHeight * i;
-        main.style.transform = `translateY(${-position}px)`;
-        changeLink(activeSlide);
-        scrollBarColor(activeSlide);
-        changeCounter(activeSlide);
+        notDublicate(position);
       }
     }
   });
 });
+
+function notDublicate(position) {
+  main.style.transform = `translateY(${-position}px)`;
+  changeLink(activeSlide);
+  scrollBarColor(activeSlide);
+  changeCounter(activeSlide);
+}
 
 function startF() {
   start = true;
@@ -74,16 +75,17 @@ function scrollBarColor(index) {
     : scrollbar.classList.remove("black");
 }
 
-// var el = document.querySelector(".app");
+var el = document.querySelector(".app");
 
-// el.addEventListener("touchstart", (event) => startTest(event));
-// el.addEventListener("touchend", endTest);
+el.addEventListener("touchstart", (event) => startTest(event));
+el.addEventListener("touchend", (event) => endTest(event));
 
-// function startTest(event) {
-//   console.log("START");
-//   console.log(event);
-// }
+function startTest(event) {
+  console.log("START");
+  console.log(event);
+}
 
-// function endTest() {
-//   console.log("END");
-// }
+function endTest(event) {
+  console.log("END");
+  console.log(event);
+}
