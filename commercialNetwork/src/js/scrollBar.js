@@ -51,24 +51,6 @@ function onScrollHandler(e) {
   }
 }
 
-function changeSlide(slideIndex) {
-  const sectionHeight = document.documentElement.clientHeight;
-
-  counter.innerText = slideIndex + 1;
-
-  main.style.transform = `translateY(${-(sectionHeight * slideIndex)}px)`;
-
-  sections.forEach((section) => section.classList.remove("active"));
-  indicatorLines.forEach((line) => line.classList.remove("active"));
-  indicator.classList.remove("black");
-
-  sections[slideIndex].classList.add("active");
-  indicatorLines[slideIndex].classList.add("active");
-
-  if (BLACK_SECTION_INDEXES.includes(slideIndex))
-    indicator.classList.add("black");
-}
-
 function onSlideChange() {
   return {
     set(target, property, slideIndex) {
@@ -76,7 +58,21 @@ function onSlideChange() {
         return;
       }
 
-      changeSlide(slideIndex);
+      const sectionHeight = document.documentElement.clientHeight;
+
+      counter.innerText = slideIndex + 1;
+
+      main.style.transform = `translateY(${-(sectionHeight * slideIndex)}px)`;
+
+      sections.forEach((section) => section.classList.remove("active"));
+      indicatorLines.forEach((line) => line.classList.remove("active"));
+      indicator.classList.remove("black");
+
+      sections[slideIndex].classList.add("active");
+      indicatorLines[slideIndex].classList.add("active");
+
+      if (BLACK_SECTION_INDEXES.includes(slideIndex))
+        indicator.classList.add("black");
 
       return Reflect.set(target, property, slideIndex);
     },
@@ -84,7 +80,7 @@ function onSlideChange() {
 }
 
 indicatorLines.forEach((line, index) =>
-  line.addEventListener("click", () => changeSlide(index))
+  line.addEventListener("click", () => (watchedSlide.activeSlide = index))
 );
 
 document.addEventListener("wheel", onScrollHandler);
