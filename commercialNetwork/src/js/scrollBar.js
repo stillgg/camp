@@ -28,24 +28,21 @@ function delay(callback) {
 function onScrollHandler(e) {
   const scrollAmountY = e.deltaY;
 
-  const isScrollDown =
-    scrollAmountY > 30 && timer === null && isStart === false;
-  const isScrollUp = scrollAmountY < -30 && timer === null && isStart === false;
+  const isScrollDown = scrollAmountY > 30;
+  const isScrollUp = scrollAmountY < -30;
 
-  if (isScrollDown) {
-    isStart = true;
-
-    delay(() => {
+  if (isStart === false) {
+    if (isScrollDown) {
+      isStart = true;
       watchedSlide.activeSlide++;
-      isStart = false;
-    });
-  }
+    }
 
-  if (isScrollUp) {
-    isStart = true;
+    if (isScrollUp) {
+      isStart = true;
+      watchedSlide.activeSlide--;
+    }
 
     delay(() => {
-      watchedSlide.activeSlide--;
       isStart = false;
     });
   }
