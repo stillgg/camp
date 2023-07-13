@@ -1,64 +1,90 @@
 const sections = document.querySelectorAll("section");
-const links = document.querySelectorAll(".sections__wrapper");
+const indicator = document.querySelector("#indicator");
+const indicatorLines = indicator.querySelectorAll(".sections__wrapper");
 const counter = document.querySelector(".number__current");
-const scrollbar = document.querySelector(".scrollbar");
 const main = document.querySelector(".main");
-let activeSlide = 0;
-let position = 0;
-const blackSection = [2, 6, 7, 8, 10, 11];
 
-addEventListener("wheel", (event) => checkSection(event));
+const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11];
 
-function checkSection(event) {
-  const arrTopPosition = [];
+let timer = null;
+let isStart = false;
 
-  for (let i = 0; i < sections.length; i++) {
-    arrTopPosition.push(sections[i].offsetHeight * i);
-  }
+const watchedSlide = new Proxy(
+  {
+    activeSlide: 0,
+  },
+  onSlideChange()
+);
 
-  if (event.deltaY > 0 && activeSlide !== 11) {
-    activeSlide++;
-  }
+function delay(callback) {
+  timer = setTimeout(() => {
+    callback();
 
-  if (event.deltaY < 0 && activeSlide !== 0) {
-    activeSlide--;
-  }
-
-  position = arrTopPosition[activeSlide];
-  main.style.transform = `translateY(${-position}px)`;
-  changeCounter(activeSlide);
-  changeLink(activeSlide);
-  scrollBarColor(activeSlide);
+    clearTimeout(timer);
+    timer = null;
+  }, 400);
 }
 
-function changeCounter(index) {
-  counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
-}
+function onScrollHandler(e) {
+  const scrollAmountY = e.deltaY;
 
-function changeLink(index) {
-  links.forEach((link) => {
-    link.classList.remove("active");
-  });
-  links[index].classList.add("active");
-}
+  const isScrollDown =
+    scrollAmountY > 30 && timer === null && isStart === false;
+  const isScrollUp = scrollAmountY < -30 && timer === null && isStart === false;
 
-function scrollBarColor(index) {
-  blackSection.includes(index)
-    ? scrollbar.classList.add("black")
-    : scrollbar.classList.remove("black");
-}
+  if (isScrollDown) {
+    isStart = true;
 
-// Добавление анимации перехода
-
-for (let anchor of links) {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const blockID = anchor.getAttribute("href").substr(1);
-
-    document.getElementById(blockID).scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    delay(() => {
+      watchedSlide.activeSlide++;
+      isStart = false;
     });
-  });
+  }
+
+  if (isScrollUp) {
+    isStart = true;
+
+    delay(() => {
+      watchedSlide.activeSlide--;
+      isStart = false;
+    });
+  }
 }
+
+function changeSlide(slideIndex) {
+  const sectionHeight = document.documentElement.clientHeight;
+
+  counter.innerText = slideIndex + 1;
+
+  main.style.transform = `translateY(${-(sectionHeight * slideIndex)}px)`;
+
+  sections.forEach((section) => section.classList.remove("active"));
+  indicatorLines.forEach((line) => line.classList.remove("active"));
+  indicator.classList.remove("black");
+
+  sections[slideIndex].classList.add("active");
+  indicatorLines[slideIndex].classList.add("active");
+
+  if (BLACK_SECTION_INDEXES.includes(slideIndex))
+    indicator.classList.add("black");
+}
+
+function onSlideChange() {
+  return {
+    set(target, property, slideIndex) {
+      if (slideIndex < 0 || slideIndex > 11) {
+        return;
+      }
+
+      changeSlide(slideIndex);
+
+      return Reflect.set(target, property, slideIndex);
+    },
+  };
+}
+
+indicatorLines.forEach((line, index) =>
+  line.addEventListener("click", () => changeSlide(index))
+);
+
+document.addEventListener("wheel", onScrollHandler);
