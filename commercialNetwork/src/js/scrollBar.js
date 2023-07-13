@@ -32,23 +32,36 @@ function checkSection(event) {
     changeCounter(activeSlide);
     changeLink(activeSlide);
     scrollBarColor(activeSlide);
-    console.log(activeSlide);
     setTimeout(startF, 500);
   }
 }
 
+links.forEach((link, index) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    for (let i = 0; i < links.length; i++) {
+      if (link.getAttribute("href") === links[i].getAttribute("href")) {
+        activeSlide = i;
+        position = sections[i].offsetHeight * i;
+        main.style.transform = `translateY(${-position}px)`;
+        changeLink(activeSlide);
+        scrollBarColor(activeSlide);
+        changeCounter(activeSlide);
+      }
+    }
+  });
+});
+
 function startF() {
   start = true;
-  console.log("Srabotalo");
 }
 
 function changeCounter(index) {
-  console.log("changeCounter");
   counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
 }
 
 function changeLink(index) {
-  console.log("changeLink");
   links.forEach((link) => {
     link.classList.remove("active");
   });
@@ -56,23 +69,21 @@ function changeLink(index) {
 }
 
 function scrollBarColor(index) {
-  console.log("scrollBarColor");
   blackSection.includes(index)
     ? scrollbar.classList.add("black")
     : scrollbar.classList.remove("black");
 }
 
-// Добавление анимации перехода
+// var el = document.querySelector(".app");
 
-for (let anchor of links) {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
+// el.addEventListener("touchstart", (event) => startTest(event));
+// el.addEventListener("touchend", endTest);
 
-    const blockID = anchor.getAttribute("href").substr(1);
+// function startTest(event) {
+//   console.log("START");
+//   console.log(event);
+// }
 
-    document.getElementById(blockID).scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  });
-}
+// function endTest() {
+//   console.log("END");
+// }
