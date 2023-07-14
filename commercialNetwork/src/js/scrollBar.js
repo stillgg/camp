@@ -1,16 +1,21 @@
+const app = document.querySelector(".app");
 const sections = document.querySelectorAll("section");
 const links = document.querySelectorAll(".sections__wrapper");
 const counter = document.querySelector(".number__current");
 const scrollbar = document.querySelector(".scrollbar");
 const main = document.querySelector(".main");
+
 let activeSlide = 0;
 let position = 0;
 let start = true;
 const blackSection = [2, 6, 7, 8, 10, 11];
 
-addEventListener("wheel", (event) => onScrollHeader(event));
+let posY1;
+let posY2;
 
-function onScrollHeader(event) {
+addEventListener("wheel", (event) => startAction(event));
+
+function changeSection(vector) {
   if (start === true) {
     const arrTopPosition = [];
 
@@ -18,11 +23,11 @@ function onScrollHeader(event) {
       arrTopPosition.push(sections[i].offsetHeight * i);
     }
 
-    if (event.deltaY > 0 && activeSlide !== 11 && start === true) {
+    if (vector === "up" && activeSlide !== 11 && start === true) {
       activeSlide++;
     }
 
-    if (event.deltaY < 0 && activeSlide !== 0 && start === true) {
+    if (vector === "down" && activeSlide !== 0 && start === true) {
       activeSlide--;
     }
 
@@ -33,7 +38,7 @@ function onScrollHeader(event) {
   }
 }
 
-links.forEach((link, index) => {
+links.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
 
@@ -75,17 +80,34 @@ function scrollBarColor(index) {
     : scrollbar.classList.remove("black");
 }
 
-var el = document.querySelector(".app");
+app.addEventListener("touchstart", (event) => startAction(event));
+app.addEventListener("touchend", (event) => endAction(event));
+app.addEventListener("mousedown", (event) => startAction(event));
+app.addEventListener("mouseup", (event) => endAction(event));
 
-el.addEventListener("touchstart", (event) => startTest(event));
-el.addEventListener("touchend", (event) => endTest(event));
+function startAction(ev) {
+  if (ev.type === "wheel") {
+    ev.deltaY > 0 ? changeSection("up") : changeSection("down");
+  }
 
-function startTest(event) {
-  console.log("START");
-  console.log(event);
+  if (ev.type === "touchstart") {
+    posY1 = ev.touches[0].clientY;
+  }
+
+  if (ev.type === "mousedown") {
+    posY1 = ev.clientY;
+  }
 }
 
-function endTest(event) {
-  console.log("END");
-  console.log(event);
+function endAction(ev) {
+  posY2 = ev.type === "touchend" ? ev.changedTouches[0].clientY : ev.clientY;
+  checkAction();
+}
+
+function checkAction() {
+  if (Math.abs(posY1 - posY2) > 150) {
+    posY1 > posY2 ? changeSection("up") : changeSection("down");
+  }
+  posY1 = undefined;
+  posY2 = undefined;
 }
