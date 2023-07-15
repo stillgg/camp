@@ -2,28 +2,45 @@ const btnNext = document.querySelector("#btn-next");
 const btnPrev = document.querySelector("#btn-prev");
 
 const track = document.querySelector(".slider-track");
-const item = document.querySelector(".slider-item");
 const items = document.querySelectorAll(".slider-item");
 const getGap = getComputedStyle(track);
 
 let indexActiveSlide = 0;
 
+if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left");
+
 btnNext.addEventListener("click", () => {
   const clientWidth = window.innerWidth;
   const shiftValue = shiftCalculate();
   removeIndex = clientWidth >= 993 ? 2 : 1;
-  console.log(removeIndex);
+
   if (Math.abs(indexActiveSlide) < items.length - removeIndex) {
     indexActiveSlide--;
     track.style.transform = shift(indexActiveSlide, shiftValue);
+
+    if (
+      (clientWidth >= 993 && indexActiveSlide === -2) ||
+      (clientWidth < 993 && indexActiveSlide === -3)
+    ) {
+      btnNext.classList.add("hiddenBtn-right");
+    }
   }
+
+  if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left");
 });
 
 btnPrev.addEventListener("click", () => {
   const shiftValue = shiftCalculate();
+
   if (indexActiveSlide !== 0) {
     indexActiveSlide++;
     track.style.transform = shift(indexActiveSlide, shiftValue);
+
+    if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left");
+
+    if (indexActiveSlide !== -2 || indexActiveSlide !== -3) {
+      btnNext.classList.remove("hiddenBtn-right");
+    }
   }
 });
 
@@ -32,19 +49,52 @@ function shift(index, shift) {
 }
 
 function shiftCalculate() {
-  const itemWidth = item.offsetWidth;
-
+  const itemWidth = items[0].offsetWidth;
   return (shiftValue = parseInt(getGap.gap) + itemWidth);
 }
 
-// if (indexActiveSlide === items.length - 1) btnNext.disabled = true;
-// console.log("next - ");
-// // track.style.transform = `translateX(${}px)`;
+let startPos = 0;
+let isDrag = false;
+let currentTranslate = 0;
+let prevTranslate = 0;
 
-// if (indexActiveSlide === 0) btnPrev.disabled = true;
-// else {
-//   btnPrev.disabled = false;
-// }
+track.addEventListener("touchstart", dragStart);
+track.addEventListener("touchmove", drag);
+track.addEventListener("touchend", dragEnd);
+
+function dragStart(event) {
+  event.preventDefault();
+
+  if (event.type === "touchstart") {
+    startPos = event.touches[0].clientX;
+    isDrag = true;
+  }
+}
+
+function drag(event) {
+  if (!isDrag) return;
+
+  if (event.type === "touchmove") {
+    const currentPosition = event.touches[0].clientX;
+
+    currentTranslate = prevTranslate + (currentPosition - startPos) * 1.5;
+    shiftValue = shiftCalculate();
+
+    if (
+      currentTranslate > 0 ||
+      currentTranslate < -((items.length - 1) * shiftValue)
+    ) {
+      currentTranslate = prevTranslate;
+      return;
+    }
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }
+}
+
+function dragEnd() {
+  isDrag = false;
+  prevTranslate = currentTranslate;
+}
 
 // let position = 0;
 // const slidesToShow = 2;
