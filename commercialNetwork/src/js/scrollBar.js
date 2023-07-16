@@ -7,8 +7,8 @@ const main = document.querySelector(".main");
 const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11];
 
 let isStart = false;
+let timer = null;
 let timeoutId;
-
 let clientY1;
 
 const watchedSlide = new Proxy(
@@ -53,6 +53,13 @@ indicatorLines.forEach((line, index) =>
   })
 );
 
+function delay() {
+  timer = setTimeout(() => {
+    clearTimeout(timer);
+    timer = null;
+  }, 500);
+}
+
 function onWheelHandler(e) {
   clearTimeout(timeoutId);
 
@@ -61,17 +68,19 @@ function onWheelHandler(e) {
   const isScrollDown = scrollAmountY > 50;
   const isScrollUp = scrollAmountY < -50;
 
-  if (isStart === false) {
+  if (isStart === false && timer === null) {
     if (isScrollDown) {
       isStart = true;
-
       watchedSlide.activeSlide++;
+
+      delay();
     }
 
     if (isScrollUp) {
       isStart = true;
-
       watchedSlide.activeSlide--;
+
+      delay();
     }
   }
 
