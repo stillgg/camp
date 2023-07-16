@@ -6,8 +6,10 @@ const main = document.querySelector(".main");
 
 const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11];
 
-let timer = null;
 let isStart = false;
+let timeoutId;
+
+let clientY1;
 
 const watchedSlide = new Proxy(
   {
@@ -15,38 +17,6 @@ const watchedSlide = new Proxy(
   },
   onSlideChange()
 );
-
-function delay(callback) {
-  timer = setTimeout(() => {
-    callback();
-
-    clearTimeout(timer);
-    timer = null;
-  }, 400);
-}
-
-function onScrollHandler(e) {
-  const scrollAmountY = e.deltaY;
-
-  const isScrollDown = scrollAmountY > 30;
-  const isScrollUp = scrollAmountY < -30;
-
-  if (isStart === false) {
-    if (isScrollDown) {
-      isStart = true;
-      watchedSlide.activeSlide++;
-    }
-
-    if (isScrollUp) {
-      isStart = true;
-      watchedSlide.activeSlide--;
-    }
-
-    delay(() => {
-      isStart = false;
-    });
-  }
-}
 
 function onSlideChange() {
   return {
@@ -77,7 +47,59 @@ function onSlideChange() {
 }
 
 indicatorLines.forEach((line, index) =>
-  line.addEventListener("click", () => (watchedSlide.activeSlide = index))
+  line.addEventListener("click", (e) => {
+    e.stopPropagation();
+    watchedSlide.activeSlide = index;
+  })
 );
 
-document.addEventListener("wheel", onScrollHandler);
+function onWheelHandler(e) {
+  clearTimeout(timeoutId);
+
+  const scrollAmountY = e.deltaY;
+
+  const isScrollDown = scrollAmountY > 50;
+  const isScrollUp = scrollAmountY < -50;
+
+  if (isStart === false) {
+    if (isScrollDown) {
+      isStart = true;
+
+      watchedSlide.activeSlide++;
+    }
+
+    if (isScrollUp) {
+      isStart = true;
+
+      watchedSlide.activeSlide--;
+    }
+  }
+
+  timeoutId = setTimeout(function () {
+    isStart = false;
+    console.log("wheel event has stopped");
+  }, 25);
+}
+
+function onDragStart(e) {
+  clientY1 = e.touches ? e.touches[0].clientY : e.clientY;
+}
+
+function onDragEnd(e) {
+  const clientY2 = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+  diff = clientY1 - clientY2;
+
+  if (diff < -100) {
+    watchedSlide.activeSlide--;
+  }
+  if (diff > 100) {
+    watchedSlide.activeSlide++;
+  }
+}
+
+document.addEventListener("wheel", onWheelHandler);
+document.addEventListener("touchstart", onDragStart);
+document.addEventListener("touchend", onDragEnd);
+
+document.addEventListener("mousedown", onDragStart);
+document.addEventListener("mouseup", onDragEnd);
