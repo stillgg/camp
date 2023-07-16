@@ -33,7 +33,7 @@ function changeSection(vector) {
 
     start = false;
     position = arrTopPosition[activeSlide];
-    notDublicate(position);
+    onSlideChange(position);
     setTimeout(startF, 500);
   }
 }
@@ -46,13 +46,13 @@ links.forEach((link) => {
       if (link.getAttribute("href") === links[i].getAttribute("href")) {
         activeSlide = i;
         position = sections[i].offsetHeight * i;
-        notDublicate(position);
+        onSlideChange(position);
       }
     }
   });
 });
 
-function notDublicate(position) {
+function onSlideChange(position) {
   main.style.transform = `translateY(${-position}px)`;
   changeLink(activeSlide);
   scrollBarColor(activeSlide);
@@ -86,7 +86,7 @@ app.addEventListener("mousedown", (event) => startAction(event));
 app.addEventListener("mouseup", (event) => endAction(event));
 
 function startAction(ev) {
-  if (ev.type === "wheel") {
+  if (ev.type === "wheel" && Math.abs(ev.deltaY) > 50) {
     ev.deltaY > 0 ? changeSection("up") : changeSection("down");
   }
 
