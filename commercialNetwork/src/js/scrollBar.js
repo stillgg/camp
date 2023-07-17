@@ -60,7 +60,7 @@ function delay() {
   }, 500);
 }
 
-function onWheelHandler(e) {
+function onWheel(e) {
   clearTimeout(timeoutId);
 
   const scrollAmountY = e.deltaY;
@@ -86,7 +86,6 @@ function onWheelHandler(e) {
 
   timeoutId = setTimeout(function () {
     isStart = false;
-    console.log("wheel event has stopped");
   }, 25);
 }
 
@@ -106,7 +105,7 @@ function onDragEnd(e) {
   }
 }
 
-document.addEventListener("wheel", onWheelHandler);
+document.addEventListener("wheel", onWheel);
 document.addEventListener("touchstart", onDragStart);
 document.addEventListener("touchend", onDragEnd);
 
