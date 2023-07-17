@@ -5,48 +5,17 @@ const counter = document.querySelector(".number__current");
 const scrollbar = document.querySelector(".scrollbar");
 const main = document.querySelector(".main");
 
-let position = 0;
-let start = true;
+let isFinishDelay = true;
 const blackSection = [2, 6, 7, 8, 10, 11];
 
 let posY1;
-let posY2;
-
-const onSlideChange = {
-  set(watchedSlide, prop, receiver) {
-    if (
-      start === true &&
-      watchedSlide.activeSlide >= 0 &&
-      watchedSlide.activeSlide <= 11
-    ) {
-      const arrTopPosition = [];
-
-      for (let i = 0; i < sections.length; i++) {
-        arrTopPosition.push(sections[i].offsetHeight * i);
-      }
-
-      position = arrTopPosition[receiver];
-      main.style.transform = `translateY(${-position}px)`;
-      changeLink(receiver);
-      scrollBarColor(receiver);
-      changeCounter(receiver);
-      start = false;
-      setTimeout(startF, 500);
-    }
-
-    return Reflect.set(...arguments);
-  },
-};
-
-function startF() {
-  start = true;
-}
+let timerId;
 
 const watchedSlide = new Proxy(
   {
     activeSlide: 0,
   },
-  onSlideChange
+  onSlideChange()
 );
 
 links.forEach((link, index) => {
@@ -56,61 +25,80 @@ links.forEach((link, index) => {
   });
 });
 
+function changeSection(index) {
+  const slideHeight = document.documentElement.clientHeight;
+
+  main.style.transform = `translateY(${-slideHeight * index}px)`;
+}
+
 function changeCounter(index) {
   counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
 }
 
-function changeLink(index) {
+function changeIndicator(index) {
   links.forEach((link) => {
     link.classList.remove("active");
   });
   links[index].classList.add("active");
 }
 
-function scrollBarColor(index) {
+function changeScrollBarColor(index) {
   blackSection.includes(index)
     ? scrollbar.classList.add("black")
     : scrollbar.classList.remove("black");
 }
 
-function startAction(ev) {
-  if (ev.type === "touchstart") {
-    posY1 = ev.touches[0].clientY;
-  }
+function onSlideChange() {
+  return {
+    set(watchedSlide, prop, activeIndex) {
+      if (isFinishDelay === true && activeIndex >= 0 && activeIndex <= 11) {
+        clearTimeout(timerId);
 
-  if (ev.type === "mousedown") {
-    posY1 = ev.clientY;
-  }
+        changeSection(activeIndex);
+        changeIndicator(activeIndex);
+        changeScrollBarColor(activeIndex);
+        changeCounter(activeIndex);
+
+        isFinishDelay = false;
+        timerId = setTimeout(() => (isFinishDelay = true), 500);
+
+        return Reflect.set(...arguments);
+      }
+    },
+  };
 }
 
-function endAction(ev) {
-  posY2 = ev.type === "touchend" ? ev.changedTouches[0].clientY : ev.clientY;
-  checkAction();
+function onDragStart(event) {
+  posY1 = event.touches ? event.touches[0].clientY : event.clientY;
 }
 
-function onWheel(ev) {
-  if (ev.deltaY < -50 && start === true) {
-    watchedSlide.activeSlide--;
-  }
-  if (ev.deltaY > 50 && start === true) {
+function onDragEnd(event) {
+  const posY2 = event.changedTouches
+    ? event.changedTouches[0].clientY
+    : event.clientY;
+
+  if (posY1 > posY2 && isFinishDelay === true) {
     watchedSlide.activeSlide++;
   }
-  console.log(watchedSlide.activeSlide);
+
+  if (posY1 < posY2 && isFinishDelay === true) {
+    watchedSlide.activeSlide--;
+  }
 }
 
-function checkAction() {
-  if (Math.abs(posY1 - posY2) > 150) {
-    if (watchedSlide.activeSlide !== 11 && posY1 > posY2 && start === true) {
-      watchedSlide.activeSlide++;
-    }
-    if (watchedSlide.activeSlide !== 0 && posY1 < posY2 && start === true) {
-      watchedSlide.activeSlide--;
-    }
+function onWheel(event) {
+  if (event.deltaY < -50 && isFinishDelay === true) {
+    watchedSlide.activeSlide--;
+  }
+
+  if (event.deltaY > 50 && isFinishDelay === true) {
+    watchedSlide.activeSlide++;
   }
 }
 
 app.addEventListener("wheel", onWheel);
-app.addEventListener("touchstart", startAction);
-app.addEventListener("touchend", endAction);
-app.addEventListener("mousedown", startAction);
-app.addEventListener("mouseup", endAction);
+app.addEventListener("touchstart", onDragStart);
+app.addEventListener("touchend", onDragEnd);
+
+app.addEventListener("mousedown", onDragStart);
+app.addEventListener("mouseup", onDragEnd);
