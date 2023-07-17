@@ -1,111 +1,114 @@
 const app = document.querySelector(".app");
 const sections = document.querySelectorAll("section");
-const links = document.querySelectorAll(".sections__wrapper");
+const indicator = document.querySelector("#indicator");
+const indicatorLines = indicator.querySelectorAll(".sections__wrapper");
 const counter = document.querySelector(".number__current");
-const scrollbar = document.querySelector(".scrollbar");
 const main = document.querySelector(".main");
 
-let position = 0;
-let start = true;
-const blackSection = [2, 6, 7, 8, 10, 11];
+const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11];
 
-let posY1;
-let posY2;
-
-const onSlideChange = {
-  set(watchedSlide, prop, receiver) {
-    if (start === true) {
-      const arrTopPosition = [];
-
-      for (let i = 0; i < sections.length; i++) {
-        arrTopPosition.push(sections[i].offsetHeight * i);
-      }
-
-      position = arrTopPosition[receiver];
-      main.style.transform = `translateY(${-position}px)`;
-      changeLink(receiver);
-      scrollBarColor(receiver);
-      changeCounter(receiver);
-      start = false;
-      setTimeout(startF, 500);
-    }
-
-    return Reflect.set(...arguments);
-  },
-};
-
-function startF() {
-  start = true;
-}
+let isStart = false;
+let timer = null;
+let timeoutId;
+let clientY1;
 
 const watchedSlide = new Proxy(
   {
     activeSlide: 0,
   },
-  onSlideChange
+  onSlideChange()
 );
 
-links.forEach((link, index) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
+function onSlideChange() {
+  return {
+    set(target, property, slideIndex) {
+      if (slideIndex < 0 || slideIndex > 11) {
+        return;
+      }
+
+      const sectionHeight = document.documentElement.clientHeight;
+
+      counter.innerText = slideIndex + 1;
+
+      main.style.transform = `translateY(${-(sectionHeight * slideIndex)}px)`;
+
+      sections.forEach((section) => section.classList.remove("active"));
+      indicatorLines.forEach((line) => line.classList.remove("active"));
+      indicator.classList.remove("black");
+
+      sections[slideIndex].classList.add("active");
+      indicatorLines[slideIndex].classList.add("active");
+
+      if (BLACK_SECTION_INDEXES.includes(slideIndex))
+        indicator.classList.add("black");
+
+      return Reflect.set(target, property, slideIndex);
+    },
+  };
+}
+
+indicatorLines.forEach((line, index) =>
+  line.addEventListener("click", (e) => {
+    e.stopPropagation();
     watchedSlide.activeSlide = index;
-  });
-});
+  })
+);
 
-function changeCounter(index) {
-  counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
+function delay() {
+  timer = setTimeout(() => {
+    clearTimeout(timer);
+    timer = null;
+  }, 500);
 }
 
-function changeLink(index) {
-  links.forEach((link) => {
-    link.classList.remove("active");
-  });
-  links[index].classList.add("active");
-}
+function onWheel(e) {
+  clearTimeout(timeoutId);
 
-function scrollBarColor(index) {
-  blackSection.includes(index)
-    ? scrollbar.classList.add("black")
-    : scrollbar.classList.remove("black");
-}
+  const scrollAmountY = e.deltaY;
 
-function startAction(ev) {
-  if (ev.type === "touchstart") {
-    posY1 = ev.touches[0].clientY;
+  const isScrollDown = scrollAmountY > 50;
+  const isScrollUp = scrollAmountY < -50;
+
+  if (isStart === false && timer === null) {
+    if (isScrollDown) {
+      isStart = true;
+      watchedSlide.activeSlide++;
+
+      delay();
+    }
+
+    if (isScrollUp) {
+      isStart = true;
+      watchedSlide.activeSlide--;
+
+      delay();
+    }
   }
 
-  if (ev.type === "mousedown") {
-    posY1 = ev.clientY;
-  }
+  timeoutId = setTimeout(function () {
+    isStart = false;
+  }, 25);
 }
 
-function endAction(ev) {
-  posY2 = ev.type === "touchend" ? ev.changedTouches[0].clientY : ev.clientY;
-  checkAction();
+function onDragStart(e) {
+  clientY1 = e.touches ? e.touches[0].clientY : e.clientY;
 }
 
-function onWheel(ev) {
-  if (watchedSlide.activeSlide !== 0 && ev.deltaY < -50 && start === true) {
+function onDragEnd(e) {
+  const clientY2 = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+  diff = clientY1 - clientY2;
+
+  if (diff < -100) {
     watchedSlide.activeSlide--;
   }
-  if (watchedSlide.activeSlide !== 11 && ev.deltaY > 50 && start === true) {
+  if (diff > 100) {
     watchedSlide.activeSlide++;
   }
 }
 
-function checkAction() {
-  if (Math.abs(posY1 - posY2) > 150) {
-    if (watchedSlide.activeSlide !== 11 && posY1 > posY2 && start === true) {
-      watchedSlide.activeSlide++;
-    }
-    if (watchedSlide.activeSlide !== 0 && posY1 < posY2 && start === true) {
-      watchedSlide.activeSlide--;
-    }
-  }
-}
+document.addEventListener("wheel", onWheel);
+document.addEventListener("touchstart", onDragStart);
+document.addEventListener("touchend", onDragEnd);
 
-app.addEventListener("wheel", onWheel);
-app.addEventListener("touchstart", startAction);
-app.addEventListener("touchend", endAction);
-app.addEventListener("mousedown", startAction);
-app.addEventListener("mouseup", endAction);
+document.addEventListener("mousedown", onDragStart);
+document.addEventListener("mouseup", onDragEnd);
