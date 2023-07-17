@@ -14,11 +14,7 @@ let posY2;
 
 const onSlideChange = {
   set(watchedSlide, prop, receiver) {
-    if (
-      start === true &&
-      watchedSlide.activeSlide >= 0 &&
-      watchedSlide.activeSlide <= 11
-    ) {
+    if (start === true) {
       const arrTopPosition = [];
 
       for (let i = 0; i < sections.length; i++) {
@@ -89,13 +85,12 @@ function endAction(ev) {
 }
 
 function onWheel(ev) {
-  if (ev.deltaY < -50 && start === true) {
+  if (watchedSlide.activeSlide !== 0 && ev.deltaY < -50 && start === true) {
     watchedSlide.activeSlide--;
   }
-  if (ev.deltaY > 50 && start === true) {
+  if (watchedSlide.activeSlide !== 11 && ev.deltaY > 50 && start === true) {
     watchedSlide.activeSlide++;
   }
-  console.log(watchedSlide.activeSlide);
 }
 
 function checkAction() {
