@@ -5,7 +5,6 @@ const counter = document.querySelector(".number__current");
 const scrollbar = document.querySelector(".scrollbar");
 const main = document.querySelector(".main");
 
-let activeSlide = 0;
 let position = 0;
 let start = true;
 const blackSection = [2, 6, 7, 8, 10, 11];
@@ -13,55 +12,49 @@ const blackSection = [2, 6, 7, 8, 10, 11];
 let posY1;
 let posY2;
 
-addEventListener("wheel", (event) => startAction(event));
+const onSlideChange = {
+  set(watchedSlide, prop, receiver) {
+    if (
+      start === true &&
+      watchedSlide.activeSlide >= 0 &&
+      watchedSlide.activeSlide <= 11
+    ) {
+      const arrTopPosition = [];
 
-function changeSection(vector) {
-  if (start === true) {
-    const arrTopPosition = [];
-
-    for (let i = 0; i < sections.length; i++) {
-      arrTopPosition.push(sections[i].offsetHeight * i);
-    }
-
-    if (vector === "up" && activeSlide !== 11 && start === true) {
-      activeSlide++;
-    }
-
-    if (vector === "down" && activeSlide !== 0 && start === true) {
-      activeSlide--;
-    }
-
-    start = false;
-    position = arrTopPosition[activeSlide];
-    onSlideChange(position);
-    setTimeout(startF, 500);
-  }
-}
-
-links.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    for (let i = 0; i < links.length; i++) {
-      if (link.getAttribute("href") === links[i].getAttribute("href")) {
-        activeSlide = i;
-        position = sections[i].offsetHeight * i;
-        onSlideChange(position);
+      for (let i = 0; i < sections.length; i++) {
+        arrTopPosition.push(sections[i].offsetHeight * i);
       }
-    }
-  });
-});
 
-function onSlideChange(position) {
-  main.style.transform = `translateY(${-position}px)`;
-  changeLink(activeSlide);
-  scrollBarColor(activeSlide);
-  changeCounter(activeSlide);
-}
+      position = arrTopPosition[receiver];
+      main.style.transform = `translateY(${-position}px)`;
+      changeLink(receiver);
+      scrollBarColor(receiver);
+      changeCounter(receiver);
+      start = false;
+      setTimeout(startF, 500);
+    }
+
+    return Reflect.set(...arguments);
+  },
+};
 
 function startF() {
   start = true;
 }
+
+const watchedSlide = new Proxy(
+  {
+    activeSlide: 0,
+  },
+  onSlideChange
+);
+
+links.forEach((link, index) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    watchedSlide.activeSlide = index;
+  });
+});
 
 function changeCounter(index) {
   counter.innerHTML = index + 1 >= 10 ? index + 1 : "0" + (index + 1);
@@ -80,16 +73,7 @@ function scrollBarColor(index) {
     : scrollbar.classList.remove("black");
 }
 
-app.addEventListener("touchstart", (event) => startAction(event));
-app.addEventListener("touchend", (event) => endAction(event));
-app.addEventListener("mousedown", (event) => startAction(event));
-app.addEventListener("mouseup", (event) => endAction(event));
-
 function startAction(ev) {
-  if (ev.type === "wheel" && Math.abs(ev.deltaY) > 50) {
-    ev.deltaY > 0 ? changeSection("up") : changeSection("down");
-  }
-
   if (ev.type === "touchstart") {
     posY1 = ev.touches[0].clientY;
   }
@@ -104,10 +88,29 @@ function endAction(ev) {
   checkAction();
 }
 
+function onWheel(ev) {
+  if (ev.deltaY < -50 && start === true) {
+    watchedSlide.activeSlide--;
+  }
+  if (ev.deltaY > 50 && start === true) {
+    watchedSlide.activeSlide++;
+  }
+  console.log(watchedSlide.activeSlide);
+}
+
 function checkAction() {
   if (Math.abs(posY1 - posY2) > 150) {
-    posY1 > posY2 ? changeSection("up") : changeSection("down");
+    if (watchedSlide.activeSlide !== 11 && posY1 > posY2 && start === true) {
+      watchedSlide.activeSlide++;
+    }
+    if (watchedSlide.activeSlide !== 0 && posY1 < posY2 && start === true) {
+      watchedSlide.activeSlide--;
+    }
   }
-  posY1 = undefined;
-  posY2 = undefined;
 }
+
+app.addEventListener("wheel", onWheel);
+app.addEventListener("touchstart", startAction);
+app.addEventListener("touchend", endAction);
+app.addEventListener("mousedown", startAction);
+app.addEventListener("mouseup", endAction);
