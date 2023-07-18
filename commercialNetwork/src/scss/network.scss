@@ -147,4 +147,18 @@
       }
     }
   }
+  &.active {
+    .h2 {
+      animation: translateYUp 0.8s ease-in-out;
+    }
+    .network__footer {
+      animation: translateYDown 0.8s ease-in-out;
+    }
+    .main__block {
+      animation: translateXLeft 0.8s ease-in-out;
+      &:nth-child(n + 4) {
+        animation: translateXRight 0.8s ease-in-out;
+      }
+    }
+  }
 }
