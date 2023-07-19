@@ -66,8 +66,8 @@ function onWheel(e) {
 
   const scrollAmountY = e.deltaY;
 
-  const isScrollDown = scrollAmountY > 50;
-  const isScrollUp = scrollAmountY < -50;
+  const isScrollDown = scrollAmountY > 25;
+  const isScrollUp = scrollAmountY < -25;
 
   if (isStart === false && timer === null) {
     if (isScrollDown) {
@@ -85,9 +85,11 @@ function onWheel(e) {
     }
   }
 
-  timeoutId = setTimeout(function () {
-    isStart = false;
-  }, 25);
+  if (isStart) {
+    timeoutId = setTimeout(function () {
+      isStart = false;
+    }, 25);
+  }
 }
 
 function onDragStart(e) {
