@@ -1,5 +1,5 @@
 const numbers = document.querySelectorAll(".number__loader");
-
+const network = document.querySelector(".network");
 const time = 4;
 
 numbers.forEach((number) => {
@@ -16,4 +16,5 @@ numbers.forEach((number) => {
 		}
 		i++;
 	}, step);
+	console.log(step);
 });
