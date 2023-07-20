@@ -1,10 +1,10 @@
 const app = document.querySelector(".app");
 const sections = document.querySelectorAll("section");
-const indicator = document.querySelector("#indicator");
+export const indicator = document.querySelector("#indicator");
 const indicatorLines = indicator.querySelectorAll(".sections__wrapper");
 const counter = document.querySelector(".number__current");
 const main = document.querySelector(".main");
-const header = document.querySelector(".header");
+export const header = document.querySelector(".header");
 
 const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11];
 
@@ -13,7 +13,7 @@ let timer = null;
 let timeoutId;
 let clientY1;
 
-const watchedSlide = new Proxy(
+export const watchedSlide = new Proxy(
 	{
 		activeSlide: 0,
 	},
