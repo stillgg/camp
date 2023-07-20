@@ -1,9 +1,19 @@
 const numbers = document.querySelectorAll(".number__loader");
-console.log(numbers);
 
 const time = 4;
 
 numbers.forEach((number) => {
-  const num = number.dataset.num;
-  console.log(num);
+  let i = 1;
+  let num = number.dataset.num;
+  step = (1000 * time) / num;
+  console.log(step);
+
+  const timer = setInterval(function () {
+    if (i <= num) {
+      number.innerHTML = i;
+    } else {
+      clearInterval(timer);
+    }
+    i++;
+  }, step);
 });
