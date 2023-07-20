@@ -1,35 +1,29 @@
-import { header, indicator, watchedSlide } from "./scrollBar";
+// import { watchedSlide } from "./scrollBar";
 const hamburgerBtn = document.querySelector("#wrapper__icon");
 const hamburgerBody = document.querySelector("#menu__body");
 const body = document.querySelector("body");
+const header = document.querySelector(".header");
+const indicator = document.querySelector("#indicator");
 
-let openBurger = false;
-
+let isOpenBurger = false;
 hamburgerBtn.addEventListener("click", () => {
-	hamburgerBtn.classList.toggle("active");
-	hamburgerBody.classList.toggle("active");
-	body.classList.toggle("lock");
-
-	if (!openBurger) {
-		openBurger = true;
-		header.classList.remove("black");
-		return;
-	}
-	if (openBurger && indicator.classList.contains("black")) {
-		header.classList.add("black");
-	}
-	openBurger = false;
+  isOpenBurger === true ? closeBurger() : openBurger();
 });
 
-hamburgerBody.querySelectorAll(".nav__link").forEach((link) => {
-	link.addEventListener("click", () => {
-		hamburgerBtn.classList.remove("active");
-		hamburgerBody.classList.remove("active");
-		body.classList.remove("lock");
+function openBurger() {
+  hamburgerBtn.classList.add("active");
+  hamburgerBody.classList.add("active");
+  body.classList.add("lock");
 
-		openBurger = false;
-		if (indicator.classList.contains("black")) {
-			header.classList.add("black");
-		}
-	});
-});
+  isOpenBurger = true;
+}
+
+function closeBurger() {
+  hamburgerBtn.classList.remove("active");
+  hamburgerBody.classList.remove("active");
+  body.classList.remove("lock");
+
+  isOpenBurger = false;
+}
+
+export { closeBurger };
