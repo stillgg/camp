@@ -132,7 +132,7 @@ function onDragEnd(event) {
     positionEnd - positionStart > zdvig * 0.2 &&
     indexActiveSlide !== 0
   ) {
-    if (Math.abs(positionStart - positionEnd - 2 * zdvig) > 0) {
+    if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0) {
       indexActiveSlide += 2;
       console.log("ya tut");
     } else indexActiveSlide++;
@@ -147,12 +147,10 @@ function onDragEnd(event) {
   } else btnNext.classList.remove("hiddenBtn-right");
 
   track.style.transform = shift(indexActiveSlide, zdvig);
-  currentPosition = -(indexActiveSlide * zdvig);
-  isDrag = false;
-
   track.style.transitionDuration = "400ms";
 
-  console.log(indexActiveSlide);
+  currentPosition = -(indexActiveSlide * zdvig);
+  isDrag = false;
 }
 
 track.addEventListener("mousedown", onDragStart);
