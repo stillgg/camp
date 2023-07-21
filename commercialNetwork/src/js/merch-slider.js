@@ -8,6 +8,12 @@ const getGap = getComputedStyle(track);
 
 const zdvig = shiftCalculate();
 
+const limitWidth = window.innerWidth;
+const limitHeight = window.innerHeight;
+
+console.log("limitWidht", limitWidth);
+console.log("limitHeight", limitHeight);
+
 let indexActiveSlide = 0;
 
 if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left");
@@ -76,6 +82,24 @@ function onDragOver(event) {
 
   const move =
     event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
+
+  const moveHeight =
+    event.type === "touchmove" ? event.touches[0].clientY : event.clientY;
+  console.log(moveHeight);
+
+  if (
+    move > limitWidth ||
+    move <= 0 ||
+    moveHeight > limitHeight ||
+    moveHeight <= 0
+  ) {
+    track.style.transform = `translate3d(${
+      indexActiveSlide * zdvig
+    }px, 0px, 0px)`;
+    isDrag = false;
+    track.style.transitionDuration = "600ms";
+    return;
+  }
 
   track.style.transform = `translate3d(${move - positionStart}px, 0px, 0px)`;
 
