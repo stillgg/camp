@@ -78,6 +78,8 @@ function onDragOver(event) {
     event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
 
   track.style.transform = `translate3d(${move - positionStart}px, 0px, 0px)`;
+
+  track.style.transitionDuration = "0ms";
 }
 
 function onDragEnd(event) {
@@ -108,6 +110,7 @@ function onDragEnd(event) {
   ) {
     if (Math.abs(positionStart - positionEnd - 2 * zdvig) > 0) {
       indexActiveSlide += 2;
+      console.log("ya tut");
     } else indexActiveSlide++;
   }
 
@@ -119,11 +122,13 @@ function onDragEnd(event) {
     btnNext.classList.add("hiddenBtn-right");
   } else btnNext.classList.remove("hiddenBtn-right");
 
-  // track.style.transitionDelay = "0.2s";
-
   track.style.transform = shift(indexActiveSlide, zdvig);
   currentPosition = -(indexActiveSlide * zdvig);
   isDrag = false;
+
+  track.style.transitionDuration = "400ms";
+
+  console.log(indexActiveSlide);
 }
 
 track.addEventListener("mousedown", onDragStart);
