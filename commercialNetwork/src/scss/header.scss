@@ -1,199 +1,231 @@
 body {
-  &.lock {
-    overflow: hidden;
-  }
+	&.lock {
+		overflow: hidden;
+	}
 }
 
 .header {
-  left: 0;
-  right: 0;
-  z-index: 999999;
-  position: fixed;
-  padding: 50px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+	position: fixed;
+	padding: 50px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: 0.4s;
 
-  &.container {
-    .header__logo {
-      color: $white;
-      @media (max-width: 992px) {
-        margin-right: auto;
-      }
-    }
+	&.container {
+		.header__logo {
+			color: $white;
+			@media (max-width: 992px) {
+				margin-right: auto;
+			}
+		}
 
-    .header__btn {
-      align-items: center;
-      justify-content: center;
-      padding: 12px 17px;
-      display: block;
-      border: 1px solid #ffffff6f;
-      border-radius: 40px;
-      font-size: 14px;
-      line-height: 114%;
-      font-weight: 700;
-      color: $white;
-      cursor: pointer;
+		.header__btn {
+			align-items: center;
+			justify-content: center;
+			padding: 12px 17px;
+			display: block;
+			border: 1px solid #ffffff6f;
+			border-radius: 40px;
+			font-size: 14px;
+			line-height: 114%;
+			font-weight: 700;
+			color: $white;
+			cursor: pointer;
 
-      svg {
-        margin-top: 4px;
-        margin-left: 10px;
-      }
+			svg {
+				margin-top: 4px;
+				margin-left: 10px;
+			}
 
-      &:hover {
-        color: $red;
-        background-color: $white;
-        transition: all 0.2s ease-in-out;
-      }
-      @media (max-width: 992px) {
-        padding: 12px 30px;
-        font-size: 32px;
-        .btn__key {
-          margin-bottom: 4px;
-          scale: 2;
-        }
-      }
-    }
+			&:hover {
+				color: $red;
+				background-color: $white;
+				transition: all 0.2s ease-in-out;
+			}
+			@media (max-width: 992px) {
+				padding: 12px 30px;
+				font-size: 32px;
+				.btn__key {
+					margin-bottom: 4px;
+					scale: 2;
+				}
+			}
+		}
 
-    .menu {
-      display: flex;
-      align-items: center;
-      .menu__body {
-        display: flex;
-        transition: opacity 0.3s, left 0.5s;
+		.menu {
+			display: flex;
+			align-items: center;
+			.menu__body {
+				display: flex;
+				transition: opacity 0.3s, left 0.5s;
 
-        .header__nav {
-          margin: auto;
-          display: flex;
-          gap: 42px;
-          align-items: center;
+				.header__nav {
+					margin: auto;
+					display: flex;
+					gap: 42px;
+					align-items: center;
 
-          .nav__item {
-            .nav__link {
-              font-size: 14px;
-              line-height: 114%;
-              text-transform: uppercase;
-              font-weight: 700;
-              color: $white;
-              border-bottom: 0px solid rgba($color: $white, $alpha: 0);
-              transition: 0.3s ease-in-out;
+					.nav__item {
+						.nav__link {
+							font-size: 14px;
+							line-height: 114%;
+							text-transform: uppercase;
+							font-weight: 700;
+							color: $white;
+							border-bottom: 0px solid rgba($color: $white, $alpha: 0);
+							transition: 0.3s ease-in-out;
 
-              &:hover {
-                padding-bottom: 7px;
-                border-bottom: 3px solid rgba($color: $white, $alpha: 1);
-              }
-              @media (max-width: 992px) {
-                font-size: 32px;
-                line-height: 60px;
-              }
+							&:hover {
+								padding-bottom: 7px;
+								border-bottom: 3px solid rgba($color: $white, $alpha: 1);
+							}
+							@media (max-width: 992px) {
+								font-size: 32px;
+								line-height: 60px;
+							}
 
-              @media (max-width: 768px) {
-                font-size: 28px;
-                line-height: 50px;
-              }
+							@media (max-width: 768px) {
+								font-size: 28px;
+								line-height: 50px;
+							}
 
-              @media (max-width: 576px) {
-                font-size: 24px;
-                line-height: 40px;
-              }
-            }
-          }
-          @media (max-width: 1200px) {
-            gap: 32px;
-          }
+							@media (max-width: 576px) {
+								font-size: 24px;
+								line-height: 40px;
+							}
+						}
+					}
+					@media (max-width: 1200px) {
+						gap: 32px;
+					}
 
-          @media (max-width: 992px) {
-            flex-direction: column;
-          }
-        }
-        @media (max-width: 992px) {
-          padding: 50px 30px;
-          position: absolute;
-          width: 100%;
-          height: 100vh;
-          background-color: $red;
-          top: 0;
-          left: -100%;
-          overflow: auto;
-          opacity: 0;
+					@media (max-width: 992px) {
+						flex-direction: column;
+					}
+				}
+				@media (max-width: 992px) {
+					padding: 50px 30px;
+					position: absolute;
+					width: 100%;
+					height: 100vh;
+					background-color: $red;
+					top: 0;
+					left: -100%;
+					overflow: auto;
+					opacity: 0;
 
-          &.active {
-            opacity: 1;
-            left: 0;
-          }
-        }
-        @media (max-width: 768px) {
-          padding-top: 70px;
-          line-height: 50px;
-        }
-      }
+					&.active {
+						opacity: 1;
+						left: 0;
+					}
+				}
+				@media (max-width: 768px) {
+					padding-top: 70px;
+					line-height: 50px;
+				}
+			}
 
-      .wrapper__icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        overflow: hidden;
-        .menu__icon {
-          z-index: 5;
-          display: block;
-          position: relative;
-          height: 24px;
-          width: 40px;
+			.wrapper__icon {
+				width: 60px;
+				height: 60px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				overflow: hidden;
+				.menu__icon {
+					z-index: 5;
+					display: block;
+					position: relative;
+					height: 24px;
+					width: 40px;
 
-          span {
-            position: absolute;
-            top: calc(50% - 2px);
-            left: 0;
-            height: 4px;
-            width: 100%;
-            background-color: $white;
-            transition: all 0.5s ease-in-out;
+					span {
+						position: absolute;
+						top: calc(50% - 2px);
+						left: 0;
+						height: 4px;
+						width: 100%;
+						background-color: $white;
+						transition: all 0.5s ease-in-out;
 
-            &:first-child {
-              top: 0;
-            }
+						&:first-child {
+							top: 0;
+						}
 
-            &:last-child {
-              top: auto;
-              bottom: 0;
-            }
-          }
-        }
-        &.active {
-          span {
-            opacity: 0;
-            left: -60px;
+						&:last-child {
+							top: auto;
+							bottom: 0;
+						}
+					}
+				}
+				&.active {
+					span {
+						opacity: 0;
+						left: -60px;
 
-            &:first-child {
-              left: 0;
-              top: 9px;
-              transform: rotate(-225deg);
-              opacity: 1;
-            }
+						&:first-child {
+							left: 0;
+							top: 9px;
+							transform: rotate(-225deg);
+							opacity: 1;
+						}
 
-            &:last-child {
-              left: 0;
-              top: 9px;
-              transform: rotate(225deg);
-              opacity: 1;
-            }
-          }
-        }
-        @media (min-width: 993px) {
-          display: none;
-        }
-      }
-    }
-    @media (max-width: 992px) {
-      justify-content: flex-end;
-      padding: 25px 0;
-    }
+						&:last-child {
+							left: 0;
+							top: 9px;
+							transform: rotate(225deg);
+							opacity: 1;
+						}
+					}
+				}
+				@media (min-width: 993px) {
+					display: none;
+				}
+			}
+		}
+		@media (max-width: 992px) {
+			justify-content: flex-end;
+			padding: 25px 0;
+		}
 
-    @media (max-width: 1200px) {
-      padding: 20px;
-    }
-  }
+		@media (max-width: 1200px) {
+			padding: 20px;
+		}
+	}
+	&.black {
+		color: $black !important;
+
+		.header__logo {
+			color: inherit !important;
+		}
+		.nav__link {
+			color: inherit !important;
+			border-bottom: 0px solid rgba($color: $red, $alpha: 0) !important;
+
+			&:hover {
+				border-bottom: 3px solid rgba($color: $red, $alpha: 1) !important;
+			}
+		}
+		.header__btn {
+			color: inherit !important;
+			border: 1px solid rgba(33, 33, 33, 0.3);
+
+			.btn__key {
+				color: $red;
+			}
+			&:hover {
+				background-color: rgba(33, 33, 33, 0.3);
+			}
+		}
+		.menu__icon {
+			span {
+				background-color: $black !important;
+			}
+		}
+	}
 }
