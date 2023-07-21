@@ -17,7 +17,7 @@ btnNext.addEventListener("click", () => {
 
   removeIndex = clientWidth >= 993 ? 2 : 1;
 
-  if (Math.abs(indexActiveSlide) < items.length - removeIndex) {
+  if (Math.abs(indexActiveSlide) <= items.length - removeIndex) {
     indexActiveSlide--;
     track.style.transform = shift(indexActiveSlide, zdvig);
 
@@ -46,8 +46,7 @@ btnPrev.addEventListener("click", () => {
 });
 
 function shift(index, shift) {
-  // console.log("index - ", index, "shift - ", shift);
-  return `translateX(${index * shift}px)`;
+  return `translate3d(${index * shift}px, 0px, 0px)`;
 }
 
 function shiftCalculate() {
@@ -64,6 +63,7 @@ function onDragStart(event) {
   event.preventDefault();
 
   isDrag = true;
+  track.style.transitionDelay = "0s";
 
   positionStart =
     event.type === "touchstart" ? event.touches[0].clientX : event.clientX;
@@ -76,26 +76,29 @@ function onDragOver(event) {
 
   const move =
     event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
-  console.log(move);
-  track.style.transform = `translateX(${move - positionStart}px)`;
+
+  track.style.transform = `translate3d(${move - positionStart}px, 0px, 0px)`;
 }
 
 function onDragEnd(event) {
-  isDrag = false;
+  if (!isDrag) return;
 
   let positionEnd =
     event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX;
 
-  positionEnd += currentPosition;
+  const clientWidth = window.innerWidth;
+  const removeIndex = clientWidth >= 993 ? 2 : 1;
 
-  console.log(positionEnd);
+  positionEnd += currentPosition;
 
   if (
     positionStart > positionEnd &&
     Math.abs(positionEnd - positionStart) > zdvig * 0.2 &&
-    -indexActiveSlide !== items.length - 1
+    -indexActiveSlide !== items.length - removeIndex
   ) {
-    indexActiveSlide--;
+    if (positionStart - positionEnd - 2 * zdvig > 0) {
+      indexActiveSlide -= 2;
+    } else indexActiveSlide--;
   }
 
   if (
@@ -103,11 +106,24 @@ function onDragEnd(event) {
     positionEnd - positionStart > zdvig * 0.2 &&
     indexActiveSlide !== 0
   ) {
-    indexActiveSlide++;
+    if (Math.abs(positionStart - positionEnd - 2 * zdvig) > 0) {
+      indexActiveSlide += 2;
+    } else indexActiveSlide++;
   }
+
+  if (indexActiveSlide === 0) {
+    btnPrev.classList.add("hiddenBtn-left");
+  } else btnPrev.classList.remove("hiddenBtn-left");
+
+  if (Math.abs(indexActiveSlide) === items.length - removeIndex) {
+    btnNext.classList.add("hiddenBtn-right");
+  } else btnNext.classList.remove("hiddenBtn-right");
+
+  // track.style.transitionDelay = "0.2s";
 
   track.style.transform = shift(indexActiveSlide, zdvig);
   currentPosition = -(indexActiveSlide * zdvig);
+  isDrag = false;
 }
 
 track.addEventListener("mousedown", onDragStart);

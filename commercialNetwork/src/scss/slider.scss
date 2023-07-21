@@ -78,8 +78,7 @@
         z-index: 2;
         display: flex;
         gap: 20px;
-        transition: transform 0.3s ease 0s;
-
+        transition: transform 0.3s ease;
         .slider-item {
             .image-wrapper {
                 padding: 20px;
