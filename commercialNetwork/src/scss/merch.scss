@@ -14,5 +14,78 @@
         margin: 0 30px;
       }
     }
+
+    .slider-container {
+      .slider-track {
+        .slider-item {
+          .image-wrapper {
+            padding: 20px;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
+              #d9d9d9;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
+
+            .item__image {
+              min-width: 392px;
+              width: 392px;
+              height: 392px;
+
+              @media (max-width: 576px) {
+                min-width: 250px;
+                width: 250px;
+                height: 250px;
+              }
+            }
+
+            @media (max-width: 992px) {
+              padding: 0;
+            }
+          }
+
+          .item__description {
+            margin-top: 30px;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 150%;
+            text-transform: uppercase;
+          }
+        }
+      }
+
+      .button-wrapper {
+        height: 432px;
+
+        @media (min-width: 993px) {
+          width: 884px;
+        }
+
+        @media (max-width: 992px) {
+          height: 392px;
+        }
+
+        @media (max-width: 576px) {
+          height: 250px;
+        }
+      }
+
+      @media (min-width: 993px) and (max-width: 1200px) {
+        margin: 0 30px;
+      }
+
+      @media (max-width: 992px) {
+        width: 392px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 992px) {
+        width: 392px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 576px) {
+        width: 250px;
+        margin: 0 auto;
+      }
+    }
   }
 }

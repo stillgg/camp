@@ -528,18 +528,9 @@
         <section id="news" class="news">
           <div class="container">
             <h2 class="news__title">НОВОСТИ</h2>
-            <div class="news-wrapper">
-              <button g class="left-btn">
-                <svg class="arrow">
-                  <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
-                </svg>
-              </button>
-              <button class="right-btn">
-                <svg class="arrow">
-                  <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
-                </svg>
-              </button>
-              <div class="news-body">
+
+            <div class="slider-container">
+              <div class="slider-track">
                 <div class="news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
@@ -615,8 +606,64 @@
                     <a href="#" class="body__link">Подробнее</a>
                   </div>
                 </div>
-              </div>
+
+                <div class="news-body__item">
+                  <div class="item__header">
+                    <div class="wrapper-image">
+                      <img
+                        class="header-image"
+                        src="../resources/img/09-news-01.png"
+                        alt=""
+                        srcset="../resources/img/09-news-01.webp"
+                      />
+                    </div>
+                    <div class="item__date">24.08.2022</div>
+                  </div>
+                  <div class="item__body">
+                    <h3 class="body__title">ЗАПУЩЕН В РАБОТУ ВЛАДИВОСТОКСКИЙ ФИЛИАЛ</h3>
+                    <div class="body__text">Уже 1 сентября мы открываем филиал компании в Саратове.</div>
+                    <a href="#" class="body__link">Подробнее</a>
+                  </div>
+                </div>
+
+                <div class="news-body__item">
+                  <div class="item__header">
+                    <div class="wrapper-image">
+                      <img
+                        class="header-image"
+                        src="../resources/img/09-news-01.png"
+                        alt=""
+                        srcset="../resources/img/09-news-01.webp"
+                      />
+                    </div>
+                    <div class="item__date">24.08.2022</div>
+                  </div>
+                  <div class="item__body">
+                    <h3 class="body__title">ЗАПУЩЕН В РАБОТУ ВЛАДИВОСТОКСКИЙ ФИЛИАЛ</h3>
+                    <div class="body__text">Уже 1 сентября мы открываем филиал компании в Саратове.</div>
+                    <a href="#" class="body__link">Подробнее</a>
+                  </div>
+                </div>
             </div>
+            
+            <div class="button-wrapper">
+              <button class="left-btn" id="news-btn-prev">
+                <svg class="arrow">
+                  <use
+                    xlink:href="../resources/icons/sprite.svg#arrow-left"
+                  ></use>
+                </svg>
+              </button>
+
+              <button class="right-btn" id="news-btn-next">
+                <svg class="arrow">
+                  <use
+                    xlink:href="../resources/icons/sprite.svg#arrow-right"
+                  ></use>
+                </svg>
+              </button>
+            </div>
+          </div>
           </div>
         </section>
 
@@ -799,6 +846,7 @@
                     alt="merch-image"
                   />
                 </div>
+                <p class="item__description">Футболка треугольник черная</p>
               </div>
 
               <div class="slider-item" draggable="true">
@@ -810,7 +858,7 @@
                     alt="merch-image"
                   />
                 </div>
-                <p class="item__description">Футболка треугольник черная</p>
+                <p class="item__description">Худи треугольник</p>
               </div>
 
               <div class="slider-item" draggable="true">
@@ -823,7 +871,7 @@
                   />
                 </div>
 
-                <p class="item__description">Футболка треугольник черная</p>
+                <p class="item__description">свитшот Military красный</p>
               </div>
               <div class="slider-item" draggable="true">
                 <div class="image-wrapper">

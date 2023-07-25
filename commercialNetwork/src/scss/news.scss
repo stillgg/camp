@@ -7,8 +7,6 @@
   padding-top: 120px;
 
   .container {
-    position: relative;
-
     .news__title {
       font-style: normal;
       font-weight: 700;
@@ -31,76 +29,20 @@
       }
     }
 
-    .news-wrapper {
-      position: relative;
-      .left-btn,
-      .right-btn {
-        position: absolute;
-        width: 56px;
-        height: 56px;
-        background: $white;
-        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 50%;
-        z-index: 10;
-        top: 43.6%;
-        transition: 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &:hover {
-          background-color: $red;
-          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.35);
-
-          .arrow {
-            stroke: white;
-          }
-        }
-
-        @media (max-width: 992px) {
-          display: none;
-        }
-      }
-
-      .left-btn {
-        left: -28px;
-
-        .arrow {
-          margin-right: 2px;
-        }
-      }
-
-      .right-btn {
-        right: -28px;
-
-        .arrow {
-          margin-left: -1px;
-        }
-      }
-
-      .arrow {
-        height: 13px;
-        width: 8px;
-        stroke: $black;
-      }
-
-      .news-body {
-        display: flex;
-        overflow: hidden;
-        gap: 37px;
-
+    .slider-container {
+      .slider-track {
         .news-body__item {
+          min-width: 320px;
           display: flex;
           flex-direction: column;
           background: $white;
           box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
-          max-width: 33%;
           cursor: pointer;
 
           .item__header {
             position: relative;
             z-index: 1;
-            width: 355px;
+            width: 320px;
             height: 290px;
 
             .wrapper-image {
@@ -152,10 +94,11 @@
               height: 190px;
             }
           }
+
           .item__body {
             flex-direction: column;
             flex: 1 1 auto;
-            padding: 40px 29px 25px 29px;
+            padding: 20px;
             max-width: 355px;
             position: relative;
             z-index: 2;
@@ -165,11 +108,7 @@
               font-weight: 700;
               text-transform: uppercase;
               color: $black;
-              margin-bottom: 30px;
-
-              @media (max-width: 1200px) {
-                margin-bottom: 15px;
-              }
+              margin-bottom: 15px;
 
               @media (max-width: 768px) {
                 margin-bottom: 10px;
@@ -258,18 +197,28 @@
             max-width: 67%;
           }
         }
+      }
 
-        @media (max-width: 1200px) {
-          gap: 38px;
-          margin: 0 auto;
+      .button-wrapper {
+        height: 250px;
+
+        @media (min-width: 993px) {
+          // width: 884px;
         }
 
         @media (max-width: 992px) {
-          overflow-x: auto;
+          // height: 392px;
+        }
+
+        @media (max-width: 576px) {
+          // height: 250px;
         }
       }
+
       @media (max-width: 1200px) {
         margin: 0 20px;
+        width: 660px;
+        margin: 0 auto;
       }
     }
   }
