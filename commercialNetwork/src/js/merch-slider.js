@@ -9,6 +9,8 @@ const getGap = getComputedStyle(track)
 const zdvig = shiftCalculate()
 
 let indexActiveSlide = 0
+let positionStart = 0
+let currentPosition = 0
 
 if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
@@ -26,6 +28,8 @@ btnNext.addEventListener("click", () => {
     }
   }
 
+  currentPosition = zdvig * -indexActiveSlide
+
   if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left")
 })
 
@@ -40,6 +44,8 @@ btnPrev.addEventListener("click", () => {
       btnNext.classList.remove("hiddenBtn-right")
     }
   }
+
+  currentPosition = zdvig * -indexActiveSlide
 })
 
 function shift(index, shift) {
@@ -50,9 +56,6 @@ function shiftCalculate() {
   const itemWidth = items[0].offsetWidth
   return (shiftValue = parseInt(getGap.gap) + itemWidth)
 }
-
-let positionStart = 0
-let currentPosition = 0
 
 let isDrag = false
 
