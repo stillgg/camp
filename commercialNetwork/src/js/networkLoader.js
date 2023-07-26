@@ -1,40 +1,46 @@
 const network = document.querySelector(".network");
 const numbers = network.querySelectorAll(".number__loader");
 
-// const time = 4;
+// const num = numbers[1].dataset.num;
 
-// numbers.forEach((number) => {
-// 	let i = 1;
-// 	let num = number.dataset.num;
-// 	step = (1000 * time) / num;
-// 	console.log(step);
+const time = 4;
 
-// 	const timer = setInterval(function () {
-// 		if (i <= num) {
-// 			number.innerHTML = i;
-// 		} else {
-// 			clearInterval(timer);
-// 		}
-// 		i++;
-// 	}, step);
-// });
+numbers.forEach((number, index) => {
+  let i = 1;
+  let num = number.dataset.num;
+  const animationNum = Number(num.split("").splice(0, 3).join(""));
+  const ostatok = num.split("").splice(3, num.length);
+  step = (1000 * time + index * 200) / animationNum;
+  console.log(num);
+  console.log(animationNum);
+  console.log(ostatok);
 
-console.log(numbers);
+  const timer = setInterval(function () {
+    if (i <= animationNum) {
+      number.innerHTML = i + "0".repeat(ostatok.length);
+    } else {
+      clearInterval(timer);
+    }
+    i++;
+  }, step);
+});
 
-const num = numbers[1].dataset.num;
-let time = 4;
-const step = +num / (50 * time);
-let i = step;
+// console.log(numbers);
 
-console.log(num);
+// const num = numbers[1].dataset.num;
+// let time = 4;
+// const step = +num / (50 * time);
+// let i = step;
 
-const timer = setInterval(() => {
-	numbers[1].innerHTML += Math.round(i);
-	i += step;
-	// console.log(i);
-	// console.log(num);
-}, 20);
+// console.log(num);
 
-setTimeout(() => {
-	clearInterval(timer);
-}, 4020);
+// const timer = setInterval(() => {
+// 	numbers[1].innerHTML += Math.round(i);
+// 	i += step;
+// 	// console.log(i);
+// 	// console.log(num);
+// }, 20);
+
+// setTimeout(() => {
+// 	clearInterval(timer);
+// }, 4020);
