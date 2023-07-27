@@ -96,6 +96,7 @@
           }
 
           .item__body {
+            display: flex;
             flex-direction: column;
             flex: 1 1 auto;
             padding: 20px;
@@ -199,19 +200,7 @@
       }
 
       .button-wrapper {
-        height: 250px;
-
-        @media (min-width: 993px) {
-          // width: 884px;
-        }
-
-        @media (max-width: 992px) {
-          // height: 392px;
-        }
-
-        @media (max-width: 576px) {
-          // height: 250px;
-        }
+        height: 100%;
       }
 
       @media (max-width: 1200px) {
@@ -219,9 +208,15 @@
         width: 660px;
         margin: 0 auto;
       }
+
       @media (max-width: 992px) {
         width: 580px;
       }
+
+      @media (max-width: 768px) {
+        width: 280px;
+      }
+
       @media (max-width: 576px) {
         width: 250px;
       }

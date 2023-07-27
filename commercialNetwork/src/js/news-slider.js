@@ -1,12 +1,10 @@
 const btnNext = document.querySelector("#news-btn-next")
 const btnPrev = document.querySelector("#news-btn-prev")
-const section = document.querySelector(".news")
+const sectionNews = document.querySelector(".news")
 
 const trackNews = document.querySelector(".news-slider-track")
 const newsItems = document.querySelectorAll(".news-body__item")
 const getGap = getComputedStyle(trackNews)
-
-const zdvig = shiftCalculate()
 
 let indexActiveSlide = 0
 let positionStart = 0
@@ -17,6 +15,7 @@ let removeIndex = 0
 if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
 btnNext.addEventListener("click", () => {
+  const zdvig = shiftCalculate()
   const clientWidth = window.innerWidth
   const removeIndex = getRemoveSlides(clientWidth, 2)
 
@@ -25,7 +24,7 @@ btnNext.addEventListener("click", () => {
     trackNews.style.transform = shift(indexActiveSlide, zdvig)
   }
 
-  if (clientWidth >= 375 && Math.abs(indexActiveSlide) === newsItems.length - 1 - removeIndex) {
+  if (Math.abs(indexActiveSlide) === newsItems.length - 1 - removeIndex) {
     btnNext.classList.add("hiddenBtn-right")
   }
 
@@ -35,6 +34,7 @@ btnNext.addEventListener("click", () => {
 })
 
 btnPrev.addEventListener("click", () => {
+  const zdvig = shiftCalculate()
   if (indexActiveSlide !== 0) {
     indexActiveSlide++
     trackNews.style.transform = shift(indexActiveSlide, zdvig)
@@ -62,6 +62,7 @@ function onDragStart(event) {
   event.preventDefault()
 
   isDrag = true
+
   trackNews.style.transitionDelay = "0s"
 
   positionStart = event.type === "touchstart" ? event.touches[0].clientX : event.clientX
@@ -74,26 +75,15 @@ function onDragOver(event) {
 
   const move = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
 
-  const moveHeight = event.type === "touchmove" ? event.touches[0].clientY : event.clientY
-
-  const limitWidth = window.innerWidth
-  const limitHeight = window.innerHeight
-
-  if (move > limitWidth - 20 || move <= 80 || moveHeight > limitHeight || moveHeight <= 0) {
-    trackNews.style.transform = `translate3d(${indexActiveSlide * zdvig}px, 0px, 0px)`
-    isDrag = false
-    trackNews.style.transitionDuration = "600ms"
-    return
-  }
-
   trackNews.style.transform = `translate3d(${move - positionStart}px, 0px, 0px)`
 
   trackNews.style.transitionDuration = "0ms"
 }
 
 function onDragEnd(event) {
+  const zdvig = shiftCalculate()
+
   if (!isDrag) return
-  console.log("drag")
   let positionEnd = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX
 
   const clientWidth = window.innerWidth
@@ -132,14 +122,22 @@ function onDragEnd(event) {
   isDrag = false
 }
 
+sectionNews.addEventListener("mouseleave", (event) => {
+  const zdvig = shiftCalculate()
+
+  trackNews.style.transform = `translate3d(${indexActiveSlide * zdvig}px, 0px, 0px)`
+  isDrag = false
+  trackNews.style.transitionDuration = "600ms"
+})
+
 trackNews.addEventListener("mousedown", onDragStart)
-section.addEventListener("mousemove", onDragOver)
-section.addEventListener("mouseup", onDragEnd)
+sectionNews.addEventListener("mousemove", onDragOver)
+sectionNews.addEventListener("mouseup", onDragEnd)
 
 trackNews.addEventListener("touchstart", onDragStart)
-section.addEventListener("touchmove", onDragOver)
-section.addEventListener("touchend", onDragEnd)
+sectionNews.addEventListener("touchmove", onDragOver)
+sectionNews.addEventListener("touchend", onDragEnd)
 
 function getRemoveSlides(window, slides) {
-  return window >= 1200 ? slides : window <= 576 ? 0 : 1
+  return window >= 1200 ? slides : window <= 768 ? 0 : 1
 }
