@@ -1,5 +1,5 @@
 .scrollbar {
-  height: 100vh;
+  height: 100%;
   position: fixed;
   color: $white;
   z-index: 10;
@@ -33,6 +33,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      cursor: pointer;
 
       .sections__link {
         height: 3px;

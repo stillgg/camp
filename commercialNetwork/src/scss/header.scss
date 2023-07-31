@@ -13,6 +13,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.4s;
 
   &.container {
     .header__logo {
@@ -77,6 +78,7 @@ body {
               color: $white;
               border-bottom: 0px solid rgba($color: $white, $alpha: 0);
               transition: 0.3s ease-in-out;
+              cursor: pointer;
 
               &:hover {
                 padding-bottom: 7px;
@@ -108,9 +110,9 @@ body {
         }
         @media (max-width: 992px) {
           padding: 50px 30px;
-          position: absolute;
+          position: fixed;
           width: 100%;
-          height: 100vh;
+          height: 100%;
           background-color: $red;
           top: 0;
           left: -100%;
@@ -194,6 +196,43 @@ body {
 
     @media (max-width: 1200px) {
       padding: 20px;
+    }
+  }
+  &.black {
+    color: $black !important;
+
+    .header__logo {
+      color: inherit !important;
+    }
+    .nav__link {
+      color: inherit !important;
+      border-bottom: 0px solid rgba($color: $red, $alpha: 0) !important;
+
+      &:hover {
+        border-bottom: 3px solid rgba($color: $red, $alpha: 1) !important;
+      }
+    }
+    .header__btn {
+      color: inherit !important;
+      border: 1px solid rgba(33, 33, 33, 0.3);
+
+      .btn__key {
+        color: $red;
+      }
+      &:hover {
+        color: $white !important;
+        background-color: $black;
+      }
+      &:hover {
+        .btn__key {
+          color: $white !important;
+        }
+      }
+    }
+    .menu__icon {
+      span {
+        background-color: $black !important;
+      }
     }
   }
 }
