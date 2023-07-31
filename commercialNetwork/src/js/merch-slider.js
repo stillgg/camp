@@ -92,15 +92,15 @@ function onDragEnd(event) {
   if (
     positionStart > positionEnd &&
     Math.abs(positionEnd - positionStart) > zdvig * 0.2 &&
-    -indexActiveSlide !== merchItems.length - removeIndex
+    -indexActiveSlide !== merchItems.length -1 - removeIndex
   ) {
-    if (positionStart - positionEnd - 2 * zdvig > 0 && -indexActiveSlide + 2 <= merchItems.length - 1 - removeIndex) {
+    if (positionStart - positionEnd - 2 * zdvig > 0 && Math.abs(indexActiveSlide) + 2 < merchItems.length - removeIndex) {
       indexActiveSlide -= 2
     } else indexActiveSlide--
   }
 
   if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
-    if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 < 0) {
+    if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 <= 0) {
       indexActiveSlide += 2
     } else indexActiveSlide++
   }
@@ -137,5 +137,5 @@ sectionMerch.addEventListener("touchmove", onDragOver)
 sectionMerch.addEventListener("touchend", onDragEnd)
 
 function getRemoveSlides(window, slides) {
-  return window >= 1200 ? slides : window <= 768 ? 0 : 1
+  return window >= 1200 ? slides : window <= 992 ? 0 : 1
 }

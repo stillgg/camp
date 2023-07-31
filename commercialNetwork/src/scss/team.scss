@@ -16,6 +16,12 @@
       gap: 119px;
       height: calc(100% - 120px);
 
+      &>div:first-child{
+        @media (max-width:993px ) {
+          display: none;
+        }
+      }
+      
       .slider {
         display: flex;
         flex-direction: row;
@@ -134,8 +140,51 @@
             .text__description {
               font-size: 16px;
               line-height: 162%;
+
             }
           }
+        }
+      }
+
+
+      .team-slider-container{
+        width: 320px;
+        margin: 0 auto;
+
+        transition: opacity .3s ease;
+        .team-slider-track{
+          .team__item{
+            min-width: 320px;
+            .text{
+              transition: opacity .4s ease;
+              opacity: 0;
+
+              .text__description{
+                @media (max-width:576px) {
+                  font-size: 16px;
+                }
+              }
+              &.active{
+                opacity: 1;
+              }
+            }
+
+            @media (max-width:576px) {
+              min-width: 250px;
+            }
+          }
+        }
+
+        .button-wrapper{
+          height: 100%;
+        }
+
+        @media (min-width:993px) {
+          display: none;
+        }
+
+        @media (max-width:576px) {
+          width: 250px;
         }
       }
       .wrapper-gradient {
@@ -221,7 +270,7 @@
     }
 
     @media (max-width: 992px) {
-      padding-top: 70px;
+      padding-top: 110px;
     }
   }
 }
