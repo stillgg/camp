@@ -2,10 +2,9 @@ const btnNext = document.querySelector("#team-btn-next")
 const btnPrev = document.querySelector("#team-btn-prev")
 const sectionTeam = document.querySelector(".team")
 
-
 const trackTeam = document.querySelector(".team-slider-track")
 const teamItems = document.querySelectorAll(".team__item")
-const teamText = document.querySelectorAll('#text')
+const teamText = document.querySelectorAll("#text")
 const getGap = getComputedStyle(trackTeam)
 
 let indexActiveSlide = 0
@@ -21,11 +20,11 @@ btnNext.addEventListener("click", () => {
   const clientWidth = window.innerWidth
   const removeIndex = getRemoveSlides(clientWidth, 1)
 
-
   if (Math.abs(indexActiveSlide) <= teamItems.length - removeIndex) {
     indexActiveSlide--
-    redraw('next',teamText,indexActiveSlide)
+    redraw("next", teamText, indexActiveSlide)
     trackTeam.style.transform = shift(indexActiveSlide, zdvig)
+    sectionTeam.classList.add("animation")
   }
 
   if (Math.abs(indexActiveSlide) === teamItems.length - 1 - removeIndex) {
@@ -34,15 +33,19 @@ btnNext.addEventListener("click", () => {
 
   currentPosition = zdvig * -indexActiveSlide
   if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left")
+
+  setTimeout(() => {
+    sectionTeam.classList.remove("animation")
+  }, 300)
 })
 
 btnPrev.addEventListener("click", () => {
   const zdvig = shiftCalculate()
   if (indexActiveSlide !== 0) {
-
     indexActiveSlide++
-    redraw('prev',teamText,indexActiveSlide)
+    redraw("prev", teamText, indexActiveSlide)
     trackTeam.style.transform = shift(indexActiveSlide, zdvig)
+    sectionTeam.classList.add("animation")
 
     if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
@@ -52,6 +55,10 @@ btnPrev.addEventListener("click", () => {
   }
 
   currentPosition = zdvig * -indexActiveSlide
+
+  setTimeout(() => {
+    sectionTeam.classList.remove("animation")
+  }, 300)
 })
 
 function shift(index, shift) {
@@ -98,27 +105,36 @@ function onDragEnd(event) {
   if (
     positionStart > positionEnd &&
     Math.abs(positionEnd - positionStart) > zdvig * 0.2 &&
-    -indexActiveSlide !== teamItems.length -1 - removeIndex
+    -indexActiveSlide !== teamItems.length - 1 - removeIndex
   ) {
-    if (positionStart - positionEnd - 2 * zdvig > 0 && Math.abs(indexActiveSlide) + 2 < teamItems.length - removeIndex) {
+    if (
+      positionStart - positionEnd - 2 * zdvig > 0 &&
+      Math.abs(indexActiveSlide) + 2 < teamItems.length - removeIndex
+    ) {
       indexActiveSlide -= 2
-      redraw('next',teamText,indexActiveSlide)
-    } else {indexActiveSlide--
-        redraw('next',teamText,indexActiveSlide)}
+      redraw("next", teamText, indexActiveSlide)
+    } else {
+      indexActiveSlide--
+      redraw("next", teamText, indexActiveSlide)
+    }
+
+    sectionTeam.classList.add("animation")
   }
 
   if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
     if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 <= 0) {
-        
-        indexActiveSlide += 2
-        redraw('prev',teamText,indexActiveSlide)
-    } else 
-    {
-        
-        indexActiveSlide++
-        redraw('prev',teamText,indexActiveSlide)
+      indexActiveSlide += 2
+      redraw("prev", teamText, indexActiveSlide)
+    } else {
+      indexActiveSlide++
+      redraw("prev", teamText, indexActiveSlide)
     }
+    sectionTeam.classList.add("animation")
   }
+
+  setTimeout(() => {
+    sectionTeam.classList.remove("animation")
+  }, 300)
 
   if (indexActiveSlide === 0) {
     btnPrev.classList.add("hiddenBtn-left")
@@ -155,19 +171,18 @@ function getRemoveSlides(window, slides) {
   return window > 992 ? slides : 0
 }
 
-function redraw(direction,text,indexActiveSlide){
-const index = Math.abs(indexActiveSlide)
+function redraw(direction, text, indexActiveSlide) {
+  const index = Math.abs(indexActiveSlide)
 
-    if(direction === 'next'){
-        const prevValue = document.querySelector('.text.active')
-        prevValue.classList.remove('active')
-        text[index].classList.add('active')
-    }
+  if (direction === "next") {
+    const prevValue = document.querySelector(".text.active")
+    prevValue.classList.remove("active")
+    text[index].classList.add("active")
+  }
 
-    if(direction === 'prev'){
-        const prevValue = document.querySelector('.text.active')
-        text[index].classList.add('active')
-        prevValue.classList.remove('active')
-    }
-
+  if (direction === "prev") {
+    const prevValue = document.querySelector(".text.active")
+    text[index].classList.add("active")
+    prevValue.classList.remove("active")
+  }
 }

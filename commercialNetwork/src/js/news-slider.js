@@ -22,6 +22,7 @@ btnNext.addEventListener("click", () => {
   if (Math.abs(indexActiveSlide) <= newsItems.length - removeIndex) {
     indexActiveSlide--
     trackNews.style.transform = shift(indexActiveSlide, zdvig)
+    sectionNews.classList.add("animation")
   }
 
   if (Math.abs(indexActiveSlide) === newsItems.length - 1 - removeIndex) {
@@ -31,6 +32,9 @@ btnNext.addEventListener("click", () => {
   currentPosition = zdvig * -indexActiveSlide
 
   if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left")
+  setTimeout(() => {
+    sectionNews.classList.remove("animation")
+  }, 300)
 })
 
 btnPrev.addEventListener("click", () => {
@@ -38,6 +42,7 @@ btnPrev.addEventListener("click", () => {
   if (indexActiveSlide !== 0) {
     indexActiveSlide++
     trackNews.style.transform = shift(indexActiveSlide, zdvig)
+    sectionNews.classList.add("animation")
 
     if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
@@ -47,6 +52,10 @@ btnPrev.addEventListener("click", () => {
   }
 
   currentPosition = zdvig * -indexActiveSlide
+
+  setTimeout(() => {
+    sectionNews.classList.remove("animation")
+  }, 300)
 })
 
 function shift(index, shift) {
@@ -99,13 +108,21 @@ function onDragEnd(event) {
     if (positionStart - positionEnd - 2 * zdvig > 0 && -indexActiveSlide + 2 <= newsItems.length - 1 - removeIndex) {
       indexActiveSlide -= 2
     } else indexActiveSlide--
+
+    sectionNews.classList.add("animation")
   }
 
   if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
     if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 < 0) {
       indexActiveSlide += 2
     } else indexActiveSlide++
+
+    sectionNews.classList.add("animation")
   }
+
+  setTimeout(() => {
+    sectionNews.classList.remove("animation")
+  }, 300)
 
   if (indexActiveSlide === 0) {
     btnPrev.classList.add("hiddenBtn-left")
