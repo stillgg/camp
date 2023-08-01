@@ -105,7 +105,7 @@
           height: 40px;
           background-color: $red;
           transform: rotate(45deg);
-          transition: 0.4s;
+          transition: transform, 0.4s;
 
           @media (max-width: 576px) {
             width: 34px;
@@ -132,7 +132,7 @@
         font-weight: 700;
         line-height: 133%;
         cursor: pointer;
-        transition: 0.4s;
+        transition: background-color, 0.4s;
 
         &:hover {
           background-color: $white;
@@ -303,7 +303,7 @@
                       height: 10px;
                       border: solid $black;
                       border-width: 0px 2px 2px 0px;
-                      transition: 0.4s;
+                      transition: transform, 0.4s;
                       transform: rotate(45deg);
                     }
                   }
@@ -312,7 +312,7 @@
                     background: #f3f3f3;
                     border-radius: 10px;
                     padding: 15px 20px 14px;
-                    transition: 0.4s;
+                    transition: background, 0.4s;
 
                     &.input-select {
                       width: 100%;
@@ -420,7 +420,7 @@
                     height: 16px;
                     background: #9e9e9e;
                     border-radius: 10px;
-                    transition: 0.4s;
+                    transition: background, 0.4s;
                     display: none;
                   }
                 }
@@ -442,7 +442,7 @@
               border-radius: 12px;
               cursor: pointer;
               margin: 0 auto;
-              transition: 0.4s;
+              transition: background-color, 0.4s;
 
               &:hover {
                 background: #c80036;
