@@ -24,6 +24,8 @@
     align-items: center;
     gap: 30px;
     padding: 20px 0;
+    transform: translateY(100%);
+    transition: 0.8s;
 
     @media (max-width: 540px) {
       gap: 15px;
@@ -44,7 +46,7 @@
   }
   &.active {
     .home__footer {
-      animation: translateYDown 0.8s ease-in-out;
+      transform: translateY(0%);
     }
   }
 }

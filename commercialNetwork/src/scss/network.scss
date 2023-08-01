@@ -7,6 +7,11 @@
   .network__header {
     padding-top: 140px;
 
+    .h2 {
+      transform: translateY(-200%);
+      transition: transform 0.8s;
+    }
+
     @media (max-width: 992px) {
       padding-top: 100px;
     }
@@ -23,6 +28,8 @@
       width: 100%;
       gap: 20px;
       padding-bottom: 10px;
+      transform: translateY(100%);
+      transition: transform 0.8s;
 
       .main__block {
         background: $white;
@@ -123,6 +130,8 @@
   }
 
   .network__footer {
+    transform: translateY(100%);
+    transition: 0.8s;
     background: #ebebeb;
 
     .wrapper__scroll {
@@ -151,16 +160,13 @@
   }
   &.active {
     .h2 {
-      animation: translateYUp 0.8s ease-in-out;
+      transform: translateY(0%);
     }
     .network__footer {
-      animation: translateYDown 0.8s ease-in-out;
+      transform: translateY(0%);
     }
-    .main__block {
-      animation: translateXLeft 0.8s ease-in-out;
-      &:nth-child(n + 4) {
-        animation: translateXRight 0.8s ease-in-out;
-      }
+    .main__content {
+      transform: translateY(0%);
     }
   }
 }

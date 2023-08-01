@@ -4,14 +4,14 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  background: url("../resources/img/02-background-image.webp") center center
-    no-repeat fixed $red;
-  background: url("../resources/img/02-background-image.png") center center
-    no-repeat fixed $red;
+  background: url("../resources/img/02-background-image.webp") center center no-repeat fixed $red;
+  background: url("../resources/img/02-background-image.png") center center no-repeat fixed $red;
   font-style: normal;
   color: $white;
 
   .about-body__title {
+    transform: translateX(-100%);
+    transition: 0.8s;
     font-weight: 700;
     line-height: 122%;
     text-transform: uppercase;
@@ -36,6 +36,8 @@
   }
 
   .about-body-row {
+    transition: 0.8s;
+    transform: translate(100%);
     display: flex;
     flex-direction: column;
     margin-top: -100px;
@@ -108,10 +110,10 @@
   }
   &.active {
     .about-body__title {
-      animation: translateXLeft 0.8s ease-in-out;
+      transform: translateX(0%);
     }
     .about-body-row {
-      animation: translateXRight 0.8s ease-in-out;
+      transform: translateX(0%);
     }
   }
 }
