@@ -9,7 +9,8 @@
 
     .h2 {
       transform: translateY(-200%);
-      transition: transform 0.8s;
+      transition: 0.8s;
+      opacity: 0;
     }
 
     @media (max-width: 992px) {
@@ -29,7 +30,8 @@
       gap: 20px;
       padding-bottom: 10px;
       transform: translateY(100%);
-      transition: transform 0.8s;
+      transition: 0.8s;
+      opacity: 0;
 
       .main__block {
         background: $white;
@@ -132,6 +134,7 @@
   .network__footer {
     transform: translateY(100%);
     transition: 0.8s;
+    opacity: 0;
     background: #ebebeb;
 
     .wrapper__scroll {
@@ -160,12 +163,15 @@
   }
   &.active {
     .h2 {
+      opacity: 1;
       transform: translateY(0%);
     }
     .network__footer {
+      opacity: 1;
       transform: translateY(0%);
     }
     .main__content {
+      opacity: 1;
       transform: translateY(0%);
     }
   }

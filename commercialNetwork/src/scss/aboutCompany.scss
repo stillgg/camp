@@ -11,7 +11,8 @@
 
   .about-body__title {
     transform: translateX(-100%);
-    transition: 0.8s;
+    opacity: 0;
+    transition: 0.8s ease;
     font-weight: 700;
     line-height: 122%;
     text-transform: uppercase;
@@ -36,8 +37,9 @@
   }
 
   .about-body-row {
-    transition: 0.8s;
+    transition: 0.8s ease;
     transform: translate(100%);
+    opacity: 0;
     display: flex;
     flex-direction: column;
     margin-top: -100px;
@@ -110,9 +112,11 @@
   }
   &.active {
     .about-body__title {
+      opacity: 1;
       transform: translateX(0%);
     }
     .about-body-row {
+      opacity: 1;
       transform: translateX(0%);
     }
   }
