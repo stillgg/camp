@@ -9,7 +9,7 @@
 
     .h2 {
       transform: translateY(-200%);
-      transition: transform 0.8s 0.4s ease-in-out, opacity 0.8s 0.4s ease-in-out;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
       opacity: 0;
     }
 
@@ -30,7 +30,7 @@
       gap: 20px;
       padding-bottom: 10px;
       transform: translateY(100%);
-      transition: transform 0.8s 0.4s ease-in-out, opacity 0.8s 0.4s ease-in-out;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
       opacity: 0;
 
       .main__block {
@@ -133,7 +133,7 @@
 
   .network__footer {
     transform: translateY(100%);
-    transition: transform 0.8s 0.4s ease-in-out, opacity 0.8s 0.4s ease-in-out;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
     opacity: 0;
     background: #ebebeb;
 
@@ -163,14 +163,17 @@
   }
   &.active {
     .h2 {
+      transition-delay: 300ms;
       opacity: 1;
       transform: translateY(0%);
     }
     .network__footer {
+      transition-delay: 300ms;
       opacity: 1;
       transform: translateY(0%);
     }
     .main__content {
+      transition-delay: 300ms;
       opacity: 1;
       transform: translateY(0%);
     }
