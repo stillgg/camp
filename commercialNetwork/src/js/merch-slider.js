@@ -22,7 +22,7 @@ btnNext.addEventListener("click", () => {
   if (Math.abs(indexActiveSlide) <= merchItems.length - removeIndex) {
     indexActiveSlide--
     trackMerch.style.transform = shift(indexActiveSlide, zdvig)
-    sectionTeam.classList.add("animation")
+    trackMerch.classList.add("animation")
   }
 
   if (Math.abs(indexActiveSlide) === merchItems.length - 1 - removeIndex) {
@@ -33,7 +33,7 @@ btnNext.addEventListener("click", () => {
   if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left")
 
   setTimeout(() => {
-    sectionTeam.classList.remove("animation")
+    trackMerch.classList.remove("animation")
   }, 300)
 })
 
@@ -42,7 +42,7 @@ btnPrev.addEventListener("click", () => {
   if (indexActiveSlide !== 0) {
     indexActiveSlide++
     trackMerch.style.transform = shift(indexActiveSlide, zdvig)
-    sectionTeam.classList.add("animation")
+    trackMerch.classList.add("animation")
 
     if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
@@ -54,7 +54,7 @@ btnPrev.addEventListener("click", () => {
   currentPosition = zdvig * -indexActiveSlide
 
   setTimeout(() => {
-    sectionTeam.classList.remove("animation")
+    trackMerch.classList.remove("animation")
   }, 300)
 })
 
