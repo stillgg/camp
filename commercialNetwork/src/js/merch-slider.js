@@ -110,13 +110,21 @@ function onDragEnd(event) {
     ) {
       indexActiveSlide -= 2
     } else indexActiveSlide--
+
+    sectionMerch.classList.add("animation")
   }
 
   if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
     if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 <= 0) {
       indexActiveSlide += 2
     } else indexActiveSlide++
+
+    sectionMerch.classList.add("animation")
   }
+
+  setTimeout(() => {
+    sectionMerch.classList.remove("animation")
+  }, 300)
 
   if (indexActiveSlide === 0) {
     btnPrev.classList.add("hiddenBtn-left")
