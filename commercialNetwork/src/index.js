@@ -5,4 +5,5 @@ import "./js/slider"
 import "./js/news-slider"
 import "./js/merch-slider"
 import "./js/scrollBar"
-import './js/team-slider'
+import "./js/team-slider"
+import "./js/initSlader"
