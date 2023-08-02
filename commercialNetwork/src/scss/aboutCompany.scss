@@ -10,9 +10,9 @@
   color: $white;
 
   .about-body__title {
-    transform: translateX(-100%);
     opacity: 0;
-    transition: 0.8s ease;
+    transition: transform 0.8s 0.4s ease-in-out, opacity 0.8s 0.4s ease-in-out;
+    transform: translateX(-100%);
     font-weight: 700;
     line-height: 122%;
     text-transform: uppercase;
@@ -37,8 +37,8 @@
   }
 
   .about-body-row {
-    transition: 0.8s ease;
-    transform: translate(100%);
+    transition: transform 0.8s 0.4s ease-in-out, opacity 0.8s 0.4s ease-in-out;
+    transform: translateX(100%);
     opacity: 0;
     display: flex;
     flex-direction: column;

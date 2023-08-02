@@ -1,4 +1,4 @@
-import { animationNetwork } from "./networkLoader"
+import { animationNetwork, closeSection } from "./networkLoader"
 const app = document.querySelector(".app")
 const sections = document.querySelectorAll("section")
 const indicator = document.querySelector("#indicator")
@@ -47,7 +47,9 @@ function onSlideChange() {
 
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
+
       if (slideIndex === 2) animationNetwork()
+      if (target.activeSlide === 2) closeSection()
 
       if (BLACK_SECTION_INDEXES.includes(slideIndex)) {
         indicator.classList.add("black")
