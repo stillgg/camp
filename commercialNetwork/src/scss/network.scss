@@ -7,6 +7,12 @@
   .network__header {
     padding-top: 140px;
 
+    .h2 {
+      transform: translateY(-200%);
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      opacity: 0;
+    }
+
     @media (max-width: 992px) {
       padding-top: 100px;
     }
@@ -23,6 +29,9 @@
       width: 100%;
       gap: 20px;
       padding-bottom: 10px;
+      transform: translateY(100%);
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      opacity: 0;
 
       .main__block {
         background: $white;
@@ -36,6 +45,7 @@
           position: relative;
 
           .content__number {
+            display: flex;
             font-weight: 700;
             font-size: 50px;
             line-height: 61px;
@@ -63,7 +73,7 @@
           }
           .content__title {
             font-weight: 700;
-            font-size: 36px;
+            font-size: 32px;
             line-height: 61px;
             color: $red;
 
@@ -121,6 +131,9 @@
   }
 
   .network__footer {
+    transform: translateY(100%);
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    opacity: 0;
     background: #ebebeb;
 
     .wrapper__scroll {
@@ -145,6 +158,23 @@
       @media (max-height: 768px) {
         padding: 20px 0;
       }
+    }
+  }
+  &.active {
+    .h2 {
+      transition-delay: 300ms;
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    .network__footer {
+      transition-delay: 300ms;
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    .main__content {
+      transition-delay: 300ms;
+      opacity: 1;
+      transform: translateY(0%);
     }
   }
 }
