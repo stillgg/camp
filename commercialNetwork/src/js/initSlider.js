@@ -1,16 +1,15 @@
-function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSlader, text, slides) {
-  const btnNext = document.querySelector(buttonNext)
-  const btnPrev = document.querySelector(buttonPrev)
-  const section = document.querySelector(sectionSlider)
-  const track = document.querySelector(trackSlader)
-  const items = document.querySelectorAll(itemsSlader)
+function initSlider(selector, param) {
+  const slider = document.querySelector(selector)
+  const btnNext = slider.querySelector(".slider-button__right")
+  const btnPrev = slider.querySelector(".slider-button__left")
+  const track = slider.querySelector(".slider-track")
+  const items = slider.querySelectorAll(".slider-item")
   const getGap = getComputedStyle(track)
-  let sliderText = false
+  const slides = param.removeSlides
+  let text = slider.querySelectorAll(".text")
+  if (!text.length) text = false
 
-  if (text) {
-    sliderText = document.querySelectorAll(text)
-  }
-
+  console.log(text)
   let indexActiveSlide = 0
   let positionStart = 0
   let currentPosition = 0
@@ -22,14 +21,14 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
   btnNext.addEventListener("click", () => {
     const zdvig = shiftCalculate()
     const clientWidth = window.innerWidth
-    const removeIndex = getRemoveSlides(clientWidth, slides)
+    const removeIndex = getRemoveSlides(selector, clientWidth, slides)
 
     if (Math.abs(indexActiveSlide) <= items.length - removeIndex) {
       indexActiveSlide--
       track.style.transform = shift(indexActiveSlide, zdvig)
-      section.classList.add("animation")
+      document.body.classList.add("animation")
 
-      if (sliderText) redraw("next", sliderText, indexActiveSlide)
+      if (text) redraw("next", text, indexActiveSlide)
     }
 
     if (Math.abs(indexActiveSlide) === items.length - 1 - removeIndex) {
@@ -41,7 +40,7 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     if (indexActiveSlide !== 0) btnPrev.classList.remove("hiddenBtn-left")
 
     setTimeout(() => {
-      section.classList.remove("animation")
+      document.body.classList.remove("animation")
     }, 300)
   })
 
@@ -50,9 +49,9 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
       track.style.transform = shift(indexActiveSlide, zdvig)
-      section.classList.add("animation")
+      document.body.classList.add("animation")
 
-      if (sliderText) redraw("prev", sliderText, indexActiveSlide)
+      if (text) redraw("prev", text, indexActiveSlide)
 
       if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
@@ -64,7 +63,7 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     currentPosition = zdvig * -indexActiveSlide
 
     setTimeout(() => {
-      section.classList.remove("animation")
+      document.body.classList.remove("animation")
     }, 300)
   })
 
@@ -95,7 +94,7 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     let positionEnd = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX
 
     const clientWidth = window.innerWidth
-    removeIndex = getRemoveSlides(clientWidth, slides)
+    removeIndex = getRemoveSlides(selector, clientWidth, slides)
 
     positionEnd += currentPosition
 
@@ -106,29 +105,29 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     ) {
       if (positionStart - positionEnd - 2 * zdvig > 0 && Math.abs(indexActiveSlide) + 2 < items.length - removeIndex) {
         indexActiveSlide -= 2
-        if (sliderText) redraw("next", sliderText, indexActiveSlide)
+        if (text) redraw("next", text, indexActiveSlide)
       } else {
         indexActiveSlide--
-        if (sliderText) redraw("next", sliderText, indexActiveSlide)
+        if (text) redraw("next", text, indexActiveSlide)
       }
 
-      section.classList.add("animation")
+      document.body.classList.add("animation")
     }
 
     if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
       if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 <= 0) {
         indexActiveSlide += 2
-        if (sliderText) redraw("prev", sliderText, indexActiveSlide)
+        if (text) redraw("prev", text, indexActiveSlide)
       } else {
         indexActiveSlide++
-        if (sliderText) redraw("prev", sliderText, indexActiveSlide)
+        if (text) redraw("prev", text, indexActiveSlide)
       }
 
-      section.classList.add("animation")
+      document.body.classList.add("animation")
     }
 
     setTimeout(() => {
-      section.classList.remove("animation")
+      document.body.classList.remove("animation")
     }, 300)
 
     if (indexActiveSlide === 0) {
@@ -146,7 +145,7 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     isDrag = false
   }
 
-  section.addEventListener("mouseleave", (event) => {
+  document.addEventListener("mouseleave", (event) => {
     const zdvig = shiftCalculate()
 
     track.style.transform = `translate3d(${indexActiveSlide * zdvig}px, 0px, 0px)`
@@ -155,12 +154,12 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
   })
 
   track.addEventListener("mousedown", onDragStart)
-  section.addEventListener("mousemove", onDragOver)
-  section.addEventListener("mouseup", onDragEnd)
+  document.addEventListener("mousemove", onDragOver)
+  document.addEventListener("mouseup", onDragEnd)
 
   track.addEventListener("touchstart", onDragStart)
-  section.addEventListener("touchmove", onDragOver)
-  section.addEventListener("touchend", onDragEnd)
+  document.addEventListener("touchmove", onDragOver)
+  document.addEventListener("touchend", onDragEnd)
 
   function shift(index, shift) {
     return `translate3d(${index * shift}px, 0px, 0px)`
@@ -171,7 +170,10 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     return (shiftValue = parseInt(getGap.gap) + itemWidth)
   }
 
-  function getRemoveSlides(window, slides) {
+  function getRemoveSlides(selector, window, slides) {
+    if (selector === "#slider-news" && window >= 768 && window <= 992) {
+      return 1
+    }
     return window >= 1200 ? slides : window <= 992 ? 0 : 1
   }
 
@@ -179,21 +181,21 @@ function initSlader(buttonNext, buttonPrev, sectionSlider, trackSlader, itemsSla
     const index = Math.abs(indexActiveSlide)
 
     if (direction === "next") {
-      const prevValue = document.querySelector(".text.active")
+      const prevValue = slider.querySelector(".text.active")
       prevValue.classList.remove("active")
       text[index].classList.add("active")
     }
 
     if (direction === "prev") {
-      const prevValue = document.querySelector(".text.active")
+      const prevValue = slider.querySelector(".text.active")
       text[index].classList.add("active")
       prevValue.classList.remove("active")
     }
   }
 }
 
-initSlader("#merch-btn-next", "#merch-btn-prev", ".merch", ".merch-slider-track", ".merch-slider-item", 0, 1)
+initSlider("#slider-merch", { removeSlides: 1 })
 
-initSlader("#news-btn-next", "#news-btn-prev", ".news", ".news-slider-track", ".news-body__item", 0, 2)
+initSlider("#slider-team", { removeSlides: 1 })
 
-initSlader("#team-btn-next", "#team-btn-prev", ".team", ".team-slider-track", ".team__item", "#text", 1)
+initSlider("#slider-news", { removeSlides: 2 })
