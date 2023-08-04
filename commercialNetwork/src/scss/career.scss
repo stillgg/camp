@@ -154,14 +154,16 @@
 
   .career__popup {
     top: 0;
-    right: 0%;
+    right: -100%;
     position: absolute;
-    z-index: 1000000;
+    z-index: 999990;
     background-color: $white;
     height: 100%;
     width: 100%;
     max-width: 1531px;
     overflow-y: auto;
+    opacity: 0;
+    transition: right 0.8s, opacity 0.8s;
 
     .popup__preview {
       background-color: $red;
@@ -208,7 +210,7 @@
           }
         }
 
-        .close__wraper {
+        .close__wrapper {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -461,6 +463,11 @@
           }
         }
       }
+    }
+
+    &.active {
+      right: 0;
+      opacity: 1;
     }
   }
 }
