@@ -5,9 +5,7 @@ function slider(selector) {
   const track = area.querySelector(".slider-track")
   const items = area.querySelectorAll(".slider-item")
   const getGapTrack = getComputedStyle(track)
-
-  let text = area.querySelectorAll(".text")
-  if (!text.length) text = false
+  const itemWidth = items[0].offsetWidth + parseInt(getGapTrack.gap)
 
   let indexActiveSlide = 0
   let positionStart = 0
@@ -17,40 +15,28 @@ function slider(selector) {
   if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
   btnNext.addEventListener("click", () => {
-    const zdvig = shiftCalculate()
-    const countActiveSlide = activeSlides(area)
+    const countActiveSlide = getTotalVisibleSlides(area)
 
     if (Math.abs(indexActiveSlide) <= items.length - countActiveSlide) {
       indexActiveSlide--
-      track.style.transform = shift(indexActiveSlide, zdvig)
-      document.body.classList.add("animation")
-
-      if (text) redraw("next", text, indexActiveSlide)
+      changeSlide(indexActiveSlide)
     }
 
     if (Math.abs(indexActiveSlide) === items.length - countActiveSlide) {
       btnNext.classList.add("hidden")
     }
 
-    currentPosition = zdvig * -indexActiveSlide
+    currentPosition = itemWidth * -indexActiveSlide
 
     if (indexActiveSlide !== 0) btnPrev.classList.remove("hidden")
-
-    setTimeout(() => {
-      document.body.classList.remove("animation")
-    }, 300)
   })
 
   btnPrev.addEventListener("click", () => {
-    const zdvig = shiftCalculate()
-    const countActiveSlide = activeSlides(area)
+    const countActiveSlide = getTotalVisibleSlides(area)
 
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
-      track.style.transform = shift(indexActiveSlide, zdvig)
-      document.body.classList.add("animation")
-
-      if (text) redraw("prev", text, indexActiveSlide)
+      changeSlide(indexActiveSlide)
 
       if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
@@ -59,11 +45,7 @@ function slider(selector) {
       }
     }
 
-    currentPosition = zdvig * -indexActiveSlide
-
-    setTimeout(() => {
-      document.body.classList.remove("animation")
-    }, 300)
+    currentPosition = itemWidth * -indexActiveSlide
   })
 
   function onDragStart(event) {
@@ -76,7 +58,7 @@ function slider(selector) {
     positionStart += currentPosition
   }
 
-  function activeSlides(selector) {
+  function getTotalVisibleSlides(selector) {
     const sliderWidth = selector.offsetWidth
     const itemWidth = items[0].offsetWidth
     return Math.floor(sliderWidth / itemWidth)
@@ -92,8 +74,12 @@ function slider(selector) {
     track.style.transitionDuration = "0ms"
   }
 
-  function flippingButtons(indexSlide) {
-    const countActiveSlide = activeSlides(area)
+  function changeSlide(indexSlide) {
+    track.style.transform = `translate3d(${indexSlide * itemWidth}px, 0px, 0px)`
+  }
+
+  function flippButtons(indexSlide) {
+    const countActiveSlide = getTotalVisibleSlides(area)
 
     if (indexSlide === 0) {
       btnPrev.classList.add("hidden")
@@ -107,64 +93,57 @@ function slider(selector) {
   function onDragEnd(event) {
     if (!isDrag) return
 
-    const zdvig = shiftCalculate()
-    const countActiveSlide = activeSlides(area)
-
     let positionEnd = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX
 
     positionEnd += currentPosition
 
+    const countActiveSlide = getTotalVisibleSlides(area)
+    const procentShift = 0.2
+    const isMoved = positionEnd - positionStart > itemWidth * procentShift
+    const isFirstSlide = indexActiveSlide !== 0
+
     if (
       positionStart > positionEnd &&
-      Math.abs(positionEnd - positionStart) > zdvig * 0.2 &&
-      -indexActiveSlide !== items.length - countActiveSlide
+      Math.abs(positionEnd - positionStart) > itemWidth * procentShift &&
+      Math.abs(indexActiveSlide) !== items.length - countActiveSlide
     ) {
       if (
-        positionStart - positionEnd - 2 * zdvig > 0 &&
+        positionStart - positionEnd - 2 * itemWidth > 0 &&
         Math.abs(indexActiveSlide) + 2 < items.length - countActiveSlide
       ) {
         indexActiveSlide -= 2
-        if (text) redraw("next", text, indexActiveSlide)
       } else {
         indexActiveSlide--
-        if (text) redraw("next", text, indexActiveSlide)
       }
-
-      document.body.classList.add("animation")
     }
 
-    if (positionStart < positionEnd && positionEnd - positionStart > zdvig * 0.2 && indexActiveSlide !== 0) {
-      if (Math.abs(positionStart - positionEnd) - 2 * zdvig > 0 && indexActiveSlide + 2 <= 0) {
+    if (positionStart < positionEnd && isMoved && isFirstSlide) {
+      if (Math.abs(positionStart - positionEnd) - 2 * itemWidth > 0 && indexActiveSlide + 2 <= 0) {
         indexActiveSlide += 2
-        if (text) redraw("prev", text, indexActiveSlide)
       } else {
         indexActiveSlide++
-        if (text) redraw("prev", text, indexActiveSlide)
       }
-
-      document.body.classList.add("animation")
     }
 
-    setTimeout(() => {
-      document.body.classList.remove("animation")
-    }, 300)
+    flippButtons(indexActiveSlide)
+    changeSlide(indexActiveSlide)
 
-    flippingButtons(indexActiveSlide)
-
-    track.style.transform = shift(indexActiveSlide, zdvig)
     track.style.transitionDuration = "400ms"
 
-    currentPosition = -(indexActiveSlide * zdvig)
+    currentPosition = -(indexActiveSlide * itemWidth)
     isDrag = false
   }
 
-  document.addEventListener("mouseleave", (event) => {
-    const zdvig = shiftCalculate()
-
-    track.style.transform = `translate3d(${indexActiveSlide * zdvig}px, 0px, 0px)`
+  function goingBeyond() {
+    changeSlide(indexActiveSlide)
     isDrag = false
     track.style.transitionDuration = "600ms"
-  })
+  }
+
+  // window.addEventListener("resize", () => {
+  //   alert("22")
+  // })
+  document.addEventListener("mouseleave", goingBeyond)
 
   track.addEventListener("mousedown", onDragStart)
   document.addEventListener("mousemove", onDragOver)
@@ -173,31 +152,6 @@ function slider(selector) {
   track.addEventListener("touchstart", onDragStart)
   document.addEventListener("touchmove", onDragOver)
   document.addEventListener("touchend", onDragEnd)
-
-  function shift(index, shift) {
-    return `translate3d(${index * shift}px, 0px, 0px)`
-  }
-
-  function shiftCalculate() {
-    const itemWidth = items[0].offsetWidth
-    return (shiftValue = parseInt(getGapTrack.gap) + itemWidth)
-  }
-
-  function redraw(direction, text, indexActiveSlide) {
-    const index = Math.abs(indexActiveSlide)
-
-    if (direction === "next") {
-      const prevValue = area.querySelector(".text.active")
-      prevValue.classList.remove("active")
-      text[index].classList.add("active")
-    }
-
-    if (direction === "prev") {
-      const prevValue = area.querySelector(".text.active")
-      text[index].classList.add("active")
-      prevValue.classList.remove("active")
-    }
-  }
 }
 
 slider("#slider-merch")
