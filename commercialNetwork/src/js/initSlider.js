@@ -199,10 +199,3 @@ initSlider("#slider-merch")
 initSlider("#slider-team")
 
 initSlider("#slider-news")
-
-// function getRemoveSlides(selector, window, slides) {
-//   if (selector === "#slider-news" && window >= 768 && window <= 992) {
-//     return 1
-//   }
-//   return window >= 1200 ? slides : window <= 992 ? 0 : 1
-// }
