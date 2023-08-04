@@ -1,29 +1,26 @@
-function initSlider(selector, param) {
+function initSlider(selector) {
   const slider = document.querySelector(selector)
   const btnNext = slider.querySelector(".slider-button__right")
   const btnPrev = slider.querySelector(".slider-button__left")
   const track = slider.querySelector(".slider-track")
   const items = slider.querySelectorAll(".slider-item")
-  const getGap = getComputedStyle(track)
-  const slides = param.removeSlides
+  const getGapTrack = getComputedStyle(track)
+
   let text = slider.querySelectorAll(".text")
   if (!text.length) text = false
 
-  console.log(text)
   let indexActiveSlide = 0
   let positionStart = 0
   let currentPosition = 0
   let isDrag = false
-  let removeIndex = 0
 
   if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
   btnNext.addEventListener("click", () => {
     const zdvig = shiftCalculate()
-    const clientWidth = window.innerWidth
-    const removeIndex = getRemoveSlides(selector, clientWidth, slides)
+    const countActiveSlide = activeSlides(slider)
 
-    if (Math.abs(indexActiveSlide) <= items.length - removeIndex) {
+    if (Math.abs(indexActiveSlide) <= items.length - countActiveSlide) {
       indexActiveSlide--
       track.style.transform = shift(indexActiveSlide, zdvig)
       document.body.classList.add("animation")
@@ -31,7 +28,7 @@ function initSlider(selector, param) {
       if (text) redraw("next", text, indexActiveSlide)
     }
 
-    if (Math.abs(indexActiveSlide) === items.length - 1 - removeIndex) {
+    if (Math.abs(indexActiveSlide) === items.length - countActiveSlide) {
       btnNext.classList.add("hiddenBtn-right")
     }
 
@@ -46,6 +43,8 @@ function initSlider(selector, param) {
 
   btnPrev.addEventListener("click", () => {
     const zdvig = shiftCalculate()
+    const countActiveSlide = activeSlides(slider)
+
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
       track.style.transform = shift(indexActiveSlide, zdvig)
@@ -55,7 +54,7 @@ function initSlider(selector, param) {
 
       if (indexActiveSlide === 0) btnPrev.classList.add("hiddenBtn-left")
 
-      if (indexActiveSlide !== items.length - 1 - removeIndex) {
+      if (indexActiveSlide !== items.length - countActiveSlide) {
         btnNext.classList.remove("hiddenBtn-right")
       }
     }
@@ -77,6 +76,12 @@ function initSlider(selector, param) {
     positionStart += currentPosition
   }
 
+  function activeSlides(selector) {
+    const sliderWidth = selector.offsetWidth
+    const itemWidth = items[0].offsetWidth
+    return Math.floor(sliderWidth / itemWidth)
+  }
+
   function onDragOver(event) {
     if (!isDrag) return
 
@@ -88,22 +93,24 @@ function initSlider(selector, param) {
   }
 
   function onDragEnd(event) {
-    const zdvig = shiftCalculate()
     if (!isDrag) return
 
-    let positionEnd = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX
+    const zdvig = shiftCalculate()
+    const countActiveSlide = activeSlides(slider)
 
-    const clientWidth = window.innerWidth
-    removeIndex = getRemoveSlides(selector, clientWidth, slides)
+    let positionEnd = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX
 
     positionEnd += currentPosition
 
     if (
       positionStart > positionEnd &&
       Math.abs(positionEnd - positionStart) > zdvig * 0.2 &&
-      -indexActiveSlide !== items.length - 1 - removeIndex
+      -indexActiveSlide !== items.length - countActiveSlide
     ) {
-      if (positionStart - positionEnd - 2 * zdvig > 0 && Math.abs(indexActiveSlide) + 2 < items.length - removeIndex) {
+      if (
+        positionStart - positionEnd - 2 * zdvig > 0 &&
+        Math.abs(indexActiveSlide) + 2 < items.length - countActiveSlide
+      ) {
         indexActiveSlide -= 2
         if (text) redraw("next", text, indexActiveSlide)
       } else {
@@ -134,7 +141,7 @@ function initSlider(selector, param) {
       btnPrev.classList.add("hiddenBtn-left")
     } else btnPrev.classList.remove("hiddenBtn-left")
 
-    if (Math.abs(indexActiveSlide) === items.length - 1 - removeIndex) {
+    if (Math.abs(indexActiveSlide) === items.length - countActiveSlide) {
       btnNext.classList.add("hiddenBtn-right")
     } else btnNext.classList.remove("hiddenBtn-right")
 
@@ -167,14 +174,7 @@ function initSlider(selector, param) {
 
   function shiftCalculate() {
     const itemWidth = items[0].offsetWidth
-    return (shiftValue = parseInt(getGap.gap) + itemWidth)
-  }
-
-  function getRemoveSlides(selector, window, slides) {
-    if (selector === "#slider-news" && window >= 768 && window <= 992) {
-      return 1
-    }
-    return window >= 1200 ? slides : window <= 992 ? 0 : 1
+    return (shiftValue = parseInt(getGapTrack.gap) + itemWidth)
   }
 
   function redraw(direction, text, indexActiveSlide) {
@@ -194,8 +194,15 @@ function initSlider(selector, param) {
   }
 }
 
-initSlider("#slider-merch", { removeSlides: 1 })
+initSlider("#slider-merch")
 
-initSlider("#slider-team", { removeSlides: 1 })
+initSlider("#slider-team")
 
-initSlider("#slider-news", { removeSlides: 2 })
+initSlider("#slider-news")
+
+// function getRemoveSlides(selector, window, slides) {
+//   if (selector === "#slider-news" && window >= 768 && window <= 992) {
+//     return 1
+//   }
+//   return window >= 1200 ? slides : window <= 992 ? 0 : 1
+// }
