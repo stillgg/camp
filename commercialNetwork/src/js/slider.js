@@ -1,22 +1,28 @@
-function slider(selector) {
+function slider(
+  selector,
+  params = {
+    gap: 20,
+    index: 0,
+  },
+) {
   const area = document.querySelector(selector)
   const btnNext = area.querySelector(".slider-button__right")
   const btnPrev = area.querySelector(".slider-button__left")
   const track = area.querySelector(".slider-track")
   const items = area.querySelectorAll(".slider-item")
-  const getGapTrack = getComputedStyle(track)
-  const itemWidth = items[0].offsetWidth + parseInt(getGapTrack.gap)
+  const getGapTrack = params.gap
+  const itemWidth = items[0].clientWidth + getGapTrack
+  const countActiveSlide = getTotalVisibleSlides(area)
 
-  let indexActiveSlide = 0
+  let indexActiveSlide = params.index
   let positionStart = 0
   let currentPosition = 0
   let isDrag = false
+  let resizeTimeout
 
   if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
   btnNext.addEventListener("click", () => {
-    const countActiveSlide = getTotalVisibleSlides(area)
-
     if (Math.abs(indexActiveSlide) <= items.length - countActiveSlide) {
       indexActiveSlide--
       changeSlide(indexActiveSlide)
@@ -24,6 +30,7 @@ function slider(selector) {
 
     if (Math.abs(indexActiveSlide) === items.length - countActiveSlide) {
       btnNext.classList.add("hidden")
+      console.log("hidden")
     }
 
     currentPosition = itemWidth * -indexActiveSlide
@@ -32,8 +39,6 @@ function slider(selector) {
   })
 
   btnPrev.addEventListener("click", () => {
-    const countActiveSlide = getTotalVisibleSlides(area)
-
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
       changeSlide(indexActiveSlide)
@@ -52,10 +57,9 @@ function slider(selector) {
     event.preventDefault()
     isDrag = true
 
-    track.style.transitionDelay = "0s"
-
     positionStart = event.type === "touchstart" ? event.touches[0].clientX : event.clientX
     positionStart += currentPosition
+    track.style.transitionDuration = "0ms"
   }
 
   function getTotalVisibleSlides(selector) {
@@ -67,11 +71,9 @@ function slider(selector) {
   function onDragOver(event) {
     if (!isDrag) return
 
-    const move = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
+    const move = event.touches ? event.touches[0].clientX : event.clientX
 
     track.style.transform = `translate3d(${move - positionStart}px, 0px, 0px)`
-
-    track.style.transitionDuration = "0ms"
   }
 
   function changeSlide(indexSlide) {
@@ -79,8 +81,6 @@ function slider(selector) {
   }
 
   function flippButtons(indexSlide) {
-    const countActiveSlide = getTotalVisibleSlides(area)
-
     if (indexSlide === 0) {
       btnPrev.classList.add("hidden")
     } else btnPrev.classList.remove("hidden")
@@ -97,32 +97,20 @@ function slider(selector) {
 
     positionEnd += currentPosition
 
-    const countActiveSlide = getTotalVisibleSlides(area)
-    const procentShift = 0.2
-    const isMoved = positionEnd - positionStart > itemWidth * procentShift
+    const percentShift = 0.2
+    const isMoved = positionEnd - positionStart > itemWidth * percentShift
     const isFirstSlide = indexActiveSlide !== 0
 
     if (
       positionStart > positionEnd &&
-      Math.abs(positionEnd - positionStart) > itemWidth * procentShift &&
+      Math.abs(positionEnd - positionStart) > itemWidth * percentShift &&
       Math.abs(indexActiveSlide) !== items.length - countActiveSlide
     ) {
-      if (
-        positionStart - positionEnd - 2 * itemWidth > 0 &&
-        Math.abs(indexActiveSlide) + 2 < items.length - countActiveSlide
-      ) {
-        indexActiveSlide -= 2
-      } else {
-        indexActiveSlide--
-      }
+      indexActiveSlide--
     }
 
     if (positionStart < positionEnd && isMoved && isFirstSlide) {
-      if (Math.abs(positionStart - positionEnd) - 2 * itemWidth > 0 && indexActiveSlide + 2 <= 0) {
-        indexActiveSlide += 2
-      } else {
-        indexActiveSlide++
-      }
+      indexActiveSlide++
     }
 
     flippButtons(indexActiveSlide)
@@ -134,16 +122,42 @@ function slider(selector) {
     isDrag = false
   }
 
-  function goingBeyond() {
+  function checkExit() {
     changeSlide(indexActiveSlide)
     isDrag = false
     track.style.transitionDuration = "600ms"
   }
 
-  // window.addEventListener("resize", () => {
-  //   alert("22")
-  // })
-  document.addEventListener("mouseleave", goingBeyond)
+  function clearSlider() {
+    window.removeEventListener("resize", debounceResize)
+    document.removeEventListener("mouseleave", checkExit)
+
+    track.removeEventListener("mousedown", onDragStart)
+    document.removeEventListener("mousemove", onDragOver)
+    document.removeEventListener("mouseup", onDragEnd)
+
+    track.removeEventListener("touchstart", onDragStart)
+    document.removeEventListener("touchmove", onDragOver)
+    document.removeEventListener("touchend", onDragEnd)
+  }
+
+  function callSlider() {
+    slider(selector, (params.index = indexActiveSlide))
+  }
+
+  function updateSlider() {
+    clearSlider()
+    callSlider()
+  }
+
+  function debounceResize() {
+    clearTimeout(resizeTimeout)
+    resizeTimeout = setTimeout(updateSlider, 200)
+  }
+
+  window.addEventListener("resize", debounceResize)
+
+  document.addEventListener("mouseleave", checkExit)
 
   track.addEventListener("mousedown", onDragStart)
   document.addEventListener("mousemove", onDragOver)
@@ -156,6 +170,6 @@ function slider(selector) {
 
 slider("#slider-merch")
 
-slider("#slider-team")
+// slider("#slider-team")
 
-slider("#slider-news")
+// slider("#slider-news")

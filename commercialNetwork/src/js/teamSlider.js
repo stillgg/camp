@@ -11,7 +11,6 @@ const clickRight = () => {
   slides[activeSlide + 1].classList.add("slider__img__active")
   slides[activeSlide + 1].classList.remove("slider__img__next")
   activeSlide++
-  // console.log(activeSlide);
   btnDisabled()
 }
 const clickLeft = () => {
@@ -20,7 +19,6 @@ const clickLeft = () => {
   slides[activeSlide - 1].classList.add("slider__img__active")
   slides[activeSlide - 1].classList.remove("slider__img__prev")
   activeSlide += -1
-  // console.log(activeSlide);
   btnDisabled()
 }
 
