@@ -181,7 +181,7 @@
               }
             }
 
-            @media (max-width: 576px) {
+            @media (max-width: 992px) {
               min-width: 250px;
             }
           }
@@ -195,10 +195,11 @@
           display: none;
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 992px) {
           width: 250px;
         }
       }
+
       .wrapper-gradient {
         position: relative;
         margin-top: 30px;

@@ -1,8 +1,8 @@
 function slider(
   selector,
   params = {
+    sliderIndex: 0,
     gap: 20,
-    index: 0,
   },
 ) {
   const area = document.querySelector(selector)
@@ -14,7 +14,8 @@ function slider(
   const itemWidth = items[0].clientWidth + getGapTrack
   const countActiveSlide = getTotalVisibleSlides(area)
 
-  let indexActiveSlide = params.index
+  let indexActiveSlide = params.sliderIndex
+
   let positionStart = 0
   let currentPosition = 0
   let isDrag = false
@@ -27,30 +28,20 @@ function slider(
       indexActiveSlide--
       changeSlide(indexActiveSlide)
     }
-
-    if (Math.abs(indexActiveSlide) === items.length - countActiveSlide) {
-      btnNext.classList.add("hidden")
-      console.log("hidden")
-    }
-
     currentPosition = itemWidth * -indexActiveSlide
 
-    if (indexActiveSlide !== 0) btnPrev.classList.remove("hidden")
+    flippButtons(indexActiveSlide)
   })
 
   btnPrev.addEventListener("click", () => {
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
       changeSlide(indexActiveSlide)
-
-      if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
-
-      if (indexActiveSlide !== items.length - countActiveSlide) {
-        btnNext.classList.remove("hidden")
-      }
     }
 
     currentPosition = itemWidth * -indexActiveSlide
+
+    flippButtons(indexActiveSlide)
   })
 
   function onDragStart(event) {
@@ -63,8 +54,8 @@ function slider(
   }
 
   function getTotalVisibleSlides(selector) {
-    const sliderWidth = selector.offsetWidth
-    const itemWidth = items[0].offsetWidth
+    const sliderWidth = selector.clientWidth
+    const itemWidth = items[0].clientWidth
     return Math.floor(sliderWidth / itemWidth)
   }
 
@@ -142,7 +133,11 @@ function slider(
   }
 
   function callSlider() {
-    slider(selector, (params.index = indexActiveSlide))
+    params = {
+      gap: 20,
+      sliderIndex: indexActiveSlide,
+    }
+    slider(selector, params)
   }
 
   function updateSlider() {
@@ -170,6 +165,6 @@ function slider(
 
 slider("#slider-merch")
 
-// slider("#slider-team")
+slider("#slider-team")
 
-// slider("#slider-news")
+slider("#slider-news")
