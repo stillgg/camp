@@ -151,102 +151,315 @@
       padding-top: 100px;
     }
   }
+}
 
-  .career__popup {
-    top: 0;
-    right: -100%;
-    position: absolute;
-    z-index: 999990;
-    background-color: $white;
-    height: 100%;
-    width: 100%;
-    max-width: 1531px;
-    overflow-y: auto;
-    opacity: 0;
-    transition: right 0.8s, opacity 0.8s;
+.career__popup {
+  color: $white;
+  top: 0;
+  right: -100%;
+  position: fixed;
+  z-index: 999991;
+  background-color: $white;
+  height: 100%;
+  width: 100%;
+  max-width: 1531px;
+  overflow-y: auto;
+  opacity: 0;
+  transition: right 0.8s, opacity 0.8s;
 
-    .popup__preview {
-      background-color: $red;
+  .popup__preview {
+    background-color: $red;
 
-      .preview__container {
+    .preview__container {
+      position: relative;
+      display: flex;
+      padding: 60px 100px;
+
+      .preview__text {
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .text__title {
+          font-weight: 700;
+          font-size: 46px;
+          margin-bottom: 40px;
+        }
+
+        .text__requirements {
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .requirements__description {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 30px;
+        }
+        @media (max-width: 992px) {
+          max-width: 100%;
+        }
+      }
+
+      .preview__picture {
+        position: absolute;
+        bottom: 0;
+        left: 60%;
+        @media (max-width: 992px) {
+          display: none;
+        }
+      }
+
+      .close__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        cursor: pointer;
+        top: 15px;
+        left: 15px;
+        width: 60px;
+        height: 60px;
+
+        .preview__close {
+          position: relative;
+          width: 31px;
+          height: 31px;
+
+          .close__strip {
+            position: absolute;
+            display: block;
+            background-color: $white;
+            width: 100%;
+            height: 3px;
+            top: 50%;
+
+            &:first-child {
+              transform: rotate(45deg);
+            }
+
+            &:last-child {
+              transform: rotate(-45deg);
+            }
+          }
+        }
+
+        @media (max-width: 992px) {
+          left: initial;
+          right: 15px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        padding: 50px 20px;
+      }
+    }
+
+    .PopUp__data {
+      background-color: $white;
+      color: $black;
+
+      .data__container {
         position: relative;
         display: flex;
         padding: 60px 100px;
 
-        .preview__text {
-          max-width: 60%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-
-          .text__title {
-            font-weight: 700;
-            font-size: 46px;
-            margin-bottom: 40px;
-          }
-
-          .text__requirements {
-            font-weight: 700;
-            margin-bottom: 10px;
-          }
-
-          .requirements__description {
+        .form {
+          width: 100%;
+          .data__form {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 30px;
-          }
-          @media (max-width: 992px) {
-            max-width: 100%;
-          }
-        }
+            gap: 40px;
 
-        .preview__picture {
-          position: absolute;
-          bottom: 0;
-          left: 60%;
-          @media (max-width: 992px) {
-            display: none;
-          }
-        }
+            .form__column {
+              display: flex;
+              flex-direction: column;
+              gap: 30px;
+              width: 50%;
+              margin-bottom: 30px;
 
-        .close__wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          cursor: pointer;
-          top: 15px;
-          left: 15px;
-          width: 60px;
-          height: 60px;
+              .column__input {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
 
-          .preview__close {
-            position: relative;
-            width: 31px;
-            height: 31px;
+                .input__title {
+                  pointer-events: none;
+                  font-size: 16px;
+                  line-height: 162%;
+                }
 
-            .close__strip {
-              position: absolute;
+                .wrapper-input-select {
+                  position: relative;
+
+                  &:focus-within {
+                    &::after {
+                      transform: translateY(4px) rotate(-135deg);
+                    }
+                  }
+                  &::after {
+                    content: "";
+                    right: 15px;
+                    top: calc(50% - 5px);
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    border: solid $black;
+                    border-width: 0px 2px 2px 0px;
+                    transition: 0.4s;
+                    transform: rotate(45deg);
+                  }
+                }
+
+                .input__line {
+                  background: #f3f3f3;
+                  border-radius: 10px;
+                  padding: 15px 20px 14px;
+                  transition: 0.4s;
+
+                  &.input-select {
+                    width: 100%;
+                    appearance: none;
+
+                    &:focus {
+                      outline: none;
+                    }
+
+                    .input-select::-ms-expand {
+                      display: none;
+                    }
+                  }
+
+                  &:hover {
+                    background: $white;
+                    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12157);
+                  }
+                  &.invalid {
+                    box-shadow: 10px 10px 20px rgba(180, 27, 27, 0.697);
+                  }
+                }
+                .input__birthday {
+                  display: grid;
+                  grid-template-columns: repeat(3, calc(33% - 13px));
+                  gap: 20px;
+
+                  .input__wrapper {
+                    position: relative;
+
+                    .input__line {
+                      width: 100%;
+                      &::-webkit-outer-spin-button,
+                      &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                      }
+                    }
+                  }
+                }
+              }
+              .input__button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                border: 1px solid #5c5c5c;
+                border-radius: 10px;
+                margin-top: 36px;
+                cursor: pointer;
+
+                .button__op {
+                  visibility: hidden;
+                  position: absolute;
+                }
+              }
+              @media (max-width: 992px) {
+                width: 100%;
+              }
+            }
+            @media (max-width: 992px) {
               display: block;
-              background-color: $white;
-              width: 100%;
-              height: 3px;
-              top: 50%;
+            }
+          }
 
-              &:first-child {
-                transform: rotate(45deg);
+          .form__confirm {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+
+            .confirm__container {
+              display: flex;
+              align-items: center;
+              position: relative;
+              padding-left: 35px;
+              line-height: 186%;
+              color: #9e9e9e;
+              user-select: none;
+
+              .confirm__point:checked ~ .confirm__checkbox::after {
+                display: block;
               }
 
-              &:last-child {
-                transform: rotate(-45deg);
+              .confirm__point {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+              }
+              .confirm__checkbox {
+                position: absolute;
+                top: calc(50% - 12.5px);
+                left: 0;
+                border-radius: 15px;
+                height: 24px;
+                width: 24px;
+                background-color: transparent;
+                border: 2px solid #9e9e9e;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: calc(50% - 8px);
+                  left: calc(50% - 8px);
+                  width: 16px;
+                  height: 16px;
+                  background: #9e9e9e;
+                  border-radius: 10px;
+                  transition: 0.4s;
+                  display: none;
+                }
+              }
+
+              @media (max-width: 576px) {
+                line-height: 156%;
+                font-size: 12px;
               }
             }
           }
 
+          .form__btn {
+            background-color: $red;
+            padding: 17px 30px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 162%;
+            color: $white;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: 0.4s;
+
+            &:hover {
+              background: #c80036;
+              box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.50196);
+            }
+          }
+
           @media (max-width: 992px) {
-            left: initial;
-            right: 15px;
+            display: flex;
+            flex-direction: column;
           }
         }
 
@@ -254,220 +467,11 @@
           padding: 50px 20px;
         }
       }
-
-      .PopUp__data {
-        background-color: $white;
-        color: $black;
-
-        .data__container {
-          position: relative;
-          display: flex;
-          padding: 60px 100px;
-
-          .form {
-            width: 100%;
-            .data__form {
-              display: flex;
-              gap: 40px;
-
-              .form__column {
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
-                width: 50%;
-                margin-bottom: 30px;
-
-                .column__input {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-
-                  .input__title {
-                    pointer-events: none;
-                    font-size: 16px;
-                    line-height: 162%;
-                  }
-
-                  .wrapper-input-select {
-                    position: relative;
-
-                    &:focus-within {
-                      &::after {
-                        transform: translateY(4px) rotate(-135deg);
-                      }
-                    }
-                    &::after {
-                      content: "";
-                      right: 15px;
-                      top: calc(50% - 5px);
-                      position: absolute;
-                      width: 10px;
-                      height: 10px;
-                      border: solid $black;
-                      border-width: 0px 2px 2px 0px;
-                      transition: 0.4s;
-                      transform: rotate(45deg);
-                    }
-                  }
-
-                  .input__line {
-                    background: #f3f3f3;
-                    border-radius: 10px;
-                    padding: 15px 20px 14px;
-                    transition: 0.4s;
-
-                    &.input-select {
-                      width: 100%;
-                      appearance: none;
-
-                      &:focus {
-                        outline: none;
-                      }
-
-                      .input-select::-ms-expand {
-                        display: none;
-                      }
-                    }
-
-                    &:hover {
-                      background: $white;
-                      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12157);
-                    }
-                  }
-                  .input__birthday {
-                    display: grid;
-                    grid-template-columns: repeat(3, calc(33% - 13px));
-                    gap: 20px;
-
-                    .input__wrapper {
-                      position: relative;
-
-                      .input__line {
-                        width: 100%;
-                        &::-webkit-outer-spin-button,
-                        &::-webkit-inner-spin-button {
-                          -webkit-appearance: none;
-                          margin: 0;
-                        }
-                      }
-                    }
-                  }
-                }
-                .input__button {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  padding: 15px;
-                  border: 1px solid #5c5c5c;
-                  border-radius: 10px;
-                  margin-top: 36px;
-                  cursor: pointer;
-
-                  .button__op {
-                    visibility: hidden;
-                    position: absolute;
-                  }
-                }
-                @media (max-width: 992px) {
-                  width: 100%;
-                }
-              }
-              @media (max-width: 992px) {
-                display: block;
-              }
-            }
-
-            .form__confirm {
-              display: flex;
-              align-items: center;
-              gap: 10px;
-              margin-bottom: 40px;
-
-              .confirm__container {
-                display: flex;
-                align-items: center;
-                position: relative;
-                padding-left: 35px;
-                line-height: 186%;
-                color: #9e9e9e;
-                user-select: none;
-
-                .confirm__point:checked ~ .confirm__checkbox::after {
-                  display: block;
-                }
-
-                .confirm__point {
-                  position: absolute;
-                  opacity: 0;
-                  cursor: pointer;
-                  height: 0;
-                  width: 0;
-                }
-                .confirm__checkbox {
-                  position: absolute;
-                  top: calc(50% - 12.5px);
-                  left: 0;
-                  border-radius: 15px;
-                  height: 24px;
-                  width: 24px;
-                  background-color: transparent;
-                  border: 2px solid #9e9e9e;
-
-                  &::after {
-                    content: "";
-                    position: absolute;
-                    top: calc(50% - 8px);
-                    left: calc(50% - 8px);
-                    width: 16px;
-                    height: 16px;
-                    background: #9e9e9e;
-                    border-radius: 10px;
-                    transition: 0.4s;
-                    display: none;
-                  }
-                }
-
-                @media (max-width: 576px) {
-                  line-height: 156%;
-                  font-size: 12px;
-                }
-              }
-            }
-
-            .form__btn {
-              background-color: $red;
-              padding: 17px 30px;
-              font-weight: 700;
-              font-size: 16px;
-              line-height: 162%;
-              color: $white;
-              border-radius: 12px;
-              cursor: pointer;
-              margin: 0 auto;
-              transition: 0.4s;
-
-              &:hover {
-                background: #c80036;
-                box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.50196);
-              }
-            }
-
-            @media (max-width: 992px) {
-              display: flex;
-              flex-direction: column;
-            }
-          }
-
-          @media (max-width: 992px) {
-            padding: 50px 20px;
-          }
-        }
-      }
     }
+  }
 
-    &.active {
-      right: 0;
-      opacity: 1;
-    }
+  &.active {
+    right: 0;
+    opacity: 1;
   }
 }
