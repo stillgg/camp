@@ -19,17 +19,49 @@ const inputName = form.querySelector("#Name")
 const inputNationality = form.querySelector("#Nationality")
 const inputJob = form.querySelector("#Job")
 
-popup.addEventListener("scroll", (e) => {
-  e.preventDefault()
-})
+const inputDays = form.querySelector("#Days")
+const inputMonths = form.querySelector("#Months")
+const inputYears = form.querySelector("#Years")
 
 const onInput = (input) => {
+  console.log(input)
   if (!eval(`isValid${input.id}(input)`)) {
     input.parentNode.classList.add("invalid")
-    console.log(inputEmail.parentNode.dataset.el)
   } else {
     input.parentNode.classList.remove("invalid")
   }
+}
+
+function isValidMonths(input) {
+  if (+input.value > 12) {
+    input.parentNode.dataset.el = "Некорректно введена дата"
+    return false
+  }
+  return true
+}
+
+function isValidYears(input) {
+  if (+input.value > 2023 || +input.value < 1950) {
+    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
+    return false
+  }
+  if (+input.value > 2005) {
+    input.parentNode.parentNode.dataset.el = "Мы принимаем на работу только совершеннолетних сотрудников"
+    return false
+  }
+  return true
+}
+
+function isValidDays(input) {
+  if (+input.value > 31) {
+    console.log(input.parentNode.parentNode)
+    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
+    return false
+  }
+  if (input.value < 1) {
+    input.value = ""
+  }
+  return true
 }
 
 function isValidEmail(input) {
@@ -88,6 +120,15 @@ inputNationality.addEventListener("blur", function () {
   onInput(this)
 })
 inputJob.addEventListener("blur", function () {
+  onInput(this)
+})
+inputDays.addEventListener("blur", function () {
+  onInput(this)
+})
+inputMonths.addEventListener("blur", function () {
+  onInput(this)
+})
+inputYears.addEventListener("blur", function () {
   onInput(this)
 })
 

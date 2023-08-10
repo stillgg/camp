@@ -368,6 +368,19 @@
                       }
                     }
                   }
+                  &.invalid {
+                    &::after {
+                      content: attr(data-el);
+                      position: absolute;
+                      top: 100%;
+                      font-size: 14px;
+                      font-style: italic;
+                      color: $red;
+                    }
+                    .input__line {
+                      box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                    }
+                  }
                 }
               }
               .input__button {
