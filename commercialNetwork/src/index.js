@@ -8,16 +8,28 @@ import { slider } from "./js/slider"
 
 // const sliderTeam = slider("#slider-team")
 
-const sliderNews = slider("#slider-news")
-
+let sliderNews = slider("#slider-news")
 // const sliderMerch = slider("#slider-merch")
+
+function debounce(callback, delay) {
+  let timeout
+  return function () {
+    clearTimeout(timeout)
+    timeout = setTimeout(callback, delay)
+  }
+}
 
 window.addEventListener("resize", () => {
   // sliderTeam.destroy()
-  sliderNews.destroy()
-  // sliderMerch.destroy()
+  const currentIndex = sliderNews.getCurrentIndex()
+  const { selector, params } = sliderNews.destroy()
+  debounce((sliderNews = slider(selector, params)), 2000)
+
+  sliderNews.setCurrentIndex(currentIndex)
+  // console.log("resize", { selector, params })
+  // // sliderMerch.destroy()
 
   // sliderTeam.init()
-  sliderNews.init()
+
   // sliderMerch.init()
 })

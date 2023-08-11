@@ -5,7 +5,9 @@ function slider(
     gap: 20,
   },
 ) {
-  const defaltParams = {
+  console.log("параметры", params.sliderIndex)
+
+  const defaultParams = {
     sliderIndex: params?.sliderIndex || 0,
     gap: params?.gap || 20,
   }
@@ -15,30 +17,33 @@ function slider(
   const btnPrev = area.querySelector(".slider-button__left")
   const track = area.querySelector(".slider-track")
   const items = area.querySelectorAll(".slider-item")
-  const itemWidth = items[0].clientWidth + defaltParams.gap
+  const itemWidth = items[0].clientWidth + defaultParams.gap
   const countActiveSlide = getTotalVisibleSlides(area)
   const percentShift = 0.2
 
-  let indexActiveSlide = defaltParams.sliderIndex
-  console.log(indexActiveSlide)
+  let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
 
+  console.log("присвоение", indexActiveSlide)
+
   if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
-  btnNext.addEventListener("click", () => {
+  function onClickBtnRight() {
     if (Math.abs(indexActiveSlide) <= items.length - countActiveSlide) {
       indexActiveSlide--
       changeSlide(indexActiveSlide)
     }
-  })
+    console.log("клик право", indexActiveSlide)
+  }
 
-  btnPrev.addEventListener("click", () => {
+  function onClickBtnLeft() {
     if (indexActiveSlide !== 0) {
       indexActiveSlide++
       changeSlide(indexActiveSlide)
     }
-  })
+    console.log("клик лево", indexActiveSlide)
+  }
 
   function getTotalVisibleSlides(selector) {
     const sliderWidth = selector.clientWidth
@@ -90,7 +95,10 @@ function slider(
     if (positionStart < positionEnd && isMoved && isFirstSlide) {
       indexActiveSlide++
     }
+
     changeSlide(indexActiveSlide)
+
+    console.log("драг", indexActiveSlide)
 
     track.style.transitionDuration = "400ms"
     isDrag = false
@@ -104,7 +112,7 @@ function slider(
 
   function recalculationActiveSlide(indexActiveSlide) {
     // const isLastSlide = Math.abs(indexActiveSlide) === items.length - countActiveSlide
-    console.log(indexActiveSlide)
+    // console.log(indexActiveSlide)
     // while (isLastSlide && Math.abs(indexActiveSlide) > lastSlide) {
     //   indexActiveSlide++
     // }
@@ -116,6 +124,9 @@ function slider(
   function beforeInitialization() {
     changeSlide(indexActiveSlide)
     document.addEventListener("mouseleave", onMouseLeave)
+
+    btnNext.addEventListener("click", onClickBtnRight)
+    btnPrev.addEventListener("click", onClickBtnLeft)
 
     track.addEventListener("mousedown", onDragStart)
     document.addEventListener("mousemove", onDragOver)
@@ -132,6 +143,9 @@ function slider(
     destroy: function () {
       document.removeEventListener("mouseleave", onMouseLeave)
 
+      btnNext.removeEventListener("click", onClickBtnRight)
+      btnPrev.removeEventListener("click", onClickBtnLeft)
+
       track.removeEventListener("mousedown", onDragStart)
       document.removeEventListener("mousemove", onDragOver)
       document.removeEventListener("mouseup", onDragEnd)
@@ -139,10 +153,16 @@ function slider(
       track.removeEventListener("touchstart", onDragStart)
       document.removeEventListener("touchmove", onDragOver)
       document.removeEventListener("touchend", onDragEnd)
+
+      console.log("return", indexActiveSlide)
+
+      return { selector, params: { ...defaultParams, sliderIndex: indexActiveSlide } }
     },
-    init: function () {
-      console.log(indexActiveSlide)
-      slider(selector, { ...defaltParams, sliderIndex: indexActiveSlide })
+    getCurrentIndex: function () {
+      return indexActiveSlide
+    },
+    setCurrentIndex: function (index) {
+      indexActiveSlide = index
     },
   }
 }
