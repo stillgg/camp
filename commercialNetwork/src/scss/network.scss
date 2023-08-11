@@ -9,7 +9,9 @@
 
     .h2 {
       transform: translateY(-200%);
-      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      transition:
+        transform 0.8s ease-in-out,
+        opacity 0.8s ease-in-out;
       opacity: 0;
     }
 
@@ -30,7 +32,9 @@
       gap: 20px;
       padding-bottom: 10px;
       transform: translateY(100%);
-      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      transition:
+        transform 0.8s ease-in-out,
+        opacity 0.8s ease-in-out;
       opacity: 0;
 
       .main__block {
@@ -132,7 +136,9 @@
 
   .network__footer {
     transform: translateY(100%);
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
     opacity: 0;
     background: #ebebeb;
 

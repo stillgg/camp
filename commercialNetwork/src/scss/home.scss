@@ -26,7 +26,9 @@
     padding: 20px 0;
     transform: translateY(100%);
     opacity: 0;
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
 
     @media (max-width: 540px) {
       gap: 15px;

@@ -1,7 +1,7 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 const config = {
   entry: "./src/index.js",
@@ -24,7 +24,7 @@ const config = {
   module: {
     rules: [],
   },
-};
+}
 
 module.exports = (env, argv) => {
   const pages = [
@@ -33,14 +33,14 @@ module.exports = (env, argv) => {
       filename: `index.html`,
       chunks: ["main"],
     },
-  ];
+  ]
 
-  const mode = argv.mode;
-  const module = config.module;
-  const rules = module.rules;
-  const plugins = config.plugins;
+  const mode = argv.mode
+  const module = config.module
+  const rules = module.rules
+  const plugins = config.plugins
 
-  config.mode = mode;
+  config.mode = mode
 
   if (mode === "development") {
     pages.forEach((page) => {
@@ -50,9 +50,9 @@ module.exports = (env, argv) => {
           chunks: page.chunks,
           minify: false,
           inject: "body",
-        })
-      );
-    });
+        }),
+      )
+    })
   } else {
     pages.forEach((page) => {
       plugins.push(
@@ -64,19 +64,19 @@ module.exports = (env, argv) => {
           cache: true,
           hash: true,
           base: "/",
-        })
-      );
-    });
+        }),
+      )
+    })
   }
 
   plugins.push(
     new CopyPlugin({
       patterns: [{ from: "src/resources", to: "resources" }],
-    })
-  );
+    }),
+  )
 
   if (mode === "production") {
-    plugins.push(new CleanWebpackPlugin());
+    plugins.push(new CleanWebpackPlugin())
   }
 
   rules.push({
@@ -89,28 +89,28 @@ module.exports = (env, argv) => {
       // Compiles Sass to CSS
       "sass-loader",
     ],
-  });
+  })
 
   rules.push({
     test: /\.(png|svg|jpg|jpeg|gif)$/i,
-  });
+  })
 
   rules.push({
     test: /\.(woff|woff2|eot|ttf|otf)$/i,
-  });
+  })
 
   rules.push({
     test: /\.js$/,
     exclude: /node_modules/,
     use: "babel-loader",
-  });
+  })
 
   if (mode === "development") {
-    config.devtool = "inline-source-map";
+    config.devtool = "inline-source-map"
     config.optimization = {
       runtimeChunk: "single",
-    };
+    }
   }
 
-  return config;
-};
+  return config
+}
