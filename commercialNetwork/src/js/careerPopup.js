@@ -3,6 +3,7 @@ const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     popup.classList.add("active")
@@ -12,13 +13,13 @@ buttons.forEach((button) => {
 closeBtn.addEventListener("click", () => {
   popup.classList.remove("active")
 })
-
+const ArrayInputs = form.querySelectorAll("input")
 const inputEmail = form.querySelector("#Email")
 const inputTel = form.querySelector("#Tel")
 const inputName = form.querySelector("#Name")
 const inputNationality = form.querySelector("#Nationality")
 const inputJob = form.querySelector("#Job")
-
+console.log(ArrayInputs)
 const inputDays = form.querySelector("#Days")
 const inputMonths = form.querySelector("#Months")
 const inputYears = form.querySelector("#Years")
@@ -123,20 +124,6 @@ function isValidJob(input) {
   return true
 }
 
-inputTel.addEventListener("focus", function () {
-  console.log(this.value)
-  if (!this.value) {
-    this.value = "+7"
-  }
-})
-
-inputTel.addEventListener("change", function () {
-  console.log(this.value)
-  if (this.value[1] !== "7") {
-    this.value = "+7"
-  }
-})
-
 inputEmail.addEventListener("blur", function () {
   onInput(this)
 })
@@ -177,8 +164,8 @@ const prefixNumber = (str) => {
 }
 
 inputTel.addEventListener("input", (e) => {
-  const value = input.value.replace(/\D+/g, "")
-  const numberLength = 11
+  const value = inputTel.value.replace(/\D+/g, "")
+  const MaxLength = 11
 
   let result
   if (inputTel.value.includes("+8") || inputTel.value[0] === "8") {
@@ -187,8 +174,7 @@ inputTel.addEventListener("input", (e) => {
     result = "+"
   }
 
-  //
-  for (let i = 0; i < value.length && i < numberLength; i++) {
+  for (let i = 0; i < value.length && i < MaxLength; i++) {
     switch (i) {
       case 0:
         result += prefixNumber(value[i])
@@ -207,6 +193,15 @@ inputTel.addEventListener("input", (e) => {
     }
     result += value[i]
   }
-  //
   inputTel.value = result
+})
+
+inputTel.addEventListener("blur", function () {
+  if (this.value.length !== 18) {
+    this.parentNode.dataset.el = "Неверный номер телефона"
+    this.parentNode.classList.add("invalid")
+    console.log(this.value.length)
+  } else {
+    this.parentNode.classList.remove("invalid")
+  }
 })
