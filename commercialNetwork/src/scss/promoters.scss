@@ -2,10 +2,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: url("../resources/img/04-background-image.webp") center center
-    no-repeat $red;
-  background: url("../resources/img/04-background-image.png") center center
-    no-repeat $red;
+  background: url("../resources/img/04-background-image.webp") center center no-repeat $red;
+  background: url("../resources/img/04-background-image.png") center center no-repeat $red;
   background-size: cover;
   overflow: hidden;
 

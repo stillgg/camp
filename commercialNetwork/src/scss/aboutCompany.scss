@@ -11,7 +11,9 @@
 
   .about-body__title {
     opacity: 0;
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
     transform: translateX(-100%);
     font-weight: 700;
     line-height: 122%;
@@ -37,7 +39,9 @@
   }
 
   .about-body-row {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
     transform: translateX(100%);
     opacity: 0;
     display: flex;

@@ -61,7 +61,9 @@ body {
       align-items: center;
       .menu__body {
         display: flex;
-        transition: opacity 0.3s, left 0.5s;
+        transition:
+          opacity 0.3s,
+          left 0.5s;
 
         .header__nav {
           margin: auto;
