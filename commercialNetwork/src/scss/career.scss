@@ -366,6 +366,9 @@
                         -webkit-appearance: none;
                         margin: 0;
                       }
+                      &.invalid {
+                        box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                      }
                     }
                   }
                   &.invalid {
@@ -376,9 +379,7 @@
                       font-size: 14px;
                       font-style: italic;
                       color: $red;
-                    }
-                    .input__line {
-                      box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                      white-space: nowrap;
                     }
                   }
                 }

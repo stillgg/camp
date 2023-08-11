@@ -3,6 +3,20 @@ const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
+const select = form.querySelector("select")
+
+const arrCities = ["Брянск", "Томск", "Москва", "Питер", "Пукавичи"]
+
+arrCities.forEach((city) => {
+  fillCity(city)
+})
+function fillCity(name) {
+  const elemCity = document.createElement("option")
+  elemCity.value = name
+  elemCity.textContent = name
+  select.appendChild(elemCity)
+}
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     popup.classList.add("active")
@@ -37,10 +51,13 @@ function isValidMonths(input) {
     input.value = ""
   }
   if (+input.value > 12) {
-    input.parentNode.dataset.el = "Некорректно введена дата"
+    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
+  input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
 
   return true
 }
@@ -52,15 +69,18 @@ function isValidYears(input) {
   if (+input.value > 2023 || +input.value < 1950) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
   if (+input.value > 2005) {
     input.parentNode.parentNode.dataset.el = "Мы принимаем на работу только совершеннолетних сотрудников"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
-
   input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
+
   return true
 }
 
@@ -69,10 +89,13 @@ function isValidDays(input) {
     input.value = ""
   }
   if (+input.value > 31) {
-    console.log(input.parentNode.parentNode)
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
+    input.classList.add("invalid")
+    input.parentNode.parentNode.classList.add("invalid")
     return
   }
+  input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
 
   return true
 }
@@ -123,20 +146,6 @@ function isValidJob(input) {
   return true
 }
 
-inputTel.addEventListener("focus", function () {
-  console.log(this.value)
-  if (!this.value) {
-    this.value = "+7"
-  }
-})
-
-inputTel.addEventListener("change", function () {
-  console.log(this.value)
-  if (this.value[1] !== "7") {
-    this.value = "+7"
-  }
-})
-
 inputEmail.addEventListener("blur", function () {
   onInput(this)
 })
@@ -159,39 +168,18 @@ inputYears.addEventListener("blur", function () {
   onInput(this)
 })
 
-popup.addEventListener("scroll", (e) => {
-  e.preventDefault()
-})
-
-const prefixNumber = (str) => {
-  if (str === "7") {
-    return "7 ("
-  }
-  if (str === "8") {
-    return "8 ("
-  }
-  if (str === "9") {
-    return "7 (9"
-  }
-  return "7 ("
-}
-
 inputTel.addEventListener("input", (e) => {
-  const value = input.value.replace(/\D+/g, "")
+  const value = inputTel.value.replace(/\D+/g, "")
+  console.log(value)
   const numberLength = 11
 
-  let result
-  if (inputTel.value.includes("+8") || inputTel.value[0] === "8") {
-    result = ""
-  } else {
-    result = "+"
-  }
+  let result = "+"
 
-  //
   for (let i = 0; i < value.length && i < numberLength; i++) {
     switch (i) {
       case 0:
-        result += prefixNumber(value[i])
+        result += "7 ("
+        console.log(result, i)
         continue
       case 4:
         result += ") "
@@ -207,6 +195,29 @@ inputTel.addEventListener("input", (e) => {
     }
     result += value[i]
   }
-  //
   inputTel.value = result
+})
+
+inputTel.addEventListener("focus", function () {
+  if (!this.value) {
+    this.value = "+7"
+  }
+})
+
+popup.addEventListener("scroll", (e) => {
+  e.preventDefault()
+})
+
+const inputFile = form.querySelector("#input__file")
+inputFile.addEventListener("change", function () {
+  if (this.files[0].size > 100000) {
+    onInput()
+    this.value = ""
+  }
+})
+
+const confirm = form.querySelector("#confirm")
+console.log(confirm.checked)
+confirm.addEventListener("change", function () {
+  console.log(confirm.checked)
 })
