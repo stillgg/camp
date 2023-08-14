@@ -754,14 +754,8 @@
                       <div class="column__input">
                         <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
                         <div class="wrapper-input-select">
-                          <select name="city" id="city-select" class="input__line input-select">
+                          <select name="city" id="Select" class="input__line input-select">
                             <option selected disabled value="">Выбор города</option>
-                            <option value="Minsk">Минск</option>
-                            <option value="Grodno">Гродно</option>
-                            <option value="Brest">Брест</option>
-                            <option value="Vitebsk">Витебск</option>
-                            <option value="Gomel">Гомель</option>
-                            <option value="Minsk_O">Минская область</option>
                           </select>
                         </div>
                       </div>
@@ -813,19 +807,21 @@
                           placeholder="Укажите ваше гражданство"
                         />
                       </div>
-                      <label
-                        class="input__button"
-                        for="File "
-                        accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      <label class="input__button" for="File"
                         >Прикрепить резюме
-                        <input id="input__file" type="file" class="button__op" />
+                        <input
+                          id="File"
+                          type="file"
+                          class="button__op"
+                          accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        />
                       </label>
                     </div>
                   </div>
                   <div class="form__confirm">
                     <label class="confirm__container"
                       >Согласен с политикой обработки персональных данных
-                      <input type="checkbox" class="confirm__point" />
+                      <input type="checkbox" class="confirm__point" id="Confirm" />
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>

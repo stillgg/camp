@@ -3,6 +3,76 @@ const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
+const inputSelect = form.querySelector("Select")
+
+const arrCities = [
+  "Альметьевск",
+  "Ангарск",
+  "Астрахань",
+  "Ачинск",
+  "Балаково",
+  "Барнаул",
+  "Белорецк",
+  "Бердск",
+  "Бийск",
+  "Братск",
+  "Владивосток",
+  "Волгоград",
+  "Волжский",
+  "Екатеринбург",
+  "Ижевск",
+  "Иркутск",
+  "Казань",
+  "Каменск-Уральский",
+  "Кемерово",
+  "Красноярск",
+  "Ленинск-Кузнецкий",
+  "Магнитогорск",
+  "Набережные Челны",
+  "Находка",
+  "Нерюнгри",
+  "Нижневартовск",
+  "Нижнекамск",
+  "Нижний Тагил",
+  "Новокузнецк",
+  "Новосибирск",
+  "Норильск",
+  "Омск",
+  "Первоуральск",
+  "Прокопьевск",
+  "Ростов-на-Дону",
+  "Саратов",
+  "Стерлитамак",
+  "Сургут",
+  "Томск",
+  "Тюмень",
+  "Улан-Удэ",
+  "Ульяновск",
+  "Уфа",
+  "Ханты-Мансийск",
+  "Челябинск",
+  "Энгельс",
+  "Южно-Сахалинск",
+  "Юрга",
+  "Якутск",
+  "Моего города нет в этом списке",
+]
+
+arrCities.forEach((city) => {
+  fillCity(city)
+})
+
+function fillCity(name) {
+  const elemCity = document.createElement("option")
+  elemCity.value = name
+  elemCity.textContent = name
+  inputSelect.appendChild(elemCity)
+}
+console.log(inputSelect.value)
+inputSelect.addEventListener("blur", function () {
+  onInput(this)
+  console.log(this.value)
+})
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -13,23 +83,32 @@ buttons.forEach((button) => {
 closeBtn.addEventListener("click", () => {
   popup.classList.remove("active")
 })
-const ArrayInputs = form.querySelectorAll("input")
+
+const arrayInputs = form.querySelectorAll("input")
 const inputEmail = form.querySelector("#Email")
 const inputTel = form.querySelector("#Tel")
 const inputName = form.querySelector("#Name")
 const inputNationality = form.querySelector("#Nationality")
 const inputJob = form.querySelector("#Job")
-console.log(ArrayInputs)
 const inputDays = form.querySelector("#Days")
 const inputMonths = form.querySelector("#Months")
 const inputYears = form.querySelector("#Years")
+const inputFile = form.querySelector("#File")
+const inputConfirm = form.querySelector("#Confirm")
 
 const onInput = (input) => {
-  console.log(input)
   if (!eval(`isValid${input.id}(input)`)) {
     input.parentNode.classList.add("invalid")
   } else {
     input.parentNode.classList.remove("invalid")
+  }
+}
+function isValidSelect(input) {
+  if (input.value === "") {
+    input.parentNode.dataset.el = "Выберите город"
+    input.classList.add("invalid")
+  } else {
+    input.classList.remove("invalid")
   }
 }
 
@@ -38,11 +117,13 @@ function isValidMonths(input) {
     input.value = ""
   }
   if (+input.value > 12) {
-    input.parentNode.dataset.el = "Некорректно введена дата"
+    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
-
+  input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
   return true
 }
 
@@ -53,15 +134,18 @@ function isValidYears(input) {
   if (+input.value > 2023 || +input.value < 1950) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
   if (+input.value > 2005) {
     input.parentNode.parentNode.dataset.el = "Мы принимаем на работу только совершеннолетних сотрудников"
     input.parentNode.parentNode.classList.add("invalid")
+    input.classList.add("invalid")
     return
   }
-
   input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
+
   return true
 }
 
@@ -70,10 +154,13 @@ function isValidDays(input) {
     input.value = ""
   }
   if (+input.value > 31) {
-    console.log(input.parentNode.parentNode)
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
+    input.classList.add("invalid")
+    input.parentNode.parentNode.classList.add("invalid")
     return
   }
+  input.parentNode.parentNode.classList.remove("invalid")
+  input.classList.remove("invalid")
 
   return true
 }
@@ -113,14 +200,15 @@ function isValidNationality(input) {
 
 function isValidJob(input) {
   const regex = /^[A-Za-z ]+$/
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
   if (input.value.length < 5) {
     input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
     return false
   }
+  if (!input.value.match(regex)) {
+    input.parentNode.dataset.el = "Введены некорректные символы"
+    return false
+  }
+
   return true
 }
 
@@ -146,38 +234,16 @@ inputYears.addEventListener("blur", function () {
   onInput(this)
 })
 
-popup.addEventListener("scroll", (e) => {
-  e.preventDefault()
-})
-
-const prefixNumber = (str) => {
-  if (str === "7") {
-    return "7 ("
-  }
-  if (str === "8") {
-    return "8 ("
-  }
-  if (str === "9") {
-    return "7 (9"
-  }
-  return "7 ("
-}
-
 inputTel.addEventListener("input", (e) => {
   const value = inputTel.value.replace(/\D+/g, "")
   const MaxLength = 11
 
-  let result
-  if (inputTel.value.includes("+8") || inputTel.value[0] === "8") {
-    result = ""
-  } else {
-    result = "+"
-  }
+  let result = "+"
 
   for (let i = 0; i < value.length && i < MaxLength; i++) {
     switch (i) {
       case 0:
-        result += prefixNumber(value[i])
+        result += "7 ("
         continue
       case 4:
         result += ") "
@@ -200,8 +266,38 @@ inputTel.addEventListener("blur", function () {
   if (this.value.length !== 18) {
     this.parentNode.dataset.el = "Неверный номер телефона"
     this.parentNode.classList.add("invalid")
-    console.log(this.value.length)
   } else {
     this.parentNode.classList.remove("invalid")
+  }
+})
+
+inputFile.addEventListener("change", function () {
+  if (this.files[0].size > 100000) {
+    onInput()
+    this.value = ""
+  }
+})
+
+inputConfirm.addEventListener("change", function () {
+  console.log(confirm.checked)
+})
+
+let submit = false
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault()
+  console.log(arrayInputs)
+  for (let i = 0; i < arrayInputs.length; i++) {
+    console.log(arrayInputs[i])
+    if (arrayInputs[i].classList.contains("invalid")) {
+      console.log("true")
+      alert("vvv")
+      break
+    }
+    if (!arrayInputs[i].value) {
+      console.log("true")
+      alert("vvv")
+      break
+    }
   }
 })
