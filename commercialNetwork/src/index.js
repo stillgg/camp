@@ -11,14 +11,6 @@ import { slider } from "./js/slider"
 let sliderNews = slider("#slider-news")
 // const sliderMerch = slider("#slider-merch")
 
-function debounce(callback, delay) {
-  let timeout
-  return function () {
-    clearTimeout(timeout)
-    timeout = setTimeout(callback, delay)
-  }
-}
-
 window.addEventListener("resize", () => {
   // sliderTeam.destroy()
   const currentIndex = sliderNews.getCurrentIndex()
@@ -33,3 +25,14 @@ window.addEventListener("resize", () => {
 
   // sliderMerch.init()
 })
+
+// function test() {
+//   return { age: 21, name: "dima" }
+// }
+
+// const age = test().age
+// // const name = test().name
+
+// const { age: newAge, name } = test()
+// console.log(age)
+// console.log(newAge)

@@ -111,17 +111,27 @@ function slider(
   }
 
   function recalculationActiveSlide(indexActiveSlide) {
-    // const isLastSlide = Math.abs(indexActiveSlide) === items.length - countActiveSlide
-    // console.log(indexActiveSlide)
-    // while (isLastSlide && Math.abs(indexActiveSlide) > lastSlide) {
+    const isLastSlide = Math.abs(indexActiveSlide) === items.length - countActiveSlide
+    const lastSlide = items.length - countActiveSlide
+
+    console.log("last", lastSlide)
+    console.log("count", countActiveSlide)
+
+    for (let i = lastSlide; i < items.length; i++) {
+      if (isLastSlide && Math.abs(i - items.length) !== countActiveSlide) {
+        indexActiveSlide++
+      }
+    }
+
+    // while (isLastSlide && items.length - Math.abs(indexActiveSlide) > countActiveSlide) {
     //   indexActiveSlide++
     // }
-    while (indexActiveSlide) {
-      indexActiveSlide++
-    }
+
+    console.log("recalculation", indexActiveSlide)
   }
 
   function beforeInitialization() {
+    recalculationActiveSlide(indexActiveSlide)
     changeSlide(indexActiveSlide)
     document.addEventListener("mouseleave", onMouseLeave)
 
