@@ -5,8 +5,6 @@ function slider(
     gap: 20,
   },
 ) {
-  console.log("параметры", params.sliderIndex)
-
   const defaultParams = {
     sliderIndex: params?.sliderIndex || 0,
     gap: params?.gap || 20,
@@ -18,31 +16,27 @@ function slider(
   const track = area.querySelector(".slider-track")
   const items = area.querySelectorAll(".slider-item")
   const itemWidth = items[0].clientWidth + defaultParams.gap
-  const countActiveSlide = getTotalVisibleSlides(area)
+  const totalVisibleSlides = getTotalVisibleSlides(area)
   const percentShift = 0.2
 
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
 
-  console.log("присвоение", indexActiveSlide)
-
   if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
   function onClickBtnRight() {
-    if (Math.abs(indexActiveSlide) <= items.length - countActiveSlide) {
-      indexActiveSlide--
+    if (indexActiveSlide < items.length - totalVisibleSlides) {
+      indexActiveSlide++
       changeSlide(indexActiveSlide)
     }
-    console.log("клик право", indexActiveSlide)
   }
 
   function onClickBtnLeft() {
     if (indexActiveSlide !== 0) {
-      indexActiveSlide++
+      indexActiveSlide--
       changeSlide(indexActiveSlide)
     }
-    console.log("клик лево", indexActiveSlide)
   }
 
   function getTotalVisibleSlides(selector) {
@@ -52,13 +46,13 @@ function slider(
   }
 
   function changeSlide(indexSlide) {
-    track.style.transform = `translate3d(${indexSlide * itemWidth}px, 0px, 0px)`
+    track.style.transform = `translate3d(-${indexSlide * itemWidth}px, 0px, 0px)`
 
     if (indexSlide === 0) {
       btnPrev.classList.add("hidden")
     } else btnPrev.classList.remove("hidden")
 
-    if (Math.abs(indexSlide) === items.length - countActiveSlide) {
+    if (indexSlide >= items.length - totalVisibleSlides) {
       btnNext.classList.add("hidden")
     } else btnNext.classList.remove("hidden")
   }
@@ -77,7 +71,7 @@ function slider(
 
     const move = event.touches ? event.touches[0].clientX : event.clientX
 
-    track.style.transform = `translate3d(${move - (positionStart - indexActiveSlide * itemWidth)}px, 0px, 0px)`
+    track.style.transform = `translate3d(${move - (positionStart + indexActiveSlide * itemWidth)}px, 0px, 0px)`
   }
 
   function onDragEnd(event) {
@@ -86,19 +80,17 @@ function slider(
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * percentShift
     const isFirstSlide = indexActiveSlide !== 0
-    const isLastSlide = Math.abs(indexActiveSlide) !== items.length - countActiveSlide
+    const isLastSlide = indexActiveSlide !== items.length - totalVisibleSlides
 
     if (positionStart > positionEnd && isMoved && isLastSlide) {
-      indexActiveSlide--
-    }
-
-    if (positionStart < positionEnd && isMoved && isFirstSlide) {
       indexActiveSlide++
     }
 
-    changeSlide(indexActiveSlide)
+    if (positionStart < positionEnd && isMoved && isFirstSlide) {
+      indexActiveSlide--
+    }
 
-    console.log("драг", indexActiveSlide)
+    changeSlide(indexActiveSlide)
 
     track.style.transitionDuration = "400ms"
     isDrag = false
@@ -110,29 +102,7 @@ function slider(
     track.style.transitionDuration = "600ms"
   }
 
-  function recalculationActiveSlide(indexActiveSlide) {
-    const isLastSlide = Math.abs(indexActiveSlide) === items.length - countActiveSlide
-    const lastSlide = items.length - countActiveSlide
-
-    console.log("last", lastSlide)
-    console.log("count", countActiveSlide)
-
-    for (let i = lastSlide; i < items.length; i++) {
-      if (isLastSlide && Math.abs(i - items.length) !== countActiveSlide) {
-        indexActiveSlide++
-      }
-    }
-
-    // while (isLastSlide && items.length - Math.abs(indexActiveSlide) > countActiveSlide) {
-    //   indexActiveSlide++
-    // }
-
-    console.log("recalculation", indexActiveSlide)
-  }
-
-  function beforeInitialization() {
-    recalculationActiveSlide(indexActiveSlide)
-    changeSlide(indexActiveSlide)
+  function addEvents() {
     document.addEventListener("mouseleave", onMouseLeave)
 
     btnNext.addEventListener("click", onClickBtnRight)
@@ -145,36 +115,34 @@ function slider(
     track.addEventListener("touchstart", onDragStart)
     document.addEventListener("touchmove", onDragOver)
     document.addEventListener("touchend", onDragEnd)
+
+    window.addEventListener("resize", onResize)
   }
 
-  beforeInitialization()
+  function removeEvents() {
+    window.removeEventListener("resize", onResize)
+    document.removeEventListener("mouseleave", onMouseLeave)
 
-  return {
-    destroy: function () {
-      document.removeEventListener("mouseleave", onMouseLeave)
+    btnNext.removeEventListener("click", onClickBtnRight)
+    btnPrev.removeEventListener("click", onClickBtnLeft)
 
-      btnNext.removeEventListener("click", onClickBtnRight)
-      btnPrev.removeEventListener("click", onClickBtnLeft)
+    track.removeEventListener("mousedown", onDragStart)
+    document.removeEventListener("mousemove", onDragOver)
+    document.removeEventListener("mouseup", onDragEnd)
 
-      track.removeEventListener("mousedown", onDragStart)
-      document.removeEventListener("mousemove", onDragOver)
-      document.removeEventListener("mouseup", onDragEnd)
-
-      track.removeEventListener("touchstart", onDragStart)
-      document.removeEventListener("touchmove", onDragOver)
-      document.removeEventListener("touchend", onDragEnd)
-
-      console.log("return", indexActiveSlide)
-
-      return { selector, params: { ...defaultParams, sliderIndex: indexActiveSlide } }
-    },
-    getCurrentIndex: function () {
-      return indexActiveSlide
-    },
-    setCurrentIndex: function (index) {
-      indexActiveSlide = index
-    },
+    track.removeEventListener("touchstart", onDragStart)
+    document.removeEventListener("touchmove", onDragOver)
+    document.removeEventListener("touchend", onDragEnd)
   }
+
+  function onResize() {
+    removeEvents()
+
+    slider(selector, { ...defaultParams, sliderIndex: indexActiveSlide })
+  }
+
+  changeSlide(indexActiveSlide)
+  addEvents()
 }
 
 export { slider }
