@@ -286,18 +286,34 @@ let submit = false
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
-  console.log(arrayInputs)
-  for (let i = 0; i < arrayInputs.length; i++) {
-    console.log(arrayInputs[i])
-    if (arrayInputs[i].classList.contains("invalid")) {
-      console.log("true")
-      alert("vvv")
-      break
-    }
-    if (!arrayInputs[i].value) {
-      console.log("true")
-      alert("vvv")
-      break
-    }
+  if (
+    inputConfirm.value &&
+    inputDays.value &&
+    inputEmail.value &&
+    inputFile.value &&
+    inputJob.value &&
+    inputMonths.value &&
+    inputName.value &&
+    inputNationality.value &&
+    inputSelect.value &&
+    inputTel.value &&
+    inputYears.value
+  ) {
+    submit = true
+  } else {
+    alert("Заполните все поля")
+  }
+  if (submit) {
+    inputConfirm.value = ""
+    inputDays.value = ""
+    inputEmail.value = ""
+    inputFile.value = ""
+    inputJob.value = ""
+    inputMonths.value = ""
+    inputName.value = ""
+    inputNationality.value = ""
+    inputSelect.value = ""
+    inputTel.value = ""
+    inputYears.value = ""
   }
 })
