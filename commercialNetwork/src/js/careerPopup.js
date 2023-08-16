@@ -116,7 +116,7 @@ function isValidMonths(input) {
   if (+input.value < 1) {
     input.value = ""
   }
-  if (+input.value > 12) {
+  if (+input.value > 12 || +input.value < 1) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.parentNode.parentNode.classList.add("invalid")
     input.classList.add("invalid")
@@ -153,7 +153,7 @@ function isValidDays(input) {
   if (+input.value < 1) {
     input.value = ""
   }
-  if (+input.value > 31) {
+  if (+input.value > 31 || +input.value < 1) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
     input.classList.add("invalid")
     input.parentNode.parentNode.classList.add("invalid")
@@ -182,6 +182,10 @@ function isValidName(input) {
     input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
     return false
   }
+  if (input.value.length > 50) {
+    input.parentNode.dataset.el = "Длина ФИО должна быть меньше 50 символов"
+    return false
+  }
   return true
 }
 
@@ -193,6 +197,10 @@ function isValidNationality(input) {
   }
   if (input.value.length < 4) {
     input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
+    return false
+  }
+  if (input.value.length > 20) {
+    input.parentNode.dataset.el = "Длина Гражданства должна быть меньше 20 символов"
     return false
   }
   return true
@@ -208,7 +216,10 @@ function isValidJob(input) {
     input.parentNode.dataset.el = "Введены некорректные символы"
     return false
   }
-
+  if (input.value.length > 50) {
+    input.parentNode.dataset.el = "Длина Должности должна быть меньше 50 символов"
+    return false
+  }
   return true
 }
 
