@@ -295,7 +295,7 @@
                     color: $red;
                   }
                   .input__line {
-                    box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                    box-shadow: 0 0 0 2px $red;
                   }
                 }
 
@@ -351,7 +351,7 @@
                     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12157);
                   }
                   &.invalid {
-                    box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                    box-shadow: 0 0 0 2px $red;
                   }
                 }
                 .input__birthday {
@@ -370,7 +370,7 @@
                         margin: 0;
                       }
                       &.invalid {
-                        box-shadow: inset 2px 2px $red, inset -2px -2px $red, inset -2px 2px $red, inset 2px -2px $red;
+                        box-shadow: 0 0 0 2px $red;
                       }
                     }
                   }
