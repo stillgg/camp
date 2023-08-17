@@ -68,11 +68,6 @@ function fillCity(name) {
   elemCity.textContent = name
   inputSelect.appendChild(elemCity)
 }
-console.log(inputSelect.value)
-inputSelect.addEventListener("blur", function () {
-  onInput(this)
-  console.log(this.value)
-})
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -111,10 +106,13 @@ function isValidSelect(input) {
     input.classList.remove("invalid")
   }
 }
+console.log(inputSelect.value)
 
 function isValidMonths(input) {
   if (+input.value < 1) {
     input.value = ""
+    input.classList.add("invalid")
+    return
   }
   if (+input.value > 12) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
@@ -152,6 +150,8 @@ function isValidYears(input) {
 function isValidDays(input) {
   if (+input.value < 1) {
     input.value = ""
+    input.classList.add("invalid")
+    return
   }
   if (+input.value > 31) {
     input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
@@ -204,6 +204,10 @@ function isValidJob(input) {
     input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
     return false
   }
+  if (input.value.length > 50) {
+    input.parentNode.dataset.el = "Длина Должности должна быть больше 50 символов"
+    return false
+  }
   if (!input.value.match(regex)) {
     input.parentNode.dataset.el = "Введены некорректные символы"
     return false
@@ -212,27 +216,14 @@ function isValidJob(input) {
   return true
 }
 
-inputEmail.addEventListener("blur", function () {
-  onInput(this)
-})
-inputName.addEventListener("blur", function () {
-  onInput(this)
-})
-inputNationality.addEventListener("blur", function () {
-  onInput(this)
-})
-inputJob.addEventListener("blur", function () {
-  onInput(this)
-})
-inputDays.addEventListener("blur", function () {
-  onInput(this)
-})
-inputMonths.addEventListener("blur", function () {
-  onInput(this)
-})
-inputYears.addEventListener("blur", function () {
-  onInput(this)
-})
+inputEmail.addEventListener("blur", (e) => onInput(e.target))
+inputName.addEventListener("blur", (e) => onInput(e.target))
+inputNationality.addEventListener("blur", (e) => onInput(e.target))
+inputJob.addEventListener("blur", (e) => onInput(e.target))
+inputDays.addEventListener("blur", (e) => onInput(e.target))
+inputMonths.addEventListener("blur", (e) => onInput(e.target))
+inputYears.addEventListener("blur", (e) => onInput(e.target))
+inputSelect.addEventListener("blur", (e) => onInput(e.target))
 
 inputTel.addEventListener("input", (e) => {
   const value = inputTel.value.replace(/\D+/g, "")
