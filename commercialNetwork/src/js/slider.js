@@ -3,18 +3,21 @@ function slider(
   params = {
     sliderIndex: 0,
     gap: 20,
+    effect: "none",
   },
 ) {
   const defaultParams = {
     sliderIndex: params?.sliderIndex || 0,
     gap: params?.gap || 20,
+    effect: params.effect || "none",
   }
 
   const area = document.querySelector(selector)
   const btnNext = area.querySelector(".slider-button__right")
   const btnPrev = area.querySelector(".slider-button__left")
-  const track = area.querySelector(".slider-track")
   const items = area.querySelectorAll(".slider-item")
+
+  const track = area.querySelector(".slider-track")
   const itemWidth = items[0].clientWidth + defaultParams.gap
   const totalVisibleSlides = getTotalVisibleSlides(area)
   const percentShift = 0.2
@@ -22,11 +25,13 @@ function slider(
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
+  let prev = indexActiveSlide
 
   if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
 
   function onClickBtnRight() {
     if (indexActiveSlide < items.length - totalVisibleSlides) {
+      prev = indexActiveSlide
       indexActiveSlide++
       changeSlide(indexActiveSlide)
     }
@@ -34,6 +39,7 @@ function slider(
 
   function onClickBtnLeft() {
     if (indexActiveSlide !== 0) {
+      prev = indexActiveSlide
       indexActiveSlide--
       changeSlide(indexActiveSlide)
     }
@@ -46,7 +52,9 @@ function slider(
   }
 
   function changeSlide(indexSlide) {
-    track.style.transform = `translate3d(-${indexSlide * itemWidth}px, 0px, 0px)`
+    if (defaultParams.effect === "none") {
+      track.style.transform = `translate3d(-${indexSlide * itemWidth}px, 0px, 0px)`
+    }
 
     if (indexSlide === 0) {
       btnPrev.classList.add("hidden")
@@ -55,6 +63,21 @@ function slider(
     if (indexSlide >= items.length - totalVisibleSlides) {
       btnNext.classList.add("hidden")
     } else btnNext.classList.remove("hidden")
+
+    let i = items.length
+    items.forEach((element) => {
+      element.style.zIndex = i
+      i--
+    })
+
+    items[indexSlide - 1] && items[indexSlide - 1].classList.remove("prev")
+    items[indexSlide] && items[indexSlide].classList.remove("next") + items[indexSlide].classList.remove("prev")
+
+    items[prev].classList.remove("active")
+    items[indexSlide].classList.add("active")
+
+    items[indexSlide - 1] && items[indexSlide - 1].classList.add("prev")
+    items[indexSlide + 1] && items[indexSlide + 1].classList.add("next")
   }
 
   function onDragStart(event) {
@@ -71,7 +94,9 @@ function slider(
 
     const move = event.touches ? event.touches[0].clientX : event.clientX
 
-    track.style.transform = `translate3d(${move - (positionStart + indexActiveSlide * itemWidth)}px, 0px, 0px)`
+    if (defaultParams.effect === "none") {
+      track.style.transform = `translate3d(${move - (positionStart + indexActiveSlide * itemWidth)}px, 0px, 0px)`
+    }
   }
 
   function onDragEnd(event) {
@@ -81,6 +106,8 @@ function slider(
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * percentShift
     const isFirstSlide = indexActiveSlide !== 0
     const isLastSlide = indexActiveSlide !== items.length - totalVisibleSlides
+
+    prev = indexActiveSlide
 
     if (positionStart > positionEnd && isMoved && isLastSlide) {
       indexActiveSlide++
@@ -97,6 +124,7 @@ function slider(
   }
 
   function onMouseLeave() {
+    prev = indexActiveSlide
     changeSlide(indexActiveSlide)
     isDrag = false
     track.style.transitionDuration = "600ms"

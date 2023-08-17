@@ -22,140 +22,156 @@
         }
       }
 
-      .slider {
-        display: flex;
-        flex-direction: row;
+      .slider#slider-team-desktop {
+        .slider-track {
+          display: flex;
+          flex-direction: row;
 
-        .slide {
-          width: 33%;
-          user-select: none;
+          .slider-item {
+            position: relative;
+            &.active {
+              .text {
+                opacity: 1;
+              }
+              @media (min-width: 993px) {
+                left: 0;
+              }
+            }
+
+            &.next {
+              @media (min-width: 993px) {
+                transform: scale(0.7);
+                left: 45%;
+              }
+            }
+
+            &.prev {
+              @media (min-width: 993px) {
+                transform: scale(0.7);
+                left: -100%;
+              }
+            }
+
+            img {
+              @media (min-width: 993px) {
+                height: 320px;
+              }
+
+              @media (min-width: 1201px) {
+                height: 420px;
+              }
+
+              @media (max-height: 720px) {
+                height: 320px;
+              }
+
+              @media (max-width: 992px) {
+                height: inherit;
+              }
+            }
+
+            .text {
+              margin-top: 30px;
+              transition: opacity 0.5s ease;
+              opacity: 0;
+
+              .text__name {
+                font-weight: 700;
+
+                .text__description {
+                  font-size: 16px;
+                  line-height: 162%;
+                }
+              }
+            }
+
+            @media (min-width: 992px) {
+              transition: left 0.5s ease-in-out, transform 0.5s ease-in-out;
+              position: absolute;
+              width: inherit;
+            }
+          }
+
+          // .arrowBtn {
+          //   position: absolute;
+          //   top: calc(50% + 4px);
+          //   width: 56px;
+          //   height: 56px;
+          //   padding: 21px 22px 21px 23.5px;
+          //   z-index: 5;
+          //   background: $white;
+          //   border-radius: 50%;
+          //   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+          //   cursor: pointer;
+          //   left: 75%;
+          //   stroke: $black;
+          //   transition: stroke 0.3s ease-in-out, background 0.3s ease-in-out, opacity 0.4s ease, transform 0.4s ease;
+          //   opacity: 1;
+
+          //   &.left {
+          //     transform: rotate(180deg);
+          //     top: calc(50% - 60px);
+
+          //     &:active {
+          //       transform: scale(0.9) rotate(180deg);
+          //     }
+          //   }
+
+          //   &.disabled {
+          //     pointer-events: none;
+          //     opacity: 0;
+          //   }
+
+          //   &:hover {
+          //     stroke: $white;
+          //     background: $red;
+          //   }
+
+          //   &:active {
+          //     transform: scale(0.9);
+          //   }
+          // }
 
           @media (min-width: 993px) {
-            width: initial;
-            position: absolute;
-            height: 320px;
-            transition: left 0.5s ease-in-out, transform 0.5s ease-in-out;
-
-            &:nth-child(2) {
-              z-index: 2;
-            }
+            position: relative;
+            overflow: hidden;
+            width: 400px;
+            height: 400px;
           }
 
           @media (min-width: 1201px) {
-            height: 420px;
+            width: 540px;
+            height: 505px;
           }
+
           @media (max-height: 720px) {
             height: 320px;
           }
+
           @media (max-width: 992px) {
             height: inherit;
           }
-        }
-
-        .slider__img__active {
-          @media (min-width: 993px) {
-            left: 0;
-            z-index: 3;
-          }
-        }
-
-        .slider__img__next {
-          @media (min-width: 993px) {
-            transform: scale(0.7);
-            left: 45%;
-          }
-        }
-
-        .slider__img__prev {
-          z-index: 4 !important;
-          @media (min-width: 993px) {
-            transform: scale(0.7);
-            left: -100%;
-          }
-        }
-
-        .arrowBtn {
-          position: absolute;
-          top: calc(50% + 4px);
-          width: 56px;
-          height: 56px;
-          padding: 21px 22px 21px 23.5px;
-          z-index: 5;
-          background: $white;
-          border-radius: 50%;
-          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-          cursor: pointer;
-          left: 75%;
-          stroke: $black;
-          transition: stroke 0.3s ease-in-out, background 0.3s ease-in-out, opacity 0.4s ease, transform 0.4s ease;
-          opacity: 1;
-
-          &.left {
-            transform: rotate(180deg);
-            top: calc(50% - 60px);
-
-            &:active {
-              transform: scale(0.9) rotate(180deg);
-            }
-          }
-
-          &.disabled {
-            pointer-events: none;
-            opacity: 0;
-          }
-
-          &:hover {
-            stroke: $white;
-            background: $red;
-          }
-
-          &:active {
-            transform: scale(0.9);
-          }
 
           @media (max-width: 992px) {
             display: none;
           }
         }
-
-        @media (min-width: 993px) {
-          position: relative;
-          overflow: hidden;
-          width: 400px;
-          height: 320px;
-        }
-        @media (min-width: 1201px) {
-          width: 540px;
+        .button-wrapper {
           height: 420px;
-        }
-        @media (max-height: 720px) {
-          height: 320px;
-        }
-        @media (max-width: 992px) {
-          height: inherit;
-        }
-      }
-
-      .slider__text {
-        margin-top: 30px;
-
-        .text {
-          &.disabled {
-            display: none;
+          .right-btn,
+          .left-btn {
+            left: 75%;
           }
-
-          .text__name {
-            font-weight: 700;
-
-            .text__description {
-              font-size: 16px;
-              line-height: 162%;
-            }
+          .right-btn {
+            top: calc(50% + 4px);
+          }
+          .left-btn {
+            top: calc(50% - 60px);
           }
         }
       }
 
-      .team-slider-container {
+      .slider#slider-team-mobile {
         width: 320px;
         margin: 0 auto;
 
@@ -163,9 +179,13 @@
         .team-slider-track {
           .team__item {
             min-width: 320px;
-            img {
-              user-select: none;
+
+            &.active {
+              .text {
+                opacity: 1;
+              }
             }
+
             .text {
               margin-top: 15px;
               transition: opacity 0.4s ease;
@@ -175,9 +195,6 @@
                 @media (max-width: 576px) {
                   font-size: 16px;
                 }
-              }
-              &.active {
-                opacity: 1;
               }
             }
 

@@ -6,6 +6,8 @@ import "./js/scrollBar"
 
 import { slider } from "./js/slider"
 
-slider("#slider-team")
+slider("#slider-team-mobile")
+slider("#slider-team-desktop", { effect: "desktop" })
+
 slider("#slider-news")
 slider("#slider-merch")

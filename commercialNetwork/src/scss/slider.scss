@@ -1,4 +1,4 @@
-.slider-container {
+.slider {
   position: relative;
 
   .button-wrapper {
@@ -85,5 +85,9 @@
     display: flex;
     gap: 20px;
     transition: transform 0.3s ease;
+  }
+
+  img {
+    user-select: none;
   }
 }
