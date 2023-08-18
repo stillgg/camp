@@ -1,3 +1,4 @@
+import { animationNetwork, closeSection } from "./networkLoader"
 const app = document.querySelector(".app")
 const sections = document.querySelectorAll("section")
 const indicator = document.querySelector("#indicator")
@@ -20,21 +21,18 @@ const watchedSlide = new Proxy(
   onSlideChange(),
 )
 
+function initSectionsHeight() {
+  sections.forEach((section) => {
+    section.style.height = document.documentElement.clientHeight + "px"
+  })
+}
+
 function onSlideChange() {
   return {
     set(target, property, slideIndex) {
-      // console.log(property);
-      // console.log(target);
-      // console.log(slideIndex);
       if (slideIndex < 0 || slideIndex > 11) {
         return true
       }
-      // console.log(slideIndex);
-
-      // if (slideIndex < 0 || slideIndex > 11) {
-      //   console.log(true);
-      //   return;
-      // }
 
       const sectionHeight = document.documentElement.clientHeight
 
@@ -49,6 +47,9 @@ function onSlideChange() {
 
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
+
+      if (slideIndex === 2) animationNetwork()
+      if (target.activeSlide === 2) closeSection()
 
       if (BLACK_SECTION_INDEXES.includes(slideIndex)) {
         indicator.classList.add("black")
@@ -121,6 +122,8 @@ function onDragEnd(e) {
   }
 }
 
+initSectionsHeight()
+
 main.addEventListener("wheel", onWheel)
 main.addEventListener("touchstart", onDragStart)
 main.addEventListener("touchend", onDragEnd)
@@ -128,6 +131,6 @@ main.addEventListener("touchend", onDragEnd)
 main.addEventListener("mousedown", onDragStart)
 main.addEventListener("mouseup", onDragEnd)
 
-// BurgerMenu //
+document.addEventListener("resize", initSectionsHeight)
 
 export { watchedSlide }

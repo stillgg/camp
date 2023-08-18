@@ -1,4 +1,10 @@
 /* Reset and base styles  */
+
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 * {
   padding: 0px;
   margin: 0px;

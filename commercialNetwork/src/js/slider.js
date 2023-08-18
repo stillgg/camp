@@ -189,3 +189,4 @@ function slider(
 }
 
 export { slider }
+

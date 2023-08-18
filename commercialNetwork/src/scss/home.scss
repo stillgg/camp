@@ -24,6 +24,11 @@
     align-items: center;
     gap: 30px;
     padding: 20px 0;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
 
     @media (max-width: 540px) {
       gap: 15px;
@@ -40,6 +45,13 @@
       @media (max-width: 1200px) {
         padding: 20px;
       }
+    }
+  }
+  &.active {
+    .home__footer {
+      opacity: 1;
+      transition-delay: 300ms;
+      transform: translateY(0%);
     }
   }
 }
