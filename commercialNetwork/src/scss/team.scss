@@ -96,6 +96,7 @@
             display: none;
           }
         }
+
         .button-wrapper {
           height: 420px;
           .right-btn,
@@ -107,6 +108,21 @@
           }
           .left-btn {
             top: calc(50% - 60px);
+          }
+        }
+
+        .main__comma {
+          z-index: 4;
+          position: absolute;
+          right: -25%;
+          top: -29px;
+
+          @media (max-width: 1200px) {
+            right: -34%;
+          }
+
+          @media (max-width: 992px) {
+            display: none;
           }
         }
       }
@@ -195,21 +211,6 @@
 
         @media (max-width: 992px) {
           max-width: 100%;
-        }
-      }
-
-      .main__comma {
-        z-index: 4;
-        position: absolute;
-        left: calc(50% - 74px);
-        top: -29px;
-
-        @media (max-width: 1200px) {
-          left: calc(50% - 10px);
-        }
-
-        @media (max-width: 992px) {
-          display: none;
         }
       }
 
