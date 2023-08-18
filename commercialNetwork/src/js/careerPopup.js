@@ -1,73 +1,9 @@
+import { onInput } from "./validate"
 const career = document.querySelector(".career")
 const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
-const inputSelect = form.querySelector("Select")
-
-const arrCities = [
-  "Альметьевск",
-  "Ангарск",
-  "Астрахань",
-  "Ачинск",
-  "Балаково",
-  "Барнаул",
-  "Белорецк",
-  "Бердск",
-  "Бийск",
-  "Братск",
-  "Владивосток",
-  "Волгоград",
-  "Волжский",
-  "Екатеринбург",
-  "Ижевск",
-  "Иркутск",
-  "Казань",
-  "Каменск-Уральский",
-  "Кемерово",
-  "Красноярск",
-  "Ленинск-Кузнецкий",
-  "Магнитогорск",
-  "Набережные Челны",
-  "Находка",
-  "Нерюнгри",
-  "Нижневартовск",
-  "Нижнекамск",
-  "Нижний Тагил",
-  "Новокузнецк",
-  "Новосибирск",
-  "Норильск",
-  "Омск",
-  "Первоуральск",
-  "Прокопьевск",
-  "Ростов-на-Дону",
-  "Саратов",
-  "Стерлитамак",
-  "Сургут",
-  "Томск",
-  "Тюмень",
-  "Улан-Удэ",
-  "Ульяновск",
-  "Уфа",
-  "Ханты-Мансийск",
-  "Челябинск",
-  "Энгельс",
-  "Южно-Сахалинск",
-  "Юрга",
-  "Якутск",
-  "Моего города нет в этом списке",
-]
-
-arrCities.forEach((city) => {
-  fillCity(city)
-})
-
-function fillCity(name) {
-  const elemCity = document.createElement("option")
-  elemCity.value = name
-  elemCity.textContent = name
-  inputSelect.appendChild(elemCity)
-}
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -90,142 +26,7 @@ const inputMonths = form.querySelector("#Months")
 const inputYears = form.querySelector("#Years")
 const inputFile = form.querySelector("#File")
 const inputConfirm = form.querySelector("#Confirm")
-
-const onInput = (input) => {
-  if (!eval(`isValid${input.id}(input)`)) {
-    input.parentNode.classList.add("invalid")
-  } else {
-    input.parentNode.classList.remove("invalid")
-  }
-}
-function isValidSelect(input) {
-  if (input.value === "") {
-    input.parentNode.dataset.el = "Выберите город"
-    input.classList.add("invalid")
-  } else {
-    input.classList.remove("invalid")
-  }
-}
-console.log(inputSelect.value)
-
-function isValidMonths(input) {
-  if (+input.value < 1) {
-    input.value = ""
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 12 || +input.value < 1) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-  return true
-}
-
-function isValidYears(input) {
-  if (+input.value < 1) {
-    input.value = ""
-  }
-  if (+input.value > 2023 || +input.value < 1950) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 2005) {
-    input.parentNode.parentNode.dataset.el = "Мы принимаем на работу только совершеннолетних сотрудников"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-
-  return true
-}
-
-function isValidDays(input) {
-  if (+input.value < 1) {
-    input.value = ""
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 31 || +input.value < 1) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.classList.add("invalid")
-    input.parentNode.parentNode.classList.add("invalid")
-    return
-  }
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-
-  return true
-}
-
-function isValidEmail(input) {
-  const EMAIL_REGEXP =
-    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
-  input.parentNode.dataset.el = "Неверно введен email"
-  return EMAIL_REGEXP.test(input.value)
-}
-
-function isValidName(input) {
-  const regex = /^[A-Za-z ']+$/
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-  if (input.value.length < 6) {
-    input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина ФИО должна быть меньше 50 символов"
-    return false
-  }
-  return true
-}
-
-function isValidNationality(input) {
-  const regex = /^[A-Za-z]+$/
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-  if (input.value.length < 4) {
-    input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
-    return false
-  }
-  if (input.value.length > 20) {
-    input.parentNode.dataset.el = "Длина Гражданства должна быть меньше 20 символов"
-    return false
-  }
-  return true
-}
-
-function isValidJob(input) {
-  const regex = /^[A-Za-z ]+$/
-  if (input.value.length < 5) {
-    input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина Должности должна быть больше 50 символов"
-    return false
-  }
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина Должности должна быть меньше 50 символов"
-    return false
-  }
-  return true
-}
+const inputSelect = form.querySelector("Select")
 
 inputEmail.addEventListener("blur", (e) => onInput(e.target))
 inputName.addEventListener("blur", (e) => onInput(e.target))
@@ -235,6 +36,7 @@ inputDays.addEventListener("blur", (e) => onInput(e.target))
 inputMonths.addEventListener("blur", (e) => onInput(e.target))
 inputYears.addEventListener("blur", (e) => onInput(e.target))
 inputSelect.addEventListener("blur", (e) => onInput(e.target))
+inputTel.value = "+7"
 
 inputTel.addEventListener("input", (e) => {
   const value = inputTel.value.replace(/\D+/g, "")
