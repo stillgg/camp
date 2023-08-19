@@ -69,10 +69,10 @@ function slider(
       element.style.transform = "scale(0.7)"
 
       index > indexSlide ? (element.style.transform = "scale(0.7)") : (element.style.transform = "scale(1)")
-      index > indexSlide ? (element.style.left = "45%") : (element.style.left = "-100%")
+      index > indexSlide ? (element.style.right = "-28.57%") : (element.style.right = "100%")
     })
 
-    items[indexSlide].style.left = 0
+    items[indexSlide].style.right = 0
   }
 
   function changeSlide(indexSlide) {
@@ -189,4 +189,3 @@ function slider(
 }
 
 export { slider }
-

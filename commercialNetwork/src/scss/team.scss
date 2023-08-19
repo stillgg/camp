@@ -24,8 +24,13 @@
 
       .slider#slider-team-desktop {
         .slider-track {
+          width: 465px;
+          height: 100%;
+
           .slider-item {
-            transition: left 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transition:
+              right 0.5s ease-in-out,
+              transform 0.5s ease-in-out;
             &.active {
               .text {
                 opacity: 1;
@@ -33,21 +38,7 @@
             }
 
             img {
-              @media (min-width: 993px) {
-                height: 320px;
-              }
-
-              @media (min-width: 1201px) {
-                height: 420px;
-              }
-
-              @media (max-height: 720px) {
-                height: 320px;
-              }
-
-              @media (max-width: 992px) {
-                height: inherit;
-              }
+              height: 375px;
             }
 
             .text {
@@ -69,26 +60,6 @@
               position: absolute;
               width: inherit;
             }
-          }
-
-          @media (min-width: 993px) {
-            position: relative;
-            overflow: hidden;
-            width: 400px;
-            height: 400px;
-          }
-
-          @media (min-width: 1201px) {
-            width: 540px;
-            height: 505px;
-          }
-
-          @media (max-height: 720px) {
-            height: 320px;
-          }
-
-          @media (max-width: 992px) {
-            height: inherit;
           }
 
           @media (max-width: 992px) {
@@ -113,7 +84,7 @@
         .main__comma {
           z-index: 4;
           position: absolute;
-          right: -25%;
+          right: -29%;
           top: -29px;
 
           @media (max-width: 1200px) {

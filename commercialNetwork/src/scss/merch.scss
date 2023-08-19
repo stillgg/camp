@@ -40,23 +40,14 @@
               padding: 0;
             }
           }
+          .item__description {
+            margin-top: 30px;
+            color: $black;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 150%;
+            text-transform: uppercase;
           }
-        }
-      }
-
-      .button-wrapper {
-        height: 432px;
-
-        @media (min-width: 993px) {
-          width: 884px;
-        }
-
-        @media (max-width: 992px) {
-          height: 392px;
-        }
-
-        @media (max-width: 576px) {
-          height: 250px;
         }
       }
 
@@ -69,14 +60,26 @@
         margin: 0 auto;
       }
 
-      @media (max-width: 992px) {
-        width: 392px;
-        margin: 0 auto;
-      }
-
       @media (max-width: 576px) {
         width: 250px;
         margin: 0 auto;
       }
     }
+
+    .button-wrapper {
+      height: 432px;
+
+      @media (min-width: 993px) {
+        width: 884px;
+      }
+
+      @media (max-width: 992px) {
+        height: 392px;
+      }
+
+      @media (max-width: 576px) {
+        height: 250px;
+      }
+    }
   }
+}
