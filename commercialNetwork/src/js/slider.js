@@ -26,19 +26,15 @@ function slider(
   let positionStart = 0
   let isDrag = false
 
-  if (indexActiveSlide === 0) btnPrev.classList.add("hidden")
-
   function onClickBtnRight() {
     if (indexActiveSlide < items.length - totalVisibleSlides) {
-      indexActiveSlide++
-      changeSlide(indexActiveSlide)
+      changeSlide(++indexActiveSlide)
     }
   }
 
   function onClickBtnLeft() {
     if (indexActiveSlide !== 0) {
-      indexActiveSlide--
-      changeSlide(indexActiveSlide)
+      changeSlide(--indexActiveSlide)
     }
   }
 
@@ -120,19 +116,18 @@ function slider(
 
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * shiftRatio
-    const isFirstSlide = indexActiveSlide !== 0
-    const isLastSlide = indexActiveSlide !== items.length - totalVisibleSlides
+    const isFirstSlide = indexActiveSlide === 0
+    const isLastSlide = indexActiveSlide === items.length - totalVisibleSlides
 
-    if (positionStart > positionEnd && isMoved && isLastSlide) {
-      indexActiveSlide++
+    if (positionStart > positionEnd && isMoved && !isLastSlide) {
+      changeSlide(++indexActiveSlide)
     }
 
-    if (positionStart < positionEnd && isMoved && isFirstSlide) {
-      indexActiveSlide--
+    if (positionStart < positionEnd && isMoved && !isFirstSlide) {
+      changeSlide(--indexActiveSlide)
     }
 
     changeSlide(indexActiveSlide)
-
     track.style.transitionDuration = "400ms"
     isDrag = false
   }
