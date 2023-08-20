@@ -25,6 +25,7 @@ function slider(
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
+  let timer = null
 
   function onClickBtnRight() {
     if (indexActiveSlide < items.length - totalVisibleSlides) {
@@ -72,6 +73,9 @@ function slider(
   }
 
   function changeSlide(indexSlide) {
+    track.removeEventListener("mousedown", onDragStart)
+    track.removeEventListener("touchstart", onDragStart)
+
     switch (defaultParams.effect) {
       case "default":
         defaultEffect(indexSlide)
@@ -92,6 +96,12 @@ function slider(
     items[indexSlide].classList.add("active")
 
     toggleButtons(indexSlide)
+
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      track.addEventListener("mousedown", onDragStart)
+      track.addEventListener("touchstart", onDragStart)
+    }, 300)
   }
 
   function onDragStart(event) {
@@ -119,17 +129,20 @@ function slider(
     const isFirstSlide = indexActiveSlide === 0
     const isLastSlide = indexActiveSlide === items.length - totalVisibleSlides
 
+    track.style.transitionDuration = "400ms"
+    isDrag = false
+
     if (positionStart > positionEnd && isMoved && !isLastSlide) {
       changeSlide(++indexActiveSlide)
+      return
     }
 
     if (positionStart < positionEnd && isMoved && !isFirstSlide) {
       changeSlide(--indexActiveSlide)
+      return
     }
 
     changeSlide(indexActiveSlide)
-    track.style.transitionDuration = "400ms"
-    isDrag = false
   }
 
   function onMouseLeave() {
