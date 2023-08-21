@@ -73,9 +73,6 @@ function slider(
   }
 
   function changeSlide(indexSlide) {
-    track.removeEventListener("mousedown", onDragStart)
-    track.removeEventListener("touchstart", onDragStart)
-
     switch (defaultParams.effect) {
       case "default":
         defaultEffect(indexSlide)
@@ -96,12 +93,6 @@ function slider(
     items[indexSlide].classList.add("active")
 
     toggleButtons(indexSlide)
-
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      track.addEventListener("mousedown", onDragStart)
-      track.addEventListener("touchstart", onDragStart)
-    }, 300)
   }
 
   function onDragStart(event) {
