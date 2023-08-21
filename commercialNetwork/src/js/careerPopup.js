@@ -4,6 +4,7 @@ const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
+const btnSub = document.querySelector(".form__btn")
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -16,11 +17,11 @@ closeBtn.addEventListener("click", () => {
 })
 
 const arrayInputs = form.querySelectorAll("input")
-const inputEmail = form.querySelector("#Email")
+// const inputEmail = form.querySelector("#Email")
 const inputTel = form.querySelector("#Tel")
-const inputName = form.querySelector("#Name")
-const inputNationality = form.querySelector("#Nationality")
-const inputJob = form.querySelector("#Job")
+// const inputName = form.querySelector("#Name")
+// const inputNationality = form.querySelector("#Nationality")
+// const inputJob = form.querySelector("#Job")
 const inputDays = form.querySelector("#Days")
 const inputMonths = form.querySelector("#Months")
 const inputYears = form.querySelector("#Years")
@@ -28,10 +29,20 @@ const inputFile = form.querySelector("#File")
 const inputConfirm = form.querySelector("#Confirm")
 const inputSelect = form.querySelector("Select")
 
-inputEmail.addEventListener("blur", (e) => onInput(e.target))
-inputName.addEventListener("blur", (e) => onInput(e.target))
-inputNationality.addEventListener("blur", (e) => onInput(e.target))
-inputJob.addEventListener("blur", (e) => onInput(e.target))
+// arrayInputs.push(inputSelect)
+console.log(arrayInputs)
+arrayInputs.forEach((input) => {
+  console.log(input.id)
+  if (input.id !== "Tel") {
+    console.log("try")
+    input.addEventListener("blur", (e) => onInput(e.target))
+  }
+})
+
+// inputEmail.addEventListener("blur", (e) => onInput(e.target))
+// inputName.addEventListener("blur", (e) => onInput(e.target))
+// inputNationality.addEventListener("blur", (e) => onInput(e.target))
+// inputJob.addEventListener("blur", (e) => onInput(e.target))
 inputDays.addEventListener("blur", (e) => onInput(e.target))
 inputMonths.addEventListener("blur", (e) => onInput(e.target))
 inputYears.addEventListener("blur", (e) => onInput(e.target))
@@ -82,42 +93,50 @@ inputFile.addEventListener("change", function () {
   }
 })
 
+let confirm = false
+
 inputConfirm.addEventListener("change", function () {
-  console.log(confirm.checked)
+  confirm = !confirm
 })
 
-let submit = false
+inputDays.addEventListener("input", (e) => {
+  if (e.target.value.length === 2) {
+    inputMonths.focus()
+  }
+  if (e.target.value.length > 2) {
+    e.target.value = e.target.value.slice(0, 2)
+  }
+})
+
+inputMonths.addEventListener("input", (e) => {
+  if (e.target.value.length === 2) {
+    inputYears.focus()
+  }
+  if (e.target.value.length > 2) {
+    e.target.value = e.target.value.slice(0, 2)
+  }
+})
+
+inputYears.addEventListener("input", (e) => {
+  if (e.target.value.length === 4) {
+    inputTel.focus()
+  }
+  if (e.target.value.length > 4) {
+    e.target.value = e.target.value.slice(0, 2)
+  }
+})
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
-  if (
-    inputConfirm.value &&
-    inputDays.value &&
-    inputEmail.value &&
-    inputFile.value &&
-    inputJob.value &&
-    inputMonths.value &&
-    inputName.value &&
-    inputNationality.value &&
-    inputSelect.value &&
-    inputTel.value &&
-    inputYears.value
-  ) {
-    submit = true
-  } else {
-    alert("Заполните все поля")
-  }
-  if (submit) {
-    inputConfirm.value = ""
-    inputDays.value = ""
-    inputEmail.value = ""
-    inputFile.value = ""
-    inputJob.value = ""
-    inputMonths.value = ""
-    inputName.value = ""
-    inputNationality.value = ""
-    inputSelect.value = ""
-    inputTel.value = ""
-    inputYears.value = ""
+
+  for (let i = 0; i < arrayInputs.length; i++) {
+    if (arrayInputs[i].parentNode.classList.contains("invalid") || confirm) {
+      btnSub.disabled = true
+      console.log(btnSub)
+    }
   }
 })
+
+// Название файла на кнопке, при фалс подсветить кнопку красным
+// Красный цвет на кнофирм
+// Серая кнопка при сабмите фалс

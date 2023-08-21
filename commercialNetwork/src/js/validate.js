@@ -3,11 +3,11 @@ const btnSubmit = document.querySelector(".form__btn")
 const onInput = (input) => {
   if (!eval(`isValid${input.id}(input)`)) {
     input.parentNode.classList.add("invalid")
-    btnSubmit.disabled = true
+    // btnSubmit.disabled = true
   } else {
     input.parentNode.classList.remove("invalid")
+    btnSubmit.disabled = false
   }
-  btnSubmit.disabled = false
 }
 
 function isValidSelect(input) {
