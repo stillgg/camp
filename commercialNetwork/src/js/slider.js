@@ -9,7 +9,7 @@ function slider(
   const defaultParams = {
     sliderIndex: params?.sliderIndex || 0,
     gap: params?.gap || 20,
-    effect: params.effect || "default",
+    effect: params?.effect || "default",
   }
 
   const area = document.querySelector(selector)
@@ -22,21 +22,18 @@ function slider(
   const totalVisibleSlides = getTotalVisibleSlides(area)
   const shiftRatio = 0.2
 
+  let startTime = null
+  let endTime = null
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
-  let timer = null
 
   function onClickBtnRight() {
-    if (indexActiveSlide < items.length - totalVisibleSlides) {
-      changeSlide(++indexActiveSlide)
-    }
+    changeSlide(++indexActiveSlide)
   }
 
   function onClickBtnLeft() {
-    if (indexActiveSlide !== 0) {
-      changeSlide(--indexActiveSlide)
-    }
+    changeSlide(--indexActiveSlide)
   }
 
   function getTotalVisibleSlides(selector) {
@@ -65,6 +62,8 @@ function slider(
 
       element.style.transform = "scale(0.7)"
 
+      element.style.transition = "right 0.5s ease-in-out, transform 0.5s ease-in-out"
+
       index > indexSlide ? (element.style.transform = "scale(0.7)") : (element.style.transform = "scale(1)")
       index > indexSlide ? (element.style.right = "-28.57%") : (element.style.right = "100%")
     })
@@ -73,6 +72,8 @@ function slider(
   }
 
   function changeSlide(indexSlide) {
+    if (indexSlide < 0 || indexSlide > items.length - totalVisibleSlides) return
+
     switch (defaultParams.effect) {
       case "default":
         defaultEffect(indexSlide)
@@ -80,9 +81,6 @@ function slider(
 
       case "cards":
         cardsEffect(indexSlide)
-        break
-
-      default:
         break
     }
 
@@ -98,6 +96,8 @@ function slider(
   function onDragStart(event) {
     event.preventDefault()
     isDrag = true
+
+    startTime = Date.now()
 
     positionStart = event.touches ? event.touches[0].clientX : event.clientX
 
@@ -115,13 +115,20 @@ function slider(
   function onDragEnd(event) {
     if (!isDrag) return
 
+    endTime = Date.now()
+    if (endTime - startTime < 200) {
+      changeSlide(indexActiveSlide)
+      return
+    }
+
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * shiftRatio
     const isFirstSlide = indexActiveSlide === 0
     const isLastSlide = indexActiveSlide === items.length - totalVisibleSlides
 
-    track.style.transitionDuration = "400ms"
     isDrag = false
+
+    track.style.transitionDuration = "400ms"
 
     if (positionStart > positionEnd && isMoved && !isLastSlide) {
       changeSlide(++indexActiveSlide)

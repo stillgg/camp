@@ -28,9 +28,6 @@
           height: 100%;
 
           .slider-item {
-            transition:
-              right 0.5s ease-in-out,
-              transform 0.5s ease-in-out;
             &.active {
               .text {
                 opacity: 1;
