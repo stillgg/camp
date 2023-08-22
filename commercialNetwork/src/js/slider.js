@@ -41,16 +41,15 @@ function slider(
   }
 
   function toggleButtons(indexSlide) {
-    if (indexSlide === 0) {
-      btnPrev.classList.add("hidden")
-    } else btnPrev.classList.remove("hidden")
+    indexSlide === 0 ? btnPrev.classList.add("hidden") : btnPrev.classList.remove("hidden")
 
-    if (indexSlide >= items.length - totalVisibleSlides) {
-      btnNext.classList.add("hidden")
-    } else btnNext.classList.remove("hidden")
+    indexSlide >= items.length - totalVisibleSlides
+      ? btnNext.classList.add("hidden")
+      : btnNext.classList.remove("hidden")
   }
 
   function defaultEffect(indexSlide) {
+    track.style.transitionDuration = "300ms"
     track.style.transform = `translate3d(-${indexSlide * itemWidth}px, 0px, 0px)`
   }
 
@@ -111,32 +110,27 @@ function slider(
   function onDragEnd(event) {
     if (!isDrag) return
 
+    isDrag = false
+
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * shiftRatio
     const isFirstSlide = indexActiveSlide === 0
     const isLastSlide = indexActiveSlide === items.length - totalVisibleSlides
 
-    isDrag = false
-
-    track.style.transitionDuration = "400ms"
-
     if (positionStart > positionEnd && isMoved && !isLastSlide) {
-      changeSlide(++indexActiveSlide)
-      return
+      return changeSlide(++indexActiveSlide)
     }
 
     if (positionStart < positionEnd && isMoved && !isFirstSlide) {
-      changeSlide(--indexActiveSlide)
-      return
+      return changeSlide(--indexActiveSlide)
     }
 
     changeSlide(indexActiveSlide)
   }
 
   function onMouseLeave() {
-    changeSlide(indexActiveSlide)
     isDrag = false
-    track.style.transitionDuration = "600ms"
+    changeSlide(indexActiveSlide)
   }
 
   function addEvents() {
