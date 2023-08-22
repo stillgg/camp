@@ -1,10 +1,10 @@
-import { onInput } from "./validate"
+import { onInput, confirm } from "./validate"
 const career = document.querySelector(".career")
 const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
 const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
-const btnSub = document.querySelector(".form__btn")
+const btnSubmit = document.querySelector(".form__btn")
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -33,7 +33,7 @@ const inputSelect = form.querySelector("Select")
 console.log(arrayInputs)
 arrayInputs.forEach((input) => {
   console.log(input.id)
-  if (input.id !== "Tel") {
+  if (input.id !== "File") {
     console.log("try")
     input.addEventListener("blur", (e) => onInput(e.target))
   }
@@ -43,9 +43,9 @@ arrayInputs.forEach((input) => {
 // inputName.addEventListener("blur", (e) => onInput(e.target))
 // inputNationality.addEventListener("blur", (e) => onInput(e.target))
 // inputJob.addEventListener("blur", (e) => onInput(e.target))
-inputDays.addEventListener("blur", (e) => onInput(e.target))
-inputMonths.addEventListener("blur", (e) => onInput(e.target))
-inputYears.addEventListener("blur", (e) => onInput(e.target))
+// inputDays.addEventListener("blur", (e) => onInput(e.target))
+// inputMonths.addEventListener("blur", (e) => onInput(e.target))
+// inputYears.addEventListener("blur", (e) => onInput(e.target))
 inputSelect.addEventListener("blur", (e) => onInput(e.target))
 inputTel.value = "+7"
 
@@ -77,26 +77,38 @@ inputTel.addEventListener("input", (e) => {
   inputTel.value = result
 })
 
-inputTel.addEventListener("blur", function () {
-  if (this.value.length !== 18) {
-    this.parentNode.dataset.el = "Неверный номер телефона"
-    this.parentNode.classList.add("invalid")
+// inputTel.addEventListener("blur", function () {
+//   if (this.value.length !== 18) {
+//     this.parentNode.dataset.el = "Неверный номер телефона"
+//     this.parentNode.classList.add("invalid")
+//   } else {
+//     this.parentNode.classList.remove("invalid")
+//   }
+// })
+
+inputFile.addEventListener("change", (e) => isValidFile(e.target))
+
+function isValidFile(input) {
+  const label = input.parentNode
+  if (!input.files[0]) {
+    label.classList.add("invalid")
+    return
+  }
+  if (input.files[0].size > 100000) {
+    label.classList.add("invalid")
+    label.textContent = "Резюме слишком велико ( > 1Мб)"
+    input.value = ""
   } else {
-    this.parentNode.classList.remove("invalid")
+    label.textContent = input.files[0].name + input.files[0].size
   }
-})
-
-inputFile.addEventListener("change", function () {
-  if (this.files[0].size > 100000) {
-    onInput()
-    this.value = ""
-  }
-})
-
-let confirm = false
+}
 
 inputConfirm.addEventListener("change", function () {
-  confirm = !confirm
+  if (this.checked) {
+    this.parentNode.classList.remove("invalid")
+  } else {
+    this.parentNode.classList.add("invalid")
+  }
 })
 
 inputDays.addEventListener("input", (e) => {
@@ -128,13 +140,23 @@ inputYears.addEventListener("input", (e) => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  arrayInputs.forEach((input) => {
+    if (input.id !== "File") {
+      onInput(input)
+    }
+  })
+  isValidFile(inputFile)
+  onInput(inputSelect)
 
   for (let i = 0; i < arrayInputs.length; i++) {
-    if (arrayInputs[i].parentNode.classList.contains("invalid") || confirm) {
-      btnSub.disabled = true
-      console.log(btnSub)
+    if (arrayInputs[i].parentNode.classList.contains("invalid") || confirm || arrayInputs[i].value === "") {
+      btnSubmit.disabled = true
+      btnSubmit.classList.add("disabled")
+      console.log(btnSubmit)
+      return
     }
   }
+  console.log("submit")
 })
 
 // Название файла на кнопке, при фалс подсветить кнопку красным

@@ -1,4 +1,5 @@
 const btnSubmit = document.querySelector(".form__btn")
+export let confirm = false
 
 const onInput = (input) => {
   if (!eval(`isValid${input.id}(input)`)) {
@@ -7,6 +8,21 @@ const onInput = (input) => {
   } else {
     input.parentNode.classList.remove("invalid")
     btnSubmit.disabled = false
+    btnSubmit.classList.remove("disabled")
+  }
+}
+
+function isValidConfirm(input) {
+  if (input.checked) {
+    btnSubmit.disabled = false
+    btnSubmit.classList.remove("disabled")
+    input.parentNode.classList.remove("invalid")
+    confirm = true
+    return true
+  } else {
+    input.parentNode.classList.add("invalid")
+    confirm = false
+    return false
   }
 }
 
@@ -16,6 +32,15 @@ function isValidSelect(input) {
     input.classList.add("invalid")
   } else {
     input.classList.remove("invalid")
+  }
+}
+
+function isValidTel(input) {
+  if (input.value.length !== 18) {
+    input.parentNode.dataset.el = "Неверный номер телефона"
+    input.parentNode.classList.add("invalid")
+  } else {
+    input.parentNode.classList.remove("invalid")
   }
 }
 
