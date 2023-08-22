@@ -22,8 +22,6 @@ function slider(
   const totalVisibleSlides = getTotalVisibleSlides(area)
   const shiftRatio = 0.2
 
-  let startTime = null
-  let endTime = null
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
@@ -97,8 +95,6 @@ function slider(
     event.preventDefault()
     isDrag = true
 
-    startTime = Date.now()
-
     positionStart = event.touches ? event.touches[0].clientX : event.clientX
 
     track.style.transitionDuration = "0ms"
@@ -114,12 +110,6 @@ function slider(
 
   function onDragEnd(event) {
     if (!isDrag) return
-
-    endTime = Date.now()
-    if (endTime - startTime < 200) {
-      changeSlide(indexActiveSlide)
-      return
-    }
 
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
     const isMoved = Math.abs(positionEnd - positionStart) > itemWidth * shiftRatio
