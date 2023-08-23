@@ -2,7 +2,6 @@
   background-color: $white;
 
   .container {
-    height: 100%;
   }
 
   .team__wrapper {
@@ -17,7 +16,7 @@
       height: calc(100% - 120px);
 
       & > div:first-child {
-        @media (max-width: 993px) {
+        @media (max-width: 992px) {
           display: none;
         }
       }
@@ -66,14 +65,14 @@
 
         .button-wrapper {
           height: 420px;
-          .right-btn,
-          .left-btn {
+          .slider-button__left,
+          .slider-button__right {
             left: 75%;
           }
-          .right-btn {
+          .slider-button__right {
             top: calc(50% + 4px);
           }
-          .left-btn {
+          .slider-button__left {
             top: calc(50% - 60px);
           }
         }
@@ -157,7 +156,7 @@
           left: 0;
         }
 
-        @media (min-width: 993px) {
+        @media (min-width: 992px) {
           display: none;
         }
       }

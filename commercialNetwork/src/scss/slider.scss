@@ -9,8 +9,8 @@
     top: 0;
   }
 
-  .left-btn,
-  .right-btn {
+  .slider-button__left,
+  .slider-button__right {
     position: absolute;
     z-index: 11;
     background: $white;
@@ -34,6 +34,10 @@
       }
     }
 
+    @media (max-width: 576px) {
+      display: none;
+    }
+
     &:disabled {
       display: none;
     }
@@ -43,7 +47,7 @@
     }
   }
 
-  .left-btn {
+  .slider-button__left {
     left: -28px;
 
     .arrow {
@@ -51,7 +55,7 @@
     }
   }
 
-  .right-btn {
+  .slider-button__right {
     right: -28px;
 
     .arrow {
@@ -66,7 +70,9 @@
   }
 
   .hidden {
-    transition: transform 0.3s ease, opacity 0.5s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.5s ease;
     pointer-events: none;
     opacity: 0;
   }
