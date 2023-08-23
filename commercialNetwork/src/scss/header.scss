@@ -73,6 +73,7 @@ body {
 
           .nav__item {
             .nav__link {
+              cursor: pointer;
               font-size: 14px;
               line-height: 114%;
               text-transform: uppercase;
@@ -80,9 +81,9 @@ body {
               color: $white;
               border-bottom: 0px solid rgba($color: $white, $alpha: 0);
               transition: 0.3s ease-in-out;
-              cursor: pointer;
 
               &:hover {
+                cursor: pointer;
                 padding-bottom: 7px;
                 border-bottom: 3px solid rgba($color: $white, $alpha: 1);
               }
