@@ -2,7 +2,6 @@
   background-color: $white;
 
   .container {
-    height: 100%;
   }
 
   .team__wrapper {
@@ -16,132 +15,133 @@
       gap: 119px;
       height: calc(100% - 120px);
 
-      .slider {
-        display: flex;
-        flex-direction: row;
+      & > div:first-child {
+        @media (max-width: 992px) {
+          display: none;
+        }
+      }
 
-        .slide {
-          width: 33%;
+      .slider#slider-team-desktop {
+        .slider-track {
+          width: 465px;
+          height: 100%;
 
-          @media (min-width: 993px) {
-            width: initial;
-            position: absolute;
-            height: 320px;
-            transition:
-              left 0.5s ease-in-out,
-              transform 0.5s ease-in-out;
+          .slider-item {
+            &.active {
+              .text {
+                opacity: 1;
+              }
+            }
 
-            &:nth-child(2) {
-              z-index: 2;
+            img {
+              height: 375px;
+            }
+
+            .text {
+              margin-top: 30px;
+              transition: opacity 0.5s ease;
+              opacity: 0;
+
+              .text__name {
+                font-weight: 700;
+
+                .text__description {
+                  font-size: 16px;
+                  line-height: 162%;
+                }
+              }
+            }
+
+            @media (min-width: 992px) {
+              position: absolute;
+              width: inherit;
             }
           }
 
-          @media (min-width: 1201px) {
-            height: 420px;
-          }
-          @media (max-height: 720px) {
-            height: 320px;
-          }
           @media (max-width: 992px) {
-            height: inherit;
+            display: none;
           }
         }
 
-        .slider__img__active {
-          @media (min-width: 993px) {
-            left: 0;
-            z-index: 3;
+        .button-wrapper {
+          height: 420px;
+          .slider-button__left,
+          .slider-button__right {
+            left: 75%;
           }
-        }
-
-        .slider__img__next {
-          @media (min-width: 993px) {
-            transform: scale(0.7);
-            left: 45%;
+          .slider-button__right {
+            top: calc(50% + 4px);
           }
-        }
-
-        .slider__img__prev {
-          z-index: 4 !important;
-          @media (min-width: 993px) {
-            transform: scale(0.7);
-            left: -100%;
-          }
-        }
-
-        .arrowBtn {
-          position: absolute;
-          top: calc(50% + 4px);
-          width: 56px;
-          height: 56px;
-          padding: 21px 22px 21px 23.5px;
-          z-index: 5;
-          background: $white;
-          border-radius: 50%;
-          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-          cursor: pointer;
-          left: 75%;
-          stroke: $black;
-          transition:
-            stroke 0.3s ease-in-out,
-            background 0.3s ease-in-out;
-
-          &.left {
-            transform: rotate(180deg);
+          .slider-button__left {
             top: calc(50% - 60px);
           }
+        }
 
-          &.disabled {
-            display: none;
-          }
-
-          &:hover {
-            stroke: $white;
-            background: $red;
-          }
+        .main__comma {
+          z-index: 4;
+          position: absolute;
+          right: -29%;
+          top: -29px;
 
           @media (max-width: 992px) {
             display: none;
           }
+        }
+      }
+
+      .slider#slider-team-mobile {
+        width: 320px;
+        margin: 0 auto;
+
+        transition: opacity 0.3s ease;
+        .team-slider-track {
+          .team__item {
+            min-width: 320px;
+
+            &.active {
+              .text {
+                opacity: 1;
+              }
+            }
+
+            .text {
+              margin-top: 15px;
+              transition: opacity 0.4s ease;
+              opacity: 0;
+
+              .text__name {
+                color: $black;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 144.444%;
+              }
+
+              .text__description {
+                @media (max-width: 576px) {
+                  font-size: 16px;
+                }
+              }
+            }
+
+            @media (max-width: 992px) {
+              min-width: 250px;
+            }
+          }
+        }
+
+        .button-wrapper {
+          height: 100%;
         }
 
         @media (min-width: 993px) {
-          position: relative;
-          overflow: hidden;
-          width: 400px;
-          height: 320px;
+          display: none;
         }
-        @media (min-width: 1201px) {
-          width: 540px;
-          height: 420px;
-        }
-        @media (max-height: 720px) {
-          // width: 400px;
-          height: 320px;
-        }
+
         @media (max-width: 992px) {
-          height: inherit;
+          width: 250px;
         }
       }
 
-      .slider__text {
-        margin-top: 30px;
-
-        .text {
-          &.disabled {
-            display: none;
-          }
-
-          .text__name {
-            font-weight: 700;
-
-            .text__description {
-              font-size: 16px;
-              line-height: 162%;
-            }
-          }
-        }
-      }
       .wrapper-gradient {
         position: relative;
         margin-top: 30px;
@@ -156,7 +156,7 @@
           left: 0;
         }
 
-        @media (min-width: 993px) {
+        @media (min-width: 992px) {
           display: none;
         }
       }
@@ -183,26 +183,10 @@
         }
       }
 
-      .main__comma {
-        z-index: 4;
-        position: absolute;
-        left: calc(50% - 74px);
-        top: -29px;
-
-        @media (max-width: 1200px) {
-          left: calc(50% - 10px);
-        }
-
-        @media (max-width: 992px) {
-          display: none;
-        }
-      }
-
       @media (max-width: 992px) {
         flex-direction: column;
         justify-content: space-evenly;
         gap: 0px;
-        height: calc(100% - 70px);
 
         &::after {
           background-image: linear-gradient(0deg, $white, hsla(0, 0%, 100%, 0));
@@ -210,18 +194,18 @@
           height: 30px;
           position: absolute;
           width: 100%;
-          bottom: 25px;
+          bottom: 0;
           left: 0;
 
           @media (max-width: 768px) {
-            bottom: 0;
+            height: calc(100% - 255px);
           }
         }
       }
     }
 
     @media (max-width: 992px) {
-      padding-top: 70px;
+      padding-top: 110px;
     }
   }
 }
