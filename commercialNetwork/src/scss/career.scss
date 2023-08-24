@@ -330,11 +330,11 @@
                     &::before {
                       content: attr(data-el);
                       position: absolute;
-                      top: 100%;
+                      top: 110%;
                       font-size: 14px;
+                      line-height: 80%;
                       font-style: italic;
                       color: $red;
-                      white-space: nowrap;
                     }
                   }
                 }
@@ -391,10 +391,10 @@
                       content: attr(data-el);
                       position: absolute;
                       top: 100%;
+
                       font-size: 14px;
                       font-style: italic;
                       color: $red;
-                      white-space: nowrap;
                     }
                   }
                 }
@@ -413,18 +413,28 @@
                 &.invalid {
                   box-shadow: 0 0 0 2px $red;
                   border: 0;
+
                   &::after {
-                    content: attr(data-el);
-                    position: absolute;
-                    left: 0;
-                    top: 110%;
-                    font-size: 14px;
-                    line-height: 80%;
-                    font-style: italic;
-                    color: $red;
+                    display: block;
                   }
                 }
-
+                &.accept {
+                  &::after {
+                    display: block;
+                    color: $black;
+                  }
+                }
+                &::after {
+                  display: none;
+                  content: attr(data-el);
+                  position: absolute;
+                  left: 0;
+                  top: 110%;
+                  font-size: 14px;
+                  line-height: 80%;
+                  font-style: italic;
+                  color: $red;
+                }
                 .button__op {
                   visibility: hidden;
                   position: absolute;

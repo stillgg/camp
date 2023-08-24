@@ -102,7 +102,8 @@ function isValidFile(input) {
     return
   } else {
     label?.classList.remove("invalid")
-    label.textContent = input.files[0].name.slice(0, 20) + "..."
+    label?.classList.add("accept")
+    label.dataset.el = input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
     return
   }
 }

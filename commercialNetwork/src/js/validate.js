@@ -113,10 +113,6 @@ function isValidEmail(input) {
 
 function isValidName(input) {
   const regex = /^[A-Za-z ']+$/
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
   if (input.value.length < 6) {
     input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
     return false
@@ -125,15 +121,16 @@ function isValidName(input) {
     input.parentNode.dataset.el = "Длина ФИО должна быть меньше 50 символов"
     return false
   }
+  if (!input.value.match(regex)) {
+    input.parentNode.dataset.el = "Введены некорректные символы"
+    return false
+  }
+
   return true
 }
 
 function isValidNationality(input) {
   const regex = /^[A-Za-z]+$/
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
   if (input.value.length < 4) {
     input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
     return false
@@ -142,6 +139,11 @@ function isValidNationality(input) {
     input.parentNode.dataset.el = "Длина Гражданства должна быть меньше 20 символов"
     return false
   }
+  if (!input.value.match(regex)) {
+    input.parentNode.dataset.el = "Введены некорректные символы"
+    return false
+  }
+
   return true
 }
 
@@ -152,15 +154,11 @@ function isValidJob(input) {
     return false
   }
   if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина Должности должна быть больше 50 символов"
+    input.parentNode.dataset.el = "Длина Должности должна быть меньше 50 символов"
     return false
   }
   if (!input.value.match(regex)) {
     input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина Должности должна быть меньше 50 символов"
     return false
   }
   return true
