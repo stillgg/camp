@@ -35,6 +35,9 @@ body {
       font-weight: 700;
       color: $white;
       cursor: pointer;
+      transition:
+        color 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
 
       svg {
         margin-top: 4px;
@@ -44,7 +47,6 @@ body {
       &:hover {
         color: $red;
         background-color: $white;
-        transition: all 0.2s ease-in-out;
       }
       @media (max-width: 992px) {
         padding: 12px 30px;
