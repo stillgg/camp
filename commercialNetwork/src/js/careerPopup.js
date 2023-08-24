@@ -153,16 +153,23 @@ form.addEventListener("submit", (e) => {
   onInput(inputSelect)
 
   for (let i = 0; i < arrayInputs.length; i++) {
-    if (arrayInputs[i].parentNode?.classList.contains("invalid") || confirm || arrayInputs[i].value === "") {
+    if (arrayInputs[i].parentNode?.classList.contains("invalid")) {
       btnSubmit.disabled = true
       btnSubmit.classList.add("disabled")
       console.log(btnSubmit)
       return
     }
   }
+  arrayInputs.forEach((input) => {
+    input.value = ""
+  })
+  inputSelect.value = ""
+  inputFile.value = ""
+  inputConfirm.checked = false
   console.log("submit")
 })
-
+// || confirm
+// || arrayInputs[i].value === ""
 // Название файла на кнопке, при фалс подсветить кнопку красным
 // Красный цвет на кнофирм
 // Серая кнопка при сабмите фалс
