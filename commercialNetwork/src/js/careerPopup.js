@@ -87,19 +87,23 @@ inputTel.addEventListener("input", (e) => {
 // })
 
 inputFile.addEventListener("change", (e) => isValidFile(e.target))
+const label = inputFile.parentNode
 
 function isValidFile(input) {
-  const label = input.parentNode
   if (!input.files[0]) {
     label.classList.add("invalid")
+    label.dataset.el = "Прикрепите резюме"
     return
   }
   if (input.files[0].size > 100000) {
     label.classList.add("invalid")
-    label.textContent = "Резюме слишком велико ( > 1Мб)"
+    label.dataset.el = "Резюме слишком велико ( > 1Мб)"
     input.value = ""
+    return
   } else {
-    label.textContent = input.files[0].name + input.files[0].size
+    label?.classList.remove("invalid")
+    label.textContent = input.files[0].name.slice(0, 20) + "..."
+    return
   }
 }
 
@@ -149,7 +153,7 @@ form.addEventListener("submit", (e) => {
   onInput(inputSelect)
 
   for (let i = 0; i < arrayInputs.length; i++) {
-    if (arrayInputs[i].parentNode.classList.contains("invalid") || confirm || arrayInputs[i].value === "") {
+    if (arrayInputs[i].parentNode?.classList.contains("invalid") || confirm || arrayInputs[i].value === "") {
       btnSubmit.disabled = true
       btnSubmit.classList.add("disabled")
       console.log(btnSubmit)

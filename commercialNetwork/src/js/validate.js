@@ -30,17 +30,20 @@ function isValidSelect(input) {
   if (input.value === "") {
     input.parentNode.dataset.el = "Выберите город"
     input.classList.add("invalid")
+    return false
   } else {
     input.classList.remove("invalid")
+    return true
   }
 }
 
 function isValidTel(input) {
+  console.log(input.value.length)
   if (input.value.length !== 18) {
     input.parentNode.dataset.el = "Неверный номер телефона"
-    input.parentNode.classList.add("invalid")
+    return false
   } else {
-    input.parentNode.classList.remove("invalid")
+    return true
   }
 }
 
