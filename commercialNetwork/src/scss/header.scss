@@ -75,19 +75,32 @@ body {
 
           .nav__item {
             .nav__link {
-              cursor: pointer;
+              position: relative;
               font-size: 14px;
               line-height: 114%;
               text-transform: uppercase;
               font-weight: 700;
               color: $white;
+              border-bottom: 0px solid rgba($color: $white, $alpha: 0);
+              transition: 0.3s ease-in-out;
+              cursor: pointer;
 
-              transition: text-shadow 0.3s ease-in-out;
-
-              &:hover {
-                cursor: pointer;
-                text-shadow: 5px 5px 3px #cfc1c1;
+              &::after {
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 0;
+                height: 3px;
+                background-color: $red;
+                content: "";
+                transition: width 0.3s ease-out;
               }
+
+              &:hover:after,
+              a:focus:after {
+                width: 100%;
+              }
+
               @media (max-width: 992px) {
                 font-size: 32px;
                 line-height: 60px;
