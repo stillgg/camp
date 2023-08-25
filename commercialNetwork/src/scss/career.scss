@@ -257,7 +257,7 @@
       }
     }
 
-    .PopUp__data {
+    .popup__data {
       background-color: $white;
       color: $black;
 
@@ -435,7 +435,7 @@
                   font-style: italic;
                   color: $red;
                 }
-                .button__op {
+                .button__file {
                   visibility: hidden;
                   position: absolute;
                 }
@@ -529,7 +529,7 @@
               box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.50196);
             }
             &.disabled {
-              pointer-events: none;
+              cursor: not-allowed;
               background: #9e9e9e;
             }
           }
