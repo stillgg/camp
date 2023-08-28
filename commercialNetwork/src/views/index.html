@@ -7,7 +7,7 @@
       content="height=device-height, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
     />
     <title>promotion.ru</title>
-    <link data-n-head="1" rel="icon" type="image/png" sizes="64x64" href="../resources/img/favicon.png" />
+    <!-- <link data-n-head="1" rel="icon" type="image/png" sizes="64x64" href="../resources/img/favicon.png" /> -->
   </head>
   <body>
     <div class="app">
@@ -470,116 +470,74 @@
         </section>
 
         <section id="team" class="team">
-          <div class="team__wrapper container">
-            <h2 class="h2">команда</h2>
-            <div class="team__main">
-              <div class="slider" id="slider-team-desktop">
-                <div class="slider-track">
-                  <div class="slider-item">
+          <div class="container">
+            <div class="team__wrapper">
+              <h2 class="h2">команда</h2>
+              <div class="team__main">
+                <div>
+                  <div class="slider">
                     <img
+                      class="slide slider__img__active"
                       src="../resources/img/08-team-seo-2.png"
                       alt="team-seo-2"
                       srcset="../resources/img/08-team-seo-2.webp"
                     />
-                    <div class="text">
-                      <p class="text__name">Антон Юрк</p>
-                      <p class="text__description">сооснователь, г.Москва</p>
-                    </div>
-                  </div>
-
-                  <div class="slider-item">
                     <img
+                      class="slide slider__img__next"
                       src="../resources/img/08-team-seo-1.png"
                       alt="team-seo-1"
                       srcset="../resources/img/08-team-seo-1.webp"
                     />
-
+                    <img
+                      class="slide slider__img__next"
+                      src="../resources/img/08-team-seo-3.png"
+                      alt="team-seo-3"
+                      srcset="../resources/img/08-team-seo-03.webp"
+                    />
+                    <svg id="arrowBtnRight" class="arrowBtn" width="9" height="13">
+                      <use xlink:href="../resources/icons/sprite.svg#arrowBtn"></use>
+                    </svg>
+                    <svg id="arrowBtnLeft" class="arrowBtn left disabled" width="9" height="13">
+                      <use xlink:href="../resources/icons/sprite.svg#arrowBtn"></use>
+                    </svg>
+                  </div>
+                  <div class="slider__text">
                     <div class="text">
-                      <p class="text__name">Георгий Калиновский</p>
-                      <p class="text__description">Операционный директор, г.Москва</p>
+                      <h4 class="text__name">Антон Юрк</h4>
+                      <p class="text__description">Cооснователь (Новосибирск)</p>
+                    </div>
+                    <div class="text disabled">
+                      <h4 class="text__name">Егор Ракутов</h4>
+                      <p class="text__description">Cооснователь (Новосибирск)</p>
+                    </div>
+                    <div class="text disabled">
+                      <h4 class="text__name">Дима Давидыч</h4>
+                      <p class="text__description">Cооснователь (Новосибирск)</p>
                     </div>
                   </div>
                 </div>
-
-                <div class="button-wrapper">
-                  <button class="slider-button__left">
-                    <svg class="arrow">
-                      <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
-                    </svg>
-                  </button>
-
-                  <button class="slider-button__right">
-                    <svg class="arrow">
-                      <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
+                <div class="wrapper-gradient">
+                  <div class="gradient-top"></div>
+                </div>
+                <div class="main__description">
+                  <p class="main__description__bold">
+                    Наш важнейший ресурс — команда. Мы искренне благодарны людям, которые делают работу Promotion.ru
+                    такой слаженной, эффективной и желанной. Наши общие достижения демонстрируют это нагляднее всего!
+                  </p>
+                  <p class="main__description__gray">
+                    <br />
+                    Promotion.ru это реализация моих идей, вдохновения. Я вижу компанию как семью, в которой все имеют
+                    право на мнение и идеи, уважают советы и опыт старших.<br /><br />
+                    Чувствовать общий масштаб компании, нести ответственность за каждого сотрудника в бизнесе, узнавать
+                    всю страну географически и ментально, разрабатывать и внедрять IT- новшества, погружаться во все
+                    проблемы, принимать ключевые решения - мои главные задачи, справляться с которыми я научился с
+                    Promotion.ru.
+                  </p>
                 </div>
 
                 <svg class="main__comma" width="74" height="59">
                   <use xlink:href="../resources/icons/sprite.svg#comma"></use>
                 </svg>
-              </div>
-
-              <div class="team-slider slider" id="slider-team-mobile">
-                <div class="slider-track team-slider-track">
-                  <div class="slider-item team__item">
-                    <img
-                      src="../resources/img/08-team-seo-2.png"
-                      alt="team-seo-2"
-                      srcset="../resources/img/08-team-seo-2.webp"
-                    />
-
-                    <div class="text">
-                      <p class="text__name">Антон Юрк</p>
-                      <p class="text__description">сооснователь, г.Москва</p>
-                    </div>
-                  </div>
-
-                  <div class="slider-item team__item">
-                    <img
-                      src="../resources/img/08-team-seo-1.png"
-                      alt="team-seo-1"
-                      srcset="../resources/img/08-team-seo-1.webp"
-                    />
-                    <div class="text">
-                      <p class="text__name">Георгий Калиновский</p>
-                      <p class="text__description">Операционный директор, г.Москва</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="button-wrapper">
-                  <button class="slider-button__left left-btn">
-                    <svg class="arrow">
-                      <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
-                    </svg>
-                  </button>
-
-                  <button class="slider-button__right right-btn">
-                    <svg class="arrow">
-                      <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div class="wrapper-gradient">
-                <div class="gradient-top"></div>
-              </div>
-              <div class="main__description">
-                <p class="main__description__bold">
-                  Наш важнейший ресурс — команда. Мы искренне благодарны людям, которые делают работу Promotion.ru такой
-                  слаженной, эффективной и желанной. Наши общие достижения демонстрируют это нагляднее всего!
-                </p>
-                <p class="main__description__gray">
-                  <br />
-                  Promotion.ru это реализация моих идей, вдохновения. Я вижу компанию как семью, в которой все имеют
-                  право на мнение и идеи, уважают советы и опыт старших.<br /><br />
-                  Чувствовать общий масштаб компании, нести ответственность за каждого сотрудника в бизнесе, узнавать
-                  всю страну географически и ментально, разрабатывать и внедрять IT- новшества, погружаться во все
-                  проблемы, принимать ключевые решения - мои главные задачи, справляться с которыми я научился с
-                  Promotion.ru.
-                </p>
               </div>
             </div>
           </div>
@@ -588,10 +546,19 @@
         <section id="news" class="news">
           <div class="container">
             <h2 class="news__title">НОВОСТИ</h2>
-
-            <div class="slider" id="slider-news">
-              <div class="slider-track news-slider-track">
-                <div class="slider-item news-body__item">
+            <div class="news-wrapper">
+              <button g class="left-btn">
+                <svg class="arrow">
+                  <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
+                </svg>
+              </button>
+              <button class="right-btn">
+                <svg class="arrow">
+                  <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
+                </svg>
+              </button>
+              <div class="news-body">
+                <div class="news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
                       <img
@@ -610,7 +577,7 @@
                   </div>
                 </div>
 
-                <div class="slider-item news-body__item">
+                <div class="news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
                       <img
@@ -629,7 +596,7 @@
                   </div>
                 </div>
 
-                <div class="slider-item news-body__item">
+                <div class="news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
                       <img
@@ -648,7 +615,7 @@
                   </div>
                 </div>
 
-                <div class="slider-item news-body__item">
+                <div class="news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
                       <img
@@ -666,58 +633,6 @@
                     <a href="#" class="body__link">Подробнее</a>
                   </div>
                 </div>
-
-                <div class="slider-item news-body__item">
-                  <div class="item__header">
-                    <div class="wrapper-image">
-                      <img
-                        class="header-image"
-                        src="../resources/img/09-news-01.png"
-                        alt=""
-                        srcset="../resources/img/09-news-01.webp"
-                      />
-                    </div>
-                    <div class="item__date">24.08.2022</div>
-                  </div>
-                  <div class="item__body">
-                    <h3 class="body__title">ЗАПУЩЕН В РАБОТУ ВЛАДИВОСТОКСКИЙ ФИЛИАЛ</h3>
-                    <div class="body__text">Уже 1 сентября мы открываем филиал компании в Саратове.</div>
-                    <a href="#" class="body__link">Подробнее</a>
-                  </div>
-                </div>
-
-                <div class="slider-item news-body__item">
-                  <div class="item__header">
-                    <div class="wrapper-image">
-                      <img
-                        class="header-image"
-                        src="../resources/img/09-news-01.png"
-                        alt=""
-                        srcset="../resources/img/09-news-01.webp"
-                      />
-                    </div>
-                    <div class="item__date">24.08.2022</div>
-                  </div>
-                  <div class="item__body">
-                    <h3 class="body__title">ЗАПУЩЕН В РАБОТУ ВЛАДИВОСТОКСКИЙ ФИЛИАЛ</h3>
-                    <div class="body__text">Уже 1 сентября мы открываем филиал компании в Саратове.</div>
-                    <a href="#" class="body__link">Подробнее</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="button-wrapper">
-                <button class="slider-button__left left-btn">
-                  <svg class="arrow">
-                    <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
-                  </svg>
-                </button>
-
-                <button class="slider-button__right right-btn">
-                  <svg class="arrow">
-                    <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
@@ -754,131 +669,24 @@
               <button class="main__btn">Показать больше вакансий</button>
             </div>
           </div>
-          <div class="career__opup">
-            <div class="popup__preview">
-              <div class="preview__container">
-                <div class="preview__text">
-                  <h2 class="text__title">Промоутер</h2>
-                  <h6 class="text__requirements">Что мы ждём:</h6>
-                  <div class="requirements__description">
-                    <p class="description__paragraph">
-                      Опыт управления продажами в розничной торговой сети (от 15 подчиненных) от 2 лет;
-                    </p>
-                    <p class="description__paragraph">Опыт подбора и адаптации торгового персонала;</p>
-                    <p class="description__paragraph">Ориентация на результат;</p>
-                    <p class="description__paragraph">Аналитический склад ума;</p>
-                    <p class="description__paragraph">
-                      Готовность к постоянным командировкам (до 60% рабочего времени).
-                    </p>
-                  </div>
-                  <h6 class="text__requirements">Что мы обещаем:</h6>
-                  <div class="requirements__description">
-                    <p class="description__paragraph">
-                      Заработная плата — 80-120 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
-                    </p>
-                  </div>
-                </div>
-                <div class="preview__picture">
-                  <picture>
-                    <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
-                    <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
-                  </picture>
-                </div>
-                <div class="close__wraper">
-                  <div class="preview__close">
-                    <span class="close__strip"></span>
-                    <span class="close__strip"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="PopUp__data">
-                <div class="data__container">
-                  <form action="" class="form">
-                    <div class="data__form">
-                      <div class="form__column">
-                        <div class="column__input">
-                          <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
-                          <div class="wrapper-input-select">
-                            <select name="city" id="city-select" class="input__line input-select">
-                              <option selected disabled value="">Выбор города</option>
-                              <option value="Minsk">Минск</option>
-                              <option value="Grodno">Гродно</option>
-                              <option value="Brest">Брест</option>
-                              <option value="Vitebsk">Витебск</option>
-                              <option value="Gomel">Гомель</option>
-                              <option value="Minsk_O">Минская область</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="column__input">
-                          <label class="input__title" for="job"> Должность на которую вы претендуете </label>
-                          <input id="job" type="text" class="input__line" placeholder="Укажите должность" />
-                        </div>
-                        <div class="column__input">
-                          <label class="input__title" for="birthday_day">Дата рождения</label>
-                          <div class="input__birthday">
-                            <div class="input__wrapper">
-                              <input id="birthday_day" type="number" class="input__line" placeholder="День" />
-                            </div>
-                            <div class="input__wrapper">
-                              <input type="number" class="input__line" placeholder="Месяц" />
-                            </div>
-                            <div class="input__wrapper">
-                              <input type="number" class="input__line" placeholder="Год" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="column__input">
-                          <label class="input__title" for="tel">Контактный телефон</label>
-                          <input id="tel" type="tel" class="input__line" placeholder="Укажите ваш номер телефона" />
-                        </div>
-                      </div>
-                      <div class="form__column">
-                        <div class="column__input">
-                          <label class="input__title" for="email">Email адрес</label>
-                          <input id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
-                        </div>
-                        <div class="column__input">
-                          <label class="input__title" for="full_name">Фамилия Имя Отчество</label>
-                          <input id="full_name" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
-                        </div>
-                        <div class="column__input">
-                          <label class="input__title" for="nationality">Гражданство</label>
-                          <input
-                            id="nationality"
-                            type="text"
-                            class="input__line"
-                            placeholder="Укажите ваше гражданство"
-                          />
-                        </div>
-                        <label class="input__button" for="input__file"
-                          >Прикрепить резюме
-                          <input id="input__file" type="file" class="button__op" />
-                        </label>
-                      </div>
-                    </div>
-                    <div class="form__confirm">
-                      <label class="confirm__container"
-                        >Согласен с политикой обработки персональных данных
-                        <input type="checkbox" class="confirm__point" />
-                        <span class="confirm__checkbox"></span>
-                      </label>
-                    </div>
-                    <button type="submit" class="form__btn">ОТПРАВИТЬ АНКЕТУ</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
-        <section class="merch">
+        <section id="merch" class="merch">
           <div class="container">
             <h2 class="h2">Мерч</h2>
-
-            <div class="slider" id="slider-merch">
-              <div class="slider-track merch-slider-track">
-                <div class="slider-item merch-slider-item" draggable="true">
+            <div class="merch-slider">
+              <button class="left-btn">
+                <svg class="arrow">
+                  <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
+                </svg>
+              </button>
+              <button class="right-btn">
+                <svg class="arrow">
+                  <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
+                </svg>
+              </button>
+              <div class="merch-wrapper">
+                <div class="merch-item">
                   <div class="image-wrapper">
                     <img
                       class="item__image"
@@ -889,57 +697,6 @@
                   </div>
                   <p class="item__description">Футболка треугольник черная</p>
                 </div>
-
-                <div class="slider-item merch-slider-item" draggable="true">
-                  <div class="image-wrapper">
-                    <img
-                      class="item__image"
-                      src="../resources/img/11-merch-02.png"
-                      srcset="../resources/img/11-merch-02.webp"
-                      alt="merch-image"
-                    />
-                  </div>
-                  <p class="item__description">Худи треугольник</p>
-                </div>
-
-                <div class="slider-item merch-slider-item" draggable="true">
-                  <div class="image-wrapper">
-                    <img
-                      class="item__image"
-                      src="../resources/img/11-merch-03.png"
-                      srcset="../resources/img/11-merch-03.webp"
-                      alt="merch-image"
-                    />
-                  </div>
-
-                  <p class="item__description">свитшот Military красный</p>
-                </div>
-
-                <div class="slider-item merch-slider-item" draggable="true">
-                  <div class="image-wrapper">
-                    <img
-                      class="item__image"
-                      src="../resources/img/11-merch-02.png"
-                      srcset="../resources/img/11-merch-02.webp"
-                      alt="merch-image"
-                    />
-                  </div>
-                  <p class="item__description">Футболка треугольник черная</p>
-                </div>
-              </div>
-
-              <div class="button-wrapper">
-                <button class="slider-button__left left-btn">
-                  <svg class="arrow">
-                    <use xlink:href="../resources/icons/sprite.svg#arrow-left"></use>
-                  </svg>
-                </button>
-
-                <button class="slider-button__right right-btn" id="merch-btn-next">
-                  <svg class="arrow">
-                    <use xlink:href="../resources/icons/sprite.svg#arrow-right"></use>
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
@@ -953,6 +710,121 @@
           ></iframe>
         </section>
       </main>
+      <div class="wrapper__popups">
+        <div class="career__popup">
+          <div class="popup__preview">
+            <div class="preview__container">
+              <div class="preview__text">
+                <h2 class="text__title">Промоутер</h2>
+                <h6 class="text__requirements">Что мы ждём:</h6>
+                <div class="requirements__description">
+                  <p class="description__paragraph">
+                    Опыт управления продажами в розничной торговой сети (от 15 подчиненных) от 2 лет;
+                  </p>
+                  <p class="description__paragraph">Опыт подбора и адаптации торгового персонала;</p>
+                  <p class="description__paragraph">Ориентация на результат;</p>
+                  <p class="description__paragraph">Аналитический склад ума;</p>
+                  <p class="description__paragraph">Готовность к постоянным командировкам (до 60% рабочего времени).</p>
+                </div>
+                <h6 class="text__requirements">Что мы обещаем:</h6>
+                <div class="requirements__description">
+                  <p class="description__paragraph">
+                    Заработная плата — 80-120 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
+                  </p>
+                </div>
+              </div>
+              <div class="preview__picture">
+                <picture>
+                  <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
+                  <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
+                </picture>
+              </div>
+              <div class="close__wrapper">
+                <div class="preview__close">
+                  <span class="close__strip"></span>
+                  <span class="close__strip"></span>
+                </div>
+              </div>
+            </div>
+            <div class="popup__data">
+              <div class="data__container">
+                <form action="" class="form">
+                  <div class="data__form">
+                    <div class="form__column">
+                      <div class="column__input">
+                        <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
+                        <div class="wrapper-input-select">
+                          <select name="city" id="Select" class="input__line input-select">
+                            <option selected disabled value="">Выбор города</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="column__input">
+                        <label class="input__title" for="job"> Должность на которую вы претендуете </label>
+                        <input id="Job" type="text" class="input__line" placeholder="Укажите должность" />
+                      </div>
+                      <div class="column__input">
+                        <label class="input__title" for="birthday_day">Дата рождения</label>
+                        <div class="input__birthday">
+                          <div class="input__wrapper">
+                            <input id="Days" type="number" class="input__line" placeholder="День" />
+                          </div>
+                          <div class="input__wrapper">
+                            <input id="Months" type="number" class="input__line" placeholder="Месяц" />
+                          </div>
+                          <div class="input__wrapper">
+                            <input id="Years" type="number" class="input__line" placeholder="Год" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column__input">
+                        <label class="input__title" for="tel">Контактный телефон</label>
+                        <input id="Tel" type="tel" class="input__line" placeholder="Укажите ваш номер телефона" />
+                      </div>
+                    </div>
+                    <div class="form__column">
+                      <div class="column__input">
+                        <label class="input__title" for="email">Email адрес</label>
+                        <input id="Email" type="email" class="input__line" placeholder="Укажите ваш Email " />
+                      </div>
+                      <div class="column__input">
+                        <label class="input__title" for="full_name">Фамилия Имя Отчество</label>
+                        <input id="Name" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                      </div>
+                      <div class="column__input">
+                        <label class="input__title" for="nationality">Гражданство</label>
+                        <input
+                          id="Nationality"
+                          type="text"
+                          class="input__line"
+                          placeholder="Укажите ваше гражданство"
+                        />
+                      </div>
+                      <label class="input__button" for="File"
+                        >Прикрепить резюме
+                        <input
+                          id="File"
+                          type="file"
+                          class="button__file"
+                          accept="application/pdf,application/vnd.ms-excel,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form__confirm">
+                    <label class="confirm__container"
+                      >Согласен с политикой обработки персональных данных
+                      <input type="checkbox" class="confirm__point" id="Confirm" />
+                      <span class="confirm__checkbox"></span>
+                    </label>
+                  </div>
+                  <button type="submit" class="form__btn">ОТПРАВИТЬ АНКЕТУ</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
