@@ -30,7 +30,8 @@ section {
   overflow: hidden;
 
   .main {
-    transition: all 700ms ease 0s;
+    height: 100%;
+    transition: transform 700ms ease 0s;
   }
 }
 
