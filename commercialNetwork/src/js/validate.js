@@ -1,4 +1,6 @@
 const btnSubmit = document.querySelector(".form__btn")
+// const inputTel = document.querySelector("#Tel")
+// let isBackspace = false
 export let confirm = false
 
 const onInput = (input) => {
@@ -38,7 +40,15 @@ function isValidSelect(input) {
 }
 
 function isValidTel(input) {
-  console.log(input.value.length)
+  // inputTel.addEventListener("keydown", (event) => {
+  //   let key = event.keyCode || event.charCode
+  //   if (key == 8 || key == 46) isBackspace = true
+
+  //   if (input.value.length === 2 && isBackspace) {
+  //     return
+  //   }
+  // })
+
   if (input.value.length !== 18) {
     input.parentNode.dataset.el = "Неверный номер телефона"
     return false
@@ -112,7 +122,7 @@ function isValidEmail(input) {
 }
 
 function isValidName(input) {
-  const regex = /^[A-Za-z ']+$/
+  const regex = /^[А-Яа-я ']+$/
   if (input.value.length < 6) {
     input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
     return false
@@ -130,7 +140,7 @@ function isValidName(input) {
 }
 
 function isValidNationality(input) {
-  const regex = /^[A-Za-z]+$/
+  const regex = /^[А-Яа-я ']+$/
   if (input.value.length < 4) {
     input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
     return false
@@ -148,7 +158,7 @@ function isValidNationality(input) {
 }
 
 function isValidJob(input) {
-  const regex = /^[A-Za-z ]+$/
+  const regex = /^[А-Яа-я ']+$/
   if (input.value.length < 5) {
     input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
     return false

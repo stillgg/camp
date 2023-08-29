@@ -156,13 +156,12 @@
 .career__popup {
   color: $white;
   top: 0;
-  right: 0%;
+  right: 100%;
   position: fixed;
   z-index: 999991;
   background-color: $white;
   height: 100%;
   width: 100%;
-  max-width: 1531px;
   overflow-y: auto;
   opacity: 1;
   transition:
@@ -190,6 +189,7 @@
         }
 
         .text__requirements {
+          font-size: 14px;
           font-weight: 700;
           margin-bottom: 10px;
         }
@@ -199,6 +199,9 @@
           flex-direction: column;
           gap: 10px;
           margin-bottom: 30px;
+          .description__paragraph {
+            color: $white;
+          }
         }
         @media (max-width: 992px) {
           max-width: 100%;
@@ -297,9 +300,6 @@
                     font-style: italic;
                     color: $red;
                   }
-                  .input__line {
-                    box-shadow: 0 0 0 2px $red;
-                  }
                 }
 
                 .input__title {
@@ -316,6 +316,7 @@
                       transform: translateY(4px) rotate(-135deg);
                     }
                   }
+
                   &::after {
                     content: "";
                     right: 15px;
@@ -328,6 +329,7 @@
                     transition: 0.4s;
                     transform: rotate(45deg);
                   }
+
                   &.invalid {
                     &::before {
                       content: attr(data-el);
@@ -361,13 +363,18 @@
                   }
 
                   &:hover {
-                    background: $white;
+                    background: inherit;
                     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12157);
                   }
-                  &.invalid {
-                    box-shadow: 0 0 0 2px $red;
+                }
+
+                .input__line.invalid {
+                  box-shadow: 0 0 0 2px $red;
+                  &:hover {
+                    box-shadow: 0px 0px 10px 1px $red;
                   }
                 }
+
                 .input__birthday {
                   display: grid;
                   grid-template-columns: repeat(3, calc(33% - 13px));
@@ -383,8 +390,11 @@
                         -webkit-appearance: none;
                         margin: 0;
                       }
-                      &.invalid {
-                        box-shadow: 0 0 0 2px $red;
+                    }
+                    .input__line.invalid {
+                      box-shadow: 0 0 0 2px $red;
+                      &:hover {
+                        box-shadow: 0px 0px 10px 1px $red;
                       }
                     }
                   }
@@ -401,6 +411,14 @@
                   }
                 }
               }
+
+              .column__input.invalid .input__line {
+                box-shadow: 0 0 0 2px $red;
+                &:hover {
+                  box-shadow: 0px 0px 10px 1px $red;
+                }
+              }
+
               .input__button {
                 position: relative;
                 display: flex;
@@ -533,6 +551,7 @@
             &.disabled {
               cursor: not-allowed;
               background: #9e9e9e;
+              box-shadow: none;
             }
           }
 
@@ -550,7 +569,7 @@
   }
 
   &.active {
-    right: 0;
+    right: 0%;
     opacity: 1;
   }
 }

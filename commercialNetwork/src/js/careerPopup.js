@@ -6,14 +6,14 @@ const closeBtn = popup.querySelector(".close__wrapper")
 const form = popup.querySelector(".form")
 const btnSubmit = document.querySelector(".form__btn")
 
+closeBtn.addEventListener("click", () => {
+  popup.classList.remove("active")
+})
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     popup.classList.add("active")
   })
-})
-
-closeBtn.addEventListener("click", () => {
-  popup.classList.remove("active")
 })
 
 const arrayInputs = form.querySelectorAll("input")
@@ -30,11 +30,8 @@ const inputConfirm = form.querySelector("#Confirm")
 const inputSelect = form.querySelector("Select")
 
 // arrayInputs.push(inputSelect)
-console.log(arrayInputs)
 arrayInputs.forEach((input) => {
-  console.log(input.id)
   if (input.id !== "File") {
-    console.log("try")
     input.addEventListener("blur", (e) => onInput(e.target))
   }
 })
@@ -97,7 +94,7 @@ function isValidFile(input) {
   }
   if (input.files[0].size > 100000) {
     label.classList.add("invalid")
-    label.dataset.el = "Резюме слишком велико ( > 1Мб)"
+    label.dataset.el = "Резюме должно быть меньше 1мб"
     input.value = ""
     return
   } else {
@@ -145,6 +142,7 @@ inputYears.addEventListener("input", (e) => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  console.log(arrayInputs)
   arrayInputs.forEach((input) => {
     if (input.id !== "File") {
       onInput(input)
@@ -157,18 +155,18 @@ form.addEventListener("submit", (e) => {
     if (arrayInputs[i].parentNode?.classList.contains("invalid")) {
       btnSubmit.disabled = true
       btnSubmit.classList.add("disabled")
-      console.log(btnSubmit)
       return
     }
   }
+
   arrayInputs.forEach((input) => {
     input.value = ""
   })
   inputSelect.value = ""
   inputFile.value = ""
   inputConfirm.checked = false
-  console.log("submit")
 })
+
 // || confirm
 // || arrayInputs[i].value === ""
 // Название файла на кнопке, при фалс подсветить кнопку красным
