@@ -22,8 +22,11 @@ const watchedSlide = new Proxy(
 )
 
 function initSectionsHeight() {
+  const height = document.documentElement.clientHeight
+  main.style.height = height + "px"
+
   sections.forEach((section) => {
-    section.style.height = document.documentElement.clientHeight + "px"
+    section.style.height = height + "px"
   })
 }
 

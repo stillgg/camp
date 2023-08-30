@@ -52,7 +52,7 @@
           justify-content: space-between;
           gap: 20px;
           align-items: center;
-          padding: 40px 50px 40px 40px;
+          padding: 30px 50px 30px 40px;
 
           cursor: pointer;
 
@@ -118,7 +118,7 @@
             transform: scale(45) rotate(45deg);
 
             @media (max-width: 576px) {
-              transform: scale(20) rotate(45deg);
+              transform: scale(30) rotate(45deg);
             }
           }
         }
