@@ -129,9 +129,6 @@
           max-width: none;
           bottom: -9px;
           left: -20px;
-          transition:
-            transform 0.4s ease,
-            opacity 0.4s ease;
           animation: mark-down 1s forwards;
 
           @keyframes mark-down {
@@ -177,7 +174,6 @@
 
         &.animation-play {
           pointer-events: none;
-          transition: all 0.4s ease;
 
           &::after {
             content: "";
