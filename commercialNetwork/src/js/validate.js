@@ -40,15 +40,6 @@ function isValidSelect(input) {
 }
 
 function isValidTel(input) {
-  // inputTel.addEventListener("keydown", (event) => {
-  //   let key = event.keyCode || event.charCode
-  //   if (key == 8 || key == 46) isBackspace = true
-
-  //   if (input.value.length === 2 && isBackspace) {
-  //     return
-  //   }
-  // })
-
   if (input.value.length !== 18) {
     input.parentNode.dataset.el = "Неверный номер телефона"
     return false
@@ -69,6 +60,11 @@ function isValidMonths(input) {
     input.classList.add("invalid")
     return
   }
+
+  if (+input.value <= 9 && input.value.length <= 1) {
+    input.value = "0" + input.value
+  }
+
   input.parentNode.parentNode.classList.remove("invalid")
   input.classList.remove("invalid")
   return true
@@ -108,6 +104,10 @@ function isValidDays(input) {
     input.parentNode.parentNode.classList.add("invalid")
     return
   }
+  if (+input.value <= 9 && input.value.length <= 1) {
+    input.value = "0" + input.value
+  }
+
   input.parentNode.parentNode.classList.remove("invalid")
   input.classList.remove("invalid")
 
@@ -122,7 +122,7 @@ function isValidEmail(input) {
 }
 
 function isValidName(input) {
-  const regex = /^[А-Яа-я ']+$/
+  const regex = /^[А-Яа-яA-Za-z ']+$/
   if (input.value.length < 6) {
     input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
     return false
@@ -140,7 +140,7 @@ function isValidName(input) {
 }
 
 function isValidNationality(input) {
-  const regex = /^[А-Яа-я ']+$/
+  const regex = /^[А-Яа-яA-Za-z ']+$/
   if (input.value.length < 4) {
     input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
     return false
@@ -158,7 +158,7 @@ function isValidNationality(input) {
 }
 
 function isValidJob(input) {
-  const regex = /^[А-Яа-я ']+$/
+  const regex = /^[А-Яа-яA-Za-z ']+$/
   if (input.value.length < 5) {
     input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
     return false

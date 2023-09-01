@@ -18,16 +18,16 @@ buttons.forEach((button) => {
 
 const arrayInputs = form.querySelectorAll("input")
 // const inputEmail = form.querySelector("#Email")
-const inputTel = form.querySelector("#Tel")
+const inputTel = form.querySelector("#tel")
 // const inputName = form.querySelector("#Name")
 // const inputNationality = form.querySelector("#Nationality")
 // const inputJob = form.querySelector("#Job")
-const inputDays = form.querySelector("#Days")
-const inputMonths = form.querySelector("#Months")
-const inputYears = form.querySelector("#Years")
-const inputFile = form.querySelector("#File")
-const inputConfirm = form.querySelector("#Confirm")
-const inputSelect = form.querySelector("Select")
+const inputDays = form.querySelector("#days")
+const inputMonths = form.querySelector("#months")
+const inputYears = form.querySelector("#years")
+const inputFile = form.querySelector("#file")
+const inputConfirm = form.querySelector("#confirm")
+const inputSelect = form.querySelector("select")
 
 // arrayInputs.push(inputSelect)
 arrayInputs.forEach((input) => {
@@ -44,18 +44,23 @@ arrayInputs.forEach((input) => {
 // inputMonths.addEventListener("blur", (e) => onInput(e.target))
 // inputYears.addEventListener("blur", (e) => onInput(e.target))
 inputSelect.addEventListener("blur", (e) => onInput(e.target))
-inputTel.value = "+7"
+// inputTel.value = "+7"
 
-inputTel.addEventListener("input", (e) => {
-  const value = inputTel.value.replace(/\D+/g, "")
+function inputTelHandler(e) {
+  const value = e.value.replace(/\D+/g, "")
   const MaxLength = 11
 
-  let result = "+"
+  let result = "+7"
+
+  if (value.length === 0) {
+    e.value = result
+    return
+  }
 
   for (let i = 0; i < value.length && i < MaxLength; i++) {
     switch (i) {
       case 0:
-        result += "7 ("
+        result += " ("
         continue
       case 4:
         result += ") "
@@ -71,8 +76,14 @@ inputTel.addEventListener("input", (e) => {
     }
     result += value[i]
   }
-  inputTel.value = result
+  e.value = result
+}
+
+inputTel.addEventListener("input", (e) => {
+  inputTelHandler(e.target)
 })
+
+inputTelHandler(inputTel)
 
 // inputTel.addEventListener("blur", function () {
 //   if (this.value.length !== 18) {
