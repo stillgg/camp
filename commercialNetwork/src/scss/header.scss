@@ -13,7 +13,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // transition: 0.4s;
 
   &.container {
     .header__logo {
@@ -82,7 +81,6 @@ body {
               font-weight: 700;
               color: $white;
               border-bottom: 0px solid rgba($color: $white, $alpha: 0);
-              transition: 0.3s ease-in-out;
               cursor: pointer;
 
               &::after {
@@ -169,7 +167,10 @@ body {
             height: 4px;
             width: 100%;
             background-color: $white;
-            transition: all 0.5s ease-in-out;
+            transition:
+              opacity 0.6s ease,
+              left 0.6s ease,
+              transform 0.6s ease;
 
             &:first-child {
               top: 0;
