@@ -46,14 +46,14 @@
       width: 70px;
       height: 70px;
       z-index: 1;
-      transition: 0.4s;
+      transition: color, 0.4s;
 
       .play {
         position: relative;
         left: 5px;
         z-index: 20;
         color: $red;
-        transition: 0.4s;
+        transition: color, 0.4s;
       }
     }
     &:hover {
