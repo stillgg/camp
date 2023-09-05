@@ -18,20 +18,20 @@ buttons.forEach((button) => {
 
 const arrayInputs = form.querySelectorAll("input")
 // const inputEmail = form.querySelector("#Email")
-const inputTel = form.querySelector("#tel")
+const inputTel = form.querySelector("#Tel")
 // const inputName = form.querySelector("#Name")
 // const inputNationality = form.querySelector("#Nationality")
 // const inputJob = form.querySelector("#Job")
-const inputDays = form.querySelector("#days")
-const inputMonths = form.querySelector("#months")
-const inputYears = form.querySelector("#years")
-const inputFile = form.querySelector("#file")
-const inputConfirm = form.querySelector("#confirm")
-const inputSelect = form.querySelector("select")
+const inputDays = form.querySelector("#Days")
+const inputMonths = form.querySelector("#Months")
+const inputYears = form.querySelector("#Years")
+const inputFile = form.querySelector("#File")
+const inputConfirm = form.querySelector("#Confirm")
+const inputSelect = form.querySelector("Select")
 
 // arrayInputs.push(inputSelect)
 arrayInputs.forEach((input) => {
-  if (input.id !== "File") {
+  if (input.id !== "File" || input.id !== "submit") {
     input.addEventListener("blur", (e) => onInput(e.target))
   }
 })
@@ -154,11 +154,13 @@ inputYears.addEventListener("input", (e) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   console.log(arrayInputs)
+
   arrayInputs.forEach((input) => {
     if (input.id !== "File") {
       onInput(input)
     }
   })
+
   isValidFile(inputFile)
   onInput(inputSelect)
 
