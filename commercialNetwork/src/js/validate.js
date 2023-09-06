@@ -1,177 +1,115 @@
-const btnSubmit = document.querySelector(".form__btn")
-// const inputTel = document.querySelector("#Tel")
-// let isBackspace = false
-export let confirm = false
+// const form = document.querySelector("#unique-form")
 
-const onInput = (input) => {
-  if (!eval(`isValid${input.id}(input)`)) {
-    input.parentNode.classList.add("invalid")
-    // btnSubmit.disabled = true
-  } else {
-    input.parentNode.classList.remove("invalid")
-    btnSubmit.disabled = false
-    btnSubmit.classList.remove("disabled")
+// const inputConfirm = form.querySelector("#confirm")
+// const inputSelect = form.querySelector("select")
+// const inputTel = form.querySelector("#tel")
+// const inputMonths = form.querySelector("#months")
+// const inputYears = form.querySelector("#years")
+// const inputDays = form.querySelector("#days")
+// const inputEmail = form.querySelector("#email")
+// const inputName = form.querySelector("#name")
+// const inputNationality = form.querySelector("#nationality")
+// const inputJob = form.querySelector("#job")
+// const inputFile = form.querySelector("#file")
+
+class Validation {
+  constructor(schema) {
+    this.schema = schema
+  }
+
+  isError(name) {
+    const validator = this.schema[name]
+    if (!validator) {
+      console.error("Ошибка: Валидатор для поля " + name + " не определен.")
+      return true // Возвращаем true, чтобы обозначить ошибку
+    }
+    return !validator(inputName) // Вызываем валидатор и инвертируем результат
+  }
+
+  isValid() {}
+
+  validate() {
+    const names = Object.keys(this.schema)
+    const errors = names.filter((name) => this.isError(name))
+    return errors
   }
 }
 
-function isValidConfirm(input) {
-  if (input.checked) {
-    btnSubmit.disabled = false
-    btnSubmit.classList.remove("disabled")
-    input.parentNode.classList.remove("invalid")
-    confirm = true
-    return true
-  } else {
-    input.parentNode.classList.add("invalid")
-    confirm = false
-    return false
-  }
+function jobValidator(input) {
+  const regex = /^[А-Яа-яA-Za-z ']+$/
+  return regex.test(input.value) && input.value.length >= 5 && input.value.length <= 50
 }
 
-function isValidSelect(input) {
-  if (input.value === "") {
-    input.parentNode.dataset.el = "Выберите город"
-    input.classList.add("invalid")
-    return false
-  } else {
-    input.classList.remove("invalid")
-    return true
-  }
+function nationalityValidator(input) {
+  const regex = /^[А-Яа-яA-Za-z ']+$/
+  return regex.test(input.value) && input.value.length >= 4 && input.value.length <= 20
 }
 
-function isValidTel(input) {
-  if (input.value.length !== 18) {
-    input.parentNode.dataset.el = "Неверный номер телефона"
-    return false
-  } else {
-    return true
-  }
+function nameValidator(input) {
+  const regex = /^[А-Яа-яA-Za-z ']+$/
+  return regex.test(input.value) && input.value.length >= 6 && input.value.length <= 50
 }
 
-function isValidMonths(input) {
-  if (+input.value < 1) {
-    input.value = ""
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 12 || +input.value < 1) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-
-  if (+input.value <= 9 && input.value.length <= 1) {
-    input.value = "0" + input.value
-  }
-
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-  return true
-}
-
-function isValidYears(input) {
-  if (+input.value < 1) {
-    input.value = ""
-  }
-  if (+input.value > 2023 || +input.value < 1950) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 2005) {
-    input.parentNode.parentNode.dataset.el = "Мы принимаем на работу только совершеннолетних сотрудников"
-    input.parentNode.parentNode.classList.add("invalid")
-    input.classList.add("invalid")
-    return
-  }
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-
-  return true
-}
-
-function isValidDays(input) {
-  if (+input.value < 1) {
-    input.value = ""
-    input.classList.add("invalid")
-    return
-  }
-  if (+input.value > 31 || +input.value < 1) {
-    input.parentNode.parentNode.dataset.el = "Некорректно введена дата"
-    input.classList.add("invalid")
-    input.parentNode.parentNode.classList.add("invalid")
-    return
-  }
-  if (+input.value <= 9 && input.value.length <= 1) {
-    input.value = "0" + input.value
-  }
-
-  input.parentNode.parentNode.classList.remove("invalid")
-  input.classList.remove("invalid")
-
-  return true
-}
-
-function isValidEmail(input) {
+function emailValidator(input) {
   const EMAIL_REGEXP =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
-  input.parentNode.dataset.el = "Неверно введен email"
+
   return EMAIL_REGEXP.test(input.value)
 }
 
-function isValidName(input) {
-  const regex = /^[А-Яа-яA-Za-z ']+$/
-  if (input.value.length < 6) {
-    input.parentNode.dataset.el = "Длина ФИО должна быть больше 5 символов"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина ФИО должна быть меньше 50 символов"
-    return false
-  }
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-
-  return true
+function daysValidator(input) {
+  const value = +input.value
+  return value >= 1 && value <= 31
 }
 
-function isValidNationality(input) {
-  const regex = /^[А-Яа-яA-Za-z ']+$/
-  if (input.value.length < 4) {
-    input.parentNode.dataset.el = "Длина Гражданства должна быть больше 3 символов"
-    return false
-  }
-  if (input.value.length > 20) {
-    input.parentNode.dataset.el = "Длина Гражданства должна быть меньше 20 символов"
-    return false
-  }
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-
-  return true
+function yearsValidator(input) {
+  const value = +input.value
+  return value >= 1950 && value <= 2005
 }
 
-function isValidJob(input) {
-  const regex = /^[А-Яа-яA-Za-z ']+$/
-  if (input.value.length < 5) {
-    input.parentNode.dataset.el = "Длина Должности должна быть больше 4 символов"
-    return false
-  }
-  if (input.value.length > 50) {
-    input.parentNode.dataset.el = "Длина Должности должна быть меньше 50 символов"
-    return false
-  }
-  if (!input.value.match(regex)) {
-    input.parentNode.dataset.el = "Введены некорректные символы"
-    return false
-  }
-  return true
+function monthValidator(input) {
+  const value = +input.value
+  return value >= 1 && value <= 12
 }
 
-export { onInput }
+function telValidator(input) {
+  return input.value.length === 18
+}
+
+function selectValidator(input) {
+  return input.value !== ""
+}
+
+function confirmValidator(input) {
+  return input.checked
+}
+
+function fileValidator(input) {
+  if (input && input.files && input.files[0]) {
+    return input.files[0].size <= 100000
+  }
+  return false
+}
+
+const obj = {
+  confirm: confirmValidator,
+  select: selectValidator,
+  tel: telValidator,
+  months: monthValidator,
+  years: yearsValidator,
+  days: daysValidator,
+  email: emailValidator,
+  name: nameValidator,
+  nationality: nationalityValidator,
+  job: jobValidator,
+  file: fileValidator,
+}
+
+const example = new Validation(obj)
+
+const errors = example.validate()
+if (errors.length === 0) {
+  console.log("Форма валидна.")
+} else {
+  console.log("Ошибки валидации:", errors)
+}

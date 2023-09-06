@@ -1,4 +1,4 @@
-import { onInput, confirm } from "./validate"
+import { onInput, confirm } from "./validate2"
 const career = document.querySelector(".career")
 const popup = document.querySelector(".career__popup")
 const buttons = career.querySelectorAll(".main__block")
@@ -31,7 +31,7 @@ const inputSelect = form.querySelector("Select")
 
 // arrayInputs.push(inputSelect)
 arrayInputs.forEach((input) => {
-  if (input.id !== "File" || input.id !== "submit") {
+  if (input.id !== "File") {
     input.addEventListener("blur", (e) => onInput(e.target))
   }
 })
