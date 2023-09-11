@@ -754,14 +754,17 @@
                       <div class="column__input">
                         <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
                         <div class="wrapper-input-select">
-                          <select name="city" id="select" class="input__line input-select">
+                          <select name="city" id="city" class="input__line input-select">
                             <option selected disabled value="">Выбор города</option>
                           </select>
+                          <div class="error-message"></div>
                         </div>
                       </div>
                       <div class="column__input">
-                        <label class="input__title" for="job"> Должность на которую вы претендуете </label>
+                        <label class="input__title"> Должность на которую вы претендуете</label>
                         <input id="job" type="text" class="input__line" placeholder="Укажите должность" />
+
+                        <div class="error-message"></div>
                       </div>
                       <div class="column__input">
                         <label class="input__title" for="birthday_day">Дата рождения</label>
@@ -776,20 +779,24 @@
                             <input id="years" type="number" class="input__line" placeholder="Год" />
                           </div>
                         </div>
+                        <div class="error-message"></div>
                       </div>
                       <div class="column__input">
                         <label class="input__title" for="tel">Контактный телефон</label>
                         <input id="tel" type="tel" class="input__line" placeholder="Укажите ваш номер телефона" />
+                        <div class="error-message"></div>
                       </div>
                     </div>
                     <div class="form__column">
                       <div class="column__input">
                         <label class="input__title" for="email">Email адрес</label>
                         <input id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
+                        <div class="error-message"></div>
                       </div>
                       <div class="column__input">
                         <label class="input__title" for="full_name">Фамилия Имя Отчество</label>
                         <input id="name" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                        <div class="error-message"></div>
                       </div>
                       <div class="column__input">
                         <label class="input__title" for="nationality">Гражданство</label>
@@ -799,6 +806,7 @@
                           class="input__line"
                           placeholder="Укажите ваше гражданство"
                         />
+                        <div class="error-message"></div>
                       </div>
                       <label class="input__button" for="file"
                         >Прикрепить резюме
@@ -814,7 +822,9 @@
                   <div class="form__confirm">
                     <label class="confirm__container"
                       >Согласен с политикой обработки персональных данных
-                      <input type="checkbox" class="confirm__point" id="confirm" />
+
+                      <input type="checkbox" class="confirm__point" id="agreements" />
+                      <div class="error-message"></div>
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>
