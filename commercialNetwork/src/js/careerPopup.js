@@ -34,16 +34,14 @@ const schema = {
   agreements: agreementsValidator,
   city: cityValidator,
   tel: telValidator,
+  months: monthValidator,
+  years: yearsValidator,
+  days: daysValidator,
   email: emailValidator,
   name: nameValidator,
   nationality: nationalityValidator,
   job: jobValidator,
   file: fileValidator,
-  birthday: {
-    months: monthValidator,
-    years: yearsValidator,
-    days: daysValidator,
-  },
 }
 
 const v = new Validation(schema)
