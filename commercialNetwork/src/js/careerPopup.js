@@ -34,14 +34,16 @@ const schema = {
   agreements: agreementsValidator,
   city: cityValidator,
   tel: telValidator,
-  months: monthValidator,
-  years: yearsValidator,
-  days: daysValidator,
   email: emailValidator,
   name: nameValidator,
   nationality: nationalityValidator,
   job: jobValidator,
   file: fileValidator,
+  birthday: {
+    months: monthValidator,
+    years: yearsValidator,
+    days: daysValidator,
+  },
 }
 
 const v = new Validation(schema)
@@ -138,6 +140,18 @@ days.addEventListener("input", (e) => {
   if (e.target.value.length > 2) {
     e.target.value = e.target.value.slice(0, 2)
   }
+})
+
+email.addEventListener("input", (e) => {
+  v.validate("email")
+})
+
+name.addEventListener("input", (e) => {
+  v.validate("name")
+})
+
+nationality.addEventListener("input", (e) => {
+  v.validate("nationality")
 })
 
 function telHandler(e) {

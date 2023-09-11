@@ -9,7 +9,8 @@ class Validation {
       elements[key] = {
         isError: null,
         message: null,
-        domElement: document.querySelector(`#${key}`),
+        errorMessageElement: document.querySelector(`[data-error-message-${key}]`),
+        formElement: document.querySelector(`#${key}`),
       }
     })
 
@@ -17,23 +18,35 @@ class Validation {
   }
 
   validate(id) {
-    const input = this.elements[id].domElement
+    const input = this.elements[id].formElement
+    console.log(this.schema)
     const errorMessage = this.schema[id](input)
+    const errorElement = this.elements[id].errorMessageElement
+    // console.log(errorElement)
 
-    if (typeof errorMessage === "string") {
+    if (typeof errorMessage === "string" || errorMessage === true) {
       this.elements[id].isError = true
       this.elements[id].message = this.schema[id](input)
       input.parentNode.classList.add("invalid")
+      this.setErrorMessage(errorElement, errorMessage)
 
-      if (input.nextElementSibling !== null) {
-        input.nextElementSibling.textContent = this.elements[id].message
-      }
+      if (errorElement) errorElement.textContent = errorMessage
     } else if (errorMessage === false) {
       this.elements[id].isError = false
       this.elements[id].message = null
       input.parentNode.classList.remove("invalid")
-      input.nextElementSibling.textContent = null
+      // if (errorElement) errorElement.textContent = ""
     }
+  }
+
+  setErrorMessage(errorElement, errorMessage) {
+    const arrayBirthday = document.querySelectorAll(".input__wrapper > input")
+
+    arrayBirthday.forEach((input) => {
+      if ((input.parentNode.classList.contains = "invalid")) {
+        if (errorElement) errorElement.textContent = errorMessage
+      }
+    })
   }
 
   clear() {

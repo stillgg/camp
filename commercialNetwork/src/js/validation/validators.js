@@ -103,26 +103,25 @@ function cityValidator(input) {
 }
 
 function agreementsValidator(input) {
-  if (!input.checked) return "Подтвердите соглашение"
+  if (!input.checked) return true
 
   return false
 }
 
 function fileValidator(input) {
-  const label = input.parentNode
-
-  if (!input.files[0]) {
-    label.dataset.el = "Прикрепите резюме"
-    return "Прикрепите резюме"
-  }
-
-  if (input.files[0].size > 100000) {
-    return "Резюме должно быть меньше 1мб"
-  } else {
-    input.parentNode.dataset.el =
-      input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
-    return false
-  }
+  // const label = input.parentNode
+  // if (!input.files[0]) {
+  //   label.dataset.el = "Прикрепите резюме"
+  //   return "Прикрепите резюме"
+  // }
+  // if (input.files[0].size > 100000) {
+  //   return "Резюме должно быть меньше 1мб"
+  // } else {
+  //   input.parentNode.dataset.el =
+  //     input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
+  //   return false
+  // }
+  return true
 }
 
 export {
