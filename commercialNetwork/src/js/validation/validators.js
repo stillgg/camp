@@ -109,19 +109,14 @@ function agreementsValidator(input) {
 }
 
 function fileValidator(input) {
-  // const label = input.parentNode
-  // if (!input.files[0]) {
-  //   label.dataset.el = "Прикрепите резюме"
-  //   return "Прикрепите резюме"
-  // }
-  // if (input.files[0].size > 100000) {
-  //   return "Резюме должно быть меньше 1мб"
-  // } else {
-  //   input.parentNode.dataset.el =
-  //     input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
-  //   return false
-  // }
-  return true
+  if (!input.files[0]) {
+    return "Прикрепите резюме"
+  }
+  if (input.files[0].size > 1048576) {
+    return "Резюме должно быть меньше 1мб"
+  }
+
+  return false
 }
 
 export {

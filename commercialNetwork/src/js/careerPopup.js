@@ -26,9 +26,11 @@ const name = form.querySelector("#name")
 const nationality = form.querySelector("#nationality")
 const job = form.querySelector("#job")
 const file = form.querySelector("#file")
+const fileName = form.querySelector(".filename")
+const btnSubmit = form.querySelector("#submit")
 
-// const buttons = career.querySelectorAll(".main__block")
-// const closeBtn = popup.querySelector(".close__wrapper")
+const buttons = document.querySelectorAll(".main__block")
+const closeBtn = document.querySelector(".close__wrapper")
 
 const schema = {
   agreements: agreementsValidator,
@@ -44,7 +46,21 @@ const schema = {
   file: fileValidator,
 }
 
-const v = new Validation(schema)
+const v = new Validation(schema, {
+  onChange(element) {
+    btnSubmit.classList.remove("disabled")
+
+    if (v.isError === true) {
+      btnSubmit.classList.add("disabled")
+    }
+  },
+})
+
+// const watcher = new Proxy(v.elements, {
+//   set(target, property, isEror) {
+//     console.log(isEror)
+//   },
+// })
 
 agreements.addEventListener("blur", () => {
   v.validate("agreements")
@@ -86,34 +102,24 @@ job.addEventListener("blur", () => {
   v.validate("job")
 })
 
-// file.addEventListener("blur", () => {
-//   v.validate("file")
-// })
+file.addEventListener("change", (e) => {
+  v.validate("file")
 
-file.addEventListener("change", (e) => isValidFile(e.target))
-
-function isValidFile(input) {
-  const label = input.parentNode
-
-  if (!input.files[0]) {
-    label.classList.add("invalid")
-    return
-  }
-  if (input.files[0].size > 100000) {
-    label.classList.add("invalid")
-    label.dataset.el = "Резюме должно быть меньше 1мб"
-    input.value = ""
-    return
+  if (v.elements.file.isError === false) {
+    const input = e.target
+    const name = input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
+    fileName.textContent = name
   } else {
-    label?.classList.remove("invalid")
-    label?.classList.add("accept")
-    label.dataset.el = input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
-    return
+    fileName.textContent = ""
   }
-}
+})
 
 agreements.addEventListener("change", () => {
   v.validate("agreements")
+})
+
+city.addEventListener("change", (e) => {
+  v.validate("city")
 })
 
 job.addEventListener("input", (e) => {
@@ -205,9 +211,7 @@ months.addEventListener("input", (e) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault()
 
+  // v.elements = null
   v.validateAll()
-})
-
-document.addEventListener("click", () => {
-  console.log(v.elements)
+  // console.log(v.elements)
 })

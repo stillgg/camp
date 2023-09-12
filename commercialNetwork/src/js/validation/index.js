@@ -1,12 +1,12 @@
 class Validation {
-  constructor(schema) {
+  constructor(schema, params) {
     this.schema = schema
 
     const keys = Object.keys(schema)
-    const elements = {}
+    const obj = {}
 
     keys.forEach((key) => {
-      elements[key] = {
+      obj[key] = {
         isError: null,
         message: null,
         errorMessageElement: document.querySelector(`[data-error-message-${key}]`),
@@ -14,39 +14,49 @@ class Validation {
       }
     })
 
+    const elements = new Proxy(obj, {
+      set(target, key, value) {
+        target[key] = value
+        params.onChange(value)
+        return true
+      },
+    })
+
     this.elements = elements
   }
 
   validate(id) {
+    // console.log(this.elements)
     const input = this.elements[id].formElement
-    console.log(this.schema)
     const errorMessage = this.schema[id](input)
     const errorElement = this.elements[id].errorMessageElement
-    // console.log(errorElement)
+
+    // console.log(...this.elements[id])
 
     if (typeof errorMessage === "string" || errorMessage === true) {
-      this.elements[id].isError = true
-      this.elements[id].message = this.schema[id](input)
+      this.elements[id] = {
+        ...this.elements[id],
+        isError: true,
+        message: this.schema[id](input),
+      }
+
       input.parentNode.classList.add("invalid")
       this.setErrorMessage(errorElement, errorMessage)
 
       if (errorElement) errorElement.textContent = errorMessage
     } else if (errorMessage === false) {
-      this.elements[id].isError = false
-      this.elements[id].message = null
+      this.elements[id] = {
+        ...this.elements[id],
+        isError: false,
+        message: null,
+      }
       input.parentNode.classList.remove("invalid")
-      // if (errorElement) errorElement.textContent = ""
+      this.setErrorMessage(errorElement, "")
     }
   }
 
   setErrorMessage(errorElement, errorMessage) {
-    const arrayBirthday = document.querySelectorAll(".input__wrapper > input")
-
-    arrayBirthday.forEach((input) => {
-      if ((input.parentNode.classList.contains = "invalid")) {
-        if (errorElement) errorElement.textContent = errorMessage
-      }
-    })
+    if (errorElement) errorElement.textContent = errorMessage
   }
 
   clear() {
@@ -57,6 +67,10 @@ class Validation {
     })
   }
 
+  get isError() {
+    return Object.values(this.elements).some((element) => element.isError === true)
+  }
+
   validateAll() {
     const inputs = Object.keys(this.schema)
 
@@ -64,8 +78,6 @@ class Validation {
       this.validate(input)
     })
   }
-
-  get isError() {}
 }
 
 export { Validation }
