@@ -7,7 +7,7 @@ const counter = document.querySelector(".number__current")
 const main = document.querySelector(".main")
 const header = document.querySelector(".header")
 
-const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11]
+// const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11]
 
 let isStart = false
 let timer = null
@@ -54,7 +54,7 @@ function onSlideChange() {
       if (slideIndex === 2) animationNetwork()
       if (target.activeSlide === 2) closeSection()
 
-      if (BLACK_SECTION_INDEXES.includes(slideIndex)) {
+      if(sections[slideIndex].getAttribute('data-section-theme') === 'dark'){
         indicator.classList.add("black")
         header.classList.add("black")
       }
