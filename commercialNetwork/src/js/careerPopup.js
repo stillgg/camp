@@ -12,7 +12,7 @@ import {
   agreementsValidator,
   fileValidator,
 } from "./validation/validators"
-
+import { isAdult } from "./helpers.js"
 const form = document.querySelector("#unique-form")
 
 const agreements = form.querySelector("#agreements")
@@ -28,9 +28,14 @@ const job = form.querySelector("#job")
 const file = form.querySelector("#file")
 const fileName = form.querySelector(".filename")
 const btnSubmit = form.querySelector("#submit")
+const birhtdayInput = form.querySelectorAll(".input__wrapper")
 
 const buttons = document.querySelectorAll(".main__block")
 const closeBtn = document.querySelector(".close__wrapper")
+
+let day = null
+let month = null
+let year = null
 
 const schema = {
   agreements: agreementsValidator,
@@ -48,124 +53,276 @@ const schema = {
 
 const v = new Validation(schema, {
   onChange(element) {
-    btnSubmit.classList.remove("disabled")
+    const errorElement = element.errorMessageElement
+    const parentInputElement = element.formElement.parentNode
+    const isError = v.isError
+    const getId = element.formElement.getAttribute("id")
 
-    if (v.isError === true) {
+    let isBurthdayError = false
+
+    if (isError === false) btnSubmit.classList.remove("disabled")
+
+    parentInputElement.classList.remove("invalid")
+
+    if (isBurthdayError !== true && errorElement) errorElement.textContent = ""
+
+    if (getId === "months" || getId === "days" || getId === "years") {
+      errorElement.message = isAdult(day + "." + month + "." + year)
+      if (errorElement.message !== null) parentInputElement.classList.add("invalid")
+      // errorElement.textContent = errorElement.message
+      // console.log(errorElement.message)
+    }
+
+    birhtdayInput.forEach((input) => {
+      if (input.classList.contains("invalid")) {
+        isBurthdayError = true
+      }
+    })
+
+    if (element.isError === true) {
       btnSubmit.classList.add("disabled")
+      parentInputElement.classList.add("invalid")
+
+      if (errorElement !== null) errorElement.textContent = element.message
     }
   },
 })
 
-// const watcher = new Proxy(v.elements, {
-//   set(target, property, isEror) {
-//     console.log(isEror)
-//   },
-// })
+const listElements = [
+  {
+    el: file,
+    events: [
+      {
+        name: "change",
+        handler: fileHandler,
+      },
+      {
+        name: "blur",
+      },
+    ],
+  },
+  {
+    el: job,
+    events: [
+      {
+        name: "input",
+      },
+      {
+        name: "blur",
+      },
+    ],
+  },
+  {
+    el: years,
+    events: [
+      {
+        name: "blur",
+        handler: yearsBlurHandler,
+      },
+      {
+        name: "input",
+        handler: yearsInputHandler,
+      },
+    ],
+  },
+  {
+    el: days,
+    events: [
+      {
+        name: "blur",
+        handler: daysBlurHandler,
+      },
+      {
+        name: "input",
+        handler: daysInputHandler,
+      },
+    ],
+  },
+  {
+    el: tel,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "input",
+        handler: telHandler,
+      },
+    ],
+  },
+  {
+    el: months,
+    events: [
+      {
+        name: "blur",
+        handler: monthsBlurHandler,
+      },
+      {
+        name: "input",
+        handler: monthsInputHandler,
+      },
+    ],
+  },
+  {
+    el: agreements,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "change",
+      },
+    ],
+  },
+  {
+    el: city,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "input",
+      },
+    ],
+  },
+  {
+    el: email,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "input",
+      },
+    ],
+  },
+  {
+    el: name,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "input",
+      },
+    ],
+  },
+  {
+    el: nationality,
+    events: [
+      {
+        name: "blur",
+      },
+      {
+        name: "input",
+      },
+    ],
+  },
+]
 
-agreements.addEventListener("blur", () => {
-  v.validate("agreements")
-})
+function addEvents(elements) {
+  elements.forEach((element) => {
+    const input = element.el
+    const events = element.events
 
-city.addEventListener("blur", () => {
-  v.validate("city")
-})
+    for (const event of events) {
+      input.addEventListener(event.name, (e) => {
+        const id = e.target.getAttribute("id")
+        if (typeof event.handler === "function") event.handler(e)
+        v.validate(id)
+      })
+    }
+  })
+}
 
-tel.addEventListener("blur", () => {
-  v.validate("tel")
-})
-
-months.addEventListener("blur", () => {
-  v.validate("months")
-})
-
-years.addEventListener("blur", () => {
-  v.validate("years")
-})
-
-days.addEventListener("blur", () => {
-  v.validate("days")
-})
-
-email.addEventListener("blur", () => {
-  v.validate("email")
-})
-
-name.addEventListener("blur", () => {
-  v.validate("name")
-})
-
-nationality.addEventListener("blur", () => {
-  v.validate("nationality")
-})
-
-job.addEventListener("blur", () => {
-  v.validate("job")
-})
-
-file.addEventListener("change", (e) => {
+function fileHandler(e) {
   v.validate("file")
 
   if (v.elements.file.isError === false) {
     const input = e.target
-    const name = input.files[0].name.length > 20 ? input.files[0].name.slice(0, 20) + "..." : input.files[0].name
+    let str = ""
+
+    for (let i = input.files[0].name.length - 1; i >= 0; i--) {
+      if (input.files[0].name[i] === ".") break
+      str += input.files[0].name[i]
+    }
+    str = str.split("").reverse().join("")
+
+    const name = input.files[0].name.length > 15 ? input.files[0].name.slice(0, 15) + "..." + str : input.files[0].name
     fileName.textContent = name
   } else {
     fileName.textContent = ""
   }
-})
+}
 
-agreements.addEventListener("change", () => {
-  v.validate("agreements")
-})
+function daysInputHandler(e) {
+  const value = e.target.value
 
-city.addEventListener("change", (e) => {
-  v.validate("city")
-})
+  if (value.length === 2) {
+    months.focus()
+  }
 
-job.addEventListener("input", (e) => {
-  v.validate("job")
-})
+  if (value.length > 2) {
+    e.target.value = value.slice(0, 2)
+  }
+}
 
-years.addEventListener("input", (e) => {
-  if (e.target.value.length === 4) {
+function daysBlurHandler(e) {
+  const value = e.target.value
+
+  if (+value <= 9 && value.length === 1) {
+    e.target.value = "0" + value
+  }
+
+  day = e.target.value
+}
+
+function monthsInputHandler(e) {
+  const value = e.target.value
+
+  if (value.length === 2) {
+    years.focus()
+  }
+
+  if (value.length > 2) {
+    e.target.value = value.slice(0, 2)
+  }
+}
+
+function monthsBlurHandler(e) {
+  const value = e.target.value
+
+  if (+value <= 9 && value.length === 1) {
+    e.target.value = "0" + value
+  }
+
+  month = e.target.value
+}
+
+function yearsInputHandler(e) {
+  const value = e.target.value
+
+  if (value.length === 4) {
     tel.focus()
   }
-  if (e.target.value.length > 4) {
-    e.target.value = e.target.value.slice(0, 2)
+
+  if (value.length > 4) {
+    e.target.value = value.slice(0, 2)
   }
-  v.validate("years")
-})
+}
 
-days.addEventListener("input", (e) => {
-  if (e.target.value.length === 2) {
-    months.focus()
-    v.validate("days")
-  }
-  if (e.target.value.length > 2) {
-    e.target.value = e.target.value.slice(0, 2)
-  }
-})
-
-email.addEventListener("input", (e) => {
-  v.validate("email")
-})
-
-name.addEventListener("input", (e) => {
-  v.validate("name")
-})
-
-nationality.addEventListener("input", (e) => {
-  v.validate("nationality")
-})
+function yearsBlurHandler(e) {
+  year = e.target.value
+}
 
 function telHandler(e) {
-  const value = e.value.replace(/\D+/g, "")
+  const value = e.target.value.replace(/\D+/g, "")
   const MaxLength = 11
 
   let result = "+7"
 
   if (value.length === 0) {
-    e.value = result
+    e.target.value = result
     return
   }
 
@@ -188,30 +345,13 @@ function telHandler(e) {
     }
     result += value[i]
   }
-  e.value = result
+  e.target.value = result
 }
-
-tel.addEventListener("input", (e) => {
-  telHandler(e.target)
-  v.validate("tel")
-})
-
-telHandler(tel)
-
-months.addEventListener("input", (e) => {
-  if (e.target.value.length === 2) {
-    years.focus()
-    v.validate("months")
-  }
-  if (e.target.value.length > 2) {
-    e.target.value = e.target.value.slice(0, 2)
-  }
-})
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
 
-  // v.elements = null
   v.validateAll()
-  // console.log(v.elements)
 })
+
+addEvents(listElements)

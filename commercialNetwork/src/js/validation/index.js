@@ -25,38 +25,34 @@ class Validation {
     this.elements = elements
   }
 
+  get isError() {
+    return Object.values(this.elements).some((element) => element.isError === true)
+  }
+
+  getErrorMessage(validationAnswer) {
+    if (typeof validationAnswer === "boolean") return null
+
+    return validationAnswer
+  }
+
   validate(id) {
-    // console.log(this.elements)
     const input = this.elements[id].formElement
-    const errorMessage = this.schema[id](input)
-    const errorElement = this.elements[id].errorMessageElement
+    const validationAnswer = this.schema[id](input)
+    const errorMessage = this.getErrorMessage(validationAnswer)
 
-    // console.log(...this.elements[id])
-
-    if (typeof errorMessage === "string" || errorMessage === true) {
+    if (typeof validationAnswer === "string" || validationAnswer === false) {
       this.elements[id] = {
         ...this.elements[id],
         isError: true,
-        message: this.schema[id](input),
+        message: errorMessage,
       }
-
-      input.parentNode.classList.add("invalid")
-      this.setErrorMessage(errorElement, errorMessage)
-
-      if (errorElement) errorElement.textContent = errorMessage
-    } else if (errorMessage === false) {
+    } else if (validationAnswer === true) {
       this.elements[id] = {
         ...this.elements[id],
         isError: false,
         message: null,
       }
-      input.parentNode.classList.remove("invalid")
-      this.setErrorMessage(errorElement, "")
     }
-  }
-
-  setErrorMessage(errorElement, errorMessage) {
-    if (errorElement) errorElement.textContent = errorMessage
   }
 
   clear() {
@@ -65,10 +61,6 @@ class Validation {
       this.elements[key].isError = null
       this.elements[key].message = null
     })
-  }
-
-  get isError() {
-    return Object.values(this.elements).some((element) => element.isError === true)
   }
 
   validateAll() {

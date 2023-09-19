@@ -10,7 +10,7 @@ function jobValidator(input) {
     return "Введены некорректные символы"
   }
 
-  return false
+  return true
 }
 
 function nationalityValidator(input) {
@@ -25,7 +25,7 @@ function nationalityValidator(input) {
     return "Введены некорректные символы"
   }
 
-  return false
+  return true
 }
 
 function nameValidator(input) {
@@ -40,7 +40,7 @@ function nameValidator(input) {
     return "Введены некорректные символы"
   }
 
-  return false
+  return true
 }
 
 function emailValidator(input) {
@@ -48,7 +48,7 @@ function emailValidator(input) {
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
   if (!EMAIL_REGEXP.test(input.value)) return "Неверно введен email"
 
-  return false
+  return true
 }
 
 function daysValidator(input) {
@@ -56,25 +56,18 @@ function daysValidator(input) {
     return "Некорректно введена дата"
   }
 
-  if (+input.value <= 9 && input.value.length <= 1) {
-    input.value = "0" + input.value
-  }
-
-  return false
+  return true
 }
 
 function yearsValidator(input) {
   const value = +input.value
+  const currentYear = new Date().getFullYear()
 
-  if (value > 2023 || value < 1950) {
+  if (currentYear > currentYear || value < 1950) {
     return "Некорректно введена дата"
   }
 
-  if (value > 2005) {
-    return "Мы принимаем на работу только совершеннолетних сотрудников"
-  }
-
-  return false
+  return true
 }
 
 function monthValidator(input) {
@@ -83,29 +76,25 @@ function monthValidator(input) {
     return "Некорректно введена дата"
   }
 
-  if (value <= 9 && input.value.length <= 1) {
-    input.value = "0" + input.value
-  }
-
-  return false
+  return true
 }
 
 function telValidator(input) {
   if (input.value.length !== 18) return "Неверный номер телефона"
 
-  return false
+  return true
 }
 
 function cityValidator(input) {
   if (input.value === "") return "Выберите город"
 
-  return false
+  return true
 }
 
 function agreementsValidator(input) {
-  if (!input.checked) return true
+  if (!input.checked) return false
 
-  return false
+  return true
 }
 
 function fileValidator(input) {
@@ -116,7 +105,7 @@ function fileValidator(input) {
     return "Резюме должно быть меньше 1мб"
   }
 
-  return false
+  return true
 }
 
 export {
