@@ -7,8 +7,6 @@ const counter = document.querySelector(".number__current")
 const main = document.querySelector(".main")
 const header = document.querySelector(".header")
 
-// const BLACK_SECTION_INDEXES = [2, 6, 7, 8, 10, 11]
-
 let isStart = false
 let timer = null
 let timeoutId
