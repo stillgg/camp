@@ -11,8 +11,9 @@ import {
   cityValidator,
   agreementsValidator,
   fileValidator,
+  adultValidator,
 } from "./validation/validators"
-import { isAdult } from "./helpers.js"
+
 const form = document.querySelector("#unique-form")
 
 const agreements = form.querySelector("#agreements")
@@ -28,7 +29,7 @@ const job = form.querySelector("#job")
 const file = form.querySelector("#file")
 const fileName = form.querySelector(".filename")
 const btnSubmit = form.querySelector("#submit")
-const birhtdayInput = form.querySelectorAll(".input__wrapper")
+const birhtdayInputs = form.querySelectorAll(".input__wrapper")
 
 const buttons = document.querySelectorAll(".main__block")
 const closeBtn = document.querySelector(".close__wrapper")
@@ -53,37 +54,18 @@ const schema = {
 
 const v = new Validation(schema, {
   onChange(element) {
-    const errorElement = element.errorMessageElement
-    const parentInputElement = element.formElement.parentNode
-    const isError = v.isError
-    const getId = element.formElement.getAttribute("id")
+    const id = element.formElement.getAttribute("id")
+    const isFormError = v.isError
 
-    let isBurthdayError = false
+    if (isFormError === false) btnSubmit.classList.remove("disabled")
+    else btnSubmit.classList.add("disabled")
 
-    if (isError === false) btnSubmit.classList.remove("disabled")
+    console.log(v.elements)
 
-    parentInputElement.classList.remove("invalid")
-
-    if (isBurthdayError !== true && errorElement) errorElement.textContent = ""
-
-    if (getId === "months" || getId === "days" || getId === "years") {
-      errorElement.message = isAdult(day + "." + month + "." + year)
-      if (errorElement.message !== null) parentInputElement.classList.add("invalid")
-      // errorElement.textContent = errorElement.message
-      // console.log(errorElement.message)
-    }
-
-    birhtdayInput.forEach((input) => {
-      if (input.classList.contains("invalid")) {
-        isBurthdayError = true
-      }
-    })
-
-    if (element.isError === true) {
-      btnSubmit.classList.add("disabled")
-      parentInputElement.classList.add("invalid")
-
-      if (errorElement !== null) errorElement.textContent = element.message
+    if (id === "months" || id === "days" || id === "years") {
+      checkBirthday(element)
+    } else {
+      checkField(element)
     }
   },
 })
@@ -348,8 +330,49 @@ function telHandler(e) {
   e.target.value = result
 }
 
+function checkBirthday(element) {
+  const errorElement = element.errorMessageElement
+  const parentInputElement = element.formElement.parentNode
+
+  parentInputElement.classList.remove("invalid")
+
+  if (element.isError === true) {
+    parentInputElement.classList.add("invalid")
+    errorElement.textContent = element.message
+  }
+
+  const isBirthdayError = Array.from(birhtdayInputs).some((input) => input.classList.contains("invalid"))
+
+  if (isBirthdayError === false) {
+    errorElement.textContent = ""
+  }
+
+  const validationAnswer = adultValidator(day, month, year)
+
+  if (typeof validationAnswer === "string") {
+    parentInputElement.classList.add("invalid")
+    errorElement.textContent = validationAnswer
+  }
+}
+
+function checkField(element) {
+  const parentInputElement = element.formElement.parentNode
+  const errorElement = element.errorMessageElement
+
+  parentInputElement.classList.remove("invalid")
+
+  if (errorElement !== null) {
+    errorElement.textContent = element.message || ""
+  }
+
+  if (element.isError === true) {
+    parentInputElement.classList.add("invalid")
+  }
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  if (btnSubmit.classList.contains("disabled")) return
 
   v.validateAll()
 })

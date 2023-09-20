@@ -351,7 +351,7 @@
                   background: #f3f3f3;
                   border-radius: 10px;
                   padding: 15px 20px 14px;
-                  transition: box-shadow 0.4s;
+                  transition: box-shadow 0.2s;
 
                   &.input-select {
                     width: 100%;
@@ -426,7 +426,7 @@
                 border: 1px solid #5c5c5c;
                 border-radius: 10px;
                 cursor: pointer;
-                transition: box-shadow 0.4s ease;
+                transition: box-shadow 0.2s ease;
 
                 &.invalid {
                   transition: box-shadow 0s;
@@ -545,7 +545,7 @@
             margin: 0 auto;
             transition:
               background,
-              box-shadow 0.4s;
+              box-shadow 0.2s;
 
             &:hover {
               background: #c80036;
