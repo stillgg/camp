@@ -63,7 +63,7 @@ function yearsValidator(input) {
   const value = +input.value
   const currentYear = new Date().getFullYear()
 
-  if (currentYear > currentYear || value < 1950) {
+  if (value > currentYear || value < 1950) {
     return "Некорректно введена дата"
   }
 
@@ -108,19 +108,6 @@ function fileValidator(input) {
   return true
 }
 
-function adultValidator(day, month, year) {
-  if (day && month && year) {
-    const currentDate = new Date()
-    const yearMs = 60 * 60 * 24 * 365 * 1000
-    const birthday = new Date(Number(year), Number(month) - 1, Number(day))
-
-    return Math.round((currentDate - birthday) / yearMs) <= 18
-      ? "Мы принимаем на работу только совершеннолетних сотрудников"
-      : true
-  }
-  return false
-}
-
 export {
   jobValidator,
   nationalityValidator,
@@ -133,5 +120,4 @@ export {
   cityValidator,
   agreementsValidator,
   fileValidator,
-  adultValidator,
 }

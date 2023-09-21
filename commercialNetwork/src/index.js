@@ -4,10 +4,7 @@ import "./js/map"
 import "./js/scrollBar"
 import "./js/networkLoader"
 
-import "./js/validation"
-import "./js/careerPopup"
-import "./js/fillCity"
-
+import "./js/career/index"
 // import { slider } from "./js/slider"
 
 // slider("#slider-team-mobile")

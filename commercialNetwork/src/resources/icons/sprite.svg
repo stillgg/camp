@@ -102,10 +102,7 @@
       d="M26.8699 1.10553L24.6672 9.63439L22.4645 1.10553H15.1761V15.393H19.3062V3.77499L22.3025 15.393H27.0481L30.0444 3.7582V15.393H34.1745V1.10553H26.8699Z"
       fill="#E30613"
     />
-    <path
-      d="M39.1306 4.96702H35.2758V1.10553H47.1316V4.96702H43.2607V15.393H39.1306V4.96702Z"
-      fill="#E30613"
-    />
+    <path d="M39.1306 4.96702H35.2758V1.10553H47.1316V4.96702H43.2607V15.393H39.1306V4.96702Z" fill="#E30613" />
     <path
       d="M62 4.96702H55.9425C53.3673 4.96702 51.6667 5.924 51.6667 8.2241C51.6667 10.5578 53.3673 11.5148 55.9425 11.5148H62V15.3763H55.9425C50.3872 15.3763 47.407 12.5053 47.407 8.24089C47.407 3.97646 50.371 1.10553 55.9425 1.10553H62V4.96702Z"
       fill="#E30613"
@@ -229,21 +226,9 @@
         <feOffset dx="2" dy="2" />
         <feGaussianBlur stdDeviation="4" />
         <feComposite in2="hardAlpha" operator="out" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow_270_7945"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow_270_7945"
-          result="shape"
-        />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_270_7945" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_270_7945" result="shape" />
       </filter>
     </defs>
   </symbol>
