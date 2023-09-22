@@ -9,6 +9,20 @@ import {
   telHandler,
 } from "./handlers"
 
+const form = document.querySelector("#form")
+const agreements = form.querySelector("#agreements")
+const city = form.querySelector("#city")
+const tel = form.querySelector("#tel")
+const months = form.querySelector("#months")
+const years = form.querySelector("#years")
+const days = form.querySelector("#days")
+const email = form.querySelector("#email")
+const fio = form.querySelector("#fio")
+const nationality = form.querySelector("#nationality")
+const job = form.querySelector("#job")
+const file = form.querySelector("#file")
+const fileName = form.querySelector(".filename")
+
 const listElements = [
   {
     el: file,

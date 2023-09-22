@@ -28,7 +28,7 @@ function nationalityValidator(input) {
   return true
 }
 
-function nameValidator(input) {
+function fioValidator(input) {
   const regex = /^[А-Яа-яA-Za-z ']+$/
   if (input.value.length < 6) {
     return "ФИО должно быть более 5 символов"
@@ -111,7 +111,7 @@ function fileValidator(input) {
 export {
   jobValidator,
   nationalityValidator,
-  nameValidator,
+  fioValidator,
   emailValidator,
   daysValidator,
   yearsValidator,

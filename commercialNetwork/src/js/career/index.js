@@ -2,7 +2,7 @@ import { Validation } from "../validation"
 import {
   jobValidator,
   nationalityValidator,
-  nameValidator,
+  fioValidator,
   emailValidator,
   daysValidator,
   yearsValidator,
@@ -16,24 +16,14 @@ import {
 import "./events"
 import "./fillCity"
 
-const form = document.querySelector("#unique-form")
+const form = document.querySelector("#form")
 
-const agreements = form.querySelector("#agreements")
-const city = form.querySelector("#city")
-const tel = form.querySelector("#tel")
-const months = form.querySelector("#months")
-const years = form.querySelector("#years")
-const days = form.querySelector("#days")
-const email = form.querySelector("#email")
-const fio = form.querySelector("#name")
-const nationality = form.querySelector("#nationality")
-const job = form.querySelector("#job")
-const file = form.querySelector("#file")
-const fileName = form.querySelector(".filename")
 const btnSubmit = form.querySelector("#submit")
 
 const buttons = document.querySelectorAll(".main__block")
 const closeBtn = document.querySelector(".close__wrapper")
+const fileName = form.querySelector(".filename")
+const closeFileName = form.querySelector(".close-filename")
 
 const schema = {
   agreements: agreementsValidator,
@@ -43,7 +33,7 @@ const schema = {
   years: yearsValidator,
   days: daysValidator,
   email: emailValidator,
-  name: nameValidator,
+  fio: fioValidator,
   nationality: nationalityValidator,
   job: jobValidator,
   file: fileValidator,
@@ -75,6 +65,13 @@ function checkField(element) {
   }
 }
 
+function clearFile() {
+  fileName.textContent = ""
+  fileName.parentNode.classList.remove("active")
+}
+
+closeFileName.addEventListener("click", clearFile)
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   if (btnSubmit.classList.contains("disabled")) return
@@ -82,4 +79,4 @@ form.addEventListener("submit", (e) => {
   v.validateAll()
 })
 
-export { v, fileName }
+export { v }

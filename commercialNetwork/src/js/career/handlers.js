@@ -1,4 +1,7 @@
-import { v, fileName } from "./index"
+import { v } from "./index"
+
+const form = document.querySelector("#form")
+const fileName = form.querySelector(".filename")
 
 function fileHandler(e) {
   v.validate("file")
