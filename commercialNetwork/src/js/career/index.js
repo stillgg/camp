@@ -14,6 +14,8 @@ import {
 } from "../validation/validators"
 import "./events"
 import "./fillCity"
+import './fetch'
+import { sendRequest,requestURL } from "./fetch"
 
 const form = document.querySelector("#form")
 
@@ -67,6 +69,8 @@ form.addEventListener("submit", (e) => {
   if (btnSubmit.classList.contains("disabled")) return
 
   v.validateAll()
+
+  sendRequest('POST',requestURL,v.elements).then(data => console.log(data))
 })
 
 export { v }
