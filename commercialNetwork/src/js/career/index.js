@@ -12,7 +12,6 @@ import {
   agreementsValidator,
   fileValidator,
 } from "../validation/validators"
-
 import "./events"
 import "./fillCity"
 
@@ -22,8 +21,6 @@ const btnSubmit = form.querySelector("#submit")
 
 const buttons = document.querySelectorAll(".main__block")
 const closeBtn = document.querySelector(".close__wrapper")
-const fileName = form.querySelector(".filename")
-const closeFileName = form.querySelector(".close-filename")
 
 const schema = {
   agreements: agreementsValidator,
@@ -42,7 +39,6 @@ const schema = {
 const v = new Validation(schema, {
   onChange(element) {
     const isFormError = v.isError
-
     if (isFormError === false) btnSubmit.classList.remove("disabled")
     else btnSubmit.classList.add("disabled")
 
@@ -65,15 +61,9 @@ function checkField(element) {
   }
 }
 
-function clearFile() {
-  fileName.textContent = ""
-  fileName.parentNode.classList.remove("active")
-}
-
-closeFileName.addEventListener("click", clearFile)
-
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+
   if (btnSubmit.classList.contains("disabled")) return
 
   v.validateAll()

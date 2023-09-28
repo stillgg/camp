@@ -31,9 +31,6 @@ const listElements = [
         name: "change",
         handler: fileHandler,
       },
-      {
-        name: "blur",
-      },
     ],
   },
   {

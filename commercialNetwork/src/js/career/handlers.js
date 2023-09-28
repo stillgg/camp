@@ -1,28 +1,61 @@
 import { v } from "./index"
 
 const form = document.querySelector("#form")
-const fileName = form.querySelector(".filename")
+const file = form.querySelector("#file")
 
 function fileHandler(e) {
-  v.validate("file")
+  hideFile(e)
 
   if (v.elements.file.isError === false) {
     const input = e.target
-    let str = ""
 
-    for (let i = input.files[0].name.length - 1; i >= 0; i--) {
-      if (input.files[0].name[i] === ".") break
-      str += input.files[0].name[i]
-    }
-    str = str.split("").reverse().join("")
-
-    const name = input.files[0].name.length > 15 ? input.files[0].name.slice(0, 15) + "..." + str : input.files[0].name
-    fileName.textContent = name
-    fileName.parentElement.classList.add("active")
-  } else {
-    fileName.textContent = ""
-    fileName.parentElement.classList.remove("active")
+    showFile(input.files[0])
   }
+}
+
+function showFile(file) {
+  const fileElement = document.createElement("div")
+
+  const [fileName, fileFormat] = file.name.split(".")
+
+  fileElement.classList.add("file-info")
+  fileElement.innerHTML = `
+    <svg class="paper" width="20" height="20">
+      <use xlink:href="../resources/icons/sprite.svg#paper"></use>
+    </svg>
+    <div class="wrapper-file">
+      <span class="filename">${fileName}</span>
+      <span class="fileformat">.${fileFormat}</span>
+    </div>
+    <span class="close-btn"> </span>
+  `
+
+  const fileContainer = document.querySelector("#fileContainer")
+  fileContainer.appendChild(fileElement)
+
+  setTimeout(() => {
+    fileElement.classList.add("show-file")
+  }, 300)
+
+  const closeFiles = form.querySelectorAll(".close-btn")
+  const closeFile = closeFiles[1] || closeFiles[0]
+
+  closeFile.addEventListener("click", hideFile)
+}
+
+function hideFile() {
+  const fileElements = fileContainer.querySelectorAll(".file-info")
+  const firstFileElement = fileElements[0]
+
+  if (firstFileElement) {
+    firstFileElement.classList.add("hide-file")
+
+    setTimeout(() => {
+      fileContainer.removeChild(firstFileElement)
+      file.value = ""
+    }, 300)
+  }
+  v.validate("file")
 }
 
 function daysInputHandler(e) {

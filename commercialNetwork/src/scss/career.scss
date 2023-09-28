@@ -155,7 +155,28 @@
 }
 
 .career__popup {
+  color: $white;
+  top: 0;
+  right: 0%;
+  position: fixed;
+  z-index: 999991;
+  background-color: $white;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  opacity: 1;
+  transition:
+    right 0.8s,
+    opacity 0.8s;
+
+  &.active {
+    right: 0%;
+    opacity: 1;
+  }
+
   .popup__preview {
+    background-color: $red;
+
     .preview__container {
       position: relative;
       display: flex;
@@ -244,6 +265,20 @@
 
       @media (max-width: 992px) {
         padding: 50px 20px;
+      }
+    }
+    .popup__data {
+      background-color: $white;
+      color: $black;
+
+      .data__container {
+        position: relative;
+        display: flex;
+        padding: 60px 100px;
+
+        @media (max-width: 992px) {
+          padding: 50px 20px;
+        }
       }
     }
   }

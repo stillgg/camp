@@ -752,9 +752,9 @@
                 <form action="" class="form" id="form">
                   <div class="data__form">
                     <div class="form__column">
-                      <div class="column__input">
+                      <div class="select">
                         <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
-                        <div class="wrapper-input-select">
+                        <div class="select-wrapper">
                           <select name="city" id="city" class="input__line input-select">
                             <option selected disabled value="">Выбор города</option>
                           </select>
@@ -762,30 +762,30 @@
                         </div>
                       </div>
 
-                      <div class="column__input">
+                      <div class="input">
                         <label class="input__title" for="job"> Должность на которую вы претендуете</label>
                         <input id="job" type="text" class="input__line" placeholder="Укажите должность" />
 
                         <div data-error-message-job class="error-message"></div>
                       </div>
 
-                      <div class="column__input">
+                      <div class="input-birthday">
                         <label class="input__title" for="days">Дата рождения</label>
-                        <div class="input__birthday">
-                          <div class="input__wrapper">
+                        <div class="birthday-wrapper">
+                          <div class="input">
                             <input id="days" type="number" class="input__line" placeholder="День" />
                           </div>
-                          <div class="input__wrapper">
+                          <div class="input">
                             <input id="months" type="number" class="input__line" placeholder="Месяц" />
                           </div>
-                          <div class="input__wrapper">
+                          <div class="input">
                             <input id="years" type="number" class="input__line" placeholder="Год" />
                           </div>
                         </div>
                         <div class="error-message"></div>
                       </div>
 
-                      <div class="column__input">
+                      <div class="input">
                         <label class="input__title" for="tel">Контактный телефон</label>
                         <input
                           id="tel"
@@ -799,19 +799,19 @@
                     </div>
 
                     <div class="form__column">
-                      <div class="column__input">
+                      <div class="input">
                         <label class="input__title" for="email">Email адрес</label>
                         <input id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
                         <div data-error-message-email class="error-message"></div>
                       </div>
 
-                      <div class="column__input">
+                      <div class="input">
                         <label class="input__title" for="name">Фамилия Имя Отчество</label>
                         <input id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
                         <div data-error-message-fio class="error-message"></div>
                       </div>
 
-                      <div class="column__input">
+                      <div class="input">
                         <label class="input__title" for="nationality">Гражданство</label>
                         <input
                           id="nationality"
@@ -822,7 +822,7 @@
                         <div data-error-message-nationality class="error-message"></div>
                       </div>
 
-                      <label class="input__button" for="file"
+                      <label class="input-file" for="file"
                         >Прикрепить резюме
                         <input
                           id="file"
@@ -833,17 +833,21 @@
                       </label>
 
                       <div class="file-text">
-                        <div class="file-info">
+                        <!-- <div class="file-info">
+                          <svg class="paper" width="20" height="20">
+                            <use xlink:href="../resources/icons/sprite.svg#paper"></use>
+                          </svg>
                           <span class="filename"></span>
-                          <span class="close-filename"> </span>
-                        </div>
+                          <span class="close-btn"> </span>
+                        </div> -->
+                        <div id="fileContainer"></div>
 
                         <div data-error-message-file class="error-message"></div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="form__confirm">
+                  <div class="checkbox">
                     <label class="confirm__container"
                       >Согласен с политикой обработки персональных данных
 
