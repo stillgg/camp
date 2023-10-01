@@ -714,32 +714,14 @@
         <div class="career__popup">
           <div class="popup__preview">
             <div class="preview__container">
-              <div class="preview__text">
-                <h2 class="text__title">Промоутер</h2>
-                <span class="text__requirements">Что мы ждём:</span>
-                <div class="requirements__description">
-                  <p class="description__paragraph">
-                    Опыт управления продажами в розничной торговой сети (от 15 подчиненных) от 2 лет;
-                  </p>
-                  <p class="description__paragraph">Опыт подбора и адаптации торгового персонала;</p>
-                  <p class="description__paragraph">Ориентация на результат;</p>
-                  <p class="description__paragraph">Аналитический склад ума;</p>
-                  <p class="description__paragraph">Готовность к постоянным командировкам (до 60% рабочего времени).</p>
-                </div>
-                <span class="text__requirements">Что мы обещаем:</span>
-                <div class="requirements__description">
-                  <p class="description__paragraph">
-                    Заработная плата — 80-120 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
-                  </p>
-                </div>
-              </div>
+              <div class="preview__text"></div>
               <div class="preview__picture">
                 <picture>
                   <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
                   <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
                 </picture>
               </div>
-              <div class="close__wrapper">
+              <div id="close-popup" class="close__wrapper">
                 <div class="preview__close">
                   <span class="close__strip"></span>
                   <span class="close__strip"></span>
@@ -773,13 +755,13 @@
                         <label class="input__title" for="days">Дата рождения</label>
                         <div class="birthday-wrapper">
                           <div class="input">
-                            <input id="days" type="number" class="input__line" placeholder="День" />
+                            <input id="days" class="input__line" placeholder="День" />
                           </div>
                           <div class="input">
-                            <input id="months" type="number" class="input__line" placeholder="Месяц" />
+                            <input id="months" class="input__line" placeholder="Месяц" />
                           </div>
                           <div class="input">
-                            <input id="years" type="number" class="input__line" placeholder="Год" />
+                            <input id="years" class="input__line" placeholder="Год" />
                           </div>
                         </div>
                         <div class="error-message"></div>
@@ -833,13 +815,6 @@
                       </label>
 
                       <div class="file-text">
-                        <!-- <div class="file-info">
-                          <svg class="paper" width="20" height="20">
-                            <use xlink:href="../resources/icons/sprite.svg#paper"></use>
-                          </svg>
-                          <span class="filename"></span>
-                          <span class="close-btn"> </span>
-                        </div> -->
                         <div id="fileContainer"></div>
 
                         <div data-error-message-file class="error-message"></div>
@@ -855,8 +830,22 @@
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>
-                  <button id="submit" type="submit" class="form__btn">ОТПРАВИТЬ АНКЕТУ</button>
+                  <button id="submit" type="submit" class="form__btn">
+                    <span class="loader"></span>ОТПРАВИТЬ АНКЕТУ
+                  </button>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup__form">
+          <div class="popup__container">
+            <p class="container__text">форма отправлена</p>
+            <div id="success-popup-form" class="close__wrapper">
+              <div class="preview__close">
+                <span class="close__strip"></span>
+                <span class="close__strip"></span>
               </div>
             </div>
           </div>

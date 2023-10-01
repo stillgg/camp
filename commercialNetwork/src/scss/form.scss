@@ -292,8 +292,9 @@
   }
 
   .form__btn {
+    width: 240px;
     background-color: $red;
-    padding: 17px 30px;
+    padding: 17px 5px;
     font-weight: 700;
     font-size: 16px;
     line-height: 162%;
@@ -314,6 +315,29 @@
       cursor: not-allowed;
       background: #9e9e9e;
       box-shadow: none;
+    }
+
+    .loader.active {
+      width: 26px;
+      height: 26px;
+      border: 3px solid #fff;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      margin: 0 auto;
+      display: flex;
+
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 
