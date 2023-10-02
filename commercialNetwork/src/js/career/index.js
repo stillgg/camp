@@ -28,7 +28,7 @@ const inputs = form.querySelectorAll("input")
 const closeBtn = document.querySelector("#close-popup")
 const select = form.querySelector("#city")
 const fileConainer = form.querySelector("#fileContainer")
-
+const section = document.querySelector('.career')
 const schema = {
   agreements: agreementsValidator,
   city: cityValidator,
@@ -68,7 +68,7 @@ function checkField(element) {
   }
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault()
 
   if (btnSubmit.classList.contains("disabled")) return
@@ -76,17 +76,25 @@ form.addEventListener("submit", (e) => {
 
   if (!v.isError) {
     const btnText = btnSubmit.textContent
-    btnSubmit.innerHTML = `<span class='loader'></span>`
+    const myForm = new FormData(form)
 
+    btnSubmit.innerHTML = `<span class='loader'></span>`
     const loader = form.querySelector(".loader")
 
     loader.classList.add("active")
 
+
+    await fetch('https://localhost:3000/articles',{
+      method:'POST',
+      body:myForm
+    })
+    
     setTimeout(() => {
       successPopup.classList.add("active")
       loader.classList.add("active")
       btnSubmit.textContent = btnText
       career__popup.classList.add("blur")
+      section.classList.add("blur")
     }, 2000)
   }
   // sendRequest("POST", requestURL).then((data) => console.log(data))
@@ -97,6 +105,7 @@ closeSuccessPopup.addEventListener("click", (e) => {
 
   successPopup.classList.remove("active")
   career__popup.classList.remove("blur")
+  section.classList.remove("blur")
 
   inputs.forEach((input) => {
     input.value = ""

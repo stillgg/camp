@@ -746,7 +746,7 @@
 
                       <div class="input">
                         <label class="input__title" for="job"> Должность на которую вы претендуете</label>
-                        <input id="job" type="text" class="input__line" placeholder="Укажите должность" />
+                        <input name="job" id="job" type="text" class="input__line" placeholder="Укажите должность" />
 
                         <div data-error-message-job class="error-message"></div>
                       </div>
@@ -755,13 +755,13 @@
                         <label class="input__title" for="days">Дата рождения</label>
                         <div class="birthday-wrapper">
                           <div class="input">
-                            <input id="days" class="input__line" placeholder="День" />
+                            <input name="days" id="days" class="input__line" placeholder="День" />
                           </div>
                           <div class="input">
-                            <input id="months" class="input__line" placeholder="Месяц" />
+                            <input name="months" id="months" class="input__line" placeholder="Месяц" />
                           </div>
                           <div class="input">
-                            <input id="years" class="input__line" placeholder="Год" />
+                            <input name="years" id="years" class="input__line" placeholder="Год" />
                           </div>
                         </div>
                         <div class="error-message"></div>
@@ -770,6 +770,7 @@
                       <div class="input">
                         <label class="input__title" for="tel">Контактный телефон</label>
                         <input
+                        name="tel"
                           id="tel"
                           type="tel"
                           class="input__line"
@@ -783,19 +784,20 @@
                     <div class="form__column">
                       <div class="input">
                         <label class="input__title" for="email">Email адрес</label>
-                        <input id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
+                        <input name="email" id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
                         <div data-error-message-email class="error-message"></div>
                       </div>
 
                       <div class="input">
                         <label class="input__title" for="name">Фамилия Имя Отчество</label>
-                        <input id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                        <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
                         <div data-error-message-fio class="error-message"></div>
                       </div>
 
                       <div class="input">
                         <label class="input__title" for="nationality">Гражданство</label>
                         <input
+                        name="nationality"
                           id="nationality"
                           type="text"
                           class="input__line"
@@ -807,6 +809,7 @@
                       <label class="input-file" for="file"
                         >Прикрепить резюме
                         <input
+                        name="file"
                           id="file"
                           type="file"
                           class="button__file"
@@ -826,7 +829,7 @@
                     <label class="confirm__container"
                       >Согласен с политикой обработки персональных данных
 
-                      <input type="checkbox" class="confirm__point" id="agreements" />
+                      <input name="checkbox" type="checkbox" class="confirm__point" id="agreements" />
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>

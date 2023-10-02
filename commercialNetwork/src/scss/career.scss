@@ -156,7 +156,11 @@
 
 .blur {
   filter: blur(5px);
+  pointer-events: none;
+
 }
+
+
 .career__popup {
   color: $white;
   top: 0;
