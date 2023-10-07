@@ -106,7 +106,11 @@
       </div>
 
       <main class="main">
-        <section id="home" class="home active">
+        <section data-section-theme='light' id="home" class="home active">
+          <video autoplay="autoplay" muted="muted" loop="loop">
+            <source type="video/mp4" src="../resources/videos/01-video.mp4" />
+          </video>
+
           <div class="home__main container">
             <div class="main__svg">
               <svg class="svg__slogan" width="1080" height="486">
@@ -124,7 +128,7 @@
           </div>
         </section>
 
-        <section id="about" class="about">
+        <section data-section-theme='light' id="about" class="about">
           <div class="container">
             <h2 class="about-body__title">Promotion.ru это</h2>
 
@@ -138,7 +142,7 @@
           </div>
         </section>
 
-        <section id="network" class="network">
+        <section data-section-theme='dark' id="network" class="network">
           <div class="network__header container">
             <h2 class="h2">Наша сеть</h2>
           </div>
@@ -244,7 +248,7 @@
           </div>
         </section>
 
-        <section id="promoters" class="promoters">
+        <section data-section-theme='light' id="promoters" class="promoters">
           <div class="promoters__photo-mall"></div>
           <div class="promoters-wrapper">
             <picture class="promoters-wrapper__girl">
@@ -271,7 +275,7 @@
           </div>
         </section>
 
-        <section id="communication" class="communication">
+        <section data-section-theme='light' id="communication" class="communication">
           <div class="communication-wrapper">
             <div class="container">
               <h3 class="h3">Развитые каналы коммуникации</h3>
@@ -304,7 +308,7 @@
           </div>
         </section>
 
-        <section id="meeting" class="meeting">
+        <section data-section-theme='light' id="meeting" class="meeting">
           <div class="container meeting__container">
             <h2 class="h2">знакомьтесь</h2>
             <div class="meeting__content">
@@ -337,7 +341,7 @@
           </div>
         </section>
 
-        <section id="map" class="map">
+        <section data-section-theme='dark' id="map" class="map">
           <div class="map-wrapper container">
             <h4 class="map-wrapper__title">
               Точки продаж — один из ключевых показателей нашей работы. Сейчас мы работаем в более, чем 700 точках.
@@ -469,13 +473,13 @@
           </div>
         </section>
 
-        <section id="team" class="team">
-          <div class="container">
-            <div class="team__wrapper">
-              <h2 class="h2">команда</h2>
-              <div class="team__main">
-                <div>
-                  <div class="slider">
+        <section data-section-theme='dark' id="team" class="team">
+          <div class="team__wrapper container">
+            <h2 class="h2">команда</h2>
+            <div class="team__main">
+              <div class="slider" id="slider-team-desktop">
+                <div class="slider-track">
+                  <div class="slider-item">
                     <img
                       class="slide slider__img__active"
                       src="../resources/img/08-team-seo-2.png"
@@ -543,7 +547,7 @@
           </div>
         </section>
 
-        <section id="news" class="news">
+        <section data-section-theme='dark' id="news" class="news">
           <div class="container">
             <h2 class="news__title">НОВОСТИ</h2>
             <div class="news-wrapper">
@@ -638,7 +642,7 @@
           </div>
         </section>
 
-        <section id="career" class="career">
+        <section data-section-theme='light' id="career" class="career">
           <div class="container career__container">
             <h2 class="h2">Карьера</h2>
             <div class="career__main">
@@ -692,7 +696,7 @@
           </div>
         </section>
 
-        <section id="merch" class="merch">
+        <section data-section-theme='dark' class="merch">
           <div class="container">
             <h2 class="h2">Мерч</h2>
             <div class="merch-slider">
@@ -723,7 +727,7 @@
           </div>
         </section>
 
-        <section id="yandexMap" class="yandexMap">
+        <section data-section-theme='dark' id="yandexMap" class="yandexMap">
           <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A79d126ca660a82a97660b578a86d1f53ad24f9fc946c0b0111a3ef01013430b3&amp;source=constructor"
             frameborder="0"
