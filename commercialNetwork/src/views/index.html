@@ -643,30 +643,51 @@
             <h2 class="h2">Карьера</h2>
             <div class="career__main">
               <div class="main__block">
-                <div class="block__content">
-                  <h3 class="content__title">ПОЛЕВОЙ ТРЕНЕР ПО ПРЯМЫМ ПРОДАЖАМ</h3>
-                  <span class="content__description">Подробнее</span>
+                <div class="main__body">
+                  <div class="block__content">
+                    <h3 class="content__title">ПОЛЕВОЙ ТРЕНЕР ПО ПРЯМЫМ ПРОДАЖАМ</h3>
+                    <span class="content__description">Подробнее</span>
+                  </div>
                 </div>
               </div>
               <div class="main__block">
-                <div class="block__content">
-                  <h3 class="content__title">ПРОМОУТЕР</h3>
-                  <span class="content__description">Подробнее</span>
+                <div class="main__body">
+                  <div class="block__content">
+                    <h3 class="content__title">ПРОМОУТЕР</h3>
+                    <span class="content__description">Подробнее</span>
+                  </div>
                 </div>
               </div>
               <div class="main__block">
-                <div class="block__content">
-                  <h3 class="content__title">МЕНЕДЖЕР ПО РАЗВИТИЮ</h3>
-                  <span class="content__description">Подробнее</span>
+                <div class="main__body">
+                  <div class="block__content">
+                    <h3 class="content__title">МЕНЕДЖЕР ПО РАЗВИТИЮ</h3>
+                    <span class="content__description">Подробнее</span>
+                  </div>
                 </div>
               </div>
               <div class="main__block">
-                <div class="block__content">
-                  <h3 class="content__title">СУПЕРВАЙЗЕР</h3>
-                  <span class="content__description">Подробнее</span>
+                <div class="main__body">
+                  <div class="block__content">
+                    <h3 class="content__title">СУПЕРВАЙЗЕР</h3>
+                    <span class="content__description">Подробнее</span>
+                  </div>
                 </div>
               </div>
-              <button class="main__btn">Показать больше вакансий</button>
+              <div class="main__container">
+                <div class="main__block">
+                  <div class="main__body">
+                    <div class="block__content">
+                      <h3 class="content__title">ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ</h3>
+                      <span class="content__description">Подробнее</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="main__btn">
+                <span class="text">Показать больше вакансий</span>
+                <span class="loader"></span>
+              </button>
             </div>
           </div>
         </section>
@@ -711,6 +732,8 @@
         </section>
       </main>
       <div class="wrapper__popups">
+        <div class="popup__blur"></div>
+
         <div class="career__popup">
           <div class="popup__preview">
             <div class="preview__container">
@@ -770,7 +793,7 @@
                       <div class="input">
                         <label class="input__title" for="tel">Контактный телефон</label>
                         <input
-                        name="tel"
+                          name="tel"
                           id="tel"
                           type="tel"
                           class="input__line"
@@ -784,7 +807,13 @@
                     <div class="form__column">
                       <div class="input">
                         <label class="input__title" for="email">Email адрес</label>
-                        <input name="email" id="email" type="email" class="input__line" placeholder="Укажите ваш Email " />
+                        <input
+                          name="email"
+                          id="email"
+                          type="email"
+                          class="input__line"
+                          placeholder="Укажите ваш Email "
+                        />
                         <div data-error-message-email class="error-message"></div>
                       </div>
 
@@ -797,7 +826,7 @@
                       <div class="input">
                         <label class="input__title" for="nationality">Гражданство</label>
                         <input
-                        name="nationality"
+                          name="nationality"
                           id="nationality"
                           type="text"
                           class="input__line"
@@ -809,7 +838,7 @@
                       <label class="input-file" for="file"
                         >Прикрепить резюме
                         <input
-                        name="file"
+                          name="file"
                           id="file"
                           type="file"
                           class="button__file"
@@ -834,7 +863,8 @@
                     </label>
                   </div>
                   <button id="submit" type="submit" class="form__btn">
-                    <span class="loader"></span>ОТПРАВИТЬ АНКЕТУ
+                    <span class="loader"></span>
+                    <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
                   </button>
                 </form>
               </div>

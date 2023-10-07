@@ -15,12 +15,11 @@ import {
 import "./events"
 import "./fillCity"
 import "./fetch"
-import { sendRequest, requestURL } from "./fetch"
+import { sendRequest, sendRequestWork } from "./fetch"
 
 const form = document.querySelector("#form")
 
 const btnSubmit = form.querySelector("#submit")
-const buttons = document.querySelectorAll(".main__block")
 const successPopup = document.querySelector(".popup__form")
 const closeSuccessPopup = document.querySelector("#success-popup-form")
 const career__popup = document.querySelector(".career__popup")
@@ -28,7 +27,11 @@ const inputs = form.querySelectorAll("input")
 const closeBtn = document.querySelector("#close-popup")
 const select = form.querySelector("#city")
 const fileConainer = form.querySelector("#fileContainer")
-const section = document.querySelector('.career')
+const blurBlock = document.querySelector(".popup__blur")
+const mainBtn = document.querySelector(".main__btn")
+const vacancyContainer = document.querySelector(".main__container")
+const careerMain = document.querySelector(".career__main")
+
 const schema = {
   agreements: agreementsValidator,
   city: cityValidator,
@@ -68,72 +71,39 @@ function checkField(element) {
   }
 }
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault()
+function showPopupSuccess() {
+  successPopup.querySelector(".container__text").textContent = "Форма отправлена"
+  showPopup()
+}
 
-  if (btnSubmit.classList.contains("disabled")) return
-  v.validateAll()
+function showPopupError() {
+  successPopup.querySelector(".container__text").textContent = "Произошла ошибка"
+  showPopup()
+}
 
-  if (!v.isError) {
-    const btnText = btnSubmit.textContent
-    const myForm = new FormData(form)
+function showPopup() {
+  successPopup.classList.add("active")
+  blurBlock.classList.add("blur")
+}
 
-    btnSubmit.innerHTML = `<span class='loader'></span>`
-    const loader = form.querySelector(".loader")
-
-    loader.classList.add("active")
-
-
-    await fetch('https://localhost:3000/articles',{
-      method:'POST',
-      body:myForm
-    })
-    
-    setTimeout(() => {
-      successPopup.classList.add("active")
-      loader.classList.add("active")
-      btnSubmit.textContent = btnText
-      career__popup.classList.add("blur")
-      section.classList.add("blur")
-    }, 2000)
-  }
-  // sendRequest("POST", requestURL).then((data) => console.log(data))
-})
-
-closeSuccessPopup.addEventListener("click", (e) => {
-  if (!e.target) return
-
-  successPopup.classList.remove("active")
-  career__popup.classList.remove("blur")
-  section.classList.remove("blur")
-
-  inputs.forEach((input) => {
-    input.value = ""
-  })
-
-  select.value = ""
-  fileConainer.childNodes[0].remove()
-})
-
-closeBtn.addEventListener("click", () => {
+function closePopupForm() {
   career__popup.classList.remove("active")
-})
+}
 
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const workName = button.querySelector(".content__title").textContent
-
-    addDescritionWork(workName)
-
-    career__popup.classList.add("active")
-  })
-})
+function setLoading(isLoading, element) {
+  if (isLoading === true) element.classList.add("loading")
+  else element.classList.remove("loading")
+}
 
 function addDescritionWork(workName) {
   const description = document.querySelector(".preview__text")
   const inputJob = form.querySelector("#job")
 
-  inputJob.value = workName.toLowerCase()
+  if (workName === "ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ") {
+    inputJob.value = workName.slice(0, 47).toLowerCase()
+  } else {
+    inputJob.value = workName.toLowerCase()
+  }
 
   switch (workName) {
     case "ПОЛЕВОЙ ТРЕНЕР ПО ПРЯМЫМ ПРОДАЖАМ":
@@ -150,6 +120,9 @@ function addDescritionWork(workName) {
 
     case "СУПЕРВАЙЗЕР":
       descriptionSupervaiser(description, workName)
+      break
+    case "ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ":
+      descriptionTerritoryManager(description, workName)
       break
   }
 }
@@ -179,7 +152,7 @@ function descriptionPromoter(description, workName) {
   <span class="text__requirements">Что мы ждём:</span>
   <div class="requirements__description">
     <p class="description__paragraph">
-    Вам от 14 лет;
+    Вам от 18 лет;
     </p>
     <p class="description__paragraph">Возможно без опыта;</p>
     <p class="description__paragraph">Активность и целеустремлённость.</p>
@@ -211,6 +184,24 @@ function descriptionManager(description, workName) {
   </div>`
 }
 
+function descriptionTerritoryManager(description, workName) {
+  description.innerHTML = `<h2 class="text__title">${workName}</h2>
+  <span class="text__requirements">Что мы ждём:</span>
+  <div class="requirements__description">
+    <p class="description__paragraph">Опыт управления продажами в розничной торговой сети (от 15 подчиненных) от 2 лет;</p>
+    <p class="description__paragraph">Опыт подбора и адаптации торгового персонала;</p>
+    <p class="description__paragraph">Аналитический склад ума;</p>
+    <p class="description__paragraph">Ориентация на результат;</p>
+    <p class="description__paragraph">Готовность к постоянным командировкам (до 60% рабочего времени).</p>
+  </div>
+  <span class="text__requirements">Что мы обещаем:</span>
+  <div class="requirements__description">
+    <p class="description__paragraph">
+    Заработная плата — 80-120 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
+    </p>
+  </div>`
+}
+
 function descriptionSupervaiser(description, workName) {
   description.innerHTML = `<h2 class="text__title">${workName}</h2>
   <span class="text__requirements">Что мы ждём:</span>
@@ -228,4 +219,89 @@ function descriptionSupervaiser(description, workName) {
   </div>`
 }
 
+function showVacancies() {
+  vacancyContainer.classList.add("succsess")
+  mainBtn.firstElementChild.textContent = "Показать больше вакансий"
+
+  hideBtn()
+}
+
+function hideBtn() {
+  mainBtn.classList.add("hide")
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault()
+
+  if (btnSubmit.classList.contains("disabled")) return
+  v.validateAll()
+
+  if (!v.isError) {
+    const formData = new FormData()
+    formData.append(
+      "data",
+      JSON.stringify({
+        job: "",
+        email: "",
+      }),
+    )
+
+    try {
+      setLoading(true, btnSubmit)
+
+      await sendRequest(formData)
+
+      showPopupSuccess()
+    } catch (error) {
+      showPopupError()
+    } finally {
+      closePopupForm()
+      setLoading(false, btnSubmit)
+    }
+  }
+})
+
+closeSuccessPopup.addEventListener("click", (e) => {
+  if (!e.target) return
+
+  successPopup.classList.remove("active")
+  blurBlock.classList.remove("blur")
+
+  inputs.forEach((input) => {
+    input.value = ""
+  })
+
+  select.value = ""
+  fileConainer.childNodes[0].remove()
+})
+
+closeBtn.addEventListener("click", () => {
+  career__popup.classList.remove("active")
+})
+
+mainBtn.addEventListener("click", async () => {
+  try {
+    setLoading(true, mainBtn)
+
+    await sendRequestWork()
+
+    showVacancies()
+  } catch (error) {
+    mainBtn.firstElementChild.textContent = "Произошла ошибка"
+  } finally {
+    setLoading(false, mainBtn)
+  }
+})
+
+careerMain.addEventListener("click", (e) => {
+  const target = e.target.closest(".main__block")
+
+  if (target) {
+    const workName = target.querySelector(".content__title").textContent
+
+    addDescritionWork(workName)
+
+    career__popup.classList.add("active")
+  }
+})
 export { v }

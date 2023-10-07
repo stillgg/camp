@@ -1,24 +1,17 @@
-const requestURL = "https://jsonplaceholder.typicode.com/users"
-
-function sendRequest(method, url, body = {}) {
-  const headers = {
-    "Content-Type": "application/json",
-  }
-  return fetch(url, {
-    method: method,
-    body: JSON.stringify(body),
-    headers: headers,
-  }).then((Response) => {
-    if (Response.ok) {
-      return Response.json()
-    }
-
-    return Response.json().then((Error) => {
-      const e = new Error("ошибка")
-      e.data = Error
-      throw e
-    })
+function sendRequest(form) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(form)
+    }, 2000)
   })
 }
 
-export { requestURL, sendRequest }
+function sendRequestWork() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, 2000)
+  })
+}
+
+export { sendRequest, sendRequestWork }
