@@ -304,4 +304,5 @@ careerMain.addEventListener("click", (e) => {
     career__popup.classList.add("active")
   }
 })
+
 export { v }

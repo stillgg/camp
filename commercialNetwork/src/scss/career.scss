@@ -351,6 +351,10 @@
   }
 }
 
+.popup__form {
+  display: none;
+}
+
 .popup__form.active {
   position: absolute;
   z-index: 999992;
