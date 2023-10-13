@@ -15,7 +15,7 @@ import {
 import "./events"
 import "./fillCity"
 import "./fetch"
-import { sendRequest, sendRequestWork } from "./fetch"
+import { sendRequest, getAllVacancies } from "./fetch"
 
 const form = document.querySelector("#form")
 
@@ -29,7 +29,6 @@ const select = form.querySelector("#city")
 const fileConainer = form.querySelector("#fileContainer")
 const blurBlock = document.querySelector(".popup__blur")
 const mainBtn = document.querySelector(".main__btn")
-const vacancyContainer = document.querySelector(".main__container")
 const careerMain = document.querySelector(".career__main")
 
 const schema = {
@@ -55,6 +54,67 @@ const v = new Validation(schema, {
     checkField(element)
   },
 })
+
+const vacancies = [
+  {
+    id: 1,
+    title: "ПОЛЕВОЙ ТРЕНЕР ПО ПРЯМЫМ ПРОДАЖАМ",
+    subtitle: "Что мы ждём",
+    desctription: `
+    Опыт работы в активных продажах обязателен;
+    <br>
+    Опыт обучения персонала розничных торговых сетей от 2 лет;
+    <br>
+    Опыт разработки и внедрения скриптов;
+    <br>
+    Готовность к постоянным командировкам (до 90% рабочего времени);
+    <br>
+    Водительские права категории B — желательно, но не обязательно.`,
+    wage: "Заработная плата — от 70 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).",
+  },
+  {
+    id: 2,
+    title: "ПРОМОУТЕР",
+    subtitle: "Что мы ждём",
+    desctription: `
+    Вам от 18 лет;
+    <br>
+    Возможно без опыта;
+    <br>
+    Активность и целеустремлённость.`,
+    wage: "Заработная плата 15 000 - 70 000 ₽ (в зависимости от занятости).",
+  },
+  {
+    id: 3,
+    title: "МЕНЕДЖЕР ПО РАЗВИТИЮ",
+    subtitle: "Что мы ждём",
+    desctription: `
+    Опыт работы в сфере развития розничного ритейла обязателен;
+    <br>
+    Опыт заключения арендных договоров с торговыми центрами, магазинами, гипермаркетами;
+    <br>
+    Опыт ведения переговоров с ЛПР;
+    <br>
+    Готовность к постоянным командировкам (до 90% рабочего времени);
+    <br>
+    Водительские права категории B — желательно, но не обязательно.`,
+    wage: "Заработная плата — от 70 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).",
+  },
+  {
+    id: 4,
+    title: "СУПЕРВАЙЗЕР",
+    subtitle: "Что мы ждём",
+    desctription: `
+    Вам от 18 до 30 лет;
+    <br>
+    Опыт активных продаж от 1 года;
+    <br>
+    Водительские права категории B — желательно, но не обязательно;
+    <br>
+    Готовность к релокации.`,
+    wage: "Заработная плата 40 000 - 200 000 ₽ + оплата жилья (в зависимости от объёма контролируемой сети).",
+  },
+]
 
 function checkField(element) {
   const parentInputElement = element.formElement.parentNode
@@ -95,139 +155,62 @@ function setLoading(isLoading, element) {
   else element.classList.remove("loading")
 }
 
-function addDescritionWork(workName) {
-  const description = document.querySelector(".preview__text")
-  const inputJob = form.querySelector("#job")
+function addDescritionWork(id) {
+  for (const vacancy of vacancies) {
+    if (vacancy.id === +id) {
+      document.querySelector(".preview__text").innerHTML = `<h2 class="text__title">${vacancy.title}</h2>
+      <span class="text__requirements">${vacancy.subtitle}:</span>
+      <div class="requirements__description">
+        <p class="description__paragraph">${vacancy.desctription}</p>
+      </div>
+      <span class="text__requirements">Что мы обещаем:</span>
+      <div class="requirements__description">
+        <p class="description__paragraph">${vacancy.wage}</p>
+      </div>`
 
-  if (workName === "ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ") {
-    inputJob.value = workName.slice(0, 47).toLowerCase()
-  } else {
-    inputJob.value = workName.toLowerCase()
-  }
-
-  switch (workName) {
-    case "ПОЛЕВОЙ ТРЕНЕР ПО ПРЯМЫМ ПРОДАЖАМ":
-      descriptionTrainer(description, workName)
+      job.value = vacancy.title.toLowerCase()
       break
-
-    case "ПРОМОУТЕР":
-      descriptionPromoter(description, workName)
-      break
-
-    case "МЕНЕДЖЕР ПО РАЗВИТИЮ":
-      descriptionManager(description, workName)
-      break
-
-    case "СУПЕРВАЙЗЕР":
-      descriptionSupervaiser(description, workName)
-      break
-    case "ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ":
-      descriptionTerritoryManager(description, workName)
-      break
+    }
   }
 }
 
-function descriptionTrainer(description, workName) {
-  description.innerHTML = `<h2 class="text__title">${workName}</h2>
-  <span class="text__requirements">Что мы ждём:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Опыт работы в активных продажах обязателен;
-    </p>
-    <p class="description__paragraph">Опыт обучения персонала розничных торговых сетей от 2 лет;</p>
-    <p class="description__paragraph">Опыт разработки и внедрения скриптов;</p>
-    <p class="description__paragraph">Готовность к постоянным командировкам (до 90% рабочего времени);</p>
-    <p class="description__paragraph">Водительские права категории B — желательно, но не обязательно.</p>
-  </div>
-  <span class="text__requirements">Что мы обещаем:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Заработная плата — от 70 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
-    </p>
-  </div>`
-}
+function createElement() {
+  const newElement = document.createElement("div")
+  newElement.classList.add("main__block")
+  newElement.setAttribute("id", Object.keys(vacancies).length)
 
-function descriptionPromoter(description, workName) {
-  description.innerHTML = `<h2 class="text__title">${workName}</h2>
-  <span class="text__requirements">Что мы ждём:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Вам от 18 лет;
-    </p>
-    <p class="description__paragraph">Возможно без опыта;</p>
-    <p class="description__paragraph">Активность и целеустремлённость.</p>
-  <span class="text__requirements">Что мы обещаем:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Заработная плата 15 000 - 70 000 ₽ (в зависимости от занятости).
-    </p>
-  </div>`
-}
-
-function descriptionManager(description, workName) {
-  description.innerHTML = `<h2 class="text__title">${workName}</h2>
-  <span class="text__requirements">Что мы ждём:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Опыт работы в сфере развития розничного ритейла обязателен;
-    </p>
-    <p class="description__paragraph">Опыт заключения арендных договоров с торговыми центрами, магазинами, гипермаркетами;</p>
-    <p class="description__paragraph">Опыт ведения переговоров с ЛПР;</p>
-    <p class="description__paragraph">Готовность к постоянным командировкам (до 90% рабочего времени);</p>
-    <p class="description__paragraph">Водительские права категории B — желательно, но не обязательно.</p>
-  </div>
-  <span class="text__requirements">Что мы обещаем:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Заработная плата — от 70 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
-    </p>
-  </div>`
-}
-
-function descriptionTerritoryManager(description, workName) {
-  description.innerHTML = `<h2 class="text__title">${workName}</h2>
-  <span class="text__requirements">Что мы ждём:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">Опыт управления продажами в розничной торговой сети (от 15 подчиненных) от 2 лет;</p>
-    <p class="description__paragraph">Опыт подбора и адаптации торгового персонала;</p>
-    <p class="description__paragraph">Аналитический склад ума;</p>
-    <p class="description__paragraph">Ориентация на результат;</p>
-    <p class="description__paragraph">Готовность к постоянным командировкам (до 60% рабочего времени).</p>
-  </div>
-  <span class="text__requirements">Что мы обещаем:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Заработная плата — 80-120 000 ₽ + компенсационный пакет (командировки, суточные и т.д.).
-    </p>
-  </div>`
-}
-
-function descriptionSupervaiser(description, workName) {
-  description.innerHTML = `<h2 class="text__title">${workName}</h2>
-  <span class="text__requirements">Что мы ждём:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">Вам от 18 до 30 лет;</p>
-    <p class="description__paragraph">Опыт активных продаж от 1 года;</p>
-    <p class="description__paragraph">Водительские права категории B — желательно, но не обязательно;</p>
-    <p class="description__paragraph">Готовность к релокации.</p>
-  </div>
-  <span class="text__requirements">Что мы обещаем:</span>
-  <div class="requirements__description">
-    <p class="description__paragraph">
-    Заработная плата 40 000 - 200 000 ₽ + оплата жилья (в зависимости от объёма контролируемой сети).
-    </p>
-  </div>`
+  careerMain.insertBefore(newElement, mainBtn)
+  newElement.innerHTML = `
+        <div class="main__body">
+          <div class="block__content">
+            <h3 class="content__title">ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ</h3>
+            <span class="content__description">Подробнее</span>
+          </div>
+        </div>
+      `
 }
 
 function showVacancies() {
-  vacancyContainer.classList.add("succsess")
-  mainBtn.firstElementChild.textContent = "Показать больше вакансий"
-
-  hideBtn()
+  createElement()
 }
 
-function hideBtn() {
-  mainBtn.classList.add("hide")
+// function hideBtn() {
+//   mainBtn.classList.add("hide")
+// }
+
+function createValuesForm() {
+  const valuesForm = {}
+
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].getAttribute("id") === "file") {
+      valuesForm[file] = document.querySelector(`#${inputs[i].getAttribute("id")}`).value
+      continue
+    }
+  }
+
+  valuesForm.city = select.value
+
+  return valuesForm
 }
 
 form.addEventListener("submit", async (e) => {
@@ -237,14 +220,12 @@ form.addEventListener("submit", async (e) => {
   v.validateAll()
 
   if (!v.isError) {
+    const valuesForm = createValuesForm()
+
     const formData = new FormData()
-    formData.append(
-      "data",
-      JSON.stringify({
-        job: "",
-        email: "",
-      }),
-    )
+    formData.append("data", JSON.stringify(valuesForm))
+
+    formData.append("resume", document.querySelector("#file").files[0])
 
     try {
       setLoading(true, btnSubmit)
@@ -279,13 +260,21 @@ closeBtn.addEventListener("click", () => {
   career__popup.classList.remove("active")
 })
 
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const vacacies = await getAllVacancies(vacancies, Object.keys(vacancies).length + 1)
+    console.log(vacacies)
+    showVacancies()
+  } catch (error) {
+  } finally {
+  }
+})
+
 mainBtn.addEventListener("click", async () => {
   try {
     setLoading(true, mainBtn)
-
-    await sendRequestWork()
-
-    showVacancies()
+    await sendRequest()
+    mainBtn.firstElementChild.textContent = "Вы видите все доступные вакансии"
   } catch (error) {
     mainBtn.firstElementChild.textContent = "Произошла ошибка"
   } finally {
@@ -295,11 +284,11 @@ mainBtn.addEventListener("click", async () => {
 
 careerMain.addEventListener("click", (e) => {
   const target = e.target.closest(".main__block")
+  console.log(target)
 
   if (target) {
-    const workName = target.querySelector(".content__title").textContent
-
-    addDescritionWork(workName)
+    const id = target.getAttribute("id")
+    addDescritionWork(id)
 
     career__popup.classList.add("active")
   }
