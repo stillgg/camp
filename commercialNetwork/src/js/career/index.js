@@ -194,9 +194,9 @@ function showVacancies() {
   createElement()
 }
 
-// function hideBtn() {
-//   mainBtn.classList.add("hide")
-// }
+function hideBtn() {
+  mainBtn.classList.add("hide")
+}
 
 function createValuesForm() {
   const valuesForm = {}
@@ -260,21 +260,12 @@ closeBtn.addEventListener("click", () => {
   career__popup.classList.remove("active")
 })
 
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const vacacies = await getAllVacancies(vacancies, Object.keys(vacancies).length + 1)
-    console.log(vacacies)
-    showVacancies()
-  } catch (error) {
-  } finally {
-  }
-})
-
 mainBtn.addEventListener("click", async () => {
   try {
     setLoading(true, mainBtn)
-    await sendRequest()
-    mainBtn.firstElementChild.textContent = "Вы видите все доступные вакансии"
+    await getAllVacancies(vacancies, Object.keys(vacancies).length + 1)
+    showVacancies()
+    hideBtn()
   } catch (error) {
     mainBtn.firstElementChild.textContent = "Произошла ошибка"
   } finally {
