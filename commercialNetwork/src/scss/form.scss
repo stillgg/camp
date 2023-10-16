@@ -1,0 +1,353 @@
+.form {
+  width: 100%;
+
+  .select {
+    position: relative;
+
+    &:focus-within {
+      &::after {
+        transform: translateY(4px) rotate(-135deg);
+      }
+    }
+
+    &::after {
+      content: "";
+      right: 15px;
+      top: calc(50% - 7px);
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: solid $black;
+      border-width: 0px 2px 2px 0px;
+      transition: transform 0.4s;
+      transform: rotate(45deg);
+    }
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .input-birthday {
+    .birthday-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, calc(33% - 13px));
+      column-gap: 20px;
+    }
+  }
+
+  .input-file {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    margin-top: 23px;
+    border: 1px solid #5c5c5c;
+    border-radius: 10px;
+    cursor: pointer;
+
+    .button__file {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
+  .checkbox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 10px;
+    margin-bottom: 40px;
+    transition: color 0.4s ease;
+
+    .confirm__container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: fit-content;
+      padding-left: 35px;
+      line-height: 186%;
+      color: #9e9e9e;
+      user-select: none;
+
+      .confirm__point:checked ~ .confirm__checkbox::after {
+        display: block;
+      }
+
+      @media (max-width: 576px) {
+        line-height: 156%;
+        font-size: 12px;
+      }
+    }
+
+    .confirm__point {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .confirm__checkbox {
+      position: absolute;
+      top: calc(50% - 12.5px);
+      left: 0;
+      border-radius: 15px;
+      height: 24px;
+      width: 24px;
+      background-color: transparent;
+      border: 2px solid #9e9e9e;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 8px);
+        width: 16px;
+        height: 16px;
+        background: #9e9e9e;
+        border-radius: 10px;
+        display: none;
+      }
+    }
+  }
+
+  .invalid {
+    &.select-wrapper,
+    &.input,
+    &.input-birthday,
+    &.checkbox {
+      .input__line {
+        box-shadow: 0 0 0 2px $red;
+      }
+    }
+
+    &.input-file {
+      border: 0;
+      box-shadow: 0 0 0 2px $red;
+    }
+
+    &.confirm__container {
+      .confirm__checkbox {
+        border-color: $red;
+      }
+      color: $red;
+    }
+  }
+
+  .data__form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+
+    .form__column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .file-text {
+        min-height: 110px;
+        height: 100%;
+
+        .file-info {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          transform: translateY(20px);
+          opacity: 0;
+          transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+
+          &.show-file {
+            transform: translateY(0px);
+            opacity: 1;
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+
+            &:hover {
+              .wrapper-file {
+                background-color: #f3f3f3;
+              }
+
+              .close-btn {
+                position: absolute;
+
+                z-index: 2;
+                right: 10px;
+                top: 2px;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+
+                &::before,
+                &::after {
+                  content: "";
+                  display: block;
+                  position: absolute;
+                  top: 50%;
+                  background-color: #606266;
+                  width: 80%;
+                  height: 2px;
+                }
+                &::before {
+                  transform: rotate(45deg);
+                }
+                &::after {
+                  transform: rotate(-45deg);
+                }
+              }
+            }
+
+            .paper {
+              z-index: 1;
+              position: absolute;
+              left: 5px;
+              top: 3px;
+              display: inline-block;
+              color: #909399;
+            }
+            .wrapper-file {
+              border-radius: 10px;
+              display: flex;
+              transition: background-color 0.6s ease;
+              color: #606266;
+
+              .filename {
+                font-size: 16px;
+                position: relative;
+                padding-left: 30px;
+                align-items: center;
+
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                max-width: 50%;
+              }
+            }
+          }
+
+          &.hide-file {
+            opacity: 0;
+            transition-duration: 200ms;
+            transform: translateY(-20px);
+          }
+          .filename {
+            position: relative;
+            display: block;
+          }
+        }
+      }
+
+      .input__line {
+        transition: none;
+        background: #f3f3f3;
+        border-radius: 10px;
+        padding: 15px 20px 14px;
+
+        &:hover {
+          background-color: inherit;
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12157);
+        }
+
+        &.input-select {
+          width: 100%;
+          appearance: none;
+
+          &:focus {
+            outline: none;
+          }
+
+          .input-select::-ms-expand {
+            display: none;
+          }
+        }
+      }
+
+      .input__title {
+        font-size: 16px;
+        line-height: 162%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      grid-template-columns: 100%;
+    }
+  }
+
+  .form__btn {
+    width: 240px;
+    background-color: $red;
+    padding: 17px 5px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 162%;
+    color: $white;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: #c80036;
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.50196);
+    }
+
+    &.loading {
+      .loader {
+        display: flex;
+      }
+      .text {
+        display: none;
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      background: #9e9e9e;
+      box-shadow: none;
+    }
+
+    .loader {
+      display: none;
+      width: 26px;
+      height: 26px;
+      border: 3px solid #fff;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      margin: 0 auto;
+
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .error-message {
+    min-height: 26px;
+    font-size: 14px;
+    font-style: italic;
+    color: $red;
+  }
+
+  @media (max-width: 992px) {
+    left: initial;
+    right: 15px;
+  }
+}

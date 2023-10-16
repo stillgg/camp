@@ -52,7 +52,7 @@ function onSlideChange() {
       if (slideIndex === 2) animationNetwork()
       if (target.activeSlide === 2) closeSection()
 
-      if(sections[slideIndex].getAttribute('data-section-theme') === 'dark'){
+      if (sections[slideIndex].getAttribute("data-section-theme") === "dark") {
         indicator.classList.add("black")
         header.classList.add("black")
       }
