@@ -1,5 +1,5 @@
 const inputSelect = document.querySelector("Select")
-const arrCities = [
+const cities = [
   "Альметьевск",
   "Ангарск",
   "Астрахань",
@@ -52,13 +52,9 @@ const arrCities = [
   "Моего города нет в этом списке",
 ]
 
-arrCities.forEach((city) => {
-  fillCity(city)
-})
-
-function fillCity(name) {
+cities.forEach((city) => {
   const elemCity = document.createElement("option")
-  elemCity.value = name
-  elemCity.textContent = name
+  elemCity.value = city
+  elemCity.textContent = city
   inputSelect.appendChild(elemCity)
-}
+})

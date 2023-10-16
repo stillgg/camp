@@ -21,7 +21,6 @@ const fio = form.querySelector("#fio")
 const nationality = form.querySelector("#nationality")
 const job = form.querySelector("#job")
 const file = form.querySelector("#file")
-const fileName = form.querySelector(".filename")
 
 const listElements = [
   {
@@ -167,3 +166,5 @@ function addEvents(elements) {
 }
 
 addEvents(listElements)
+
+export { agreements, city, tel, months, years, days, email, fio, nationality, job }
