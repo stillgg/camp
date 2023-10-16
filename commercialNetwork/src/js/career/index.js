@@ -69,34 +69,28 @@ function checkField(element) {
   }
 }
 
-// function showPopup() {
-//   blurBlock.classList.add("blur")
-// }
 
 function setLoading(isLoading, element) {
   if (isLoading === true) element.classList.add("loading")
   else element.classList.remove("loading")
 }
 
-function updateVacanciesList(newVacancies) {
-  for (const vacancy of newVacancies) {
-    vacancies.push(vacancy)
-  }
-}
+function renderVacancies(newVacancies) {
 
-function renderVacancies() {
-  const newElement = document.createElement("div")
-  newElement.classList.add("main__block")
-  newElement.setAttribute("id", 5)
-  careerMain.append(newElement)
-  newElement.innerHTML = `
-        <div class="main__body">
-          <div class="block__content">
-            <h3 class="content__title">ТЕРРИТОРИАЛЬНЫЙ МЕНЕДЖЕР ПО ПРОДАЖАМ ТЕРРИТОРИИ СИБИРЬ</h3>
-            <span class="content__description">Подробнее</span>
+  for (const vacancy of newVacancies) {
+    const newElement = document.createElement("div")
+    newElement.classList.add("main__block")
+    newElement.setAttribute("id", vacancy.id)
+    careerMain.append(newElement)
+    newElement.innerHTML = `
+          <div class="main__body">
+            <div class="block__content">
+              <h3 class="content__title">${vacancy.title}</h3>
+              <span class="content__description">Подробнее</span>
+            </div>
           </div>
-        </div>
-      `
+        `
+  }
 }
 
 function updateFormPopup(id) {
@@ -126,7 +120,7 @@ form.addEventListener("submit", async (e) => {
     formData.append(
       "data",
       JSON.stringify({
-        agreements: true,
+        agreement: true,
         city: city.value,
         tel: tel.value,
         months: months.value,
@@ -171,8 +165,10 @@ mainBtn.addEventListener("click", async () => {
     setLoading(true, mainBtn)
 
     const newVacancies = await getVacancies(vacancies)
-    updateVacanciesList(newVacancies)
-    renderVacancies()
+
+    vacancies.push(...newVacancies)
+
+    renderVacancies(newVacancies)
     mainBtn.classList.add("hide")
   } catch (error) {
   } finally {
