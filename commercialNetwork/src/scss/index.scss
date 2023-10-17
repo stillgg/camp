@@ -20,6 +20,45 @@
 
 body {
   overflow: hidden;
+
+  .popup__portain-mode{
+    display: none;
+  }
+  
+  @media (orientation: landscape)  and (max-width:768px) {
+    .popup__portain-mode{
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999999999;
+      background-color: $white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      .portain-mode__tel{
+
+        fill: $red;
+        width:400px;
+        height:400px;
+        transform: rotate(-135deg);
+
+        animation-name: rotate;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    @keyframes rotate {
+      100%{
+        transform: rotate(-45deg);
+      }
+    }
+  }
 }
 
 section {
