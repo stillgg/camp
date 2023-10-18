@@ -25,8 +25,10 @@ body {
     display: none;
   }
   
-  @media (orientation: landscape)  and (max-width:768px) {
-    .popup__portain-mode{
+
+    .popup__portain-mode.active{
+      @media screen and (max-width:992px) {
+        
       background-image: url('../resources/img/02-background-image.webp');
       background-image: url('../resources/img/02-background-image.png');
       background-size: cover;
@@ -61,14 +63,10 @@ body {
         font-weight: 700;
       }
     }
-
-    // @keyframes rotate {
-    //   100%{
-    //     transform: rotate(-45deg);
-    //   }
-    // }
   }
-}
+
+  }
+
 
 section {
   overflow: hidden;
