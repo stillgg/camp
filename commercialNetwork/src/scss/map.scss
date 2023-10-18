@@ -114,6 +114,16 @@
       z-index: 2;
       margin: 0 auto;
 
+      .map__finger{
+        @media (max-width:992px) {
+          top: 50%;
+          position: absolute;
+          width:80px;
+          height: 80px;
+          color: $white;
+        }
+      }
+      
       .map-image {
         pointer-events: none;
         user-select: none;

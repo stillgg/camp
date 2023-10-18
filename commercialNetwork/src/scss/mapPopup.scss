@@ -1,0 +1,145 @@
+
+.map__popup{
+    display: none;
+
+    &.active{
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    top: 50%;
+    background-color: #e2d1d5;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+        .background-map-wrapper{
+            width: 700px;
+            margin-right: -300px;
+            height: 376px;
+            transform: scale(1.5);
+
+            .map-image{
+                width: 100%;
+                height: 100%;
+            }
+
+            .dot {
+                position: absolute;
+                cursor: pointer;
+        
+                .mark {
+                  position: absolute;
+                  z-index: 5;
+                  max-width: none;
+                  bottom: -9px;
+                  left: -20px;
+                  animation: mark-down 1s forwards;
+        
+                  @keyframes mark-down {
+                    0% {
+                      transform: translateY(-10px);
+                      opacity: 0;
+                    }
+        
+                    100% {
+                      transform: translateY(0px);
+                      opacity: 1;
+                    }
+                  }
+        
+                }
+        
+                .tooltip {
+                  position: absolute;
+                  z-index: 6;
+                  top: calc(100% + 10px);
+                  left: 50%;
+                  padding: 8px;
+                  color: $white;
+                  border-radius: 4px;
+                  font-size: 14px;
+                  line-height: 1.2;
+                  background-color: rgba(0, 0, 0, 0.8);
+                  white-space: nowrap;
+                  transform: translateX(-50%);
+        
+                  pointer-events: none;
+                  opacity: 0;
+                  width: fit-content;
+                  height: fit-content;
+        
+                  &::after {
+                    content: attr(data-country);
+                  }
+                }
+        
+                &.animation-play {
+                  pointer-events: none;
+        
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    left: -5px;
+                    top: -7px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 2px solid $white;
+                  }
+        
+                  .tooltip {
+                    animation: country 2s forwards;
+        
+                    @keyframes country {
+                      0% {
+                        opacity: 0;
+                      }
+        
+                      100% {
+                        opacity: 1;
+                      }
+                    }
+                  }
+        
+                  .mark {
+                    animation: mark-up 0.5s forwards;
+        
+                    @keyframes mark-up {
+                      0% {
+                        visibility: visible;
+                        transform: translateY(0px);
+                        opacity: 1;
+                      }
+        
+                      100% {
+                        visibility: hidden;
+                        transform: translateY(-10px);
+                        opacity: 0;
+                      }
+                    }
+                  }
+                }
+        
+              }
+        }
+
+        .map__close{
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 200px;
+            padding: 20px 0px;
+            background-color: $red;
+            color: $white;
+            border-radius: 10px;
+            font-size: 30px;
+            text-align: center;
+        }
+    }
+}
