@@ -27,37 +27,46 @@ body {
   
   @media (orientation: landscape)  and (max-width:768px) {
     .popup__portain-mode{
+      background-image: url('../resources/img/02-background-image.webp');
+      background-image: url('../resources/img/02-background-image.png');
+      background-size: cover;
+      background-color: $red;
+      background-position-x: center;
       position: fixed;
       left: 0;
       right: 0;
       top: 0;
       bottom: 0;
       z-index: 999999999;
-      background-color: $white;
 
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
 
       .portain-mode__tel{
-
-        fill: $red;
-        width:400px;
-        height:400px;
-        transform: rotate(-135deg);
-
+        fill: #fff;
+        width: 200px;
+        height: 200px;
         animation-name: rotate;
         animation-duration: 2s;
         animation-iteration-count: infinite;
       }
-    }
 
-    @keyframes rotate {
-      100%{
-        transform: rotate(-45deg);
+      .portain-mode__text{
+        margin-top: 20px;
+        font-size: 25px;
+        color: $white;
+        font-weight: 700;
       }
     }
+
+    // @keyframes rotate {
+    //   100%{
+    //     transform: rotate(-45deg);
+    //   }
+    // }
   }
 }
 
