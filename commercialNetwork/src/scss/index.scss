@@ -27,13 +27,13 @@ body {
   
 
     .popup__portain-mode.active{
-      @media screen and (max-width:992px) {
+
         
       background-image: url('../resources/img/02-background-image.webp');
       background-image: url('../resources/img/02-background-image.png');
       background-size: cover;
       background-color: $red;
-      background-position-x: center;
+      background-position-x: -100px;
       position: fixed;
       left: 0;
       right: 0;
@@ -57,12 +57,13 @@ body {
       }
 
       .portain-mode__text{
-        margin-top: 20px;
         font-size: 25px;
         color: $white;
         font-weight: 700;
-      }
+      
     }
+
+
   }
 
   }
