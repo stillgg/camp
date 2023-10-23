@@ -1,7 +1,7 @@
 const marks = document.querySelectorAll(".mark")
 const bcgMap = document.querySelector(".background-map-wrapper")
 const mapPopup = document.querySelector(".map__popup-wrapper")
-const mapClose = document.querySelector(".map__close")
+const mapClose = document.querySelector(".map__popup-close")
 
 marks.forEach((mark) => {
   mark.addEventListener("click", () => {

@@ -1,158 +1,166 @@
 .map__popup-wrapper {
-  display: none;
+  @media (max-width: 991px) {
+    display: none;
 
-  &.active {
-    display: flex;
-    position: fixed;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-
-    top: 0;
-    // background-color: #e2d1d5;
-    left: 0;
-    // transform: translate(-50%, -50%);
-    // justify-content: center;
-    // align-items: center;
-    // width: 100%;
-    // height: 100%;
-    // overflow: auto;
-    .map__popup {
-      position: fixed;
-      z-index: 2;
+    &.active {
       display: flex;
-      top: 50%;
-      background-color: #e2d1d5;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      justify-content: center;
-      align-items: center;
+      position: fixed;
+      z-index: 999991;
       width: 100%;
       height: 100%;
-      overflow: auto;
+      top: 0;
+      left: 0;
 
-      .background-map-wrapper {
-        // width: 700px;
-        // margin-right: -300px;
-        // height: 376px;
-        // transform: scale(1.5);
+      .map__popup-close {
+        position: fixed;
+        z-index: 999991;
+        right: 30px;
+        top: 30px;
+        width: 50px;
+        height: 50px;
 
-        .map-image {
-          width: 100%;
-          height: 100%;
-        }
-
-        .dot {
+        .close__strip {
           position: absolute;
-          cursor: pointer;
+          display: block;
+          background-color: $black;
+          width: 100%;
+          height: 3px;
+          top: 50%;
 
-          .mark {
-            position: absolute;
-            z-index: 5;
-            max-width: none;
-            bottom: -9px;
-            left: -20px;
-            animation: mark-down 1s forwards;
-
-            @keyframes mark-down {
-              0% {
-                transform: translateY(-10px);
-                opacity: 0;
-              }
-
-              100% {
-                transform: translateY(0px);
-                opacity: 1;
-              }
-            }
+          &:first-child {
+            transform: rotate(45deg);
           }
 
-          .tooltip {
-            position: absolute;
-            z-index: 6;
-            top: calc(100% + 10px);
-            left: 50%;
-            padding: 8px;
-            color: $white;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1.2;
-            background-color: rgba(0, 0, 0, 0.8);
-            white-space: nowrap;
-            transform: translateX(-50%);
-
-            pointer-events: none;
-            opacity: 0;
-            width: fit-content;
-            height: fit-content;
-
-            &::after {
-              content: attr(data-country);
-            }
-          }
-
-          &.animation-play {
-            pointer-events: none;
-
-            &::after {
-              content: "";
-              position: absolute;
-              left: -5px;
-              top: -7px;
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
-              border: 2px solid $white;
-            }
-
-            .tooltip {
-              animation: country 2s forwards;
-
-              @keyframes country {
-                0% {
-                  opacity: 0;
-                }
-
-                100% {
-                  opacity: 1;
-                }
-              }
-            }
-
-            .mark {
-              animation: mark-up 0.5s forwards;
-
-              @keyframes mark-up {
-                0% {
-                  visibility: visible;
-                  transform: translateY(0px);
-                  opacity: 1;
-                }
-
-                100% {
-                  visibility: hidden;
-                  transform: translateY(-10px);
-                  opacity: 0;
-                }
-              }
-            }
+          &:last-child {
+            transform: rotate(-45deg);
           }
         }
       }
 
-      .map__close {
+      .map__popup {
         position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
         z-index: 2;
-        width: 200px;
-        padding: 20px 0px;
-        background-color: $red;
-        color: $white;
-        border-radius: 10px;
-        font-size: 30px;
-        text-align: center;
+        top: 50%;
+        background-color: #e2d1d5;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+
+        .background-map-wrapper {
+          position: relative;
+          width: 220%;
+
+          @media (max-width: 768px) {
+            width: 400%;
+          }
+          @media (max-width: 576px) {
+            width: 500%;
+          }
+
+          .map-image {
+            width: 100%;
+            height: 100%;
+          }
+
+          .dot {
+            position: absolute;
+            cursor: pointer;
+
+            .mark {
+              position: absolute;
+              z-index: 5;
+              max-width: none;
+              bottom: -9px;
+              left: -20px;
+              animation: mark-down 1s forwards;
+
+              @keyframes mark-down {
+                0% {
+                  transform: translateY(-10px);
+                  opacity: 0;
+                }
+
+                100% {
+                  transform: translateY(0px);
+                  opacity: 1;
+                }
+              }
+            }
+
+            .tooltip {
+              position: absolute;
+              z-index: 6;
+              top: calc(100% + 10px);
+              left: 50%;
+              padding: 8px;
+              color: $white;
+              border-radius: 4px;
+              font-size: 14px;
+              line-height: 1.2;
+              background-color: rgba(0, 0, 0, 0.8);
+              white-space: nowrap;
+              transform: translateX(-50%);
+
+              pointer-events: none;
+              opacity: 0;
+              width: fit-content;
+              height: fit-content;
+
+              &::after {
+                content: attr(data-country);
+              }
+            }
+
+            &.animation-play {
+              pointer-events: none;
+
+              &::after {
+                content: "";
+                position: absolute;
+                left: -5px;
+                top: -7px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border: 2px solid $white;
+              }
+
+              .tooltip {
+                animation: country 2s forwards;
+
+                @keyframes country {
+                  0% {
+                    opacity: 0;
+                  }
+
+                  100% {
+                    opacity: 1;
+                  }
+                }
+              }
+
+              .mark {
+                animation: mark-up 0.5s forwards;
+
+                @keyframes mark-up {
+                  0% {
+                    visibility: visible;
+                    transform: translateY(0px);
+                    opacity: 1;
+                  }
+
+                  100% {
+                    visibility: hidden;
+                    transform: translateY(-10px);
+                    opacity: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
