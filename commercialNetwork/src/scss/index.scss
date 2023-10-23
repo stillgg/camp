@@ -21,53 +21,82 @@
 body {
   overflow: hidden;
 
-  .popup__portain-mode{
+  .popup__portain-mode {
     display: none;
   }
-  
 
-    .popup__portain-mode.active{
+  @media (max-width: 991px) {
+    @media (orientation: landscape) and (max-height: 719px) {
+      .popup__portain-mode {
+        background-image: url("../resources/img/background_popup_landscape.webp");
+        background-image: url("../resources/img/background_popup_landscape.png");
+        background-size: cover;
+        background-color: $red;
+        background-position-x: -100px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 999999999;
 
-        
-      background-image: url('../resources/img/02-background-image.webp');
-      background-image: url('../resources/img/02-background-image.png');
-      background-size: cover;
-      background-color: $red;
-      background-position-x: -100px;
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 999999999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+        .portain-mode__tel {
+          fill: #fff;
+          width: 200px;
+          height: 200px;
+          animation-name: rotate;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+        }
 
-
-      .portain-mode__tel{
-        fill: #fff;
-        width: 200px;
-        height: 200px;
-        animation-name: rotate;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
+        .portain-mode__text {
+          font-size: 25px;
+          color: $white;
+          font-weight: 700;
+        }
       }
-
-      .portain-mode__text{
-        font-size: 25px;
-        color: $white;
-        font-weight: 700;
-      
     }
-
-
   }
 
-  }
+  // .popup__portain-mode.active {
+  //   background-image: url("../resources/img/02-background-image.webp");
+  //   background-image: url("../resources/img/02-background-image.png");
+  //   background-size: cover;
+  //   background-color: $red;
+  //   background-position-x: -100px;
+  //   position: fixed;
+  //   left: 0;
+  //   right: 0;
+  //   top: 0;
+  //   bottom: 0;
+  //   z-index: 999999999;
 
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+
+  //   .portain-mode__tel {
+  //     fill: #fff;
+  //     width: 200px;
+  //     height: 200px;
+  //     animation-name: rotate;
+  //     animation-duration: 2s;
+  //     animation-iteration-count: infinite;
+  //   }
+
+  //   .portain-mode__text {
+  //     font-size: 25px;
+  //     color: $white;
+  //     font-weight: 700;
+  //   }
+  // }
+}
 
 section {
   overflow: hidden;
