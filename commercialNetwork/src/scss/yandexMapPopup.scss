@@ -1,0 +1,63 @@
+.popup__yandexMap {
+  display: none;
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 9999999999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    .yandexMap__iframe {
+      top: -120px;
+      height: calc(100% + 240px);
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .close__wrapper {
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      cursor: pointer;
+      top: 15px;
+      left: 15px;
+      width: 60px;
+      height: 60px;
+
+      .preview__close {
+        position: relative;
+        width: 31px;
+        height: 31px;
+
+        .close__strip {
+          position: absolute;
+          display: block;
+          background-color: $black;
+          width: 100%;
+          height: 3px;
+          top: 50%;
+
+          &:first-child {
+            transform: rotate(45deg);
+          }
+
+          &:last-child {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+
+      @media (max-width: 992px) {
+        left: initial;
+        right: 15px;
+      }
+    }
+  }
+}
