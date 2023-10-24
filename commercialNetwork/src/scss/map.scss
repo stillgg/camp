@@ -114,16 +114,37 @@
       z-index: 2;
       margin: 0 auto;
 
-      .map__finger{
-        @media (max-width:992px) {
+      .map__finger {
+        display: none;
+        @media (max-width: 992px) {
+          color: #fff;
+          stroke: #000;
+          stroke-width: 3px;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          animation: tap 1.25s ease-out backwards;
+          animation-iteration-count: infinite;
+
+          display: block;
           top: 50%;
           position: absolute;
-          width:80px;
-          height: 80px;
-          color: $white;
+          width: 120px;
+          height: 120px;
+
+          @keyframes tap {
+            0% {
+              transform: rotateX(0deg);
+            }
+            10% {
+              transform: rotateX(12.5deg);
+            }
+            25% {
+              transform: rotateX(25deg);
+            }
+          }
         }
       }
-      
+
       .map-image {
         pointer-events: none;
         user-select: none;

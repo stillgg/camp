@@ -1,5 +1,5 @@
 .map__popup-wrapper {
-  @media (max-width: 991px) {
+  @media (max-width: 992px) {
     display: none;
 
     &.active {
@@ -50,13 +50,13 @@
 
         .background-map-wrapper {
           position: relative;
-          width: 220%;
+          width: 1500px;
 
           @media (max-width: 768px) {
-            width: 400%;
+            width: 1700px;
           }
           @media (max-width: 576px) {
-            width: 500%;
+            width: 1800px;
           }
 
           .map-image {

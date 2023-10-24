@@ -2,6 +2,7 @@ const marks = document.querySelectorAll(".mark")
 const bcgMap = document.querySelector(".background-map-wrapper")
 const mapPopup = document.querySelector(".map__popup-wrapper")
 const mapClose = document.querySelector(".map__popup-close")
+const isMobile = window.innerWidth <= 992
 
 marks.forEach((mark) => {
   mark.addEventListener("click", () => {
@@ -17,7 +18,9 @@ function deleteClasses() {
 }
 
 bcgMap.addEventListener("click", () => {
-  mapPopup.classList.add("active")
+  if (isMobile) {
+    mapPopup.classList.add("active")
+  }
 })
 
 mapClose.addEventListener("click", () => {
