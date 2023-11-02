@@ -132,6 +132,6 @@ main.addEventListener("touchend", onDragEnd)
 main.addEventListener("mousedown", onDragStart)
 main.addEventListener("mouseup", onDragEnd)
 
-document.addEventListener("resize", initSectionsHeight)
+window.addEventListener("resize", initSectionsHeight)
 
 export { watchedSlide }
