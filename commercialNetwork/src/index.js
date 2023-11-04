@@ -3,8 +3,9 @@ import "./js/hamburger"
 import "./js/map"
 import "./js/scrollBar"
 import "./js/networkLoader"
-
+import "./js/meeting"
 import "./js/career/index"
+
 import { slider } from "./js/slider"
 
 slider("#slider-team-mobile")
