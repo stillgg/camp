@@ -114,37 +114,85 @@
       z-index: 2;
       margin: 0 auto;
 
-      .map__finger {
-        display: none;
-        @media (max-width: 992px) {
-          color: #fff;
-          stroke: #000;
-          stroke-width: 3px;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-          animation: tap 1.25s ease-out backwards;
-          animation-iteration-count: infinite;
+      .finger__wrapper {
+        width: 45px;
+        height: 50px;
+        display: block;
+        top: 50%;
+        position: absolute;
+        .map__finger {
+          display: none;
 
-          display: block;
-          top: 50%;
+          @media (max-width: 992px) {
+            color: #fff;
+            stroke: #ffffff;
+            stroke-width: 3px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: tap 6s ease-out backwards;
+            animation-iteration-count: infinite;
+            display: block;
+
+            @keyframes tap {
+              0% {
+                transform: translateY(-20px) rotateX(0deg);
+              }
+
+              20% {
+                transform: translateY(0px) rotateX(40deg);
+              }
+              100% {
+                transform: translateY(0px) rotateX(40deg);
+                // transform: translateY(0px) rotateX(0deg);
+              }
+            }
+          }
+        }
+
+        .arrows {
           position: absolute;
-          width: 120px;
-          height: 120px;
 
-          @keyframes tap {
+          top: -7px;
+          right: 50%;
+
+          span {
+            background: black;
+            position: absolute;
+            width: 15px;
+            height: 4px;
+            animation: active 2s ease-out;
+          }
+
+          span:first-child {
+            transform: rotateZ(125deg);
+            right: -14px;
+            top: 3px;
+          }
+
+          span:nth-child(2) {
+            transform: rotateZ(90deg);
+            right: -3px;
+          }
+
+          span:last-child {
+            transform: rotateZ(235deg);
+            top: 3px;
+            right: 8px;
+          }
+
+          @keyframes active {
             0% {
-              transform: rotateX(0deg);
+              opacity: 0;
             }
-            10% {
-              transform: rotateX(12.5deg);
+            50% {
+              opacity: 1;
             }
-            25% {
-              transform: rotateX(25deg);
+            100% {
+              opacity: 0;
             }
           }
         }
       }
-
       .map-image {
         pointer-events: none;
         user-select: none;
