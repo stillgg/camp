@@ -114,85 +114,83 @@
       z-index: 2;
       margin: 0 auto;
 
-      .finger__wrapper {
-        width: 45px;
-        height: 50px;
-        display: block;
-        top: 50%;
+      .finger {
         position: absolute;
-        .map__finger {
-          display: none;
+        animation: tap 4s ease-in-out infinite;
+        animation-delay: -2s;
 
-          @media (max-width: 992px) {
-            color: #fff;
-            stroke: #ffffff;
-            stroke-width: 3px;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            animation: tap 6s ease-out backwards;
-            animation-iteration-count: infinite;
-            display: block;
-
-            @keyframes tap {
-              0% {
-                transform: translateY(-20px) rotateX(0deg);
-              }
-
-              20% {
-                transform: translateY(0px) rotateX(40deg);
-              }
-              100% {
-                transform: translateY(0px) rotateX(40deg);
-                // transform: translateY(0px) rotateX(0deg);
-              }
-            }
-          }
-        }
-
-        .arrows {
+        .finger__wrapper {
+          width: 45px;
+          height: 50px;
+          display: block;
+          top: 50%;
           position: absolute;
 
-          top: -7px;
-          right: 50%;
+          .map__finger {
+            display: none;
 
-          span {
-            background: black;
-            position: absolute;
-            width: 15px;
-            height: 4px;
-            animation: active 2s ease-out;
-          }
+            @media (max-width: 992px) {
+              color: #fff;
+              stroke: #ffffff;
+              stroke-width: 3px;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              animation-iteration-count: infinite;
+              display: block;
 
-          span:first-child {
-            transform: rotateZ(125deg);
-            right: -14px;
-            top: 3px;
-          }
+              @keyframes tap {
+                0% {
+                  transform: translateY(-20px) rotateX(0deg);
+                }
 
-          span:nth-child(2) {
-            transform: rotateZ(90deg);
-            right: -3px;
-          }
-
-          span:last-child {
-            transform: rotateZ(235deg);
-            top: 3px;
-            right: 8px;
-          }
-
-          @keyframes active {
-            0% {
-              opacity: 0;
+                20% {
+                  transform: translateY(0px) rotateX(40deg);
+                }
+                100% {
+                  transform: translateY(0px) rotateX(40deg);
+                }
+              }
             }
-            50% {
+          }
+
+          .circle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 7px;
+            top: -7px;
+            border-radius: 50%;
+            background-color: #fff;
+            animation: circle 4s ease-out infinite;
+          }
+
+          @keyframes circle {
+            0% {
+              transform: scale(0.95);
               opacity: 1;
             }
             100% {
+              transform: scale(1);
               opacity: 0;
             }
           }
         }
+
+        @keyframes tap {
+          0% {
+            transform: scale(1);
+          }
+
+          50% {
+            transform: scale(0.9);
+          }
+
+          100% {
+            transform: scale(1);
+          }
+        }
       }
+
       .map-image {
         pointer-events: none;
         user-select: none;
