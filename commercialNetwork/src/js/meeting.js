@@ -1,11 +1,16 @@
 const content = document.querySelector(".meeting__content")
 const preview = document.querySelector("img.content__preview")
-const btnPlay = document.querySelector(".wrapper__play")
+const mainBtnPlay = document.querySelector("#mainBtn")
+const sideBtnPlay = document.querySelector("#sideBtnPlay")
+const sideBtnPause = document.querySelector("#sideBtnPause")
 const video = document.querySelector(".content__video")
-console.log(preview)
 
-btnPlay.addEventListener("click", (e) => {
+content.addEventListener("click", (e) => {
   preview.style.display = "none"
-  btnPlay.style.display = "none"
-  video.play()
+  mainBtnPlay.classList.toggle("pause")
+  sideBtnPlay.classList.toggle("play")
+  sideBtnPause.classList.toggle("pause")
+
+  if (mainBtnPlay.classList.contains("pause")) video.play()
+  else video.pause()
 })

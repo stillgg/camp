@@ -320,12 +320,26 @@
                 alt="preview"
                 srcset="../resources/img/06-preview.webp"
               />
-              <video class="content__video" controls loop src="../resources/videos/06-video.mp4"></video>
+              <video class="content__video" loop src="../resources/videos/06-video.mp4"></video>
 
-              <div class="wrapper__play">
+              <div id="mainBtn" class="wrapper__play">
                 <svg class="play" width="21" height="24">
                   <use xlink:href="resources/icons/sprite.svg#play"></use>
                 </svg>
+              </div>
+
+              <div class="content-side">
+                <button id="sideBtnPlay" class="content-side__play play">
+                  <svg class="side__play" width="21" height="24">
+                    <use xlink:href="resources/icons/sprite.svg#play"></use>
+                  </svg>
+                </button>
+
+                <button id="sideBtnPause" class="content-side__stop">
+                  <svg class="side__stop" width="21" height="24">
+                    <use xlink:href="resources/icons/sprite.svg#pause"></use>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -842,6 +856,7 @@
           ></iframe>
         </section>
       </main>
+
       <div class="wrapper__popups">
         <div class="popup__blur"></div>
 
