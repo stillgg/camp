@@ -5,6 +5,8 @@ const sideBtnPlay = document.querySelector("#sideBtnPlay")
 const sideBtnPause = document.querySelector("#sideBtnPause")
 const video = document.querySelector(".content__video")
 
+video.controls = false
+
 content.addEventListener("click", (e) => {
   preview.style.display = "none"
   mainBtnPlay.classList.toggle("pause")
