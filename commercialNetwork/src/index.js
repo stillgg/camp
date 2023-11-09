@@ -4,6 +4,7 @@ import "./js/map"
 import "./js/scrollBar"
 import "./js/networkLoader"
 import "./js/meeting"
+import "./js/yandexMap"
 import "./js/career/index"
 
 import { slider } from "./js/slider"
