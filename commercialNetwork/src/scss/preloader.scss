@@ -1,0 +1,22 @@
+.preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: $red;
+  z-index: 999999;
+
+  .preloader__image {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+
+    #preloader path {
+      fill: transparent;
+      stroke-dasharray: 1575;
+      stroke-dashoffset: 0;
+    }
+  }
+}
