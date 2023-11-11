@@ -1,9 +1,20 @@
 .preloader {
   position: fixed;
+  bottom: 100%;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: $red;
   z-index: 999999;
+  transition: bottom 0.5s ease;
+
+  &.active {
+    bottom: 0%;
+  }
+
+  & path {
+    animation: preloader 5s ease-in-out forwards;
+  }
 
   .preloader__image {
     width: 400px;
@@ -13,10 +24,34 @@
     transform: translate(-50%, -50%);
     color: white;
 
-    #preloader path {
+    & path {
       fill: transparent;
       stroke-dasharray: 1575;
       stroke-dashoffset: 0;
     }
+  }
+}
+
+@keyframes preloader {
+  0% {
+    fill: transparent;
+    stroke-dashoffset: 0;
+  }
+
+  40% {
+    stroke-dashoffset: 1582;
+    fill: #ffffff;
+  }
+
+  60% {
+  }
+
+  80% {
+    stroke-dashoffset: 3164;
+  }
+
+  100% {
+    stroke-dashoffset: 3164;
+    fill: #ffffff;
   }
 }

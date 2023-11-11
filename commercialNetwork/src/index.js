@@ -5,6 +5,8 @@ import "./js/scrollBar"
 import "./js/networkLoader"
 import "./js/yandexMap"
 import "./js/career/index"
+import "./js/preloader"
+
 import { slider } from "./js/slider"
 
 slider("#slider-team-mobile")
