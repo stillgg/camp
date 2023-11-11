@@ -1,15 +1,21 @@
 .popup__yandexMap {
-  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  transition: left 0.3s ease;
 
-  &.active {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    z-index: 9999999999999;
-    left: 0;
-    top: 0;
+  .yandexMap__iframe {
     width: 100%;
     height: 100%;
+  }
+
+  &.active {
+    left: 0%;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999999999999;
 
     .yandexMap__iframe {
       top: -120px;
