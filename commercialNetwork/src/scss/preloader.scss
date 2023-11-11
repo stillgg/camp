@@ -42,20 +42,16 @@
 
 @keyframes preloader {
   0% {
-    fill: transparent;
     stroke-dashoffset: 1582;
   }
 
-  40% {
-  }
-
-  60% {
+  70% {
     fill: transparent;
   }
 
-  80% {
+  75% {
     stroke-dashoffset: 3164;
-    fill: transparent;
+    fill: white;
   }
 
   100% {
