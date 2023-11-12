@@ -8,6 +8,14 @@
     overflow: hidden;
     padding-top: 120px;
 
+    .h2 {
+      opacity: 0;
+      transform: translateY(40%);
+      transition:
+        transform 0.6s ease-in-out,
+        opacity 0.8s ease-in-out;
+    }
+
     .team__main {
       position: relative;
       display: flex;
@@ -77,7 +85,7 @@
         }
 
         .main__comma {
-          z-index: 4;
+          z-index: 0;
           position: absolute;
           right: -29%;
           top: -29px;
@@ -165,6 +173,12 @@
         padding-bottom: 30px;
         position: relative;
 
+        opacity: 0;
+        transform: translateX(40%);
+        transition:
+          transform 0.6s ease-in-out,
+          opacity 0.8s ease-in-out;
+
         .main__description__bold {
           position: relative;
           z-index: 5;
@@ -210,5 +224,19 @@
 
   @media (max-width: 1200px) {
     display: block;
+  }
+
+  &.active {
+    .h2 {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
+    }
+
+    .team__wrapper .team__main .main__description {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
+    }
   }
 }

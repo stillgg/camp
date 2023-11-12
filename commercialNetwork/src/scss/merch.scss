@@ -10,12 +10,24 @@
     overflow: visible;
 
     .h2 {
+      opacity: 0;
+      transform: translateY(40%);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
       @media (min-width: 993px) and (max-width: 1200px) {
         margin: 0 30px;
       }
     }
 
     .slider {
+      opacity: 0;
+      transform: translateY(100%);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
       .merch-slider-track {
         .merch-slider-item {
           .image-wrapper {
@@ -80,6 +92,15 @@
       @media (max-width: 576px) {
         height: 250px;
       }
+    }
+  }
+
+  &.active {
+    .h2,
+    .slider {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
     }
   }
 }

@@ -54,7 +54,11 @@
       position: absolute;
       z-index: 3;
       top: 130px;
-      left: 97px;
+      left: -10%;
+      transition:
+        left 0.8s ease,
+        opacity 0.8s ease;
+      opacity: 0;
       padding: 38px 155px 27px 55px;
     }
 
@@ -62,15 +66,23 @@
       position: absolute;
       z-index: 6;
       bottom: 159px;
-      left: -56px;
+      left: -20%;
+      transition:
+        left 0.8s ease,
+        opacity 0.8s ease;
+      opacity: 0;
       padding: 37px 50px 28px;
     }
 
     .promoters-wrapper__points {
       position: absolute;
+      transition:
+        right 0.8s ease,
+        opacity 0.8s ease;
+      opacity: 0;
       z-index: 6;
       bottom: 81px;
-      right: -50px;
+      right: -20%;
       padding: 38px 50px 27px;
     }
 
@@ -96,6 +108,14 @@
     @media (max-width: 768px) {
       display: none;
     }
+  }
+
+  .container {
+    opacity: 0;
+    transform: translateY(40%);
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
   }
 
   .h3 {
@@ -132,5 +152,31 @@
   @media (max-width: 768px) {
     align-items: center;
     justify-content: center;
+  }
+
+  &.active {
+    .container {
+      opacity: 1;
+      transform: translateX(0%);
+      transition-delay: 300ms;
+    }
+
+    .promoters-wrapper__city {
+      left: 97px;
+      opacity: 1;
+      transition-delay: 300ms;
+    }
+
+    .promoters-wrapper__contacts {
+      left: -56px;
+      opacity: 1;
+      transition-delay: 300ms;
+    }
+
+    .promoters-wrapper__points {
+      right: -50px;
+      opacity: 1;
+      transition-delay: 300ms;
+    }
   }
 }

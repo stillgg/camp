@@ -69,14 +69,12 @@ function checkField(element) {
   }
 }
 
-
 function setLoading(isLoading, element) {
   if (isLoading === true) element.classList.add("loading")
   else element.classList.remove("loading")
 }
 
 function renderVacancies(newVacancies) {
-
   for (const vacancy of newVacancies) {
     const newElement = document.createElement("div")
     newElement.classList.add("main__block")
