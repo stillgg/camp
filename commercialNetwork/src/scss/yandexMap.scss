@@ -4,6 +4,8 @@
   position: relative;
   overflow: hidden;
   background-image: url("../resources/img/12-background.jpg");
+  background-size: cover;
+
   .yandexMap__iframe {
     top: -120px;
     height: calc(100% + 240px);
@@ -28,10 +30,10 @@
       line-height: 122px;
       text-transform: uppercase;
       opacity: 0;
-      transform: translateY(50%);
+      transform: translateY(100%);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 1s ease,
+        transform 1s ease;
 
       @media (max-width: 1200px) {
         font-size: 82px;
@@ -55,10 +57,10 @@
       position: relative;
       z-index: 2;
       opacity: 0;
-      transform: translateY(-50%);
+      transform: translateY(100%);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 1.3s ease,
+        transform 1.3s ease;
 
       .content__number {
         color: $white;

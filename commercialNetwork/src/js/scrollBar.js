@@ -49,8 +49,9 @@ function onSlideChange() {
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
 
-      if (slideIndex === 2) animationNetwork()
-      if (target.activeSlide === 2) closeSection()
+      if (slideIndex === 2 || slideIndex === 3 || slideIndex === 6) animationNetwork(slideIndex)
+      if (target.activeSlide === 2 || target.activeSlide === 3 || target.activeSlide === 6)
+        closeSection(target.activeSlide)
 
       if (sections[slideIndex].getAttribute("data-section-theme") === "dark") {
         indicator.classList.add("black")

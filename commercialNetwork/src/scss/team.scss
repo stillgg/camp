@@ -10,7 +10,7 @@
 
     .h2 {
       opacity: 0;
-      transform: translateY(40%);
+      transform: translateY(100%);
       transition:
         transform 0.6s ease-in-out,
         opacity 0.8s ease-in-out;
@@ -29,6 +29,12 @@
       }
 
       .slider#slider-team-desktop {
+        transform: translateY(100%);
+        opacity: 0;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+
         .slider-track {
           width: 465px;
           height: 100%;
@@ -97,10 +103,15 @@
       }
 
       .slider#slider-team-mobile {
+        transform: translateY(50%);
+        opacity: 0;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+
         width: 320px;
         margin: 0 auto;
 
-        transition: opacity 0.3s ease;
         .team-slider-track {
           .team__item {
             min-width: 320px;
@@ -227,6 +238,15 @@
   }
 
   &.active {
+    .team__wrapper .team__main {
+      .slider#slider-team-desktop,
+      .slider#slider-team-mobile {
+        opacity: 1;
+        transform: translateY(0%);
+        transition-delay: 300ms;
+      }
+    }
+
     .h2 {
       opacity: 1;
       transform: translateY(0%);
