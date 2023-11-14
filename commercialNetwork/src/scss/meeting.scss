@@ -19,7 +19,7 @@
 
   .h2 {
     color: $white;
-    transform: translateY(100%);
+    transform: translateY(600px);
     opacity: 0;
     transition:
       transform 0.8s ease,
@@ -27,7 +27,7 @@
   }
 
   .meeting__content {
-    transform: translateY(100%);
+    transform: translateY(600px);
     opacity: 0;
     transition:
       transform 0.8s ease,
@@ -87,7 +87,7 @@
     .meeting__content {
       opacity: 1;
       transform: translateY(0%);
-      transition-delay: 300ms;
+      transition-delay: 400ms;
     }
   }
 }

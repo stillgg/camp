@@ -11,7 +11,7 @@
 
     .h2 {
       opacity: 0;
-      transform: translateY(40%);
+      transform: translateY(600px);
       transition:
         opacity 0.8s ease,
         transform 0.8s ease;
@@ -23,7 +23,7 @@
 
     .slider {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(600px);
       transition:
         opacity 0.8s ease,
         transform 0.8s ease;

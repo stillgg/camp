@@ -10,21 +10,13 @@ const map = document.querySelector(".map")
 const mapNumbers = map.querySelectorAll(".map-numbers")
 
 const animatedInfo = [
-  { id: 2, elemets: numbers },
-  { id: 3, elemets: promotersNumber },
-  { id: 6, elemets: mapNumbers },
+  { slideIndex: 2, elements: numbers },
+  { slideIndex: 3, elements: promotersNumber },
+  { slideIndex: 6, elements: mapNumbers },
 ]
 
-function animationNetwork(id) {
-  const numbers = animatedInfo.find((slide) => {
-    if (slide.id === id) {
-      return slide
-    }
-  })
-
-  console.log(numbers)
-
-  numbers.elemets.forEach((number, index) => {
+function countAnimation({ slideIndex, elements }) {
+  elements.forEach((number, index) => {
     let i = 1
     const num = number.dataset.num
     const time = 4
@@ -33,7 +25,7 @@ function animationNetwork(id) {
     const step = (1000 * time + index * 200) / animationNum
 
     const timer = setInterval(function () {
-      if (i <= animationNum && watchedSlide.activeSlide === id) {
+      if (i <= animationNum && watchedSlide.activeSlide === slideIndex) {
         number.textContent = i + "0".repeat(staticNum.length)
       } else {
         clearInterval(timer)
@@ -43,16 +35,13 @@ function animationNetwork(id) {
   })
 }
 
-function closeSection(id) {
-  const numbers = animatedInfo.find((slide) => {
-    if (slide.id === id) {
-      return slide
-    }
-  })
-
-  numbers.elemets.forEach((number) => {
-    setTimeout(() => (number.textContent = 0), 200)
+function resetAnimation(elements) {
+  elements.forEach((number) => {
+    const timer = setTimeout(() => {
+      number.textContent = 0
+      clearTimeout(timer)
+    }, 200)
   })
 }
 
-export { animationNetwork, closeSection }
+export { animatedInfo, countAnimation, resetAnimation }

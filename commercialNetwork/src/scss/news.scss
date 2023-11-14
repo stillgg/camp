@@ -14,7 +14,7 @@
       line-height: 122%;
       text-transform: uppercase;
       opacity: 0;
-      transform: translateY(40%);
+      transform: translateY(600px);
       transition:
         transform 0.8s ease,
         opacity 0.8s ease;
@@ -36,7 +36,7 @@
 
     .slider {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(600px);
       transition:
         transform 0.8s ease,
         opacity 0.8s ease;

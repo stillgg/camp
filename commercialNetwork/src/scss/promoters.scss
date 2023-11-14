@@ -54,7 +54,7 @@
       position: absolute;
       z-index: 3;
       top: 130px;
-      left: -10%;
+      left: -600px;
       transition:
         left 0.8s ease,
         opacity 0.8s ease;
@@ -66,7 +66,7 @@
       position: absolute;
       z-index: 6;
       bottom: 159px;
-      left: -20%;
+      left: -600px;
       transition:
         left 0.8s ease,
         opacity 0.8s ease;
@@ -75,6 +75,7 @@
     }
 
     .promoters-wrapper__points {
+      width: 210px;
       position: absolute;
       transition:
         right 0.8s ease,
@@ -82,7 +83,7 @@
       opacity: 0;
       z-index: 6;
       bottom: 81px;
-      right: -20%;
+      right: -600px;
       padding: 38px 50px 27px;
     }
 
@@ -112,7 +113,7 @@
 
   .container {
     opacity: 0;
-    transform: translateY(40%);
+    transform: translateY(600px);
     transition:
       transform 0.8s ease-in-out,
       opacity 0.8s ease-in-out;
@@ -157,7 +158,7 @@
   &.active {
     .container {
       opacity: 1;
-      transform: translateX(0%);
+      transform: translateX(0);
       transition-delay: 300ms;
     }
 

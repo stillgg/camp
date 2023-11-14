@@ -21,7 +21,7 @@
     color: $white;
 
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(600px);
     transition:
       transform 0.8s ease-in-out,
       opacity 0.8s ease-in-out;
@@ -63,7 +63,7 @@
 
     .communication-row__first-image {
       position: relative;
-      right: 100%;
+      right: 600px;
       transition:
         right 0.8s ease,
         opacity 0.8s ease;
@@ -112,7 +112,7 @@
 
     .communication-row__second-image {
       position: relative;
-      left: 100%;
+      left: 600px;
       transition:
         left 0.8s ease,
         opacity 0.8s ease;
@@ -219,20 +219,18 @@
     .communication__subtitle,
     .communication__sutitle-text {
       opacity: 1;
-      transform: translateY(0%);
-      transition:
-        transform 0.8s ease-in-out,
-        opacity 0.8s ease-in-out;
+      transform: translateY(0);
+      transition-delay: 300ms;
     }
 
     .communication-row__first-image {
-      transition-delay: 300ms;
+      transition-delay: 600ms;
       right: 0%;
       opacity: 1;
     }
 
     .communication-row__second-image {
-      transition-delay: 300ms;
+      transition-delay: 600ms;
       left: 0%;
       opacity: 1;
     }
