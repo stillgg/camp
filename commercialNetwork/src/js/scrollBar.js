@@ -1,4 +1,4 @@
-import { animatedInfo, countAnimation, resetAnimation } from "./animation"
+import { infoSlides, countAnimation, resetAnimation } from "./countAnimation"
 const app = document.querySelector(".app")
 const sections = document.querySelectorAll("section")
 const indicator = document.querySelector("#indicator")
@@ -49,11 +49,9 @@ function onSlideChange() {
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
 
-      animatedInfo.some((index) => {
-        if (index.slideIndex === slideIndex) {
-          countAnimation(index)
-          resetAnimation(index.elements)
-        }
+      infoSlides.some((slide) => {
+        countAnimation(slide)
+        resetAnimation(slide.elements)
       })
 
       if (sections[slideIndex].getAttribute("data-section-theme") === "dark") {

@@ -9,7 +9,7 @@ const promotersNumber = promoters.querySelectorAll(".promoters-number")
 const map = document.querySelector(".map")
 const mapNumbers = map.querySelectorAll(".map-numbers")
 
-const animatedInfo = [
+const infoSlides = [
   { slideIndex: 2, elements: numbers },
   { slideIndex: 3, elements: promotersNumber },
   { slideIndex: 6, elements: mapNumbers },
@@ -44,4 +44,4 @@ function resetAnimation(elements) {
   })
 }
 
-export { animatedInfo, countAnimation, resetAnimation }
+export { infoSlides, countAnimation, resetAnimation }
