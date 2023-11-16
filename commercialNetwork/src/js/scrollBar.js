@@ -49,9 +49,11 @@ function onSlideChange() {
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
 
-      infoSlides.some((slide) => {
-        countAnimation(slide)
-        resetAnimation(slide.elements)
+      infoSlides.find((slide) => {
+        if (slide.slideIndex === slideIndex) {
+          countAnimation(slide)
+          resetAnimation(slide.elements)
+        }
       })
 
       if (sections[slideIndex].getAttribute("data-section-theme") === "dark") {

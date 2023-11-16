@@ -16,6 +16,7 @@ const infoSlides = [
 ]
 
 function countAnimation({ slideIndex, elements }) {
+  
   elements.forEach((number, index) => {
     let i = 1
     const num = number.dataset.num
