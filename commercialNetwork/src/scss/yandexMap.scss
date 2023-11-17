@@ -3,14 +3,8 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  background-size: cover;
   background-image: url("../resources/img/12-background.jpg");
-  .yandexMap__iframe {
-    top: -120px;
-    height: calc(100% + 240px);
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-  }
 
   .yandexMap__main {
     display: flex;
