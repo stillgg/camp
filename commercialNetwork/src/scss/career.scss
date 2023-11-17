@@ -283,8 +283,11 @@
 
         .preview__picture {
           position: absolute;
-          bottom: 0;
+          bottom: 2px;
           left: 60%;
+          width: 350px;
+          height: 430px;
+
           @media (max-width: 992px) {
             display: none;
           }
