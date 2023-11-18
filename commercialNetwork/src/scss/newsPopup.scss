@@ -1,0 +1,23 @@
+.news__popup {
+  display: none;
+
+  &.active {
+    position: absolute;
+    height: 100px;
+    width: 70%;
+    right: 0;
+    top: 0;
+    background-color: black;
+
+    .news__top {
+      .top__date {
+      }
+      .top__title {
+      }
+    }
+    .news__bottom {
+      .bottom__text {
+      }
+    }
+  }
+}
