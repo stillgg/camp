@@ -12,8 +12,8 @@
       opacity: 0;
       transform: translateY(400px);
       transition:
-        transform 0.6s ease-in-out,
-        opacity 0.8s ease-in-out;
+        transform 0.8s ease,
+        opacity 0.8s ease;
     }
 
     .team__main {
@@ -161,6 +161,8 @@
       }
 
       .wrapper-gradient {
+        opacity: 0;
+        transform: translateY(400px);
         position: relative;
         margin-top: 30px;
 
@@ -187,8 +189,8 @@
         opacity: 0;
         transform: translateX(600px);
         transition:
-          transform 0.6s ease-in-out,
-          opacity 0.8s ease-in-out;
+          transform 0.6s ease,
+          opacity 0.8s ease;
 
         .main__description__bold {
           position: relative;
@@ -202,8 +204,22 @@
           color: $gray;
         }
 
-        @media (max-width: 992px) {
+        @media (min-width: 992px) {
+          opacity: 0;
+          transform: translateX(600px);
+          transition:
+            transform 0.8s ease,
+            opacity 0.8s ease;
+        }
+
+        @media (max-width: 991.98px) {
           max-width: 100%;
+
+          opacity: 0;
+          transform: translateY(600px);
+          transition:
+            transform 0.8s ease,
+            opacity 0.8s ease;
         }
       }
 
@@ -253,10 +269,19 @@
       transition-delay: 300ms;
     }
 
-    .team__wrapper .team__main .main__description {
+    .team__wrapper .team__main .main__description,
+    wrapper-gradient {
       opacity: 1;
-      transform: translateY(0%);
-      transition-delay: 300ms;
+
+      @media (max-width: 991.98px) {
+        transform: translateY(0%);
+        transition-delay: 700ms;
+      }
+
+      @media (min-width: 992px) {
+        transform: translateX(0%);
+        transition-delay: 300ms;
+      }
     }
   }
 }
