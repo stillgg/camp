@@ -37,7 +37,6 @@
     .career__main {
       display: flex;
       flex-direction: column;
-      gap: 20px;
       max-height: 580px;
       overflow-y: auto;
 
@@ -45,13 +44,6 @@
         display: none;
         opacity: 0;
         transition: opacity 0.4s ease;
-
-        &.succsess {
-          display: flex;
-          gap: 20px;
-          flex-direction: column;
-          opacity: 1;
-        }
       }
 
       .main__block {
@@ -59,6 +51,7 @@
         z-index: 10;
         background: #3d3d3d;
         box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
 
         .main__body {
           position: relative;
@@ -97,7 +90,6 @@
           z-index: 5;
           display: flex;
           justify-content: space-between;
-          gap: 20px;
           align-items: center;
           padding: 40px 50px 40px 40px;
 
@@ -199,12 +191,8 @@
           font-size: 14px;
         }
       }
-      @media (max-width: 1200px) or (max-height: 720px) {
-        gap: 10px;
-      }
     }
     @media (max-width: 1200px) {
-      gap: 10px;
       padding-top: 100px;
     }
   }
@@ -270,8 +258,8 @@
           .requirements__description {
             display: flex;
             flex-direction: column;
-            gap: 10px;
             margin-bottom: 30px;
+
             .description__paragraph {
               color: $white;
             }

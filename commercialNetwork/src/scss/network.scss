@@ -120,6 +120,7 @@
           }
         }
       }
+
       @media (max-width: 576px) {
         display: grid;
       }
@@ -148,11 +149,14 @@
         width: 1140px;
         display: flex;
         align-items: center;
-        gap: 59px;
 
         span {
           font-weight: 700;
           text-transform: uppercase;
+        }
+
+        .client:not(:last-child) {
+          margin-right: 59px;
         }
       }
       @media (max-height: 992px) {
