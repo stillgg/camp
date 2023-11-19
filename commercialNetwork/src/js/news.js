@@ -2,6 +2,7 @@
 
 const popup = document.querySelector(".news__popup")
 const sliderTrack = document.querySelector(".news-slider-track")
+const shadow = document.querySelector(".shading")
 
 const newsContent = [
   {
@@ -87,6 +88,7 @@ sliderTrack.addEventListener("click", (e) => {
 
     setTimeout(() => {
       popup.classList.add("active")
+      shadow.classList.add("active")
     }, 0)
   }
 })
@@ -99,12 +101,14 @@ function closePopup() {
 
     if (!isClickInsidePopup && popup.classList.contains("active")) {
       popup.classList.remove("active")
+      shadow.classList.remove("active")
       document.removeEventListener("click", handleClick)
     }
   }
 
   closePopup.addEventListener("click", () => {
     popup.classList.remove("active")
+    shadow.classList.remove("active")
     document.removeEventListener("click", handleClick)
   })
 
