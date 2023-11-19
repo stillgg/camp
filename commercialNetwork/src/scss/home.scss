@@ -22,9 +22,23 @@
       height: 100%;
       display: flex;
       align-items: flex-end;
+
       .svg__slogan {
         height: calc(100% - 140px);
         color: $white;
+
+        .slogan-left,
+        .slogan-right {
+          transition: transform 1.5s ease;
+        }
+
+        .slogan-left {
+          transform: translateX(-100%);
+        }
+
+        .slogan-right {
+          transform: translateX(100%);
+        }
       }
     }
   }
@@ -61,6 +75,20 @@
       opacity: 1;
       transition-delay: 300ms;
       transform: translateY(0px);
+    }
+
+    .main__svg {
+      .svg__slogan {
+        .slogan-left {
+          transform: translateX(0%);
+          transition-delay: 300ms;
+        }
+
+        .slogan-right {
+          transform: translateX(0%);
+          transition-delay: 300ms;
+        }
+      }
     }
   }
 }
