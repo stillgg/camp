@@ -6,6 +6,7 @@ import "./js/networkLoader"
 import "./js/yandexMap"
 import "./js/career/index"
 import { slider } from "./js/slider"
+import "./js/anchoors"
 
 slider("#slider-team-mobile")
 slider("#slider-team-desktop", { effect: "cards" })
