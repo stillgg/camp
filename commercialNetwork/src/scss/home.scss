@@ -33,7 +33,6 @@
   .home__footer {
     display: flex;
     align-items: center;
-    gap: 30px;
     padding: 20px 0;
     transform: translateY(100%);
     opacity: 0;
@@ -44,6 +43,7 @@
     @media (max-width: 575.98px) {
       gap: 15px;
     }
+
     span {
       color: $white;
       font-size: 12px;
