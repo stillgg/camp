@@ -16,7 +16,7 @@
     background: url("../resources/img/04-photo-mall.webp") no-repeat 0% / cover;
     background: url("../resources/img/04-photo-mall.png") no-repeat 0% / cover;
 
-    @media (max-width: 768px) {
+    @media (max-width: 767.98px) {
       display: none;
     }
   }
@@ -83,7 +83,7 @@
       max-width: 500px;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1199.98px) {
       max-width: 400px;
       right: 5%;
     }
@@ -93,7 +93,7 @@
       right: 0%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767.98px) {
       display: none;
     }
   }
@@ -102,11 +102,11 @@
     max-width: 437px;
     color: $white;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1199.98px) {
       text-align: initial;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767.98px) {
       max-width: 100%;
       text-align: center;
     }
@@ -118,18 +118,18 @@
     line-height: 156%;
     color: $white;
 
-    @media (max-width: 768px) {
+    @media (max-width: 767.98px) {
       max-width: 100%;
       text-align: justify;
       font-size: 17px;
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 575.98px) {
       font-size: 16px;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
     align-items: center;
     justify-content: center;
   }

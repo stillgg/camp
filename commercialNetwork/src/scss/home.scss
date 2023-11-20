@@ -4,6 +4,9 @@
   flex-direction: column;
 
   video {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -30,7 +33,6 @@
   .home__footer {
     display: flex;
     align-items: center;
-    gap: 30px;
     padding: 20px 0;
     transform: translateY(100%);
     opacity: 0;
@@ -38,19 +40,20 @@
       transform 0.8s ease-in-out,
       opacity 0.8s ease-in-out;
 
-    @media (max-width: 540px) {
+    @media (max-width: 575.98px) {
       gap: 15px;
     }
+
     span {
       color: $white;
       font-size: 12px;
       line-height: 16px;
-      @media (max-width: 540px) {
+      @media (max-width: 575.98px) {
         width: 170px;
       }
     }
     &.container {
-      @media (max-width: 1200px) {
+      @media (max-width: 1119.98px) {
         padding: 20px;
       }
     }
