@@ -13,6 +13,12 @@
     justify-content: center;
 
     .main__title {
+      opacity: 0;
+      transform: translateY(600px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+
       color: $white;
       width: fit-content;
       position: relative;
@@ -21,9 +27,11 @@
       font-weight: 700;
       line-height: 122px;
       text-transform: uppercase;
-        @media (max-width: 1199.98px) {
+
+      @media (max-width: 1199.98px) {
         font-size: 82px;
       }
+
       @media (max-width: 991.98px) {
         font-size: 64px;
         display: flex;
@@ -53,7 +61,7 @@
         font-weight: 700;
         font-size: 46px;
 
-          @media (max-width: 1199.98px) {
+        @media (max-width: 1199.98px) {
           font-size: 40px;
         }
         @media (max-width: 991.98px) {
@@ -116,7 +124,7 @@
       }
     }
     &.container {
-        @media (max-width: 1199.98px) {
+      @media (max-width: 1199.98px) {
         padding: 20px;
       }
     }
