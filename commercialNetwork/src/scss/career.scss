@@ -23,18 +23,18 @@
         opacity 0.8s ease,
         transform 0.8s ease;
 
-      @media (max-width: 1200px) {
+      @media (max-width: 1199.98px) {
         font-size: 82px;
       }
-      @media (max-width: 992px) or (max-height: 800px) {
+      @media (max-width: 991.98px) or (max-height: 800px) {
         font-size: 64px;
         display: flex;
         justify-content: center;
       }
-      @media (max-width: 768px) {
+      @media (max-width: 767.98px) {
         font-size: 38px;
       }
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         font-size: 32px;
       }
     }
@@ -86,7 +86,7 @@
             transform: rotate(45deg);
             transition: transform, 0.4s;
 
-            @media (max-width: 576px) {
+            @media (max-width: 575.98px) {
               width: 34px;
               height: 34px;
             }
@@ -96,7 +96,7 @@
             &::after {
               transform: scale(45) rotate(45deg);
 
-              @media (max-width: 576px) {
+              @media (max-width: 575.98px) {
                 transform: scale(20) rotate(45deg);
               }
             }
@@ -118,13 +118,13 @@
             font-weight: 700;
             font-size: 20px;
             line-height: 120%;
-            @media (max-width: 992px) {
+            @media (max-width: 991.98px) {
               font-size: 18px;
             }
-            @media (max-width: 768px) {
+            @media (max-width: 767.98px) {
               font-size: 16px;
             }
-            @media (max-width: 576px) {
+            @media (max-width: 575.98px) {
               font-size: 14px;
             }
           }
@@ -134,23 +134,23 @@
             font-size: 16px;
             line-height: 150%;
             color: #cad5e1;
-            @media (max-width: 992px) {
+            @media (max-width: 991.98px) {
               font-size: 14px;
             }
-            @media (max-width: 768px) {
+            @media (max-width: 767.98px) {
               font-size: 12px;
             }
           }
-          @media (max-width: 1200px) {
+          @media (max-width: 1199.98px) {
             padding: 35px 45px 35px 35px;
           }
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             padding: 30px 40px 30px 30px;
           }
-          @media (max-width: 768px) or (max-height: 720px) {
+          @media (max-width: 767.98px) or (max-height: 720px) {
             padding: 25px 35px 25px 25px;
           }
-          @media (max-width: 576px) {
+          @media (max-width: 575.98px) {
             padding: 20px 30px 20px 20px;
           }
         }
@@ -205,16 +205,16 @@
           animation: rotation 1s linear infinite;
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 991.98px) {
           padding: 20px;
           font-size: 14px;
         }
       }
-      @media (max-width: 1200px) or (max-height: 720px) {
+      @media (max-width: 1199.98px) or (max-height: 720px) {
         gap: 10px;
       }
     }
-    @media (max-width: 1200px) {
+    @media (max-width: 1199.98px) {
       gap: 10px;
       padding-top: 100px;
     }
@@ -296,7 +296,7 @@
               color: $white;
             }
           }
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             max-width: 100%;
           }
         }
@@ -308,7 +308,7 @@
           width: 350px;
           height: 430px;
 
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             display: none;
           }
         }
@@ -347,13 +347,13 @@
             }
           }
 
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             left: initial;
             right: 15px;
           }
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 991.98px) {
           padding: 50px 20px;
         }
       }
@@ -365,7 +365,7 @@
           display: flex;
           padding: 60px 100px;
 
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             padding: 50px 20px;
           }
         }
@@ -413,7 +413,7 @@
       color: $white;
       text-align: center;
 
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         font-size: 18px;
       }
     }
@@ -457,7 +457,7 @@
       }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 575.98px) {
       width: 250px;
       height: 250px;
     }
