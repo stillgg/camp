@@ -10,7 +10,7 @@
     overflow: visible;
 
     .h2 {
-      @media (min-width: 993px) and (max-width: 1200px) {
+      @media (min-width: 992px) and (max-width: 1199.98px) {
         margin: 0 30px;
       }
     }
@@ -29,14 +29,14 @@
               width: 392px;
               height: 392px;
 
-              @media (max-width: 576px) {
+              @media (max-width: 575.98px) {
                 min-width: 250px;
                 width: 250px;
                 height: 250px;
               }
             }
 
-            @media (max-width: 992px) {
+            @media (max-width: 991.98px) {
               padding: 0;
             }
           }
@@ -51,16 +51,16 @@
         }
       }
 
-      @media (min-width: 993px) and (max-width: 1200px) {
+      @media (min-width: 992px) and (max-width: 1199.98px) {
         margin: 0 30px;
       }
 
-      @media (max-width: 992px) {
+      @media (max-width: 991.98px) {
         width: 392px;
         margin: 0 auto;
       }
 
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         width: 250px;
         margin: 0 auto;
       }
@@ -69,15 +69,15 @@
     .button-wrapper {
       height: 432px;
 
-      @media (min-width: 993px) {
+      @media (min-width: 992px) {
         width: 884px;
       }
 
-      @media (max-width: 992px) {
+      @media (max-width: 991.98px) {
         height: 392px;
       }
 
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         height: 250px;
       }
     }
