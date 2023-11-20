@@ -3,14 +3,8 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  background-size: cover;
   background-image: url("../resources/img/12-background.jpg");
-  .yandexMap__iframe {
-    top: -120px;
-    height: calc(100% + 240px);
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-  }
 
   .yandexMap__main {
     display: flex;
@@ -27,19 +21,19 @@
       font-weight: 700;
       line-height: 122px;
       text-transform: uppercase;
-      @media (max-width: 1200px) {
+        @media (max-width: 1199.98px) {
         font-size: 82px;
       }
-      @media (max-width: 992px) {
+      @media (max-width: 991.98px) {
         font-size: 64px;
         display: flex;
         justify-content: center;
       }
-      @media (max-width: 768px) {
+      @media (max-width: 767.98px) {
         font-size: 38px;
         line-height: 61px;
       }
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         font-size: 32px;
         line-height: 41px;
       }
@@ -54,16 +48,16 @@
         font-weight: 700;
         font-size: 46px;
 
-        @media (max-width: 1200px) {
+          @media (max-width: 1199.98px) {
           font-size: 40px;
         }
-        @media (max-width: 992px) {
+        @media (max-width: 991.98px) {
           font-size: 32px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767.98px) {
           font-size: 28px;
         }
-        @media (max-width: 576px) {
+        @media (max-width: 575.98px) {
           font-size: 20px;
         }
       }
@@ -85,7 +79,7 @@
         line-height: 24px;
         text-decoration-line: underline;
 
-        @media (max-width: 576px) {
+        @media (max-width: 575.98px) {
           font-size: 16px;
         }
       }
@@ -112,7 +106,7 @@
       }
     }
     &.container {
-      @media (max-width: 1200px) {
+        @media (max-width: 1199.98px) {
         padding: 20px;
       }
     }

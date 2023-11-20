@@ -17,7 +17,7 @@ body {
   &.container {
     .header__logo {
       color: $white;
-      @media (max-width: 992px) {
+      @media (max-width: 991.98px) {
         margin-right: auto;
       }
     }
@@ -47,7 +47,7 @@ body {
         color: $red;
         background-color: $white;
       }
-      @media (max-width: 992px) {
+      @media (max-width: 991.98px) {
         padding: 12px 30px;
         font-size: 32px;
         .btn__key {
@@ -99,31 +99,31 @@ body {
                 width: 100%;
               }
 
-              @media (max-width: 992px) {
+              @media (max-width: 991.98px) {
                 font-size: 32px;
                 line-height: 60px;
               }
 
-              @media (max-width: 768px) {
+              @media (max-width: 767.98px) {
                 font-size: 28px;
                 line-height: 50px;
               }
 
-              @media (max-width: 576px) {
+              @media (max-width: 575.98px) {
                 font-size: 24px;
                 line-height: 40px;
               }
             }
           }
-          @media (max-width: 1200px) {
+          @media (max-width: 1199.98px) {
             gap: 32px;
           }
 
-          @media (max-width: 992px) {
+          @media (max-width: 991.98px) {
             flex-direction: column;
           }
         }
-        @media (max-width: 992px) {
+        @media (max-width: 991.98px) {
           padding: 50px 30px;
           position: fixed;
           width: 100%;
@@ -139,7 +139,7 @@ body {
             left: 0;
           }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767.98px) {
           padding-top: 70px;
           line-height: 50px;
         }
@@ -202,17 +202,17 @@ body {
             }
           }
         }
-        @media (min-width: 993px) {
+        @media (min-width: 992px) {
           display: none;
         }
       }
     }
-    @media (max-width: 992px) {
+    @media (max-width: 991.98px) {
       justify-content: flex-end;
       padding: 25px 0;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1199.98px) {
       padding: 20px;
     }
   }
