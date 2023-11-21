@@ -40,8 +40,12 @@
       transform 0.8s ease-in-out,
       opacity 0.8s ease-in-out;
 
-    @media (max-width: 575.98px) {
-      gap: 15px;
+    a {
+      margin-right: 30px;
+
+      @media (max-width: 575.98px) {
+        margin-right: 15px;
+      }
     }
 
     span {
