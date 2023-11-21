@@ -199,12 +199,8 @@
           font-size: 14px;
         }
       }
-      @media (max-width: 1200px) or (max-height: 720px) {
-        gap: 10px;
-      }
     }
-    @media (max-width: 1200px) {
-      gap: 10px;
+    @media (max-width: 1199.98px) {
       padding-top: 100px;
     }
   }
