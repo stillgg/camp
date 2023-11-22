@@ -104,7 +104,6 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    gap: 30px;
     padding: 20px 0;
     opacity: 0;
     transform: translateY(600px);
@@ -112,9 +111,14 @@
       transform 0.8s ease,
       opacity 0.8s ease;
 
-    @media (max-width: 540px) {
-      gap: 15px;
+    a {
+      margin-right: 30px;
+
+      @media (max-width: 540px) {
+        margin-right: 15px;
+      }
     }
+
     span {
       color: $white;
       font-size: 12px;

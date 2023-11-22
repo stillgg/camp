@@ -18,9 +18,7 @@
 
   .network__main {
     .main__content {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
+      display: grid;
       gap: 20px;
       padding-bottom: 10px;
       transform: translateY(600px);
@@ -30,9 +28,9 @@
       opacity: 0;
 
       .main__block {
+        width: 100%;
         background: $white;
         box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
-        width: calc(33.33% - 16px);
 
         .block__content {
           max-height: 170px;
@@ -58,6 +56,7 @@
               font-size: 24px;
             }
           }
+
           .content__description {
             color: $black;
             @media (max-width: 767.98px) {
@@ -85,6 +84,7 @@
               line-height: 110%;
             }
           }
+
           .content__rectangle {
             position: absolute;
             right: 0;
@@ -107,6 +107,7 @@
           }
           @media (max-width: 767.98px) {
             padding: 15px 0;
+            text-align: center;
           }
         }
         @media (max-width: 991.98px) {
@@ -115,6 +116,7 @@
         @media (max-width: 575.98px) {
           grid-column: span 2;
           width: 100%;
+
           &:nth-child(3n) {
             grid-column: span 4;
           }
@@ -148,11 +150,14 @@
         width: 1140px;
         display: flex;
         align-items: center;
-        gap: 59px;
 
         span {
           font-weight: 700;
           text-transform: uppercase;
+        }
+
+        .client:not(:last-child) {
+          margin-right: 59px;
         }
       }
       @media (max-height: 992px) {
