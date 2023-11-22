@@ -8,6 +8,14 @@
     overflow: hidden;
     padding-top: 120px;
 
+    .h2 {
+      opacity: 0;
+      transform: translateY(400px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+    }
+
     .team__main {
       position: relative;
       display: flex;
@@ -20,6 +28,12 @@
       }
 
       .slider#slider-team-desktop {
+        transform: translateY(600px);
+        opacity: 0;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+
         margin-right: 119px;
         .slider-track {
           width: 465px;
@@ -77,7 +91,7 @@
         }
 
         .main__comma {
-          z-index: 4;
+          z-index: 0;
           position: absolute;
           right: -29%;
           top: -29px;
@@ -93,10 +107,15 @@
       }
 
       .slider#slider-team-mobile {
+        transform: translateY(600px);
+        opacity: 0;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+
         width: 320px;
         margin: 0 auto;
 
-        transition: opacity 0.3s ease;
         .team-slider-track {
           .team__item {
             min-width: 320px;
@@ -146,6 +165,8 @@
       }
 
       .wrapper-gradient {
+        opacity: 0;
+        transform: translateY(400px);
         position: relative;
         margin-top: 30px;
 
@@ -169,6 +190,12 @@
         padding-bottom: 30px;
         position: relative;
 
+        opacity: 0;
+        transform: translateX(600px);
+        transition:
+          transform 0.6s ease,
+          opacity 0.8s ease;
+
         .main__description__bold {
           position: relative;
           z-index: 5;
@@ -183,6 +210,12 @@
 
             @media (max-width: 991.98px) {
           max-width: 100%;
+
+          opacity: 0;
+          transform: translateY(600px);
+          transition:
+            transform 0.8s ease,
+            opacity 0.8s ease;
         }
       }
 
@@ -213,5 +246,37 @@
 
   @media (max-width: 1199.98px) {
     display: block;
+  }
+
+  &.active {
+    .team__wrapper .team__main {
+      .slider#slider-team-desktop,
+      .slider#slider-team-mobile {
+        opacity: 1;
+        transform: translateY(0%);
+        transition-delay: 300ms;
+      }
+    }
+
+    .h2 {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
+    }
+
+    .team__wrapper .team__main .main__description,
+    wrapper-gradient {
+      opacity: 1;
+
+      @media (max-width: 991.98px) {
+        transform: translateY(0%);
+        transition-delay: 700ms;
+      }
+
+      @media (min-width: 992px) {
+        transform: translateX(0%);
+        transition-delay: 300ms;
+      }
+    }
   }
 }
