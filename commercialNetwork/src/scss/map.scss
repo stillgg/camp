@@ -20,6 +20,12 @@
     }
 
     .map-wrapper__title {
+      opacity: 0;
+      transform: translateY(400px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+
       max-width: 632px;
       margin-bottom: 10px;
       font-weight: 700;
@@ -35,6 +41,11 @@
       max-width: 801px;
       margin-bottom: 10px;
       line-height: 156%;
+      opacity: 0;
+      transform: translateY(400px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
 
       @media (max-width: 1199.98px) {
         font-size: 14px;
@@ -51,8 +62,8 @@
       opacity: 0;
       transform: translateY(400px);
       transition:
-        transform 0.8s ease-in-out,
-        opacity 0.8s ease-in-out;
+        transform 0.8s ease,
+        opacity 0.8s ease;
 
       .map-wrapper-row__first-item,
       .map-wrapper-row__second-item {
@@ -125,8 +136,8 @@
       opacity: 0;
       transform: translateY(600px);
       transition:
-        transform 0.6s ease-in-out,
-        opacity 1.2s ease-in-out;
+        transform 0.8s ease,
+        opacity .8s ease;
 
       .map-image {
         pointer-events: none;

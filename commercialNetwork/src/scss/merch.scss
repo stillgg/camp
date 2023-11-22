@@ -10,6 +10,12 @@
     overflow: visible;
 
     .h2 {
+      opacity: 0;
+      transform: translateY(400px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+
       @media (min-width: 992px) and (max-width: 1199.98px) {
         margin: 0 30px;
       }
