@@ -24,9 +24,23 @@
       height: 100%;
       display: flex;
       align-items: flex-end;
+
       .svg__slogan {
         height: calc(100% - 140px);
         color: $white;
+
+        .slogan-left,
+        .slogan-right {
+          transition: transform 1.5s ease;
+        }
+
+        .slogan-left {
+          transform: translateX(-100%);
+        }
+
+        .slogan-right {
+          transform: translateX(100%);
+        }
       }
     }
   }
@@ -34,7 +48,7 @@
     display: flex;
     align-items: center;
     padding: 20px 0;
-    transform: translateY(100%);
+    transform: translateY(600px);
     opacity: 0;
     transition:
       transform 0.8s ease-in-out,
@@ -66,7 +80,21 @@
     .home__footer {
       opacity: 1;
       transition-delay: 300ms;
-      transform: translateY(0%);
+      transform: translateY(0px);
+    }
+
+    .main__svg {
+      .svg__slogan {
+        .slogan-left {
+          transform: translateX(0%);
+          transition-delay: 300ms;
+        }
+
+        .slogan-right {
+          transform: translateX(0%);
+          transition-delay: 300ms;
+        }
+      }
     }
   }
 }

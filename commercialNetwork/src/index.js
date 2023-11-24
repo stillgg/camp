@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     import("./js/hamburger"),
     import("./js/map"),
     import("./js/scrollBar"),
-    import("./js/networkLoader"),
+    import("./js/countAnimation"),
     import("./js/yandexMap"),
     import("./js/career/index"),
     import("./js/slider").then((module) => {

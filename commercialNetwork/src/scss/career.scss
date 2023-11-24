@@ -17,6 +17,11 @@
       line-height: 122%;
       text-transform: uppercase;
       margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(400px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
 
       @media (max-width: 1199.98px) {
         font-size: 82px;
@@ -39,6 +44,12 @@
       flex-direction: column;
       max-height: 580px;
       overflow-y: auto;
+
+      opacity: 0;
+      transform: translateY(600px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
 
       .main__container {
         display: none;
@@ -195,6 +206,15 @@
 
     @media (max-width: 1199.98px) {
       padding-top: 100px;
+    }
+  }
+
+  &.active {
+    .h2,
+    .career__main {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
     }
   }
 }

@@ -8,7 +8,7 @@
 
   .network__header {
     .h2 {
-      transform: translateY(-200%);
+      transform: translateY(400px);
       transition:
         transform 0.8s ease-in-out,
         opacity 0.8s ease-in-out;
@@ -21,7 +21,7 @@
       display: grid;
       gap: 20px;
       padding-bottom: 10px;
-      transform: translateY(100%);
+      transform: translateY(600px);
       transition:
         transform 0.8s ease-in-out,
         opacity 0.8s ease-in-out;
@@ -135,7 +135,7 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, 100%);
+    transform: translate(-50%, 600px);
 
     transition:
       transform 0.8s ease-in-out,
@@ -174,7 +174,7 @@
     .h2 {
       transition-delay: 300ms;
       opacity: 1;
-      transform: translateY(0%);
+      transform: translateY(0px);
     }
     .network__footer {
       transition-delay: 300ms;
@@ -184,7 +184,7 @@
     .main__content {
       transition-delay: 300ms;
       opacity: 1;
-      transform: translateY(0%);
+      transform: translateY(0px);
     }
   }
 }
