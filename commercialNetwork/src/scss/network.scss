@@ -110,9 +110,7 @@
             text-align: center;
           }
         }
-        @media (max-width: 991.98px) {
-          width: calc(50% - 10px);
-        }
+
         @media (max-width: 575.98px) {
           grid-column: span 2;
           width: 100%;
@@ -122,8 +120,12 @@
           }
         }
       }
-      @media (max-width: 575.98px) {
-        display: grid;
+
+      @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @media (max-width: 991.98px) and (min-width: 576px) {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   }
