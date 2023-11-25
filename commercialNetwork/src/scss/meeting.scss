@@ -13,15 +13,26 @@
     padding-bottom: 20px;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 991.98px) {
     padding-top: 100px;
   }
 
   .h2 {
     color: $white;
+    transform: translateY(400px);
+    opacity: 0;
+    transition:
+      transform 0.8s ease,
+      opacity 0.8s ease;
   }
 
   .meeting__content {
+    transform: translateY(600px);
+    opacity: 0;
+    transition:
+      transform 0.8s ease,
+      opacity 0.8s ease;
+
     position: relative;
     max-height: 65%;
     cursor: pointer;
@@ -63,6 +74,20 @@
       .play {
         color: $white;
       }
+    }
+  }
+
+  &.active {
+    .h2 {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 300ms;
+    }
+
+    .meeting__content {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 400ms;
     }
   }
 }

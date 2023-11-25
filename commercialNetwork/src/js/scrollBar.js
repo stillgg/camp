@@ -1,4 +1,4 @@
-import { animationNetwork, closeSection } from "./networkLoader"
+import { infoSlides, countAnimation, resetAnimation } from "./countAnimation"
 const app = document.querySelector(".app")
 const sections = document.querySelectorAll("section")
 const indicator = document.querySelector("#indicator")
@@ -49,8 +49,12 @@ function onSlideChange() {
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
 
-      if (slideIndex === 2) animationNetwork()
-      if (target.activeSlide === 2) closeSection()
+      infoSlides.find((slide) => {
+        if (slide.slideIndex === slideIndex) {
+          countAnimation(slide)
+          resetAnimation(slide.elements)
+        }
+      })
 
       if (sections[slideIndex].getAttribute("data-section-theme") === "dark") {
         indicator.classList.add("black")
@@ -132,6 +136,6 @@ main.addEventListener("touchend", onDragEnd)
 main.addEventListener("mousedown", onDragStart)
 main.addEventListener("mouseup", onDragEnd)
 
-document.addEventListener("resize", initSectionsHeight)
+window.addEventListener("resize", initSectionsHeight)
 
 export { watchedSlide }

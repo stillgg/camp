@@ -34,7 +34,7 @@
       }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 575.98px) {
       display: none;
     }
 
@@ -86,11 +86,15 @@
   }
 
   .slider-track {
+    width: fit-content;
     position: relative;
     z-index: 2;
     display: flex;
-    gap: 20px;
     transition: transform 0.3s ease;
+
+    .slider-item:not(:last-child) {
+      margin-right: 20px;
+    }
   }
 
   img {
