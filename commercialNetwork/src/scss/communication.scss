@@ -19,11 +19,17 @@
     font-style: normal;
     text-align: center;
     color: $white;
+
+    opacity: 0;
+    transform: translateY(400px);
+    transition:
+      transform 0.8s ease-in-out,
+      opacity 0.8s ease-in-out;
   }
 
   .communication-scroll {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: hidden;
   }
 
   .communication-row {
@@ -57,6 +63,11 @@
 
     .communication-row__first-image {
       position: relative;
+      right: 600px;
+      transition:
+        right 0.8s ease,
+        opacity 0.8s ease;
+      opacity: 0;
 
       .first-image__text {
         width: 306px;
@@ -101,6 +112,11 @@
 
     .communication-row__second-image {
       position: relative;
+      left: 600px;
+      transition:
+        left 0.8s ease,
+        opacity 0.8s ease;
+      opacity: 0;
 
       .second-image__text {
         max-width: 258px;
@@ -196,5 +212,33 @@
 
   @media (max-width: 575.98px) {
     overflow: hidden;
+  }
+
+  &.active {
+    .h3,
+    .communication__subtitle,
+    .communication__sutitle-text {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 300ms;
+    }
+
+    .communication-row__first-image {
+      transition-delay: 600ms;
+      right: 0%;
+      opacity: 1;
+    }
+
+    .communication-row__second-image {
+      transition-delay: 600ms;
+      left: 0%;
+      opacity: 1;
+    }
+
+    .communication-scroll {
+      @media (max-width: 576px) {
+        overflow-x: auto;
+      }
+    }
   }
 }
