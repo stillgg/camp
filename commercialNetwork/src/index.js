@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     import("./js/countAnimation"),
     import("./js/yandexMap"),
     import("./js/career/index"),
+    import("./js/news"),
     import("./js/slider").then((module) => {
       const slider = module.slider
       slider("#slider-team-mobile")

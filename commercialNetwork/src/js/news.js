@@ -1,5 +1,3 @@
-// import { isDrag } from "./slider"
-
 const popup = document.querySelector(".news__popup")
 const sliderTrack = document.querySelector(".news-slider-track")
 const shadow = document.querySelector(".shading")
@@ -13,7 +11,7 @@ const newsContent = [
       "Продолжаем прокачивать продукты Яндекса! В ноябре мы делаем упор на Я. Алису и активно реализуем установки на устройствах наших клиентов.",
       "А вы уже пользуетесь голосовым помощником от Яндекс?",
     ],
-    imageTags: 'src="../resources/img/09-alice.jpg" srcset="../resources/img/09-alice.webp"',
+    imageTags: "../resources/img/09-alice.jpg",
   },
   {
     id: 2,
@@ -22,7 +20,7 @@ const newsContent = [
     text: [
       "Запускаем реализацию подписок Яндекс+ на наших точках с эксклюзивными условиями: два месяца кинопоиска и яндекс музыки бесплатно. Увлекательные фильмы и сериалы, разнообразные музыкальные рекомендации, а также кешбэк баллами для вас и 3 близких — это и есть Плюс Мульти. Баллы кешбэка за покупки, поездки и заказы. Получать баллы Плюса можно за поездки на такси с Go, покупки на Маркете, заказы в Еде и других сервисах Яндекса. А тратить — на новые поездки, покупки и развлечения.",
     ],
-    imageTags: 'src="../resources/img/09-yandex-plus.png"',
+    imageTags: "../resources/img/09-yandex-plus.png",
   },
   {
     id: 3,
@@ -34,7 +32,7 @@ const newsContent = [
       "А кто будет хэдлайнером этого новогоднего корпоратива пока держим в секрете.",
       "Присоединяйся к нашей большой и дружной команде!",
     ],
-    imageTags: 'src="../resources/img/09-conferention.png"',
+    imageTags: "../resources/img/09-conferention.png",
   },
   {
     id: 4,
@@ -46,7 +44,7 @@ const newsContent = [
       "Вечерняя программа на корабле по Москва-реке, ужин, дискотека и конечно же общение.",
       "И это всё - за наш счет.",
     ],
-    imageTags: 'src="../resources/img/09-gayazov.png"',
+    imageTags: "../resources/img/09-gayazov.png",
   },
 ]
 
@@ -54,7 +52,7 @@ function renderNews(id) {
   const news = newsContent.find((element) => element.id === +id)
 
   document.querySelector(".news__popup").innerHTML = `
-    <div class="news__top">
+    <div class="news__top" style="background-image:url(${news.imageTags})">
       <div class="close__wrapper">
         <div class="preview__close">
           <span class="close__strip"></span>
@@ -62,7 +60,7 @@ function renderNews(id) {
         </div>
       </div>
 
-      <img class="top__image" ${news.imageTags} />
+
       <div class='top__wrapper'>
         <div class="top__date">${news.date}</div>
         <div class="top__title">${news.title}</div>
