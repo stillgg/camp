@@ -2,7 +2,7 @@ const marks = document.querySelectorAll(".mark")
 const bcgMap = document.querySelector(".background-map-wrapper")
 const mapPopup = document.querySelector(".map__popup-wrapper")
 const mapClose = document.querySelector(".map__popup-close")
-const arrows = document.querySelector('.arrows')
+const arrows = document.querySelector(".arrows")
 
 marks.forEach((mark) => {
   mark.addEventListener("click", () => {
@@ -17,10 +17,6 @@ function deleteClasses() {
   })
 }
 
-
-
-
-
 bcgMap.addEventListener("click", () => {
   mapPopup.classList.add("active")
 })
@@ -28,4 +24,3 @@ bcgMap.addEventListener("click", () => {
 mapClose.addEventListener("click", () => {
   mapPopup.classList.remove("active")
 })
-

@@ -1,12 +1,12 @@
 <!doctype html>
-<htm>
+<html>
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="height=device-height, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
     />
-    <link rel="icon" href="../resources/img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="../resources/img/favicon.png" type="image/x-icon" />
     <title>promotion.ru</title>
     <style>
       .preloader {
@@ -92,7 +92,7 @@
       sessionStorage.setItem("startTime", Date.now())
     </script>
   </head>
-  <bod>
+  <body>
     <div class="app">
       <header class="header container">
         <a class="header__logo" href="#">
@@ -100,6 +100,7 @@
             <use xlink:href="resources/icons/sprite.svg#logo"></use>
           </svg>
         </a>
+
         <div class="header__menu menu">
           <nav id="menu__body" class="menu__body">
             <ul class="header__nav">
@@ -466,14 +467,10 @@
             <div class="background-map-wrapper">
               <img class="map-image" src="../resources/img/07-background-map.svg" alt="background-image" />
 
-              <div class="finger ">
-                <div class="finger__wrapper">
-                  <svg class="map__finger">
-                    <use xlink:href="./resources/icons/sprite.svg#finger"></use>
-                  </svg>
-    
-                  <div class="circle"></div>
-                </div>
+              <div class="finger-animation">
+                <img class="finger" src="../resources/icons/finger.svg" alt="finger" />
+
+                <div class="wave"></div>
               </div>
 
               <div class="dot" style="left: 11.2%; bottom: 29.0756303%">
@@ -995,11 +992,18 @@
 
         <div class="popup__blur"></div>
 
+        <div class="popup__portain-mode">
+          <svg class="portain-mode__tel">
+            <use xlink:href="../resources/icons/sprite.svg#popup-tel"></use>
+          </svg>
+          <p class="portain-mode__text">Поверните пожалуйста ваш телефон</p>
+        </div>
+
         <div class="map__popup-wrapper">
           <div class="map__popup-close">
             <span class="close__strip"></span>
             <span class="close__strip"></span>
-        </div>
+          </div>
           <div class="map__popup">
             <div class="background-map-wrapper">
               <img class="map-image" src="../resources/img/07-background-map.svg" alt="background-image" />
@@ -1009,27 +1013,6 @@
                 <svg class="mark" width="45" height="54">
                   <use xlink:href="../resources/icons/sprite.svg#mark"></use>
                 </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <div class="popup__portain-mode">
-          <svg class="portain-mode__tel">
-            <use xlink:href="../resources/icons/sprite.svg#popup-tel"></use>
-          </svg>
-          <p class="portain-mode__text">Поверните пожалуйста ваш телефон</p>
-        </div>
-
-        <div class="career__popup">
-          <div class="popup__preview">
-            <div class="preview__container">
-              <div class="preview__text"></div>
-              <div class="preview__picture">
-                <picture>
-                  <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
-                  <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
-                </picture>
               </div>
 
               <div class="dot animation-play" style="left: 48.4%; bottom: 49.9159664%">
@@ -1130,158 +1113,167 @@
                 </svg>
               </div>
             </div>
-
-
+          </div>
         </div>
 
-
-      </div>
-
-      <div class="career__popup">
-        <div class="popup__preview">
-          <div class="preview__container">
-            <div class="preview__text"></div>
-            <div class="preview__picture">
-              <picture>
-                <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
-                <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
-              </picture>
+        <div class="career__popup">
+          <div class="popup__preview">
+            <div class="preview__container">
+              <div class="preview__text"></div>
+              <div class="preview__picture">
+                <picture>
+                  <source type="image/webp" srcset="../resources/img/popUp-girl.webp" />
+                  <img class="row__second-image" src="../resources/img/popUp-girl.png" alt="popUp-girl" />
+                </picture>
+              </div>
+              <div id="close-popup" class="close__wrapper">
+                <div class="preview__close">
+                  <span class="close__strip"></span>
+                  <span class="close__strip"></span>
+                </div>
+              </div>
             </div>
-            <div id="close-popup" class="close__wrapper">
+
+            <div class="popup__data">
+              <div class="data__container">
+                <form action="" class="form" id="form">
+                  <div class="data__form">
+                    <div class="form__column">
+                      <div class="select">
+                        <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
+                        <div class="select-wrapper">
+                          <select name="city" id="city" class="input__line input-select">
+                            <option selected disabled value="">Выбор города</option>
+                          </select>
+                          <div data-error-message-city class="error-message"></div>
+                        </div>
+                      </div>
+
+                      <div class="input">
+                        <label class="input__title" for="job"> Должность на которую вы претендуете</label>
+                        <input name="job" id="job" type="text" class="input__line" placeholder="Укажите должность" />
+
+                        <div data-error-message-job class="error-message"></div>
+                      </div>
+
+                      <div class="input-birthday">
+                        <label class="input__title" for="days">Дата рождения</label>
+                        <div class="birthday-wrapper">
+                          <div class="input">
+                            <input name="days" id="days" class="input__line" placeholder="День" />
+                          </div>
+                          <div class="input">
+                            <input name="months" id="months" class="input__line" placeholder="Месяц" />
+                          </div>
+                          <div class="input">
+                            <input name="years" id="years" class="input__line" placeholder="Год" />
+                          </div>
+                        </div>
+                        <div class="error-message"></div>
+                      </div>
+
+                      <div class="input">
+                        <label class="input__title" for="tel">Контактный телефон</label>
+                        <input
+                          name="tel"
+                          id="tel"
+                          type="tel"
+                          class="input__line"
+                          placeholder="Укажите ваш номер телефона"
+                          value="+7"
+                        />
+                        <div data-error-message-tel class="error-message"></div>
+                      </div>
+                    </div>
+
+                    <div class="form__column">
+                      <div class="input">
+                        <label class="input__title" for="email">Email адрес</label>
+                        <input
+                          name="email"
+                          id="email"
+                          type="email"
+                          class="input__line"
+                          placeholder="Укажите ваш Email "
+                        />
+                        <div data-error-message-email class="error-message"></div>
+                      </div>
+
+                      <div class="input">
+                        <label class="input__title" for="name">Фамилия Имя Отчество</label>
+                        <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                        <div data-error-message-fio class="error-message"></div>
+                      </div>
+
+                      <div class="input">
+                        <label class="input__title" for="nationality">Гражданство</label>
+                        <input
+                          name="nationality"
+                          id="nationality"
+                          type="text"
+                          class="input__line"
+                          placeholder="Укажите ваше гражданство"
+                        />
+                        <div data-error-message-nationality class="error-message"></div>
+                      </div>
+
+                      <label class="input-file" for="file"
+                        >Прикрепить резюме
+                        <input
+                          name="file"
+                          id="file"
+                          type="file"
+                          class="button__file"
+                          accept="application/pdf,application/vnd.ms-excel,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        />
+                      </label>
+
+                      <div class="file-text">
+                        <div id="fileContainer"></div>
+
+                        <div data-error-message-file class="error-message"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="checkbox">
+                    <label class="confirm__container"
+                      >Согласен с политикой обработки персональных данных
+
+                      <input name="checkbox" type="checkbox" class="confirm__point" id="agreements" />
+                      <span class="confirm__checkbox"></span>
+                    </label>
+                  </div>
+                  <button id="submit" type="submit" class="form__btn">
+                    <span class="loader"></span>
+                    <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup__form">
+          <div class="popup__container">
+            <p class="container__text">форма отправлена</p>
+            <div id="success-popup-form" class="close__wrapper">
               <div class="preview__close">
                 <span class="close__strip"></span>
                 <span class="close__strip"></span>
               </div>
             </div>
           </div>
-
-          <div class="popup__data">
-            <div class="data__container">
-              <form action="" class="form" id="form">
-                <div class="data__form">
-                  <div class="form__column">
-                    <div class="select">
-                      <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
-                      <div class="select-wrapper">
-                        <select name="city" id="city" class="input__line input-select">
-                          <option selected disabled value="">Выбор города</option>
-                        </select>
-                        <div data-error-message-city class="error-message"></div>
-                      </div>
-                    </div>
-
-                    <div class="input">
-                      <label class="input__title" for="job"> Должность на которую вы претендуете</label>
-                      <input name="job" id="job" type="text" class="input__line" placeholder="Укажите должность" />
-
-                      <div data-error-message-job class="error-message"></div>
-                    </div>
-
-                    <div class="input-birthday">
-                      <label class="input__title" for="days">Дата рождения</label>
-                      <div class="birthday-wrapper">
-                        <div class="input">
-                          <input name="days" id="days" class="input__line" placeholder="День" />
-                        </div>
-                        <div class="input">
-                          <input name="months" id="months" class="input__line" placeholder="Месяц" />
-                        </div>
-                        <div class="input">
-                          <input name="years" id="years" class="input__line" placeholder="Год" />
-                        </div>
-                      </div>
-                      <div class="error-message"></div>
-                    </div>
-
-                    <div class="input">
-                      <label class="input__title" for="tel">Контактный телефон</label>
-                      <input
-                        name="tel"
-                        id="tel"
-                        type="tel"
-                        class="input__line"
-                        placeholder="Укажите ваш номер телефона"
-                        value="+7"
-                      />
-                      <div data-error-message-tel class="error-message"></div>
-                    </div>
-                  </div>
-
-                  <div class="form__column">
-                    <div class="input">
-                      <label class="input__title" for="email">Email адрес</label>
-                      <input
-                        name="email"
-                        id="email"
-                        type="email"
-                        class="input__line"
-                        placeholder="Укажите ваш Email "
-                      />
-                      <div data-error-message-email class="error-message"></div>
-                    </div>
-
-                    <div class="input">
-                      <label class="input__title" for="name">Фамилия Имя Отчество</label>
-                      <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
-                      <div data-error-message-fio class="error-message"></div>
-                    </div>
-
-                    <div class="input">
-                      <label class="input__title" for="nationality">Гражданство</label>
-                      <input
-                        name="nationality"
-                        id="nationality"
-                        type="text"
-                        class="input__line"
-                        placeholder="Укажите ваше гражданство"
-                      />
-                      <div data-error-message-nationality class="error-message"></div>
-                    </div>
-
-                    <label class="input-file" for="file"
-                      >Прикрепить резюме
-                      <input
-                        name="file"
-                        id="file"
-                        type="file"
-                        class="button__file"
-                        accept="application/pdf,application/vnd.ms-excel,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                      />
-                    </label>
-
-                    <div class="file-text">
-                      <div id="fileContainer"></div>
-
-                      <div data-error-message-file class="error-message"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="checkbox">
-                  <label class="confirm__container"
-                    >Согласен с политикой обработки персональных данных
-
-                    <input name="checkbox" type="checkbox" class="confirm__point" id="agreements" />
-                    <span class="confirm__checkbox"></span>
-                  </label>
-                </div>
-                <button id="submit" type="submit" class="form__btn">
-                  <span class="loader"></span>
-                  <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
-                </button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="popup__form">
-        <div class="popup__container">
-          <p class="container__text">форма отправлена</p>
-          <div id="success-popup-form" class="close__wrapper">
-            <div class="preview__close">
-              <span class="close__strip"></span>
-              <span class="close__strip"></span>
+        <div class="popup__form">
+          <div class="popup__container">
+            <p class="container__text">форма отправлена</p>
+            <div id="success-popup-form" class="close__wrapper">
+              <div class="preview__close">
+                <span class="close__strip"></span>
+                <span class="close__strip"></span>
+              </div>
             </div>
           </div>
         </div>

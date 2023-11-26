@@ -138,83 +138,6 @@
         transform 0.8s ease,
         opacity 0.8s ease;
 
-      .finger {
-        position: absolute;
-        animation: tap 4s ease-in-out infinite;
-        animation-delay: -2s;
-
-        .finger__wrapper {
-          width: 45px;
-          height: 50px;
-          display: block;
-          top: 50%;
-          position: absolute;
-
-          .map__finger {
-            display: none;
-
-            @media (max-width: 992px) {
-              color: #fff;
-              stroke: #ffffff;
-              stroke-width: 3px;
-              stroke-linecap: round;
-              stroke-linejoin: round;
-              animation-iteration-count: infinite;
-              display: block;
-
-              @keyframes tap {
-                0% {
-                  transform: translateY(-20px) rotateX(0deg);
-                }
-
-                20% {
-                  transform: translateY(0px) rotateX(40deg);
-                }
-                100% {
-                  transform: translateY(0px) rotateX(40deg);
-                }
-              }
-            }
-          }
-
-          .circle {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            left: 7px;
-            top: -7px;
-            border-radius: 50%;
-            background-color: #fff;
-            animation: circle 4s ease-out infinite;
-          }
-
-          @keyframes circle {
-            0% {
-              transform: scale(0.95);
-              opacity: 1;
-            }
-            100% {
-              transform: scale(1);
-              opacity: 0;
-            }
-          }
-        }
-
-        @keyframes tap {
-          0% {
-            transform: scale(1);
-          }
-
-          50% {
-            transform: scale(0.9);
-          }
-
-          100% {
-            transform: scale(1);
-          }
-        }
-      }
-
       .map-image {
         pointer-events: none;
         user-select: none;
@@ -371,5 +294,49 @@
       transform: translateY(0%);
       transition-delay: 300ms;
     }
+  }
+}
+
+.finger-animation {
+  position: relative;
+}
+
+.finger {
+  animation: finger-animation 0.3s linear 0.1s 2 alternate;
+}
+
+.wave {
+  position: absolute;
+  left: 46%;
+  transform: translateX(-50%);
+  top: 10%;
+  width: 100px;
+  height: 60px;
+  border-radius: 100px 100px 0 0;
+  border-top: 10px solid black;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  opacity: 0;
+  animation: wave-animation 0.5s;
+  animation-delay: 0.4s;
+}
+
+@keyframes finger-animation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(3);
+    opacity: 0;
   }
 }
