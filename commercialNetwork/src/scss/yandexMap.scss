@@ -3,14 +3,8 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  background-size: cover;
   background-image: url("../resources/img/12-background.jpg");
-  .yandexMap__iframe {
-    top: -120px;
-    height: calc(100% + 240px);
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-  }
 
   .yandexMap__main {
     display: flex;
@@ -19,6 +13,12 @@
     justify-content: center;
 
     .main__title {
+      opacity: 0;
+      transform: translateY(600px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+
       color: $white;
       width: fit-content;
       position: relative;
@@ -27,19 +27,21 @@
       font-weight: 700;
       line-height: 122px;
       text-transform: uppercase;
-      @media (max-width: 1200px) {
+
+      @media (max-width: 1199.98px) {
         font-size: 82px;
       }
-      @media (max-width: 992px) {
+
+      @media (max-width: 991.98px) {
         font-size: 64px;
         display: flex;
         justify-content: center;
       }
-      @media (max-width: 768px) {
+      @media (max-width: 767.98px) {
         font-size: 38px;
         line-height: 61px;
       }
-      @media (max-width: 576px) {
+      @media (max-width: 575.98px) {
         font-size: 32px;
         line-height: 41px;
       }
@@ -48,22 +50,27 @@
     .main__content {
       position: relative;
       z-index: 2;
+      opacity: 0;
+      transform: translateY(600px);
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
 
       .content__number {
         color: $white;
         font-weight: 700;
         font-size: 46px;
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1199.98px) {
           font-size: 40px;
         }
-        @media (max-width: 992px) {
+        @media (max-width: 991.98px) {
           font-size: 32px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767.98px) {
           font-size: 28px;
         }
-        @media (max-width: 576px) {
+        @media (max-width: 575.98px) {
           font-size: 20px;
         }
       }
@@ -85,7 +92,7 @@
         line-height: 24px;
         text-decoration-line: underline;
 
-        @media (max-width: 576px) {
+        @media (max-width: 575.98px) {
           font-size: 16px;
         }
       }
@@ -97,12 +104,21 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    gap: 30px;
     padding: 20px 0;
+    opacity: 0;
+    transform: translateY(600px);
+    transition:
+      transform 0.8s ease,
+      opacity 0.8s ease;
 
-    @media (max-width: 540px) {
-      gap: 15px;
+    a {
+      margin-right: 30px;
+
+      @media (max-width: 540px) {
+        margin-right: 15px;
+      }
     }
+
     span {
       color: $white;
       font-size: 12px;
@@ -112,9 +128,19 @@
       }
     }
     &.container {
-      @media (max-width: 1200px) {
+      @media (max-width: 1199.98px) {
         padding: 20px;
       }
+    }
+  }
+
+  &.active {
+    .main__title,
+    .main__content,
+    .yandexMap__footer {
+      transform: translateY(0%);
+      opacity: 1;
+      transition-delay: 300ms;
     }
   }
 }

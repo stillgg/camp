@@ -33,6 +33,11 @@ module.exports = (env, argv) => {
       filename: `index.html`,
       chunks: ["main"],
     },
+    {
+      template: `./src/views/404.html`,
+      filename: `404.html`,
+      chunks: ["main"],
+    },
   ]
 
   const mode = argv.mode

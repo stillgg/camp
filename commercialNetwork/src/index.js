@@ -1,16 +1,34 @@
-import "./scss/index.scss"
-import "./js/hamburger"
-import "./js/map"
-import "./js/scrollBar"
-import "./js/networkLoader"
-import "./js/meeting"
-import "./js/yandexMap"
-import "./js/career/index"
+const preloader = document.querySelector(".preloader")
+const animationDelay = 3000
+const start = sessionStorage.getItem("startTime") || 0
 
-import { slider } from "./js/slider"
+document.addEventListener("DOMContentLoaded", () => {
+  const modules = [
+    import("./scss/index.scss"),
+    import("./js/hamburger"),
+    import("./js/map"),
+    import("./js/scrollBar"),
+    import("./js/countAnimation"),
+    import("./js/yandexMap"),
+    import("./js/career/index"),
+    import("./js/meeting"),
+    import("./js/slider").then((module) => {
+      const slider = module.slider
+      slider("#slider-team-mobile")
+      slider("#slider-team-desktop", { effect: "cards" })
 
-slider("#slider-team-mobile")
-slider("#slider-team-desktop", { effect: "cards" })
+      slider("#slider-news")
+      slider("#slider-merch")
+    }),
+  ]
 
-slider("#slider-news")
-slider("#slider-merch")
+  Promise.all(modules).then(() => {
+    const end = Date.now()
+    const timeout = animationDelay - (end - start)
+
+    const timer = setTimeout(() => {
+      preloader.classList.remove("active")
+      clearTimeout(timer)
+    }, timeout)
+  })
+})
