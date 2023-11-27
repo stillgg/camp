@@ -1,18 +1,25 @@
+const container = document.querySelector(".meeting__content")
 const content = document.querySelector(".meeting__content")
-const preview = document.querySelector("img.content__preview")
-const mainBtnPlay = document.querySelector("#mainBtn")
-const sideBtnPlay = document.querySelector("#sideBtnPlay")
-const sideBtnPause = document.querySelector("#sideBtnPause")
-const video = document.querySelector(".content__video")
 
-video.controls = false
+function removeContainerChilds() {
+  const content = container.children
 
-content.addEventListener("click", (e) => {
-  preview.style.display = "none"
-  mainBtnPlay.classList.toggle("pause")
-  sideBtnPlay.classList.toggle("play")
-  sideBtnPause.classList.toggle("pause")
+  Array.from(content).forEach((element) => {
+    element.remove()
+  })
+}
 
-  if (mainBtnPlay.classList.contains("pause")) video.play()
-  else video.pause()
+function createIframe() {
+  container.innerHTML = `
+  <iframe  width= "100%" height= "100%" src= "https://www.youtube.com/embed/U32IX-HLmms?autoplay=1" title="YouTube video player"
+   frameborder= "0" allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+   allowfullscreen= "allowfullscreen">
+  </iframe>
+  `
+}
+
+content.addEventListener("click", () => {
+  content.style.height = "100%"
+  removeContainerChilds()
+  createIframe()
 })
