@@ -116,7 +116,7 @@
       @media (max-width: 1199.98px) {
         width: 270px;
       }
-      @media (max-height: 800px) {
+      @media (max-height: 800px) or (max-width: 767.98px) {
         display: none;
       }
     }
@@ -295,48 +295,62 @@
       transition-delay: 300ms;
     }
   }
-}
 
-.finger-animation {
-  position: relative;
-}
+  @media (max-width: 991.98px) {
+    .finger-animation {
+      width: 150px;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
 
-.finger {
-  animation: finger-animation 0.3s linear 0.1s 2 alternate;
-}
+    .finger {
+      animation: finger-animation 1s linear 10s infinite;
+    }
 
-.wave {
-  position: absolute;
-  left: 46%;
-  transform: translateX(-50%);
-  top: 10%;
-  width: 100px;
-  height: 60px;
-  border-radius: 100px 100px 0 0;
-  border-top: 10px solid black;
-  border-left: 10px solid black;
-  border-right: 10px solid black;
-  opacity: 0;
-  animation: wave-animation 0.5s;
-  animation-delay: 0.4s;
-}
+    .wave {
+      position: absolute;
+      left: 46%;
+      transform: translateX(-50%);
+      top: 7%;
+      width: 60px;
+      height: 40px;
+      border-radius: 60px 60px 0 0;
+      border-top: 5px solid black;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      opacity: 0;
+      animation: wave-animation 1s infinite 10s;
 
-@keyframes finger-animation {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.8);
-  }
-}
+      @media (max-width: 575.98px) {
+        width: 40px;
+        height: 20px;
+        border-radius: 60px 60px 0 0;
+        border-top: 5px solid black;
+        border-left: 5px solid black;
+        border-right: 5px solid black;
+      }
+    }
 
-@keyframes wave-animation {
-  0% {
-    transform: translateX(-50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-50%) scale(3);
-    opacity: 0;
+    @keyframes finger-animation {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-50%) scale(1.5);
+        opacity: 0;
+      }
+    }
   }
 }
