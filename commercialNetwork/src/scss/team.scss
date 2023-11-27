@@ -225,6 +225,9 @@
               opacity 0.8s ease;
           }
 
+          @media (max-width: 768px) and (max-height: 1000px) {
+            max-height: 365px;
+          }
           @media (max-width: 768px) and (max-height: 900px) {
             max-height: 270px;
           }
