@@ -50,13 +50,13 @@
 
         .background-map-wrapper {
           position: relative;
-          width: 220%;
+          width: 1500px;
 
           @media (max-width: 767.98px) {
-            width: 400%;
+            width: 1700px;
           }
           @media (max-width: 575.98px) {
-            width: 500%;
+            width: 1800px;
           }
 
           .map-image {
