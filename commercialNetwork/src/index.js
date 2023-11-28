@@ -5,6 +5,7 @@ const start = sessionStorage.getItem("startTime") || 0
 document.addEventListener("DOMContentLoaded", () => {
   const modules = [
     import("./scss/index.scss"),
+    import("./aboutCompany.scss"),
     import("./js/hamburger"),
     import("./js/map"),
     import("./js/scrollBar"),
