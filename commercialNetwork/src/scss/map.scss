@@ -305,33 +305,8 @@
       position: absolute;
     }
 
-    
     .finger {
-      animation: finger-animation 1s linear 10s infinite;
-    }
-
-    .wave {
-      position: absolute;
-      left: 46%;
-      transform: translateX(-50%);
-      top: 7%;
-      width: 60px;
-      height: 40px;
-      border-radius: 60px 60px 0 0;
-      border-top: 5px solid black;
-      border-left: 5px solid black;
-      border-right: 5px solid black;
-      opacity: 0;
-      animation: wave-animation 1s infinite 10s;
-
-      @media (max-width: 575.98px) {
-        width: 40px;
-        height: 20px;
-        border-radius: 60px 60px 0 0;
-        border-top: 5px solid black;
-        border-left: 5px solid black;
-        border-right: 5px solid black;
-      }
+      animation: finger-animation 1s linear infinite alternate;
     }
 
     @keyframes finger-animation {
@@ -340,17 +315,6 @@
       }
       100% {
         transform: scale(0.8);
-      }
-    }
-
-    @keyframes wave-animation {
-      0% {
-        transform: translateX(-50%) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(-50%) scale(1.5);
-        opacity: 0;
       }
     }
   }
