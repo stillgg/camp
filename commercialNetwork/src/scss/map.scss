@@ -116,7 +116,7 @@
       @media (max-width: 1199.98px) {
         width: 270px;
       }
-      @media (max-height: 800px) {
+      @media (max-height: 800px) or (max-width: 767.98px) {
         display: none;
       }
     }
@@ -132,12 +132,11 @@
       align-items: center;
       z-index: 2;
       margin: 0 auto;
-
       opacity: 0;
       transform: translateY(600px);
       transition:
         transform 0.8s ease,
-        opacity .8s ease;
+        opacity 0.8s ease;
 
       .map-image {
         pointer-events: none;
@@ -294,6 +293,29 @@
       opacity: 1;
       transform: translateY(0%);
       transition-delay: 300ms;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .finger-animation {
+      width: 150px;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+
+    .finger {
+      animation: finger-animation 1s linear infinite alternate;
+    }
+
+    @keyframes finger-animation {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.8);
+      }
     }
   }
 }
