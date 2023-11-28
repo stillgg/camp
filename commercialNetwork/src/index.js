@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     import("./scss/index.scss"),
     import("./aboutCompany.scss"),
     import("./js/hamburger"),
+    
     import("./js/map"),
     import("./js/scrollBar"),
     import("./js/countAnimation"),
