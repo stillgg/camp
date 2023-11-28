@@ -140,11 +140,11 @@ function slider(
     btnPrev.addEventListener("click", onClickBtnLeft)
 
     if (defaultParams.effect === "default") {
-      track.addEventListener("mousedown", onDragStart)
+      track.addEventListener("mousedown", onDragStart, { passive: true })
       document.addEventListener("mousemove", onDragOver)
       document.addEventListener("mouseup", onDragEnd)
 
-      track.addEventListener("touchstart", onDragStart)
+      track.addEventListener("touchstart", onDragStart, { passive: true })
       document.addEventListener("touchmove", onDragOver)
       document.addEventListener("touchend", onDragEnd)
     }

@@ -129,11 +129,11 @@ function onDragEnd(e) {
 
 initSectionsHeight()
 
-main.addEventListener("wheel", onWheel)
-main.addEventListener("touchstart", onDragStart)
+main.addEventListener("wheel", onWheel, { passive: true })
+main.addEventListener("touchstart", onDragStart, { passive: true })
 main.addEventListener("touchend", onDragEnd)
 
-main.addEventListener("mousedown", onDragStart)
+main.addEventListener("mousedown", onDragStart, { passive: true })
 main.addEventListener("mouseup", onDragEnd)
 
 window.addEventListener("resize", initSectionsHeight)
