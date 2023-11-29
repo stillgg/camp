@@ -3,24 +3,7 @@ const animationDelay = 3000
 const start = sessionStorage.getItem("startTime") || 0
 
 document.addEventListener("DOMContentLoaded", () => {
-  const modules = [
-    import("./scss/index.scss"),
-    import("./js/hamburger"),
-    import("./js/map"),
-    import("./js/scrollBar"),
-    import("./js/countAnimation"),
-    import("./js/yandexMap"),
-    import("./js/career/index"),
-    import("./js/news"),
-    import("./js/slider").then((module) => {
-      const slider = module.slider
-      slider("#slider-team-mobile")
-      slider("#slider-team-desktop", { effect: "cards" })
-
-      slider("#slider-news")
-      slider("#slider-merch")
-    }),
-  ]
+  const modules = [import("./scss/index.scss"), import("./js/main")]
 
   Promise.all(modules).then(() => {
     const end = Date.now()

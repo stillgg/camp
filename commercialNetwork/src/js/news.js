@@ -1,5 +1,5 @@
+import { slider } from "./slider"
 const popup = document.querySelector(".news__popup")
-const sliderTrack = document.querySelector(".news-slider-track")
 const shadow = document.querySelector(".shading")
 
 const newsContent = [
@@ -77,18 +77,21 @@ function renderNews(id) {
     </div>`
 }
 
-sliderTrack.addEventListener("click", (e) => {
-  const target = e.target.closest(".slider-item")
+slider("#slider-news", {
+  onClick: (e) => {
+    const target = e.target.closest(".slider-item")
 
-  if (target && !popup.classList.contains("active")) {
-    renderNews(target.getAttribute("id"))
-    closePopup()
+    if (target) {
+      renderNews(target.getAttribute("id"))
+      closePopup()
 
-    setTimeout(() => {
-      popup.classList.add("active")
-      shadow.classList.add("active")
-    }, 0)
-  }
+      const timer = setTimeout(() => {
+        popup.classList.add("active")
+        shadow.classList.add("active")
+        clearTimeout(timer)
+      }, 0)
+    }
+  },
 })
 
 function closePopup() {
