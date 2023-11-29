@@ -1,5 +1,3 @@
-import { watchedSlide } from "./scrollBar"
-
 const network = document.querySelector(".network")
 const numbers = network.querySelectorAll(".number__loader")
 
@@ -15,8 +13,7 @@ const infoSlides = [
   { slideIndex: 6, elements: mapNumbers },
 ]
 
-function countAnimation({ slideIndex, elements }) {
-  
+function countAnimation(isSlide = false, { elements }) {
   elements.forEach((number, index) => {
     let i = 1
     const num = number.dataset.num
@@ -26,7 +23,7 @@ function countAnimation({ slideIndex, elements }) {
     const step = (1000 * time + index * 200) / animationNum
 
     const timer = setInterval(function () {
-      if (i <= animationNum && watchedSlide.activeSlide === slideIndex) {
+      if (i <= animationNum && isSlide) {
         number.textContent = i + "0".repeat(staticNum.length)
       } else {
         clearInterval(timer)

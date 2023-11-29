@@ -6,6 +6,7 @@ const indicatorLines = indicator.querySelectorAll(".sections__wrapper")
 const counter = document.querySelector(".number__current")
 const main = document.querySelector(".main")
 const header = document.querySelector(".header")
+const headerLinks = document.querySelectorAll(".nav__link")
 
 let isStart = false
 let timer = null
@@ -56,7 +57,7 @@ function onSlideChange() {
 
       infoSlides.find((slide) => {
         if (slide.slideIndex === slideIndex) {
-          countAnimation(slide)
+          countAnimation(true, slide)
           resetAnimation(slide.elements)
         }
       })
@@ -66,6 +67,8 @@ function onSlideChange() {
         header.classList.add("black")
       }
 
+      activeLink(slideIndex)
+
       return Reflect.set(target, property, slideIndex)
     },
   }
@@ -74,7 +77,7 @@ function onSlideChange() {
 indicatorLines.forEach((line, index) =>
   line.addEventListener("click", (e) => {
     e.stopPropagation()
-    watchedSlide.activeSlide = index
+    setSlide(index)
   }),
 )
 
@@ -132,6 +135,14 @@ function onDragEnd(e) {
   }
 }
 
+function activeLink(slideIndex) {
+  headerLinks.forEach((link) => {
+    link.classList.remove("active")
+
+    if (+link.dataset.sectionid === slideIndex) link.classList.add("active")
+  })
+}
+
 initSectionsHeight()
 
 main.addEventListener("wheel", onWheel)
@@ -143,4 +154,4 @@ main.addEventListener("mouseup", onDragEnd)
 
 window.addEventListener("resize", initSectionsHeight)
 
-export { watchedSlide, setSlide } // remove watchedSlide from export
+export { setSlide }
