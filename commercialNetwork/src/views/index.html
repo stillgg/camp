@@ -205,8 +205,8 @@
 
       <main class="main">
         <section data-section-theme="light" id="home" class="home active">
-          <video autoplay="autoplay" muted="muted" loop="loop">
-            <source type="video/mp4" src="../resources/videos/01-video.mp4" />
+          <video id="lazy-video" class="lazy" autoplay="autoplay" muted="muted" loop="loop" playsinline loading="lazy">
+            <source type="video/mp4" data-src="../resources/videos/01-video.mp4" type="video/mp4" />
           </video>
 
           <div class="home__main container">
