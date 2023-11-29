@@ -13,7 +13,7 @@ const infoSlides = [
   { slideIndex: 6, elements: mapNumbers },
 ]
 
-function countAnimation(isSlide = false, { elements }) {
+function countAnimation(isSlideChanged = false, { elements }) {
   elements.forEach((number, index) => {
     let i = 1
     const num = number.dataset.num
@@ -23,7 +23,7 @@ function countAnimation(isSlide = false, { elements }) {
     const step = (1000 * time + index * 200) / animationNum
 
     const timer = setInterval(function () {
-      if (i <= animationNum && isSlide) {
+      if (i <= animationNum && isSlideChanged) {
         number.textContent = i + "0".repeat(staticNum.length)
       } else {
         clearInterval(timer)
