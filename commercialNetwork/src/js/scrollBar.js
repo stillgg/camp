@@ -19,6 +19,10 @@ const watchedSlide = new Proxy(
   onSlideChange(),
 )
 
+const setSlide = (slideIndex) => {
+  watchedSlide.activeSlide = slideIndex
+}
+
 function initSectionsHeight() {
   const height = document.documentElement.clientHeight
   main.style.height = height + "px"
@@ -48,6 +52,7 @@ function onSlideChange() {
 
       sections[slideIndex].classList.add("active")
       indicatorLines[slideIndex].classList.add("active")
+      window.location.hash = `#${sections[slideIndex].getAttribute("data-anchor")}`
 
       infoSlides.find((slide) => {
         if (slide.slideIndex === slideIndex) {
@@ -138,4 +143,4 @@ main.addEventListener("mouseup", onDragEnd)
 
 window.addEventListener("resize", initSectionsHeight)
 
-export { watchedSlide }
+export { watchedSlide, setSlide } // remove watchedSlide from export
