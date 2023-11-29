@@ -1,6 +1,8 @@
 import { slider } from "./slider"
 const popup = document.querySelector(".news__popup")
 const shadow = document.querySelector(".shading")
+const closeWrapper = popup.querySelector(".close__wrapper")
+const shading = document.querySelector(".shading")
 
 const newsContent = [
   {
@@ -51,16 +53,8 @@ const newsContent = [
 function renderNews(id) {
   const news = newsContent.find((element) => element.id === +id)
 
-  document.querySelector(".news__popup").innerHTML = `
+  document.querySelector(".news__wrapper").innerHTML = `
     <div class="news__top" style="background-image:url(${news.imageTags})">
-      <div class="close__wrapper">
-        <div class="preview__close">
-          <span class="close__strip"></span>
-          <span class="close__strip"></span>
-        </div>
-      </div>
-
-
       <div class='top__wrapper'>
         <div class="top__date">${news.date}</div>
         <div class="top__title">${news.title}</div>
@@ -68,11 +62,6 @@ function renderNews(id) {
     </div>
 
     <div class="news__bottom">
-        <p class="bottom__text">
-        Продолжаем прокачивать продукты Яндекса! В ноябре мы делаем упор на Я. Алису и активно реализуем установки
-        на устройствах наших клиентов.
-        </p>
-        
         ${news.text.map((paragraph) => `<p class="bottom__text">${paragraph}</p>`).join("")}
     </div>`
 }
@@ -83,7 +72,6 @@ slider("#slider-news", {
 
     if (target) {
       renderNews(target.getAttribute("id"))
-      closePopup()
 
       const timer = setTimeout(() => {
         popup.classList.add("active")
@@ -94,24 +82,12 @@ slider("#slider-news", {
   },
 })
 
-function closePopup() {
-  const closePopup = popup.querySelector(".close__wrapper")
+closeWrapper.addEventListener("click", () => {
+  popup.classList.remove("active")
+  shadow.classList.remove("active")
+})
 
-  const handleClick = (e) => {
-    const isClickInsidePopup = popup.contains(e.target)
-
-    if (!isClickInsidePopup && popup.classList.contains("active")) {
-      popup.classList.remove("active")
-      shadow.classList.remove("active")
-      document.removeEventListener("click", handleClick)
-    }
-  }
-
-  closePopup.addEventListener("click", () => {
-    popup.classList.remove("active")
-    shadow.classList.remove("active")
-    document.removeEventListener("click", handleClick)
-  })
-
-  document.addEventListener("click", handleClick)
-}
+shading.addEventListener("click", () => {
+  popup.classList.remove("active")
+  shadow.classList.remove("active")
+})
