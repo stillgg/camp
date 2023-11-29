@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     import("./js/yandexMap"),
     import("./js/career/index"),
     import("./js/meeting"),
+    import("./js/anchors"),
     import("./js/slider").then((module) => {
       const slider = module.slider
       slider("#slider-team-mobile")
