@@ -94,6 +94,7 @@ function slider(
   }
 
   function onDragStart(event) {
+    event.preventDefault()
     isDrag = true
     isCaptured = false
 
@@ -148,7 +149,9 @@ function slider(
       document.addEventListener("mousemove", onDragOver)
       document.addEventListener("mouseup", onDragEnd)
 
-      track.addEventListener("touchstart", onDragStart)
+      track.addEventListener("touchstart", onDragStart, {
+        passive: true,
+      })
       document.addEventListener("touchmove", onDragOver)
       document.addEventListener("touchend", onDragEnd)
 
