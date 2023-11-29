@@ -9,6 +9,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     padding-bottom: 20px;
   }
@@ -35,16 +36,33 @@
 
     position: relative;
     max-height: 65%;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
 
-    .content__preview {
+    .content__video {
+      position: relative;
+      z-index: 1;
       width: 100%;
+      height: 100%;
+    }
+
+    .content__preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
       max-height: 100%;
       max-width: 100%;
+      object-fit: cover;
     }
 
     .wrapper__play {
@@ -56,8 +74,12 @@
       border-radius: 35px;
       width: 70px;
       height: 70px;
-      z-index: 1;
+      z-index: 2;
       transition: color, 0.4s;
+
+      &.pause {
+        z-index: -1;
+      }
 
       .play {
         position: relative;
@@ -67,7 +89,70 @@
         transition: color, 0.4s;
       }
     }
+
+    .content-side {
+      margin: 0 0 10px 10px;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+
+      .content-side__play.play,
+      .content-side__stop.pause {
+        display: block;
+      }
+
+      .content-side__play,
+      .content-side__stop {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $red;
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease;
+
+        &:hover {
+          background-color: $white;
+
+          .side__stop {
+            color: $red;
+          }
+
+          .side__play {
+            color: $red;
+          }
+        }
+      }
+
+      .side__play {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 51%;
+        left: 57%;
+        color: $white;
+      }
+
+      .side__stop {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $white;
+      }
+    }
+
     &:hover {
+      .content-side {
+        opacity: 1;
+      }
+
       .wrapper__play {
         background: $red;
       }
