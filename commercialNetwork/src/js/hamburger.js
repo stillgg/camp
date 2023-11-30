@@ -1,4 +1,4 @@
-import { watchedSlide } from "./scrollBar"
+import { setSlide } from "./scrollBar"
 
 const hamburgerBodys = document.querySelector("#menu__body")
 const hamburgerBtn = document.querySelector("#wrapper__icon")
@@ -42,6 +42,6 @@ hamburgerBodys.querySelectorAll(".nav__link").forEach((link) => {
   link.addEventListener("click", () => {
     closeBurger()
     isHeaderBlack = false
-    watchedSlide.activeSlide = +link.dataset.sectionid
+    setSlide(+link.dataset.sectionid)
   })
 })
