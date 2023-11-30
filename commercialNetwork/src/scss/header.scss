@@ -47,9 +47,11 @@ body {
         color: $red;
         background-color: $white;
       }
+
       @media (max-width: 991.98px) {
         padding: 12px 30px;
         font-size: 32px;
+
         .btn__key {
           margin-bottom: 4px;
           scale: 2;
@@ -60,6 +62,7 @@ body {
     .menu {
       display: flex;
       align-items: center;
+
       .menu__body {
         display: flex;
         transition:
@@ -95,6 +98,12 @@ body {
               color: $white;
               border-bottom: 0px solid rgba($color: $white, $alpha: 0);
               cursor: pointer;
+
+              &.active {
+                &::after {
+                  width: 100%;
+                }
+              }
 
               &::after {
                 display: block;
