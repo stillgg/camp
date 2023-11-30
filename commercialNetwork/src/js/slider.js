@@ -4,12 +4,14 @@ function slider(
     sliderIndex: 0,
     gap: 20,
     effect: "default",
+    onClick: () => null,
   },
 ) {
   const defaultParams = {
     sliderIndex: params?.sliderIndex || 0,
     gap: params?.gap || 20,
     effect: params?.effect || "default",
+    onClick: params?.onClick,
   }
 
   const area = document.querySelector(selector)
@@ -25,6 +27,7 @@ function slider(
   let indexActiveSlide = defaultParams.sliderIndex
   let positionStart = 0
   let isDrag = false
+  let isCaptured = false
 
   function onClickBtnRight() {
     changeSlide(++indexActiveSlide)
@@ -93,6 +96,7 @@ function slider(
   function onDragStart(event) {
     event.preventDefault()
     isDrag = true
+    isCaptured = false
 
     positionStart = event.touches ? event.touches[0].clientX : event.clientX
 
@@ -102,6 +106,8 @@ function slider(
   function onDragOver(event) {
     if (!isDrag) return
 
+    isCaptured = true
+
     const move = event.touches ? event.touches[0].clientX : event.clientX
 
     track.style.transform = `translate3d(${move - (positionStart + indexActiveSlide * itemWidth)}px, 0px, 0px)`
@@ -109,7 +115,6 @@ function slider(
 
   function onDragEnd(event) {
     if (!isDrag) return
-
     isDrag = false
 
     const positionEnd = event.touches ? event.changedTouches[0].clientX : event.clientX
@@ -144,20 +149,31 @@ function slider(
       document.addEventListener("mousemove", onDragOver)
       document.addEventListener("mouseup", onDragEnd)
 
-      track.addEventListener("touchstart", onDragStart)
+      track.addEventListener("touchstart", onDragStart, {
+        passive: true,
+      })
       document.addEventListener("touchmove", onDragOver)
       document.addEventListener("touchend", onDragEnd)
+
+      track.addEventListener("click", onTrackClick)
     }
 
     window.addEventListener("resize", onResize)
   }
 
+  function onTrackClick(event) {
+    const onClick = params.onClick
+
+    if (typeof onClick === "function" && isCaptured === false) {
+      onClick(event)
+    }
+
+    isCaptured = false
+  }
+
   function removeEvents() {
     window.removeEventListener("resize", onResize)
     document.removeEventListener("mouseleave", onMouseLeave)
-
-    btnNext.removeEventListener("click", onClickBtnRight)
-    btnPrev.removeEventListener("click", onClickBtnLeft)
 
     track.removeEventListener("mousedown", onDragStart)
     document.removeEventListener("mousemove", onDragOver)
@@ -166,6 +182,10 @@ function slider(
     track.removeEventListener("touchstart", onDragStart)
     document.removeEventListener("touchmove", onDragOver)
     document.removeEventListener("touchend", onDragEnd)
+
+    btnNext.removeEventListener("click", onClickBtnRight)
+    btnPrev.removeEventListener("click", onClickBtnLeft)
+    track.removeEventListener("click", onTrackClick)
   }
 
   function onResize() {

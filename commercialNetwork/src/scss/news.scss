@@ -66,6 +66,8 @@
               overflow: hidden;
 
               .header-image {
+                position: absolute;
+                height: 100%;
                 object-fit: cover;
                 pointer-events: none;
                 user-select: none;
@@ -128,6 +130,7 @@
             }
 
             .body__text {
+              flex: 1 1 auto;
               color: $black;
               margin-bottom: 20px;
               @media (max-width: 1199.98px) {
@@ -136,6 +139,7 @@
             }
 
             .body__link {
+              text-align: center;
               font-weight: 700;
               color: $red;
 
