@@ -20,6 +20,7 @@
 @import "./mapPopup.scss";
 @import "./yandexMapPopup.scss";
 @import "./404.scss";
+@import "./newsPopup.scss";
 
 body {
   overflow: hidden;
@@ -90,5 +91,19 @@ section {
 
   @media (max-width: 1199.98px) {
     padding: 0 20px;
+  }
+}
+
+.shading {
+  transition: background-color 0.5s ease;
+
+  &.active {
+    position: absolute;
+    z-index: 9999999;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.6);
   }
 }
