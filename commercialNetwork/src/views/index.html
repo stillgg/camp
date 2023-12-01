@@ -31,12 +31,13 @@
           0.3s transform;
       }
 
-      .preloader__line.done {
-        transform: translateY(-3px);
-      }
-
       .preloader.active {
         bottom: 0%;
+      }
+
+      .preloader svg {
+        animation: blink 1.5s ease-in infinite alternate;
+        animation-delay: 4s;
       }
 
       .preloader path {
@@ -85,6 +86,19 @@
           stroke-dashoffset: 3164;
           fill: white;
         }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.6;
+        }
+      }
+
+      .app {
+        position: fixed;
       }
     </style>
 
@@ -758,7 +772,7 @@
                 <div id="2" class="slider-item news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
-                      <img class="header-image" src="../resources/img/09-yandex-plus.png" alt="" loading="lazy"/>
+                      <img class="header-image" src="../resources/img/09-yandex-plus.png" alt="" loading="lazy" />
                     </div>
                     <div class="item__date">30.08.2022</div>
                   </div>
@@ -772,7 +786,7 @@
                 <div id="3" class="slider-item news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
-                      <img class="header-image" src="../resources/img/09-conferention.png" alt="" loading="lazy"/>
+                      <img class="header-image" src="../resources/img/09-conferention.png" alt="" loading="lazy" />
                     </div>
                     <div class="item__date">15.06.2022</div>
                   </div>
@@ -786,7 +800,7 @@
                 <div id="4" class="slider-item news-body__item">
                   <div class="item__header">
                     <div class="wrapper-image">
-                      <img class="header-image" src="../resources/img/09-gayazov.png" alt="" loading="lazy"/>
+                      <img class="header-image" src="../resources/img/09-gayazov.png" alt="" loading="lazy" />
                     </div>
                     <div class="item__date">31.11.2021</div>
                   </div>
@@ -1304,12 +1318,6 @@
         file.addEventListener("load", () => {
           i++
           preloaderLine.style.width = ((i * 100) / media.length).toFixed() + "%"
-
-          if (i === media.length - 1) {
-            preloaderLine.style.width = 100 + "%"
-
-            preloaderLine.classList.add("done")
-          }
         })
       })
     </script>
