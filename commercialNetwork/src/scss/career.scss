@@ -267,7 +267,12 @@
           .text__title {
             font-weight: 700;
             font-size: 30px;
+            line-height: 125%;
             margin-bottom: 40px;
+
+            @media (max-width: 575.98px) {
+              padding-right: 50px;
+            }
           }
 
           .text__requirements {
@@ -353,6 +358,10 @@
         .data__container {
           display: flex;
           padding: 60px 100px;
+
+          & * {
+            max-width: 100%;
+          }
 
           @media (max-width: 991.98px) {
             padding: 50px 20px;

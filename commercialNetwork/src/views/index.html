@@ -1149,7 +1149,7 @@
                       </div>
 
                       <div class="input">
-                        <label class="input__title" for="name">Фамилия Имя Отчество</label>
+                        <label class="input__title" for="fio">Фамилия Имя Отчество</label>
                         <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
                         <div data-error-message-fio class="error-message"></div>
                       </div>
@@ -1193,10 +1193,14 @@
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>
-                  <button id="submit" type="submit" class="form__btn">
-                    <span class="loader"></span>
-                    <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
-                  </button>
+
+                  <div class="btn__wrapper">
+                    <button id="submit" type="submit" class="form__btn">
+                      <span class="loader"></span>
+                      <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
+                    </button>
+                    <div class="submit__dis"></div>
+                  </div>
                 </form>
               </div>
             </div>
