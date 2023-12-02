@@ -46,6 +46,7 @@
             }
 
             img {
+              width: 375px;
               height: 375px;
             }
 
@@ -122,6 +123,11 @@
         .team-slider-track {
           .team__item {
             min-width: 320px;
+
+            img {
+              width: 250px;
+              height: 250px;
+            }
 
             &.active {
               .text {
