@@ -1,11 +1,13 @@
 import { slider } from "./slider"
-import "./scrollBar"
+import "./anchors"
 import "./countAnimation"
 import "./hamburger"
 import "./map"
+import "./meeting"
+import "./news"
+import "./scrollBar"
 import "./yandexMap"
 import "./career/index"
-import "./news"
 
 slider("#slider-team-mobile")
 slider("#slider-team-desktop", { effect: "cards" })
