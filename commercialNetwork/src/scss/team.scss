@@ -196,16 +196,15 @@
 
       .scroll {
         overflow-y: auto;
+        opacity: 0;
+        transform: translateX(600px);
+        transition:
+          transform 0.6s ease,
+          opacity 0.8s ease;
 
         .main__description {
           padding-bottom: 30px;
           position: relative;
-
-          opacity: 0;
-          transform: translateX(600px);
-          transition:
-            transform 0.6s ease,
-            opacity 0.8s ease;
 
           .main__description__bold {
             position: relative;
@@ -223,12 +222,6 @@
           @media (max-width: 991.98px) {
             max-width: 100%;
             overflow-y: auto;
-
-            opacity: 0;
-            transform: translateY(600px);
-            transition:
-              transform 0.8s ease,
-              opacity 0.8s ease;
           }
 
           @media (max-width: 768px) and (max-height: 1000px) {
@@ -244,6 +237,14 @@
           @media (max-width: 768px) and (max-height: 700px) {
             max-height: 120px;
           }
+        }
+
+        @media (max-width: 991.98px) {
+          opacity: 0;
+          transform: translateY(600px);
+          transition:
+            transform 0.8s ease,
+            opacity 0.8s ease;
         }
       }
 
@@ -288,7 +289,7 @@
       transition-delay: 300ms;
     }
 
-    .team__wrapper .team__main .main__description,
+    .team__wrapper .team__main .scroll,
     wrapper-gradient {
       opacity: 1;
 
