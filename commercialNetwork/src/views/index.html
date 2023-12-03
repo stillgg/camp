@@ -113,11 +113,11 @@
   <body>
     <div class="app">
       <header class="header container">
-        <a class="header__logo" aria-label="logo" data-anchor="home">
+        <div class="header__logo" aria-label="logo" data-anchor="home">
           <svg width="150" height="78">
             <use xlink:href="resources/icons/sprite.svg#logo"></use>
           </svg>
-        </a>
+        </div>
 
         <div class="header__menu menu">
           <nav id="menu__body" class="menu__body">
@@ -222,7 +222,7 @@
       </div>
 
       <main class="main">
-        <section data-section-theme="light" id="home" class="home active">
+        <section data-section-theme="light" data-anchor="home" class="home active">
           <video id="lazy-video" class="lazy" autoplay="autoplay" muted="muted" loop="loop" playsinline loading="lazy">
             <source type="video/mp4" src="../resources/videos/01-video.mp4" type="video/mp4" />
           </video>

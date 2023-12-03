@@ -160,10 +160,8 @@ main.addEventListener("mousedown", onDragStart, { passive: true })
 main.addEventListener("mouseup", onDragEnd)
 
 window.addEventListener("resize", () => {
-  setTimeout(() => {
-    initSectionsHeight()
-    setSlide(watchedSlide.activeSlide)
-  }, 350)
+  initSectionsHeight()
+  setSlide(watchedSlide.activeSlide)
 })
 
 export { setSlide, getSectionIndex }
