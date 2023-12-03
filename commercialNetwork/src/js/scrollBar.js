@@ -159,9 +159,11 @@ main.addEventListener("touchend", onDragEnd)
 main.addEventListener("mousedown", onDragStart)
 main.addEventListener("mouseup", onDragEnd)
 
-// window.addEventListener("resize", initSectionsHeight)
 window.addEventListener("resize", () => {
-  watchedSlide.activeSlide = 
+  setTimeout(() => {
+    initSectionsHeight()
+    setSlide(watchedSlide.activeSlide)
+  }, 350)
 })
 
 export { setSlide, getSectionIndex }
