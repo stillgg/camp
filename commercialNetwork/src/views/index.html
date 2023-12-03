@@ -95,7 +95,7 @@
   <body>
     <div class="app">
       <header class="header container">
-        <a class="header__logo" href="#" data-sectionId="0">
+        <a class="header__logo" data-anchor="home">
           <svg width="150" height="78">
             <use xlink:href="resources/icons/sprite.svg#logo"></use>
           </svg>
@@ -105,22 +105,22 @@
           <nav id="menu__body" class="menu__body">
             <ul class="header__nav">
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="1">о компании</a>
+                <a class="nav__link" data-anchor="about">о компании</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="7">команда</a>
+                <a class="nav__link" data-anchor="team">команда</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="8">новости</a>
+                <a class="nav__link" data-anchor="news">новости</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="9">вакансии</a>
+                <a class="nav__link" data-anchor="career">вакансии</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="10">мерч</a>
+                <a class="nav__link" data-anchor="merch">мерч</a>
               </li>
               <li class="nav__item">
-                <a class="nav__link" data-sectionId="11">контакты</a>
+                <a class="nav__link" data-anchor="contacts">контакты</a>
               </li>
               <li>
                 <a class="header__btn"
@@ -162,40 +162,40 @@
             <div class="number__total">&nbsp;/ 12</div>
           </div>
           <div class="scrollbar__sections">
-            <a class="sections__wrapper active" data-sectionId="0">
+            <a class="sections__wrapper active" data-anchor="home">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="1">
+            <a class="sections__wrapper" data-anchor="about">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="2">
+            <a class="sections__wrapper" data-anchor="network">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="3">
+            <a class="sections__wrapper" data-anchor="promoters">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="4">
+            <a class="sections__wrapper" data-anchor="communication">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="5">
+            <a class="sections__wrapper" data-anchor="meeting">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="6">
+            <a class="sections__wrapper" data-anchor="map">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="7">
+            <a class="sections__wrapper" data-anchor="team">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="8">
+            <a class="sections__wrapper" data-anchor="news">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="9">
+            <a class="sections__wrapper" data-anchor="career">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="10">
+            <a class="sections__wrapper" data-anchor="merch">
               <span class="sections__link"></span>
             </a>
-            <a class="sections__wrapper" data-sectionId="11">
+            <a class="sections__wrapper" data-anchor="contacts">
               <span class="sections__link"></span>
             </a>
           </div>
@@ -911,7 +911,7 @@
             </div>
           </div>
           <div class="yandexMap__footer container">
-            <a target="_blank" href="https://vk.com/mikulich2001"
+            <a target="_blank" href="https://vk.com/hrpromotion"
               ><svg width="35" height="35">
                 <use xlink:href="../resources/icons/sprite.svg#vk"></use>
               </svg>
@@ -1242,6 +1242,7 @@
     </div>
 
     <script>
+      window.location.hash = `#home`
       const preloader = document.querySelector(".preloader")
       const preloaderLine = document.querySelector(".preloader__line")
 

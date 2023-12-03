@@ -1,11 +1,11 @@
-import { setSlide } from "./scrollBar"
+import { setSlide, getSectionIndex } from "./scrollBar"
 
 const sections = document.querySelectorAll("section")
-const anchors = document.querySelectorAll("[data-sectionId]")
+const anchors = document.querySelectorAll("a[data-anchor]")
 
 anchors.forEach((link) => {
   link.addEventListener("click", () => {
-    setSlide(+link.getAttribute("data-sectionId"))
+    setSlide(getSectionIndex(link))
   })
 })
 

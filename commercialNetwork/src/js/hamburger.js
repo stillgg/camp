@@ -42,6 +42,5 @@ hamburgerBodys.querySelectorAll(".nav__link").forEach((link) => {
   link.addEventListener("click", () => {
     closeBurger()
     isHeaderBlack = false
-    setSlide(+link.dataset.sectionid)
   })
 })
