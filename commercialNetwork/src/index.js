@@ -1,4 +1,5 @@
 const preloader = document.querySelector(".preloader")
+const preloaderLine = document.querySelector(".preloader__line")
 const animationDelay = 3000
 const start = sessionStorage.getItem("startTime") || 0
 
@@ -10,7 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeout = animationDelay - (end - start)
 
     const timer = setTimeout(() => {
-      preloader.classList.remove("active")
+      preloaderLine.style.width = 100 + "%"
+
+      const timerAnimation = setTimeout(() => {
+        preloader.classList.remove("active")
+        clearTimeout(timerAnimation)
+      }, 300)
+
       clearTimeout(timer)
     }, timeout)
   })
