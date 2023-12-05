@@ -1,5 +1,5 @@
 import { infoSlides, countAnimation, resetAnimation } from "./countAnimation"
-const app = document.querySelector(".app")
+
 const sections = document.querySelectorAll("section")
 const indicator = document.querySelector("#indicator")
 const indicatorLines = indicator.querySelectorAll(".sections__wrapper")
@@ -135,23 +135,33 @@ function onDragEnd(e) {
   }
 }
 
+function getSectionIndex(link) {
+  return Array.from(sections).findIndex(
+    (section) => section.getAttribute("data-anchor") === link.getAttribute("data-anchor"),
+  )
+}
+
 function activeLink(slideIndex) {
   headerLinks.forEach((link) => {
     link.classList.remove("active")
 
-    if (+link.dataset.sectionid === slideIndex) link.classList.add("active")
+    const sectionIndex = getSectionIndex(link)
+    if (sectionIndex === slideIndex) link.classList.add("active")
   })
 }
 
 initSectionsHeight()
 
-main.addEventListener("wheel", onWheel)
-main.addEventListener("touchstart", onDragStart)
+main.addEventListener("wheel", onWheel, { passive: true })
+main.addEventListener("touchstart", onDragStart, { passive: true })
 main.addEventListener("touchend", onDragEnd)
 
-main.addEventListener("mousedown", onDragStart)
+main.addEventListener("mousedown", onDragStart, { passive: true })
 main.addEventListener("mouseup", onDragEnd)
 
-window.addEventListener("resize", initSectionsHeight)
+window.addEventListener("resize", () => {
+  initSectionsHeight()
+  setSlide(watchedSlide.activeSlide)
+})
 
-export { setSlide }
+export { setSlide, getSectionIndex }
