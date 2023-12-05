@@ -51,6 +51,7 @@ const v = new Validation(schema, {
     else btnSubmit.classList.add("disabled")
 
     checkField(element)
+    console.log(v)
   },
 })
 

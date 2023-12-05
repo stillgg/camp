@@ -21,6 +21,7 @@ const fio = form.querySelector("#fio")
 const nationality = form.querySelector("#nationality")
 const job = form.querySelector("#job")
 const file = form.querySelector("#file")
+const inputs = form.querySelectorAll("input, select")
 
 const listElements = [
   {
@@ -166,5 +167,15 @@ function addEvents(elements) {
 }
 
 addEvents(listElements)
+
+function inputsFocusHandler() {
+  inputs.forEach((input) => {
+    input.addEventListener("focus", () => {
+      input.parentNode.parentNode.classList.add("focus")
+    })
+  })
+}
+
+inputsFocusHandler()
 
 export { agreements, city, tel, months, years, days, email, fio, nationality, job }
