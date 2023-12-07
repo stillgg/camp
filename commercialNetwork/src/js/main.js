@@ -8,6 +8,7 @@ import "./news"
 import "./scrollBar"
 import "./yandexMap"
 import "./career/index"
+import "./home"
 
 slider("#slider-team-mobile")
 slider("#slider-team-desktop", { effect: "cards" })
