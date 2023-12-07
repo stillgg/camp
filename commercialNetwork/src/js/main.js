@@ -9,7 +9,8 @@ import "./scrollBar"
 import "./yandexMap"
 import "./career/index"
 
-slider("#slider-team-mobile")
-slider("#slider-team-desktop", { effect: "cards" })
-
-slider("#slider-merch")
+window.addEventListener("load", () => {
+  slider("#slider-team-mobile")
+  slider("#slider-team-desktop", { effect: "cards" })
+  slider("#slider-merch")
+})
