@@ -1,3 +1,4 @@
+import { years } from "./events"
 import { v } from "./index"
 
 const form = document.querySelector("#form")
@@ -59,11 +60,13 @@ function hideFile() {
 }
 
 function daysInputHandler(e) {
-  const value = e.target.value
+  const value = e.target.value.replace(/\D/g, "")
 
   if (value.length === 2) {
     months.focus()
   }
+
+  e.target.value = value
 
   if (value.length > 2) {
     e.target.value = value.slice(0, 2)
@@ -79,11 +82,13 @@ function daysBlurHandler(e) {
 }
 
 function monthsInputHandler(e) {
-  const value = e.target.value
+  const value = e.target.value.replace(/\D/g, "")
 
   if (value.length === 2) {
     years.focus()
   }
+
+  e.target.value = value
 
   if (value.length > 2) {
     e.target.value = value.slice(0, 2)
@@ -99,11 +104,13 @@ function monthsBlurHandler(e) {
 }
 
 function yearsInputHandler(e) {
-  const value = e.target.value
+  const value = e.target.value.replace(/\D/g, "")
 
   if (value.length === 4) {
     tel.focus()
   }
+
+  e.target.value = value
 
   if (value.length > 4) {
     e.target.value = value.slice(0, 2)
