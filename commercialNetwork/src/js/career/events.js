@@ -176,6 +176,15 @@ function inputsFocusHandler() {
   })
 }
 
+function inputsUnfocusHandler() {
+  inputs.forEach((input) => {
+    input.addEventListener("focusout", () => {
+      input.parentNode.parentNode.classList.remove("focus")
+    })
+  })
+}
+
+inputsUnfocusHandler()
 inputsFocusHandler()
 
 export { agreements, city, tel, months, years, days, email, fio, nationality, job }
