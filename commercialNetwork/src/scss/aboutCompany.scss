@@ -9,6 +9,12 @@
   font-style: normal;
   color: $white;
 
+  .container {
+    @media (min-width: 1200px) and (max-height: 850px) {
+      padding-top: 40px;
+    }
+  }
+
   .about-body__title {
     opacity: 0;
     transition:
@@ -111,9 +117,7 @@
       margin-top: 15px;
     }
   }
-  @media (max-width: 991.98px) {
-    background-position-x: 55%;
-  }
+
   &.active {
     .about-body__title {
       opacity: 1;
@@ -125,5 +129,9 @@
       transform: translateX(0px);
       transition-delay: 300ms;
     }
+  }
+
+  @media (max-width: 991.98px) {
+    background-position-x: 55%;
   }
 }
