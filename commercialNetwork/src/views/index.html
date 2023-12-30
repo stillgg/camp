@@ -1164,19 +1164,19 @@
                     <div class="form__column">
                       <div class="select">
                         <label class="input__title" for="city-select"> Город, в котором вы находитесь </label>
-                        <div class="select-wrapper">
-                          <label for="city">
-                            <select name="city" id="city" class="input__line input-select">
-                              <option selected disabled value="">Выбор города</option>
-                            </select></label
-                          >
-                          <div data-error-message-city class="error-message"></div>
+                        <div class="select-wrapper wrapper-input">
+                          <select name="city" id="city" class="input-select input__line">
+                            <option selected disabled value="">Выбор города</option>
+                          </select>
                         </div>
+                        <div data-error-message-city class="error-message"></div>
                       </div>
 
                       <div class="input">
                         <label class="input__title" for="job"> Должность на которую вы претендуете</label>
-                        <input name="job" id="job" type="text" class="input__line" placeholder="Укажите должность" />
+                        <div class="wrapper-input">
+                          <input name="job" id="job" type="text" class="input__line" placeholder="Укажите должность" />
+                        </div>
 
                         <div data-error-message-job class="error-message"></div>
                       </div>
@@ -1185,13 +1185,19 @@
                         <label class="input__title" for="days">Дата рождения</label>
                         <div class="birthday-wrapper">
                           <div class="input">
-                            <input name="days" id="days" class="input__line" placeholder="День" />
+                            <div class="wrapper-input">
+                              <input name="days" id="days" class="input__line" placeholder="День" />
+                            </div>
                           </div>
                           <div class="input">
-                            <input name="months" id="months" class="input__line" placeholder="Месяц" />
+                            <div class="wrapper-input">
+                              <input name="months" id="months" class="input__line" placeholder="Месяц" />
+                            </div>
                           </div>
                           <div class="input">
-                            <input name="years" id="years" class="input__line" placeholder="Год" />
+                            <div class="wrapper-input">
+                              <input name="years" id="years" class="input__line" placeholder="Год" />
+                            </div>
                           </div>
                         </div>
                         <div class="error-message"></div>
@@ -1199,14 +1205,16 @@
 
                       <div class="input">
                         <label class="input__title" for="tel">Контактный телефон</label>
-                        <input
-                          name="tel"
-                          id="tel"
-                          type="tel"
-                          class="input__line"
-                          placeholder="Укажите ваш номер телефона"
-                          value="+7"
-                        />
+                        <div class="wrapper-input">
+                          <input
+                            name="tel"
+                            id="tel"
+                            type="tel"
+                            class="input__line"
+                            placeholder="Укажите ваш номер телефона"
+                            value="+7"
+                          />
+                        </div>
                         <div data-error-message-tel class="error-message"></div>
                       </div>
                     </div>
@@ -1214,36 +1222,43 @@
                     <div class="form__column">
                       <div class="input">
                         <label class="input__title" for="email">Email адрес</label>
-                        <input
-                          name="email"
-                          id="email"
-                          type="email"
-                          class="input__line"
-                          placeholder="Укажите ваш Email "
-                        />
+                        <div class="wrapper-input">
+                          <input
+                            name="email"
+                            id="email"
+                            type="email"
+                            class="input__line"
+                            placeholder="Укажите ваш Email "
+                          />
+                        </div>
                         <div data-error-message-email class="error-message"></div>
                       </div>
 
                       <div class="input">
-                        <label class="input__title" for="name">Фамилия Имя Отчество</label>
-                        <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                        <label class="input__title" for="fio">Фамилия Имя Отчество</label>
+                        <div class="wrapper-input">
+                          <input name="fio" id="fio" type="text" class="input__line" placeholder="Укажите ваше ФИО" />
+                        </div>
                         <div data-error-message-fio class="error-message"></div>
                       </div>
 
                       <div class="input">
                         <label class="input__title" for="nationality">Гражданство</label>
-                        <input
-                          name="nationality"
-                          id="nationality"
-                          type="text"
-                          class="input__line"
-                          placeholder="Укажите ваше гражданство"
-                        />
+                        <div class="wrapper-input">
+                          <input
+                            name="nationality"
+                            id="nationality"
+                            type="text"
+                            class="input__line"
+                            placeholder="Укажите ваше гражданство"
+                          />
+                        </div>
                         <div data-error-message-nationality class="error-message"></div>
                       </div>
 
                       <label class="input-file" for="file"
                         >Прикрепить резюме
+
                         <input
                           name="file"
                           id="file"
@@ -1266,13 +1281,18 @@
                       >Согласен с политикой обработки персональных данных
 
                       <input name="checkbox" type="checkbox" class="confirm__point" id="agreements" />
+
                       <span class="confirm__checkbox"></span>
                     </label>
                   </div>
-                  <button id="submit" type="submit" class="form__btn">
-                    <span class="loader"></span>
-                    <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
-                  </button>
+
+                  <div class="btn__wrapper">
+                    <button id="submit" type="submit" class="form__btn">
+                      <span class="loader"></span>
+                      <span class="text">ОТПРАВИТЬ АНКЕТУ</span>
+                    </button>
+                    <div class="submit__dis"></div>
+                  </div>
                 </form>
               </div>
             </div>
