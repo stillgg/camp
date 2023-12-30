@@ -12,5 +12,4 @@ import "./home"
 
 slider("#slider-team-mobile")
 slider("#slider-team-desktop", { effect: "cards" })
-
 slider("#slider-merch")
