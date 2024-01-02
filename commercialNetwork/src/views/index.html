@@ -13,6 +13,120 @@
     <link rel="icon" href="../resources/img/favicon.png" type="image/x-icon" />
     <title>promotion.ru</title>
     <style>
+      /* Reset and base styles  */
+
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      * {
+        padding: 0px;
+        margin: 0px;
+        border: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Links */
+
+      a,
+      a:link,
+      a:visited {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      /* Common */
+
+      aside,
+      nav,
+      footer,
+      header,
+      section,
+      main {
+        display: block;
+      }
+
+      ul,
+      ul li {
+        list-style: none;
+      }
+
+      img {
+        vertical-align: top;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+      }
+
+      img,
+      svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      address {
+        font-style: normal;
+      }
+
+      /* Form */
+
+      input,
+      textarea,
+      button,
+      select {
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        background-color: transparent;
+      }
+
+      input::-ms-clear {
+        display: none;
+      }
+
+      button,
+      input[type="submit"] {
+        display: inline-block;
+        box-shadow: none;
+        background-color: transparent;
+        background: none;
+        cursor: pointer;
+      }
+
+      input:focus,
+      input:active,
+      button:focus,
+      button:active {
+        outline: none;
+      }
+
+      button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+
+      label {
+        cursor: pointer;
+      }
+
+      legend {
+        display: block;
+      }
+    </style>
+
+    <style>
       .preloader {
         position: fixed;
         bottom: 100%;
@@ -223,7 +337,7 @@
 
       <main class="main">
         <section data-section-theme="light" data-anchor="home" class="home active">
-          <video id="lazy-video" class="lazy" autoplay="autoplay" muted="muted" loop="loop" playsinline loading="lazy">
+          <video autoplay="autoplay" muted="muted" loop="loop" playsinline style="display: none">
             <source type="video/mp4" src="../resources/videos/01-video.mp4" type="video/mp4" />
           </video>
 
@@ -1336,20 +1450,30 @@
         </div>
       </div>
     </div>
-
-    <script>
-      const preloader = document.querySelector(".preloader")
-      const preloaderLine = document.querySelector(".preloader__line")
-
-      const media = document.querySelectorAll("img, video")
-      let i = 0
-
-      Array.from(media).forEach((file, index) => {
-        file.addEventListener("load", () => {
-          i++
-          preloaderLine.style.width = ((i * 100) / media.length).toFixed() + "%"
-        })
-      })
-    </script>
   </body>
+
+  <script>
+    const preloader = document.querySelector(".preloader")
+    const preloaderLine = document.querySelector(".preloader__line")
+
+    const media = document.querySelectorAll("img, video")
+    let i = 0
+
+    Array.from(media).forEach((file, index) => {
+      file.addEventListener("load", () => {
+        i++
+        preloaderLine.style.width = ((i * 100) / media.length).toFixed() + "%"
+      })
+    })
+
+    const sections = document.querySelectorAll("section")
+    const main = document.querySelector(".main")
+
+    const height = document.documentElement.clientHeight
+    main.style.height = height + "px"
+
+    sections.forEach((section) => {
+      section.style.height = height + "px"
+    })
+  </script>
 </html>
