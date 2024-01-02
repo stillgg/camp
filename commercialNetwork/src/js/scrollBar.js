@@ -150,8 +150,6 @@ function activeLink(slideIndex) {
   })
 }
 
-initSectionsHeight()
-
 main.addEventListener("wheel", onWheel, { passive: true })
 main.addEventListener("touchstart", onDragStart, { passive: true })
 main.addEventListener("touchend", onDragEnd)
